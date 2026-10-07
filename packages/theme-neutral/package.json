@@ -1,0 +1,32 @@
+{
+  "name": "@solo/theme-neutral",
+  "version": "0.1.0",
+  "description": "Solo Neutral theme for @solo/core. Restrained warm grays. Minimal and quiet, so the content stays the focus.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/source.ts",
+    "./built": {
+      "types": "./built/neutral.d.ts",
+      "default": "./built/neutral.js"
+    },
+    "./theme.css": "./built/theme.css",
+    "./icons": "./src/icons.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lucide-react": "1.23.0"
+  },
+  "peerDependencies": {
+    "@solo/core": "workspace:*",
+    "react": ">=19"
+  },
+  "devDependencies": {
+    "@solo/core": "workspace:*"
+  }
+}

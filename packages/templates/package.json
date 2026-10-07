@@ -1,0 +1,33 @@
+{
+  "name": "@solo/templates",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Page templates for the Solo docs Templates gallery. Each src/<slug>/<Name>Template.tsx renders standalone inside a Solo <Theme>; <Name>Template.doc.mjs describes it.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./public/*": "./public/*",
+    "./*": "./src/*.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@solo/charts": "workspace:*",
+    "@solo/core": "workspace:*",
+    "@solo/theme-neutral": "workspace:*",
+    "lucide-react": "1.23.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "recharts": "^3.9.2"
+  },
+  "devDependencies": {
+    "@solo/docs-types": "workspace:*"
+  }
+}

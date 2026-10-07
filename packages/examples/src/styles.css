@@ -1,0 +1,15 @@
+/**
+ * @solo/examples stylesheet — the Tailwind utilities the example blocks use
+ * directly (component styles come from @solo/core / @solo/charts). Import it
+ * after the component stylesheets; it lands in the app `utilities` layer,
+ * exactly like a story's or app's own classes.
+ *
+ *   @import "@solo/core/styles.css";        (or components.css)
+ *   @import "@solo/charts/styles.css";
+ *   @import "@solo/examples/styles.css";
+ */
+
+@import "../../core/src/tailwind-preset.css";
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+
+@source "./";

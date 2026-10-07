@@ -1,0 +1,26 @@
+'use client';
+
+import {Avatar, AvatarStatusDot} from '@solo/core/Avatar';
+import {HStack} from '@solo/core/Layout';
+
+export default function AvatarStatusDotShowcase() {
+  return (
+    <HStack gap={4} vAlign="center">
+      <Avatar
+        name="Online User"
+        size="xl"
+        status={<AvatarStatusDot variant="success" label="Online" />}
+      />
+      <Avatar
+        name="Away User"
+        size="xl"
+        status={<AvatarStatusDot variant="neutral" label="Away" />}
+      />
+      <Avatar
+        name="Busy User"
+        size="xl"
+        status={<AvatarStatusDot variant="error" label="Busy" />}
+      />
+    </HStack>
+  );
+}

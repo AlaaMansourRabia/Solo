@@ -1,0 +1,23 @@
+'use client';
+
+import {MetadataList, MetadataListItem} from '@solo/core/MetadataList';
+import {Token} from '@solo/core/Token';
+import {HStack} from '@solo/core/Layout';
+
+export default function MetadataListMultiColumnMetadata() {
+  return (
+    <MetadataList columns="multi">
+      <MetadataListItem label="Name">MetadataList</MetadataListItem>
+      <MetadataListItem label="Status">Active</MetadataListItem>
+      <MetadataListItem label="Owner">Joey</MetadataListItem>
+      <MetadataListItem label="Created">Jan 15, 2026</MetadataListItem>
+      <MetadataListItem label="Tags">
+        <HStack gap={1}>
+          <Token label="component" />
+          <Token label="solo" />
+        </HStack>
+      </MetadataListItem>
+      <MetadataListItem label="Priority">Tier 1</MetadataListItem>
+    </MetadataList>
+  );
+}

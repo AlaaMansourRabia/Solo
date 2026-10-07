@@ -1,0 +1,55 @@
+/** @type {import('@solo/docs-types').HookDoc} */
+export const docs = {
+  name: 'useTranslator',
+  displayName: 'useTranslator',
+  category: 'utilities',
+  keywords: [
+    'i18n',
+    'internationalization',
+    'localization',
+    'translation',
+    'translate',
+    'locale',
+    'hook',
+  ],
+  params: [],
+  returns: [
+    {
+      name: 'value',
+      type: '(key: string, values?: Record<string, string | number | Date>) => string',
+      description:
+        'A stable translator function bound to the current InternationalizationProvider context. Call it with a message key and optional ICU MessageFormat values to get the formatted string in the active locale. Safe to use in render, event handlers, effects, or any code that runs during the parent component\'s lifecycle.',
+    },
+  ],
+  usage: {
+    description:
+      'Returns a translator function that resolves keys against the current locale, provider overrides, and the shipped English fallback catalog. Call inside a component; the returned function can be used anywhere within that component\'s scope.',
+  },
+  relatedComponents: ['InternationalizationProvider'],
+  importPath: '@solo/core',
+};
+
+/** @type {import('@solo/docs-types').HookTranslationDoc} */
+export const docsAr = {
+  description: 'يُرجع دالة ترجمة تحلّ المفاتيح وفق اللغة المحلية الحالية وتجاوزات المزوّد وكتالوج الإنجليزية الاحتياطي المضمَّن.',
+  returnDescriptions: {
+    value: 'دالة ترجمة ثابتة مرتبطة بسياق InternationalizationProvider الحالي. استدعها بمفتاح رسالة وقيم ICU MessageFormat اختيارية للحصول على النص المنسَّق باللغة المحلية النشطة. آمنة للاستخدام أثناء العرض، وفي معالجات الأحداث، والتأثيرات (effects)، أو أي شيفرة تعمل خلال دورة حياة المكوّن الأب.',
+  },
+  usage: {
+    description: 'يُرجع دالة ترجمة تحلّ المفاتيح وفق اللغة المحلية الحالية وتجاوزات المزوّد وكتالوج الإنجليزية الاحتياطي المضمَّن. استدعه داخل مكوّن؛ ويمكن استخدام الدالة المُرجَعة في أي مكان ضمن نطاق ذلك المكوّن.',
+  },
+};
+
+/** @type {import('@solo/docs-types').HookTranslationDoc} */
+export const docsDense = {
+  description:
+    'Hook returning a translator function bound to the current InternationalizationProvider context. Call with an ICU MessageFormat key and values to get the formatted string for the active locale.',
+  usage: {
+    description:
+      'Returns a translator function that resolves keys against the current locale, provider overrides, and the shipped English fallback catalog.',
+  },
+  returnDescriptions: {
+    value:
+      'translator function bound to current InternationalizationProvider context. Call with message key + optional ICU MessageFormat values; returns formatted string in active locale. Safe in render, event handlers, effects.',
+  },
+};

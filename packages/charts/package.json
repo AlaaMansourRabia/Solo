@@ -1,0 +1,37 @@
+{
+  "name": "@solo/charts",
+  "version": "0.1.0",
+  "description": "Solo charts styled with Tailwind CSS v4.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./components.css": "./src/components.css",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "echo 'charts ship as source; styles are compiled by @solo/core build:css'"
+  },
+  "peerDependencies": {
+    "@solo/core": "workspace:*",
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
+  "dependencies": {
+    "d3-array": "^3.2.4",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0"
+  },
+  "devDependencies": {
+    "@solo/core": "workspace:*",
+    "@types/d3-array": "^3.2.1",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-shape": "^3.1.8",
+    "@solo/docs-types": "workspace:*"
+  }
+}

@@ -1,0 +1,14 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'block',
+  exampleFor: 'ChatComposerDrawer',
+  name: 'ChatComposerDrawer — Feedback',
+  displayName: 'ChatComposerDrawer — Feedback',
+  description: 'Chat composer drawer with a feedback prompt and selectable lettered options. Use for user confirmation workflows that require explicit action before proceeding.',
+  displayNameAr: 'ChatComposerDrawer — الملاحظات',
+  descriptionAr: 'درج محرّر المحادثة مع طلب ملاحظات وخيارات قابلة للتحديد مرقّمة بالحروف. استخدمه لمسارات تأكيد المستخدم التي تتطلب إجراءً صريحًا قبل المتابعة.',
+  isReady: true,
+  order: 3,
+  aspectRatio: 4 / 3,
+  componentsUsed: ['ChatComposer', 'List', 'Badge', 'Text', 'Layout'],
+};

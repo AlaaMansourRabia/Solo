@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@solo/core": ["../../packages/core/src/index.ts"],
+      "@solo/core/*": ["../../packages/core/src/*"],
+      "@solo/charts": ["../../packages/charts/src/index.ts"],
+      "@solo/charts/*": ["../../packages/charts/src/*"],
+      "@solo/theme-neutral": ["../../packages/theme-neutral/src/source.ts"],
+      "@solo/theme-neutral/built": ["../../packages/theme-neutral/built/neutral"],
+      "@solo/templates": ["../../packages/templates/src/index.ts"],
+      "@solo/templates/*": ["../../packages/templates/src/*"]
+    }
+  },
+  "include": ["stories", ".storybook"],
+  // These a11y reproduction stories render fine (their state inventories only
+  // import *types* from Solo's internal `@solo/a11y-spec` harness,
+  // which Solo does not include), but those types cannot be resolved here.
+  "exclude": [
+    "stories/BreadcrumbsA11y.stories.tsx",
+    "stories/ButtonA11y.stories.tsx",
+    "stories/CheckboxA11y.stories.tsx",
+    "stories/DialogA11y.stories.tsx",
+    "stories/ListboxA11y.stories.tsx",
+    "stories/NumberInputA11y.stories.tsx",
+    "stories/RadioGroupA11y.stories.tsx",
+    "stories/StatusMessageA11y.stories.tsx",
+    "stories/TabsA11y.stories.tsx",
+    "stories/TextInputA11y.stories.tsx"
+  ]
+}

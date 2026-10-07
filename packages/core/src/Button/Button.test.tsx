@@ -1,0 +1,628 @@
+/**
+ * @file Button.test.tsx
+ * @input Uses vitest, @testing-library/react, Button component
+ * @output Unit tests for Button component behavior
+ * @position Testing; validates Button.tsx implementation
+ *
+ * SYNC: When Button.tsx changes, update tests to match new behavior
+ */
+
+import {describe, it, expect, vi} from 'vitest';
+import {render, screen, fireEvent, act} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {Button} from './Button';
+import {Badge} from '../Badge/Badge';
+import {ButtonGroup} from '../ButtonGroup';
+import {IconButton} from '../IconButton';
+import {InternationalizationProvider} from '../i18n';
+
+describe('Button', () => {
+  // Retained, narrowed: the shared contract proves the ROLE and the accessible
+  // NAME in a real engine (button.role.exposed, button.name.exposed), which is
+  // strictly stronger than asserting them here. What stays is the part it does
+  // not own — that Button renders `label` as text a person can read, rather
+  // than only as an accessible name.
+  it('renders label as visible text', () => {
+    render(<Button label="Click me" />);
+    expect(screen.getByRole('button')).toHaveTextContent('Click me');
+  });
+
+  it('renders children instead of label when provided', () => {
+    render(<Button label="Accessible name">Custom content</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toHaveTextContent('Custom content');
+  });
+
+  it('renders with different variants', () => {
+    const {rerender} = render(<Button label="Primary" variant="primary" />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+
+    rerender(<Button label="Secondary" variant="secondary" />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+
+    rerender(<Button label="Ghost" variant="ghost" />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+
+    rerender(<Button label="Destructive" variant="destructive" />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  // Retained, narrowed: the shared contract proves an icon-only button HAS an
+  // accessible name, computed by a real engine. What stays is Button's own
+  // mapping — `isIconOnly` routes `label` to `aria-label` instead of to text,
+  // and the icon is still rendered.
+  it('maps label to aria-label and keeps the icon when icon-only', () => {
+    render(
+      <Button
+        label="Settings"
+        icon={<span data-testid="icon">⚙</span>}
+        isIconOnly
+      />,
+    );
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-label', 'Settings');
+    expect(button).not.toHaveTextContent('Settings');
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+  });
+
+  it('renders icon with text when both icon and children provided', () => {
+    render(
+      <Button label="Settings" icon={<span data-testid="icon">⚙</span>} />,
+    );
+    const button = screen.getByRole('button');
+    expect(button).not.toHaveAttribute('aria-label');
+    expect(button).toHaveTextContent('Settings');
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+  });
+
+  it('shows isLoading state with spinner', () => {
+    render(<Button label="Submit" isLoading />);
+    const button = screen.getByRole('button');
+    // Button should be disabled when loading
+    expect(button).toBeDisabled();
+    // Inactive (no press transform) but not dimmed.
+    expect(button).toHaveClass('active:[transform:none]');
+    expect(button).not.toHaveClass('opacity-50');
+  });
+
+  it('keeps the dimmed treatment for explicitly disabled buttons', () => {
+    render(<Button label="Submit" isDisabled />);
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+    expect(button).toHaveClass('active:[transform:none]');
+    expect(button).toHaveClass('opacity-50');
+  });
+
+  it('sets aria-busy synchronously while clickAction is pending', async () => {
+    // The spinner reveal is visually delayed (CSS animation-delay), but the
+    // loading DOM state — aria-busy and disabled — must not be delayed.
+    const user = userEvent.setup();
+    let resolveAction: (() => void) | undefined;
+    const clickAction = vi.fn(
+      async () =>
+        new Promise<void>(resolve => {
+          resolveAction = resolve;
+        }),
+    );
+    render(<Button label="Save" clickAction={clickAction} />);
+    const button = screen.getByRole('button');
+
+    await user.click(button);
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).toBeDisabled();
+
+    await act(async () => {
+      resolveAction?.();
+      await Promise.resolve();
+    });
+    expect(button).not.toHaveAttribute('aria-busy', 'true');
+    expect(button).not.toBeDisabled();
+  });
+
+  it('renders the loading spinner with the inherit shade for every variant', () => {
+    // The spinner must follow the button's resolved foreground color rather
+    // than a hardcoded white, so it keeps contrast on themed variants like the
+    // neutral theme's muted-red destructive button.
+    for (const variant of [
+      'primary',
+      'secondary',
+      'ghost',
+      'destructive',
+    ] as const) {
+      const {container, unmount} = render(
+        <Button label="Submit" variant={variant} isLoading />,
+      );
+      const spinner = container.querySelector('.solo-spinner');
+      expect(spinner).not.toBeNull();
+      expect(spinner).toHaveAttribute('data-shade', 'inherit');
+      unmount();
+    }
+  });
+
+  it('handles click events', async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
+    render(<Button label="Click me" onClick={handleClick} />);
+
+    await user.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not fire click when disabled', async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
+    render(<Button label="Click me" isDisabled onClick={handleClick} />);
+
+    await user.click(screen.getByRole('button'));
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it('does not fire click when loading', async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
+    render(<Button label="Click me" isLoading onClick={handleClick} />);
+
+    await user.click(screen.getByRole('button'));
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it('forwards ref correctly', () => {
+    const ref = vi.fn();
+    render(<Button label="Test" ref={ref} />);
+    expect(ref).toHaveBeenCalledWith(expect.any(HTMLButtonElement));
+  });
+
+  it('keeps its merged ref attached across unrelated rerenders', () => {
+    const ref = vi.fn();
+    const {rerender} = render(<Button label="Test" ref={ref} />);
+    const button = screen.getByRole('button');
+    expect(ref).toHaveBeenLastCalledWith(button);
+    ref.mockClear();
+
+    rerender(<Button label="Test" variant="primary" ref={ref} />);
+
+    expect(ref).not.toHaveBeenCalled();
+    expect(screen.getByRole('button')).toBe(button);
+  });
+
+  // endContent tests
+  it('renders endContent after label', () => {
+    render(
+      <Button
+        label="Click me"
+        endContent={<Badge data-testid="end" label={3} />}
+      />,
+    );
+    const button = screen.getByRole('button');
+    expect(button).toHaveTextContent('Click me');
+    expect(screen.getByTestId('end')).toBeInTheDocument();
+    expect(screen.getByTestId('end')).toHaveTextContent('3');
+  });
+
+  it('renders endContent with children', () => {
+    render(
+      <Button
+        label="Accessible name"
+        endContent={<Badge data-testid="end" label="New" />}>
+        Custom content
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+    expect(button).toHaveTextContent('Custom content');
+    expect(screen.getByTestId('end')).toBeInTheDocument();
+  });
+
+  it('renders endContent with icon and children', () => {
+    render(
+      <Button
+        label="Settings"
+        icon={<span data-testid="icon">⚙</span>}
+        endContent={<Badge data-testid="end" label="New" />}
+      />,
+    );
+    const button = screen.getByRole('button');
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+    expect(button).toHaveTextContent('Settings');
+    expect(screen.getByTestId('end')).toBeInTheDocument();
+  });
+
+  it('does not render endContent for icon-only buttons', () => {
+    render(
+      <Button
+        label="Settings"
+        icon={<span data-testid="icon">⚙</span>}
+        endContent={<Badge data-testid="end" label={3} />}
+        isIconOnly
+      />,
+    );
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+    expect(screen.queryByTestId('end')).not.toBeInTheDocument();
+  });
+
+  it('wraps endContent in a container for color inheritance', () => {
+    render(
+      <Button
+        label="Test"
+        endContent={<Badge data-testid="end" label={3} />}
+      />,
+    );
+    const badge = screen.getByTestId('end');
+    // The badge should be inside a wrapper span that inherits color
+    const wrapper = badge.parentElement;
+    expect(wrapper?.tagName).toBe('SPAN');
+  });
+
+  it('hides endContent content when loading', () => {
+    render(
+      <Button
+        label="Submit"
+        isLoading
+        endContent={<Badge data-testid="end" label={3} />}
+      />,
+    );
+    // endContent should still be in the DOM
+    expect(screen.getByTestId('end')).toBeInTheDocument();
+    // Button should be disabled and have aria-busy
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('aria-busy', 'true');
+  });
+
+  it('renders solo-* classes and data attributes for theme targeting', () => {
+    render(<Button label="Test" variant="secondary" size="sm" />);
+    const button = screen.getByRole('button');
+    expect(button.className).toContain('solo-button');
+    expect(button).toHaveAttribute('data-variant', 'secondary');
+    expect(button).toHaveAttribute('data-size', 'sm');
+  });
+
+  it('applies string width as-is', () => {
+    render(<Button label="Sign in" width="100%" />);
+    const button = screen.getByRole('button');
+    // The dynamic width travels through an inline CSS custom property.
+    expect(button.getAttribute('style')).toContain('100%');
+    expect(button).toHaveClass('w-(--_button-width)');
+  });
+
+  it('applies numeric width as pixels', () => {
+    render(<Button label="Sign in" width={240} />);
+    expect(screen.getByRole('button').getAttribute('style')).toContain('240');
+  });
+
+  it('omits width styling when the prop is not provided', () => {
+    render(<Button label="Sign in" />);
+    expect(screen.getByRole('button')).not.toHaveClass('w-(--_button-width)');
+  });
+
+  it('applies width when rendered as a link via href', () => {
+    render(<Button label="Sign in" href="https://example.com" width="100%" />);
+    expect(
+      screen.getByRole('link', {name: 'Sign in'}).getAttribute('style'),
+    ).toContain('100%');
+  });
+
+  // P0: onClick fires before clickAction, clickAction respects preventDefault
+  it('fires onClick before clickAction', async () => {
+    const user = userEvent.setup();
+    const order: string[] = [];
+    const handleClick = vi.fn(() => {
+      order.push('onClick');
+    });
+    const handleAction = vi.fn(() => {
+      order.push('clickAction');
+    });
+    render(
+      <Button label="Test" onClick={handleClick} clickAction={handleAction} />,
+    );
+
+    await user.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleAction).toHaveBeenCalledTimes(1);
+    expect(order).toEqual(['onClick', 'clickAction']);
+  });
+
+  it('does not call clickAction when onClick calls preventDefault', async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn((e: React.MouseEvent) => e.preventDefault());
+    const handleAction = vi.fn();
+    render(
+      <Button label="Test" onClick={handleClick} clickAction={handleAction} />,
+    );
+
+    await user.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleAction).not.toHaveBeenCalled();
+  });
+
+  it('fires clickAction once on a fast double-click (no double-submit)', async () => {
+    let resolveAction: (() => void) | undefined;
+    const handleAction = vi.fn(
+      async () =>
+        new Promise<void>(resolve => {
+          resolveAction = resolve;
+        }),
+    );
+    render(<Button label="Pay" clickAction={handleAction} />);
+
+    const button = screen.getByRole('button');
+    await act(async () => {
+      fireEvent.click(button);
+      fireEvent.click(button);
+    });
+    expect(handleAction).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      resolveAction?.();
+      await Promise.resolve();
+    });
+  });
+
+  it('stays clickable (not disabled) while a clickAction is pending when isInterruptible', async () => {
+    const user = userEvent.setup();
+    let resolveAction: (() => void) | undefined;
+    const clickAction = vi.fn(
+      async () =>
+        new Promise<void>(resolve => {
+          resolveAction = resolve;
+        }),
+    );
+    render(<Button label="Toggle" isInterruptible clickAction={clickAction} />);
+    const button = screen.getByRole('button');
+
+    await user.click(button);
+    // Loading is announced via aria-busy, but the button is not disabled so it
+    // can be re-clicked to interrupt the in-flight action.
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).not.toBeDisabled();
+
+    await act(async () => {
+      resolveAction?.();
+      await Promise.resolve();
+    });
+    expect(button).not.toHaveAttribute('aria-busy', 'true');
+    expect(button).not.toBeDisabled();
+  });
+
+  it('re-fires clickAction on re-click while pending when isInterruptible (no dedupe)', async () => {
+    // Unlike the fire-once default, an interruptible action is not deduped: a
+    // re-click while pending starts a fresh action that interrupts the prior.
+    const resolvers: (() => void)[] = [];
+    const clickAction = vi.fn(
+      async () =>
+        new Promise<void>(resolve => {
+          resolvers.push(resolve);
+        }),
+    );
+    render(<Button label="Toggle" isInterruptible clickAction={clickAction} />);
+
+    const button = screen.getByRole('button');
+    await act(async () => {
+      fireEvent.click(button);
+    });
+    await act(async () => {
+      fireEvent.click(button);
+    });
+    expect(clickAction).toHaveBeenCalledTimes(2);
+
+    await act(async () => {
+      resolvers.forEach(resolve => resolve());
+      await Promise.resolve();
+    });
+  });
+
+  // type/name/value/form props
+  it('defaults type to button', () => {
+    render(<Button label="Test" />);
+    expect(screen.getByRole('button')).toHaveAttribute('type', 'button');
+  });
+
+  it('passes type=submit', () => {
+    render(<Button label="Submit" type="submit" />);
+    expect(screen.getByRole('button')).toHaveAttribute('type', 'submit');
+  });
+
+  it('uses aria-disabled instead of disabled when tooltip is present and button is disabled', () => {
+    render(<Button label="Test" tooltip="Reason disabled" isDisabled />);
+    const button = screen.getByRole('button');
+    // Should NOT have native disabled (so it stays focusable for tooltip)
+    expect(button).not.toHaveAttribute('disabled');
+    expect(button).toHaveAttribute('aria-disabled', 'true');
+  });
+
+  it('does not fire handlers when aria-disabled via tooltip', async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
+    render(
+      <Button
+        label="Test"
+        tooltip="Reason disabled"
+        isDisabled
+        onClick={handleClick}
+      />,
+    );
+    await user.click(screen.getByRole('button'));
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it('suppresses activation keys but passes other keys when aria-disabled via tooltip', async () => {
+    const user = userEvent.setup();
+    const handleKeyDown = vi.fn();
+    render(
+      <Button
+        label="Test"
+        tooltip="Reason disabled"
+        isDisabled
+        onKeyDown={handleKeyDown}
+      />,
+    );
+    const button = screen.getByRole('button');
+    button.focus();
+    await user.keyboard('{Enter}');
+    // Activation keys (Enter) should be suppressed
+    expect(handleKeyDown).not.toHaveBeenCalled();
+
+    // Non-activation keys (Escape) should reach consumer handler
+    await user.keyboard('{Escape}');
+    expect(handleKeyDown).toHaveBeenCalledTimes(1);
+  });
+
+  it('has a live region that announces loading state', () => {
+    const {rerender} = render(<Button label="Submit" />);
+    const button = screen.getByRole('button');
+    const liveRegion = button.querySelector('[role="status"]');
+    expect(liveRegion).toBeInTheDocument();
+    expect(liveRegion).toHaveTextContent('');
+
+    rerender(<Button label="Submit" isLoading />);
+    expect(liveRegion).toHaveTextContent('Loading');
+  });
+
+  it('localizes the loading announcement through the i18n catalog', () => {
+    render(
+      <InternationalizationProvider
+        locale="fr"
+        overrides={{fr: {'@solo.button.loading': 'Chargement'}}}>
+        <Button label="Submit" isLoading />
+      </InternationalizationProvider>,
+    );
+    const button = screen.getByRole('button');
+    // The Spinner also has role="status", so grab the live region explicitly.
+    const regions = button.querySelectorAll('[role="status"]');
+    const liveRegion = regions[regions.length - 1];
+    expect(liveRegion).toHaveTextContent('Chargement');
+  });
+
+  describe('in a narrow row', () => {
+    // jsdom has no layout, so these assert the computed declarations that
+    // produce the behavior. The real-browser widths are in the PR evidence.
+    it('lets a labelled button shrink so its label truncates', () => {
+      render(<Button label="A very long button label that should truncate" />);
+      expect(screen.getByRole('button')).toHaveClass('min-w-0', 'max-w-full');
+      const label = screen.getByText(
+        'A very long button label that should truncate',
+      );
+      expect(label).toHaveClass('text-ellipsis', 'overflow-hidden');
+    });
+
+    it('keeps the default flex-shrink so a row can shrink the button', () => {
+      render(<Button label="Save" icon={<span>+</span>} />);
+      // No opt-out: a labelled button (with or without an icon) shrinks.
+      expect(screen.getByRole('button')).not.toHaveClass('shrink-0');
+    });
+
+    it('keeps an icon-only button square instead of shrinking it', () => {
+      render(<Button label="Settings" icon={<span>⚙</span>} isIconOnly />);
+      const button = screen.getByRole('button');
+      expect(button).toHaveClass('shrink-0', 'max-w-none');
+      expect(button).not.toHaveClass('max-w-full');
+      expect(button).toHaveClass(
+        '[aspect-ratio:var(--button-icon-only-aspect)]',
+      );
+    });
+
+    it('keeps IconButton square too, since it renders the icon-only mode', () => {
+      render(<IconButton label="More actions" icon={<span>⋯</span>} />);
+      const button = screen.getByRole('button', {name: 'More actions'});
+      expect(button).toHaveClass('shrink-0', 'max-w-none');
+      expect(button).not.toHaveClass('max-w-full');
+    });
+
+    it('caps an explicit width at the container instead of dropping it', () => {
+      render(<Button label="Sign in" width={240} />);
+      const button = screen.getByRole('button');
+      expect(button.getAttribute('style')).toContain('240');
+      expect(button).toHaveClass('w-(--_button-width)', 'max-w-full');
+    });
+
+    it('applies the same cap in link mode', () => {
+      render(<Button label="Read the full release notes" href="#notes" />);
+      expect(
+        screen.getByRole('link', {name: 'Read the full release notes'}),
+      ).toHaveClass('min-w-0', 'max-w-full');
+    });
+
+    it('shrinks inside a ButtonGroup like a standalone button', () => {
+      render(
+        <ButtonGroup label="Draft actions">
+          <Button label="Save changes to draft" />
+          <Button label="Discard" />
+        </ButtonGroup>,
+      );
+      expect(
+        screen.getByRole('button', {name: 'Save changes to draft'}),
+      ).toHaveClass('min-w-0', 'max-w-full');
+    });
+
+    it('lets className restore a rigid button', () => {
+      render(<Button label="Cancel" className="shrink-0 min-w-auto" />);
+      const button = screen.getByRole('button');
+      expect(button).toHaveClass('shrink-0', 'min-w-auto');
+      // The consumer's min-width replaces the button's own, not competes.
+      expect(button).not.toHaveClass('min-w-0');
+    });
+  });
+
+  describe('elevation', () => {
+    it('reflects each elevation level as a theme attribute', () => {
+      const attrFor = (elevation: 'none' | 'low' | 'med' | 'high') => {
+        const {container} = render(
+          <Button label="Save" elevation={elevation} />,
+        );
+        return container
+          .querySelector('button')!
+          .getAttribute('data-elevation');
+      };
+      expect(attrFor('none')).toBe('none');
+      expect(attrFor('low')).toBe('low');
+      expect(attrFor('med')).toBe('med');
+      expect(attrFor('high')).toBe('high');
+    });
+
+    it('renders a distinct class for each elevation level', () => {
+      const classFor = (elevation: 'none' | 'low' | 'med' | 'high') => {
+        const {container} = render(
+          <Button label="Save" elevation={elevation} />,
+        );
+        return container.querySelector('button')!.className;
+      };
+      const classes = new Set([
+        classFor('none'),
+        classFor('low'),
+        classFor('med'),
+        classFor('high'),
+      ]);
+      expect(classes.size).toBe(4);
+    });
+
+    it('defaults to flat (elevation none)', () => {
+      const {container} = render(<Button label="Save" />);
+      const button = container.querySelector('button')!;
+      expect(button).toHaveAttribute('data-elevation', 'none');
+      const {container: none} = render(
+        <Button label="Save" elevation="none" />,
+      );
+      expect(button.className).toBe(none.querySelector('button')!.className);
+    });
+  });
+
+  it('exposes aria-busy on the link-rendered button while loading', () => {
+    // Non-interruptible loading disables the button, which falls back to
+    // <button> rendering — so an anchor only shows loading when interruptible.
+    render(
+      <Button
+        label="Docs"
+        href="https://example.com"
+        isLoading
+        isInterruptible
+      />,
+    );
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('aria-busy', 'true');
+  });
+
+  it('does not set aria-busy on the link-rendered button when not loading', () => {
+    render(<Button label="Docs" href="https://example.com" />);
+    const link = screen.getByRole('link');
+    expect(link).not.toHaveAttribute('aria-busy');
+  });
+});

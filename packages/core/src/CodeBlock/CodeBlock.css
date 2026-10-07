@@ -1,0 +1,12 @@
+@keyframes solo-codeblock-chevron-reveal {
+  from {
+    width: 0;
+    margin-inline-end: 0;
+    opacity: 0;
+  }
+  to {
+    width: 14px;
+    margin-inline-end: var(--spacing-1);
+    opacity: 1;
+  }
+}

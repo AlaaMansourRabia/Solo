@@ -1,0 +1,411 @@
+import type {Meta, StoryObj} from '@storybook/react';
+import {Grid, GridSpan} from '@solo/core/Grid';
+import {Card} from '@solo/core/Card';
+import {Section} from '@solo/core/Section';
+import {Text} from '@solo/core/Text';
+import {VStack} from '@solo/core/Stack';
+import {cn} from '@solo/core/utils/cn';
+
+const styles = {
+  container: 'p-(--spacing-4) bg-(--color-background-surface)',
+  item: 'p-(--spacing-4) bg-(--color-background-body) rounded-(--radius-element) text-center',
+  featuredItem: cn(
+    'p-(--spacing-6) bg-(--color-accent-muted) rounded-(--radius-element)',
+    'text-center h-full box-border',
+  ),
+  cardImage: cn(
+    'h-[120px] bg-(--color-background-body) rounded-(--radius-element)',
+    'mbe-(--spacing-3)',
+  ),
+  storyWrapper: 'flex flex-col gap-(--spacing-6)',
+  sectionLabel: 'mbe-(--spacing-2)',
+} as const;
+
+const meta: Meta<typeof Grid> = {
+  title: 'Core/Grid',
+  component: Grid,
+  tags: ['autodocs'],
+  argTypes: {
+    columns: {
+      control: 'object',
+      description:
+        'Column configuration: number for fixed columns, or {minWidth, max?, repeat?} for responsive',
+    },
+    gap: {
+      control: 'select',
+      options: [0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10],
+      description: 'Spacing between all grid items',
+    },
+    rowGap: {
+      control: 'select',
+      options: [0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10],
+      description: 'Spacing between rows (overrides gap)',
+    },
+    columnGap: {
+      control: 'select',
+      options: [0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10],
+      description: 'Spacing between columns (overrides gap)',
+    },
+    align: {
+      control: 'select',
+      options: ['start', 'center', 'end', 'stretch'],
+      description: 'Vertical alignment of grid items',
+    },
+    justify: {
+      control: 'select',
+      options: ['start', 'center', 'end', 'stretch'],
+      description: 'Horizontal alignment of grid items',
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Grid>;
+
+const GridItem = ({children}: {children: React.ReactNode}) => (
+  <div className={styles.item}>
+    <Text type="body">{children}</Text>
+  </div>
+);
+
+const FeaturedItem = ({children}: {children: React.ReactNode}) => (
+  <div className={styles.featuredItem}>
+    <Text type="body">{children}</Text>
+  </div>
+);
+
+export const Default: Story = {
+  args: {
+    columns: 3,
+    gap: 4,
+  },
+  render: args => (
+    <div className={styles.container}>
+      <Grid {...args}>
+        <GridItem>Item 1</GridItem>
+        <GridItem>Item 2</GridItem>
+        <GridItem>Item 3</GridItem>
+        <GridItem>Item 4</GridItem>
+        <GridItem>Item 5</GridItem>
+        <GridItem>Item 6</GridItem>
+      </Grid>
+    </div>
+  ),
+};
+
+export const FixedColumns: Story = {
+  render: () => (
+    <div className={styles.storyWrapper}>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          2 Columns
+        </Text>
+        <Grid columns={2} gap={4}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+          <GridItem>Item 3</GridItem>
+          <GridItem>Item 4</GridItem>
+        </Grid>
+      </div>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          4 Columns
+        </Text>
+        <Grid columns={4} gap={4}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+          <GridItem>Item 3</GridItem>
+          <GridItem>Item 4</GridItem>
+          <GridItem>Item 5</GridItem>
+          <GridItem>Item 6</GridItem>
+          <GridItem>Item 7</GridItem>
+          <GridItem>Item 8</GridItem>
+        </Grid>
+      </div>
+    </div>
+  ),
+};
+
+/**
+ * auto-fit (repeat: 'fit') stretches items to fill when there are fewer
+ * items than available columns. Compare with auto-fill (default) which
+ * preserves consistent widths.
+ */
+export const ResponsiveAutoFit: Story = {
+  render: () => (
+    <VStack gap={6}>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          {
+            'columns={{minWidth: 200}} with 2 items — cards stretch to fill (auto-fit)'
+          }
+        </Text>
+        <Grid columns={{minWidth: 200}} gap={4}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+        </Grid>
+      </div>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          
+          Same grid with 6 items; looks fine because items fill the tracks
+        </Text>
+        <Grid columns={{minWidth: 200}} gap={4}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+          <GridItem>Item 3</GridItem>
+          <GridItem>Item 4</GridItem>
+          <GridItem>Item 5</GridItem>
+          <GridItem>Item 6</GridItem>
+        </Grid>
+      </div>
+    </VStack>
+  ),
+};
+
+/** New API: responsive columns with auto-fill (consistent widths) */
+export const ResponsiveAutoFill: Story = {
+  render: () => (
+    <div className={styles.container}>
+      <Text type="supporting" className={styles.sectionLabel}>
+        Resize the viewport — columns auto-fill, empty tracks preserved (min
+        200px per item)
+      </Text>
+      <Grid columns={{minWidth: 200}} gap={4}>
+        <GridItem>Item 1</GridItem>
+        <GridItem>Item 2</GridItem>
+        <GridItem>Item 3</GridItem>
+      </Grid>
+    </div>
+  ),
+};
+
+/** Side-by-side comparison: auto-fill vs auto-fit with few items */
+export const FillVsFitComparison: Story = {
+  render: () => (
+    <VStack gap={6}>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          auto-fill (default) — items stay consistent width, empty tracks
+          preserved
+        </Text>
+        <Grid columns={{minWidth: 250}} gap={4}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+        </Grid>
+      </div>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          auto-fit — items stretch to fill all available space
+        </Text>
+        <Grid columns={{minWidth: 250, repeat: 'fit'}} gap={4}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+        </Grid>
+      </div>
+    </VStack>
+  ),
+};
+
+export const CappedResponsive: Story = {
+  render: () => (
+    <div className={styles.container}>
+      <Text type="supporting" className={styles.sectionLabel}>
+        Responsive with max 3 columns (min 250px per item; column count is
+        capped but present columns always fill)
+      </Text>
+      <Grid columns={{minWidth: 250, max: 3}} gap={4}>
+        <GridItem>Item 1</GridItem>
+        <GridItem>Item 2</GridItem>
+        <GridItem>Item 3</GridItem>
+        <GridItem>Item 4</GridItem>
+        <GridItem>Item 5</GridItem>
+        <GridItem>Item 6</GridItem>
+      </Grid>
+    </div>
+  ),
+};
+
+export const CappedCollapsesToFullWidth: Story = {
+  name: 'Capped — fills when collapsed',
+  render: () => (
+    <div className={styles.container}>
+      <Text type="supporting" className={styles.sectionLabel}>
+        columns={'{{minWidth: 360, max: 2}}'} — resize the viewport narrow
+        enough that only one column fits. The lone column stretches to full
+        width (no dead space on the right); on wider viewports it caps at 2.
+      </Text>
+      <div style={{maxWidth: 520, resize: 'horizontal', overflow: 'auto'}}>
+        <Grid columns={{minWidth: 360, max: 2}} gap={4}>
+          <GridItem>Left block</GridItem>
+          <GridItem>Right block</GridItem>
+        </Grid>
+      </div>
+    </div>
+  ),
+};
+
+export const WithGridSpan: Story = {
+  render: () => (
+    <div className={styles.container}>
+      <Text type="supporting" className={styles.sectionLabel}>
+        Using GridSpan to span multiple columns/rows
+      </Text>
+      <Grid columns={4} gap={4}>
+        <GridSpan columns={2}>
+          <FeaturedItem>Spans 2 columns</FeaturedItem>
+        </GridSpan>
+        <GridItem>Normal</GridItem>
+        <GridItem>Normal</GridItem>
+        <GridItem>Normal</GridItem>
+        <GridSpan columns={3}>
+          <FeaturedItem>Spans 3 columns</FeaturedItem>
+        </GridSpan>
+        <GridSpan columns="full">
+          <FeaturedItem>Full width (spans all columns)</FeaturedItem>
+        </GridSpan>
+      </Grid>
+    </div>
+  ),
+};
+
+export const GridSpanWithRows: Story = {
+  render: () => (
+    <div className={styles.container}>
+      <Text type="supporting" className={styles.sectionLabel}>
+        Grid items spanning both columns and rows
+      </Text>
+      <Grid columns={4} gap={4}>
+        <GridSpan columns={2} rows={2}>
+          <FeaturedItem>2x2 Featured</FeaturedItem>
+        </GridSpan>
+        <GridItem>Item 1</GridItem>
+        <GridItem>Item 2</GridItem>
+        <GridItem>Item 3</GridItem>
+        <GridItem>Item 4</GridItem>
+        <GridItem>Item 5</GridItem>
+        <GridItem>Item 6</GridItem>
+      </Grid>
+    </div>
+  ),
+};
+
+export const GalleryExample: Story = {
+  render: () => (
+    <Section variant="muted">
+      <Text type="supporting" className={styles.sectionLabel}>
+        Gallery/Card Grid — Responsive with min 280px cards (auto-fill)
+      </Text>
+      <Grid columns={{minWidth: 280}} gap={5}>
+        {Array.from({length: 8}, (_, i) => (
+          <Card key={i}>
+            <div className={styles.cardImage} />
+            <Text type="label" display="block">
+              Card Title {i + 1}
+            </Text>
+            <Text type="supporting" display="block">
+              A brief description of the card content goes here.
+            </Text>
+          </Card>
+        ))}
+      </Grid>
+    </Section>
+  ),
+};
+
+export const DifferentGaps: Story = {
+  render: () => (
+    <div className={styles.storyWrapper}>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          Same gap for rows and columns (gap=4)
+        </Text>
+        <Grid columns={3} gap={4}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+          <GridItem>Item 3</GridItem>
+          <GridItem>Item 4</GridItem>
+          <GridItem>Item 5</GridItem>
+          <GridItem>Item 6</GridItem>
+        </Grid>
+      </div>
+      <div className={styles.container}>
+        <Text type="supporting" className={styles.sectionLabel}>
+          Different gaps: rowGap=2, columnGap=6
+        </Text>
+        <Grid columns={3} rowGap={2} columnGap={6}>
+          <GridItem>Item 1</GridItem>
+          <GridItem>Item 2</GridItem>
+          <GridItem>Item 3</GridItem>
+          <GridItem>Item 4</GridItem>
+          <GridItem>Item 5</GridItem>
+          <GridItem>Item 6</GridItem>
+        </Grid>
+      </div>
+    </div>
+  ),
+};
+
+export const DashboardLayout: Story = {
+  render: () => (
+    <Section variant="muted">
+      <Text type="supporting" className={styles.sectionLabel}>
+        Dashboard-style layout with different sized widgets
+      </Text>
+      <Grid columns={4} gap={4}>
+        <GridSpan columns={2} rows={2}>
+          <Card>
+            <Text type="label" display="block">
+              Main Chart
+            </Text>
+            <Text type="supporting" display="block">
+              Large visualization widget
+            </Text>
+          </Card>
+        </GridSpan>
+        <Card>
+          <Text type="label" display="block">
+            Metric 1
+          </Text>
+          <Text type="supporting" display="block">
+            Quick stat
+          </Text>
+        </Card>
+        <Card>
+          <Text type="label" display="block">
+            Metric 2
+          </Text>
+          <Text type="supporting" display="block">
+            Quick stat
+          </Text>
+        </Card>
+        <Card>
+          <Text type="label" display="block">
+            Metric 3
+          </Text>
+          <Text type="supporting" display="block">
+            Quick stat
+          </Text>
+        </Card>
+        <Card>
+          <Text type="label" display="block">
+            Metric 4
+          </Text>
+          <Text type="supporting" display="block">
+            Quick stat
+          </Text>
+        </Card>
+        <GridSpan columns="full">
+          <Card>
+            <Text type="label" display="block">
+              Full-width Section
+            </Text>
+            <Text type="supporting" display="block">
+              This section spans the entire width of the grid
+            </Text>
+          </Card>
+        </GridSpan>
+      </Grid>
+    </Section>
+  ),
+};

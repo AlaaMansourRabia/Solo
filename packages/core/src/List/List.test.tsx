@@ -1,0 +1,843 @@
+/**
+ * @file List.test.tsx
+ * @input Uses vitest, @testing-library/react, List, ListItem
+ * @output Unit tests for List and ListItem, including bounded inline edge compensation
+ * @position Testing; validates List.tsx and ListItem.tsx implementation
+ *
+ * SYNC: When modified, update this header
+ */
+
+import {describe, it, expect, vi} from 'vitest';
+import {render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {List} from './List';
+import {ListItem} from './ListItem';
+
+/** The row's inline edge-compensation margins (one per logical edge). */
+const EDGE_COMP_START =
+  'ms-[calc(-1*min(var(--_item-inset-inline),var(--container-padding-inline-start,0px)))]';
+const EDGE_COMP_END =
+  'me-[calc(-1*min(var(--_item-inset-inline),var(--container-padding-inline-end,0px)))]';
+
+describe('List', () => {
+  // ===========================================================================
+  // Basic rendering
+  // ===========================================================================
+
+  it('renders a list with items', () => {
+    render(
+      <List>
+        <ListItem label="Item 1" />
+        <ListItem label="Item 2" />
+      </List>,
+    );
+    expect(screen.getByText('Item 1')).toBeInTheDocument();
+    expect(screen.getByText('Item 2')).toBeInTheDocument();
+  });
+
+  it('renders label and description', () => {
+    render(
+      <List>
+        <ListItem label="Settings" description="Manage your preferences" />
+      </List>,
+    );
+    expect(screen.getByText('Settings')).toBeInTheDocument();
+    expect(screen.getByText('Manage your preferences')).toBeInTheDocument();
+  });
+
+  it('supports data-testid on list', () => {
+    render(
+      <List data-testid="my-list">
+        <ListItem label="Item" />
+      </List>,
+    );
+    expect(screen.getByTestId('my-list')).toBeInTheDocument();
+  });
+
+  it('supports data-testid on list item', () => {
+    render(
+      <List>
+        <ListItem label="Item" data-testid="my-item" />
+      </List>,
+    );
+    expect(screen.getByTestId('my-item')).toBeInTheDocument();
+  });
+
+  // ===========================================================================
+  // Semantic HTML
+  // ===========================================================================
+
+  it('renders as <ul> by default', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Item" />
+      </List>,
+    );
+    expect(container.querySelector('ul')).toBeInTheDocument();
+    expect(container.querySelector('ol')).not.toBeInTheDocument();
+  });
+
+  it('renders as <ol> when listStyle is decimal', () => {
+    const {container} = render(
+      <List listStyle="decimal">
+        <ListItem label="First" />
+        <ListItem label="Second" />
+      </List>,
+    );
+    expect(container.querySelector('ol')).toBeInTheDocument();
+    expect(container.querySelector('ul')).not.toBeInTheDocument();
+  });
+
+  it('applies custom counter start value', () => {
+    const {container} = render(
+      <List listStyle="decimal" start={3}>
+        <ListItem label="Third" />
+        <ListItem label="Fourth" />
+      </List>,
+    );
+    const ol = container.querySelector('ol')!;
+    // The counter-reset style should include the start offset (start - 1 = 2)
+    expect(ol).toHaveClass('[counter-reset:var(--_list-counter-reset)]');
+    expect(ol.style.getPropertyValue('--_list-counter-reset')).toBe(
+      'solo-list 2',
+    );
+  });
+
+  it('emits the start HTML attribute on <ol> when start is non-default', () => {
+    // Browsers and assistive tech read the start attribute directly; the CSS
+    // counter alone is invisible to AT and copy-paste.
+    const {container} = render(
+      <List listStyle="decimal" start={5}>
+        <ListItem label="Fifth" />
+      </List>,
+    );
+    const ol = container.querySelector('ol')!;
+    expect(ol.getAttribute('start')).toBe('5');
+  });
+
+  it('does not emit the start HTML attribute for the default (start=1)', () => {
+    const {container} = render(
+      <List listStyle="decimal">
+        <ListItem label="First" />
+      </List>,
+    );
+    const ol = container.querySelector('ol')!;
+    expect(ol.hasAttribute('start')).toBe(false);
+  });
+
+  it('renders as <ul> when listStyle is disc', () => {
+    const {container} = render(
+      <List listStyle="disc">
+        <ListItem label="Item" />
+      </List>,
+    );
+    expect(container.querySelector('ul')).toBeInTheDocument();
+  });
+
+  it('renders as <ul> when listStyle is circle', () => {
+    const {container} = render(
+      <List listStyle="circle">
+        <ListItem label="Item" />
+      </List>,
+    );
+    expect(container.querySelector('ul')).toBeInTheDocument();
+  });
+
+  it.each(['none', 'disc', 'circle', 'decimal'] as const)(
+    'adds an explicit role="list" when listStyle is %s (Safari fix)',
+    listStyle => {
+      // The base list style always sets list-style-type: none (markers are
+      // custom-rendered by ListItem), so Safari/VoiceOver drops the implicit
+      // list role for EVERY variant — the explicit role must always be there.
+      render(
+        <List listStyle={listStyle}>
+          <ListItem label="Item 1" />
+          <ListItem label="Item 2" />
+        </List>,
+      );
+      const list = screen.getByRole('list');
+      expect(list).toHaveAttribute('role', 'list');
+      expect(screen.getAllByRole('listitem')).toHaveLength(2);
+    },
+  );
+
+  it('renders items as <li> elements', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Item 1" />
+        <ListItem label="Item 2" />
+      </List>,
+    );
+    const items = container.querySelectorAll('li');
+    expect(items).toHaveLength(2);
+  });
+
+  // ===========================================================================
+  // Header with aria-labelledby
+  // ===========================================================================
+
+  it('renders header and associates via aria-labelledby', () => {
+    const {container} = render(
+      <List header={<span>Team Members</span>}>
+        <ListItem label="Alice" />
+      </List>,
+    );
+    expect(screen.getByText('Team Members')).toBeInTheDocument();
+    const ul = container.querySelector('ul');
+    const headerId = ul?.getAttribute('aria-labelledby');
+    expect(headerId).toBeTruthy();
+    const headerEl = document.getElementById(headerId!);
+    expect(headerEl).toBeInTheDocument();
+    expect(headerEl?.textContent).toBe('Team Members');
+  });
+
+  it('does not render aria-labelledby when no header', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Item" />
+      </List>,
+    );
+    const ul = container.querySelector('ul');
+    expect(ul).not.toHaveAttribute('aria-labelledby');
+  });
+
+  it('wraps header and list in a column container', () => {
+    const {container} = render(
+      <List header={<span>Group</span>}>
+        <ListItem label="Item" />
+      </List>,
+    );
+    const header = screen.getByText('Group');
+    const wrapper = header.parentElement?.parentElement;
+    const ul = container.querySelector('ul');
+    expect(wrapper).toContainElement(header.parentElement);
+    expect(wrapper).toContainElement(ul);
+  });
+
+  it('does not add a wrapper div when header is absent', () => {
+    const {container} = render(
+      <List data-testid="my-list">
+        <ListItem label="Item" />
+      </List>,
+    );
+    const ul = container.querySelector('ul');
+    expect(ul?.parentElement).toBe(container);
+  });
+
+  // ===========================================================================
+  // Density variants
+  // ===========================================================================
+
+  it('renders with compact density', () => {
+    const {container} = render(
+      <List density="compact">
+        <ListItem label="Item" />
+      </List>,
+    );
+    const item = container.querySelector('li');
+    expect(item).toBeInTheDocument();
+    expect(item).toHaveAttribute('data-density', 'compact');
+  });
+
+  it('renders with balanced density (default)', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Item" />
+      </List>,
+    );
+    const item = container.querySelector('li');
+    expect(item).toBeInTheDocument();
+    expect(item).toHaveAttribute('data-density', 'balanced');
+    expect(item).not.toHaveAttribute('data-density', 'spacious');
+  });
+
+  it('renders with spacious density', () => {
+    const {container} = render(
+      <List density="spacious">
+        <ListItem label="Item" />
+      </List>,
+    );
+    const item = container.querySelector('li');
+    expect(item).toBeInTheDocument();
+    expect(item).toHaveAttribute('data-density', 'spacious');
+  });
+
+  // ===========================================================================
+  // Inline edge compensation
+  // ===========================================================================
+
+  it('does not apply inline edge compensation styles by default', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Item" />
+      </List>,
+    );
+    const item = container.querySelector('li')!;
+    expect(item.className).not.toContain(EDGE_COMP_START);
+  });
+
+  it('applies the clamped cancelling margin to each item when edgeCompensation is inline', () => {
+    // The margin lives on the row element itself — the only place that can
+    // read --_item-inset-inline, which Item sets on the same element (custom
+    // properties cascade downward, so the <ul> cannot read it).
+    const {container} = render(
+      <List edgeCompensation="inline">
+        <ListItem label="Item 1" />
+        <ListItem label="Item 2" />
+      </List>,
+    );
+    const items = container.querySelectorAll('li');
+    expect(items).toHaveLength(2);
+    for (const item of items) {
+      expect(item.className).toContain(EDGE_COMP_START);
+    }
+    expect(container.querySelector('ul')!.className).not.toContain(
+      EDGE_COMP_START,
+    );
+  });
+
+  it('uses the same var-derived cancel for every density', () => {
+    // The cancelling margin reads --_item-inset-inline instead of hardcoding
+    // per-density values, so all densities (and theme paddingInline
+    // overrides on `item`) share one style.
+    for (const density of ['compact', 'balanced', 'spacious'] as const) {
+      const {container, unmount} = render(
+        <List edgeCompensation="inline" density={density}>
+          <ListItem label="Item" />
+        </List>,
+      );
+      expect(container.querySelector('li')!.className).toContain(
+        EDGE_COMP_START,
+      );
+      unmount();
+    }
+  });
+
+  it('does not pull the header when edgeCompensation is inline', () => {
+    // The negative margin lives on the row elements, so the header keeps its
+    // position and the row text aligns up to it.
+    const {container} = render(
+      <List edgeCompensation="inline" header={<span>Items</span>}>
+        <ListItem label="Item" />
+      </List>,
+    );
+    expect(container.querySelector('li')!.className).toContain(
+      EDGE_COMP_START,
+    );
+    const ul = container.querySelector('ul')!;
+    expect(ul.className).not.toContain(EDGE_COMP_START);
+    expect(ul.parentElement?.className).not.toContain(EDGE_COMP_START);
+  });
+
+  it('clamps each inline edge against its own container padding var', () => {
+    // Regression for asymmetric container padding (16px start / 4px end):
+    // clamping BOTH margins against --container-padding-inline-start
+    // over-cancels the end edge by the difference, and the selected row
+    // paints past the outer border (RTL mirrors the spill). Each edge must
+    // clamp against its matching var; logical properties keep RTL correct.
+    const {container} = render(
+      <List edgeCompensation="inline">
+        <ListItem label="Item" />
+      </List>,
+    );
+    const li = container.querySelector('li')!;
+    expect(li).toHaveClass(EDGE_COMP_START, EDGE_COMP_END);
+    // The end edge must not clamp against the start var (the over-cancel).
+    expect(li.className).not.toContain(
+      'me-[calc(-1*min(var(--_item-inset-inline),var(--container-padding-inline-start,0px)))]',
+    );
+  });
+
+  it('does not apply the cancelling margin to a ListItem outside a List', () => {
+    const {container} = render(<ListItem label="Standalone" />);
+    expect(container.querySelector('li')!.className).not.toContain(
+      EDGE_COMP_START,
+    );
+  });
+
+  // ===========================================================================
+  // Dividers
+  // ===========================================================================
+
+  it('renders dividers between items when hasDividers is true', () => {
+    const {container} = render(
+      <List hasDividers>
+        <ListItem label="Item 1" />
+        <ListItem label="Item 2" />
+        <ListItem label="Item 3" />
+      </List>,
+    );
+    // Dividers are rendered as borders on <li> elements, not separate DOM nodes
+    const items = container.querySelectorAll('li');
+    expect(items).toHaveLength(3);
+    // No <hr> elements should exist
+    const hrs = container.querySelectorAll('hr');
+    expect(hrs).toHaveLength(0);
+  });
+
+  it('removes the divider after the last item', () => {
+    // The divider is the item's block-end border; the last-item reset is a
+    // longhand so it clears only the width.
+    const {container} = render(
+      <List hasDividers>
+        <ListItem label="Item 1" />
+      </List>,
+    );
+    expect(container.querySelector('li')).toHaveClass(
+      'last:[border-block-end-width:0]',
+    );
+  });
+
+  it('does not add extra DOM elements for dividers', () => {
+    const {container} = render(
+      <List hasDividers>
+        <ListItem label="Item 1" />
+        <ListItem label="Item 2" />
+      </List>,
+    );
+    const list = container.querySelector('ul');
+    // Only <li> children — no <hr> or other divider elements
+    const children = list?.children;
+    expect(children).toHaveLength(2);
+    expect(children?.[0]?.tagName).toBe('LI');
+    expect(children?.[1]?.tagName).toBe('LI');
+  });
+
+  it('does not render dividers when hasDividers is false', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Item 1" />
+        <ListItem label="Item 2" />
+      </List>,
+    );
+    const hrs = container.querySelectorAll('hr');
+    expect(hrs).toHaveLength(0);
+  });
+
+  // ===========================================================================
+  // Interactive items — onClick (invisible button pattern)
+  // ===========================================================================
+
+  it('renders an invisible button when onClick is provided', () => {
+    const onClick = vi.fn();
+    const {container} = render(
+      <List>
+        <ListItem label="Clickable" onClick={onClick} />
+      </List>,
+    );
+    const button = container.querySelector('button');
+    expect(button).toBeInTheDocument();
+    expect(button?.textContent).toContain('Clickable');
+  });
+
+  it('fires onClick when invisible button is clicked', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <List>
+        <ListItem label="Clickable" onClick={onClick} />
+      </List>,
+    );
+    await user.click(screen.getByRole('button'));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('fires onClick when container area is clicked', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <List>
+        <ListItem
+          label="Clickable"
+          onClick={onClick}
+          data-testid="item"
+          startContent={<span data-testid="start">★</span>}
+        />
+      </List>,
+    );
+    // Click on startContent (non-interactive, should propagate)
+    await user.click(screen.getByTestId('start'));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not fire item onClick when endContent interactive element is clicked', async () => {
+    const user = userEvent.setup();
+    const itemClick = vi.fn();
+    const buttonClick = vi.fn();
+    render(
+      <List>
+        <ListItem
+          label="Item"
+          onClick={itemClick}
+          endContent={
+            <button type="button" onClick={buttonClick}>
+              Action
+            </button>
+          }
+        />
+      </List>,
+    );
+    await user.click(screen.getByText('Action'));
+    expect(buttonClick).toHaveBeenCalledTimes(1);
+    expect(itemClick).not.toHaveBeenCalled();
+  });
+
+  it('invisible button is focusable via keyboard', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <List>
+        <ListItem label="Focusable" onClick={onClick} />
+      </List>,
+    );
+    await user.tab();
+    expect(screen.getByRole('button')).toHaveFocus();
+  });
+
+  it('invisible button can be activated via keyboard', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <List>
+        <ListItem label="Pressable" onClick={onClick} />
+      </List>,
+    );
+    await user.tab();
+    await user.keyboard('{Enter}');
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not render nested buttons — only one invisible button', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Item" onClick={() => {}} />
+      </List>,
+    );
+    const buttons = container.querySelectorAll('li button');
+    // Should be exactly 1 invisible button (no nesting)
+    expect(buttons).toHaveLength(1);
+  });
+
+  // ===========================================================================
+  // Interactive items — href (invisible anchor pattern)
+  // ===========================================================================
+
+  it('renders an invisible anchor when href is provided', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Link" href="/docs" />
+      </List>,
+    );
+    const anchor = container.querySelector('a');
+    expect(anchor).toBeInTheDocument();
+    expect(anchor).toHaveAttribute('href', '/docs');
+    expect(anchor?.textContent).toContain('Link');
+  });
+
+  it('sets target on anchor when provided', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="External" href="https://example.com" target="_blank" />
+      </List>,
+    );
+    const anchor = container.querySelector('a');
+    expect(anchor).toHaveAttribute('target', '_blank');
+    expect(anchor).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
+  it('does not render button or anchor for static items', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Static" />
+      </List>,
+    );
+    expect(container.querySelector('button')).not.toBeInTheDocument();
+    expect(container.querySelector('a')).not.toBeInTheDocument();
+  });
+
+  // ===========================================================================
+  // Disabled state
+  // ===========================================================================
+
+  it('applies aria-disabled when isDisabled', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Disabled" isDisabled />
+      </List>,
+    );
+    const item = container.querySelector('.solo-item');
+    expect(item).toHaveAttribute('aria-disabled', 'true');
+  });
+
+  it('disables the invisible button when isDisabled', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Disabled" onClick={() => {}} isDisabled />
+      </List>,
+    );
+    const button = container.querySelector('button');
+    expect(button).toBeDisabled();
+  });
+
+  it('does not fire onClick when disabled item is clicked', async () => {
+    const onClick = vi.fn();
+    const {container} = render(
+      <List>
+        <ListItem label="Disabled" onClick={onClick} isDisabled />
+      </List>,
+    );
+    // pointerEvents: none prevents click, but let's verify the handler guards
+    const li = container.querySelector('li');
+    // Manually dispatch click (bypassing pointer-events)
+    li?.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  // ===========================================================================
+  // Selected state
+  // ===========================================================================
+
+  it('conveys selection via aria-current when isSelected', () => {
+    // aria-selected is not permitted on an li (role listitem, axe:
+    // aria-allowed-attr), so selection is exposed via aria-current — valid on
+    // any element — so screen-reader users are still told which item is chosen.
+    const {container} = render(
+      <List>
+        <ListItem label="Selected" isSelected onClick={() => {}} />
+      </List>,
+    );
+    const item = container.querySelector('.solo-item');
+    expect(item).not.toHaveAttribute('aria-selected');
+    expect(item).toHaveAttribute('aria-current', 'true');
+  });
+
+  it('applies neither aria-selected nor aria-current when not selected', () => {
+    const {container} = render(
+      <List>
+        <ListItem label="Not Selected" />
+      </List>,
+    );
+    const li = container.querySelector('li');
+    expect(li).not.toHaveAttribute('aria-selected');
+    expect(li).not.toHaveAttribute('aria-current');
+  });
+
+  // ===========================================================================
+  // startContent and endContent
+  // ===========================================================================
+
+  it('renders startContent before label', () => {
+    render(
+      <List>
+        <ListItem
+          label="With Icon"
+          startContent={<span data-testid="icon">★</span>}
+        />
+      </List>,
+    );
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+  });
+
+  it('renders endContent after label', () => {
+    render(
+      <List>
+        <ListItem
+          label="With Badge"
+          endContent={<span data-testid="badge">3</span>}
+        />
+      </List>,
+    );
+    expect(screen.getByTestId('badge')).toBeInTheDocument();
+  });
+
+  it('startContent and endContent are siblings to invisible button', () => {
+    const {container} = render(
+      <List>
+        <ListItem
+          label="Item"
+          onClick={() => {}}
+          startContent={<span data-testid="start">★</span>}
+          endContent={<span data-testid="end">→</span>}
+        />
+      </List>,
+    );
+    const button = container.querySelector('button');
+    const li = container.querySelector('li');
+    // startContent and endContent should be children of li, not inside button
+    expect(li?.querySelector('[data-testid="start"]')).toBeInTheDocument();
+    expect(li?.querySelector('[data-testid="end"]')).toBeInTheDocument();
+    expect(
+      button?.querySelector('[data-testid="start"]'),
+    ).not.toBeInTheDocument();
+    expect(
+      button?.querySelector('[data-testid="end"]'),
+    ).not.toBeInTheDocument();
+  });
+
+  // ===========================================================================
+  // Border radius
+  // ===========================================================================
+
+  it('applies content radius by default', () => {
+    render(
+      <List>
+        <ListItem label="Item" data-testid="item" isSelected />
+      </List>,
+    );
+    const item = screen.getByTestId('item');
+    expect(item).toBeInTheDocument();
+  });
+
+  it('removes radius when hasDividers is true', () => {
+    render(
+      <List hasDividers>
+        <ListItem label="Item" data-testid="item" isSelected />
+      </List>,
+    );
+    const item = screen.getByTestId('item');
+    expect(item).toBeInTheDocument();
+  });
+
+  // ===========================================================================
+  // List markers
+  // ===========================================================================
+
+  it('renders list markers for disc style', () => {
+    render(
+      <List listStyle="disc">
+        <ListItem label="Bullet item" data-testid="item" />
+      </List>,
+    );
+    const item = screen.getByTestId('item');
+    // Custom marker rendered as a span (dot marker container)
+    const markerContainer = item.querySelector(':scope > span:first-child');
+    expect(markerContainer).toBeInTheDocument();
+    // The dot itself is a nested span
+    const dot = markerContainer?.querySelector('span');
+    expect(dot).toBeInTheDocument();
+  });
+
+  it('renders list markers for decimal style', () => {
+    render(
+      <List listStyle="decimal">
+        <ListItem label="Numbered item" data-testid="item" />
+      </List>,
+    );
+    const item = screen.getByTestId('item');
+    // Number marker uses CSS counter via ::before pseudo-element
+    const marker = item.querySelector(':scope > span:first-child');
+    expect(marker).toBeInTheDocument();
+  });
+
+  it('does not render markers when listStyle is none', () => {
+    render(
+      <List listStyle="disc">
+        <ListItem label="With marker" data-testid="with-marker" />
+      </List>,
+    );
+    const withMarker = screen.getByTestId('with-marker');
+    const markerCount = withMarker.children.length;
+
+    render(
+      <List listStyle="none">
+        <ListItem label="Plain item" data-testid="no-marker" />
+      </List>,
+    );
+    const noMarker = screen.getByTestId('no-marker');
+    // Without markers, the item should have fewer direct children
+    // (no marker container element)
+    expect(noMarker.children.length).toBeLessThan(markerCount);
+  });
+
+  // ===========================================================================
+  // Description rendering
+  // ===========================================================================
+
+  it('does not render description when not provided', () => {
+    render(
+      <List>
+        <ListItem label="Label Only" />
+      </List>,
+    );
+    // Should have the label span only (plus possibly wrapper spans)
+    expect(screen.getByText('Label Only')).toBeInTheDocument();
+    expect(screen.queryByText('undefined')).not.toBeInTheDocument();
+  });
+
+  // ===========================================================================
+  // ReactNode description
+  // ===========================================================================
+
+  it('accepts ReactNode as description', () => {
+    render(
+      <List>
+        <ListItem
+          label="Item"
+          description={
+            <div>
+              <span>Rich</span> <span>description</span>
+            </div>
+          }
+        />
+      </List>,
+    );
+    expect(screen.getByText('Rich')).toBeInTheDocument();
+    expect(screen.getByText('description')).toBeInTheDocument();
+  });
+
+  it('still accepts string description', () => {
+    render(
+      <List>
+        <ListItem label="Item" description="Simple text" />
+      </List>,
+    );
+    expect(screen.getByText('Simple text')).toBeInTheDocument();
+  });
+
+  it('forwards data and aria attributes onto the list element', () => {
+    // BaseProps keeps data-*/aria-*; the list element dropped them.
+    const {container} = render(
+      <List listStyle="decimal" data-delimiter=")" aria-label="Steps">
+        <ListItem label="First" />
+      </List>,
+    );
+    const list = container.querySelector('ol')!;
+    expect(list.getAttribute('data-delimiter')).toBe(')');
+    expect(list.getAttribute('aria-label')).toBe('Steps');
+  });
+
+  it('keeps an aria-labelledby pointing outside the component', () => {
+    // With no header of its own there is nothing to associate, so the
+    // consumer's label must survive.
+    const {container} = render(
+      <List aria-labelledby="external-heading">
+        <ListItem label="First" />
+      </List>,
+    );
+    expect(container.querySelector('ul')!.getAttribute('aria-labelledby')).toBe(
+      'external-heading',
+    );
+  });
+
+  it('keeps its own list role and header association', () => {
+    // The rest spread comes first so a consumer prop cannot drop the
+    // Safari/VoiceOver role workaround or the generated header association.
+    const {container} = render(
+      <List header="Steps" role="presentation" aria-labelledby="elsewhere">
+        <ListItem label="First" />
+      </List>,
+    );
+    const list = container.querySelector('ul')!;
+    expect(list.getAttribute('role')).toBe('list');
+    expect(list.getAttribute('aria-labelledby')).not.toBe('elsewhere');
+  });
+
+  it('accepts number as description (ReactNode)', () => {
+    render(
+      <List>
+        <ListItem label="Count" description={42} />
+      </List>,
+    );
+    expect(screen.getByText('42')).toBeInTheDocument();
+  });
+});

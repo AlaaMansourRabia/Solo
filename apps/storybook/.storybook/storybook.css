@@ -1,0 +1,7 @@
+/* Storybook stylesheet: the full @solo/core + @solo/charts styles, plus
+ * utilities used directly by stories (in the app-level `utilities` layer). */
+@import "../../../packages/core/src/styles.css";
+@import "../../../packages/charts/src/styles.css";
+@import "../../../packages/templates/src/styles.css";
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../stories";

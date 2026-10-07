@@ -1,0 +1,743 @@
+'use client';
+
+/**
+ * @file Popover.tsx
+ * @input Uses React layout measurement and the usePopover hook
+ * @output Exports Popover with viewport fitting, conditional overflow, and content-first focus
+ * @position Layer component; declarative wrapper around usePopover hook
+ *
+ * For hover-triggered overlays, use HoverCard instead.
+ *
+ * SYNC: When modified, update these files to stay in sync:
+ * - /packages/core/src/Popover/Popover.test.tsx
+ * - /packages/core/src/Popover/index.ts
+ * - /apps/storybook/stories/Popover.stories.tsx
+ */
+
+import React, {
+  useCallback,
+  useRef,
+  useState,
+  type ReactElement,
+  type ReactNode,
+} from 'react';
+import {useIsomorphicLayoutEffect} from '../hooks/useIsomorphicLayoutEffect';
+import {devWarn} from '../utils/devWarning';
+import type {BaseProps} from '../BaseProps';
+import {usePopover} from './usePopover';
+import type {LayerAlignment, LayerPlacement} from '../Layer/useLayer';
+import {layerAnimations} from '../Layer/layerAnimations.styles';
+import {spacingVars} from '../theme/tokenVars';
+import {cn, cssLength} from '../utils/cn';
+import {InteractiveRoleContext} from '../InteractiveRoleContext/InteractiveRoleContext';
+import type {SpacingStep} from '../utils/types';
+
+// =============================================================================
+// Helpers
+// =============================================================================
+
+const BUTTON_SELECTOR = 'button, [role="button"]';
+const POPOVER_VIEWPORT_GUTTER = spacingVars['--spacing-4'];
+const POPOVER_MAX_INLINE_SIZE = `calc(100vi - max(${POPOVER_VIEWPORT_GUTTER}, env(safe-area-inset-left, 0px)) - max(${POPOVER_VIEWPORT_GUTTER}, env(safe-area-inset-right, 0px)))`;
+const POPOVER_MAX_INLINE_SIZE_FALLBACK = `calc(100vw - ${POPOVER_VIEWPORT_GUTTER} - ${POPOVER_VIEWPORT_GUTTER})`;
+const POPOVER_MAX_BLOCK_SIZE = `calc(100dvb - max(${POPOVER_VIEWPORT_GUTTER}, env(safe-area-inset-top, 0px)) - max(${POPOVER_VIEWPORT_GUTTER}, env(safe-area-inset-bottom, 0px)))`;
+const POPOVER_MAX_BLOCK_SIZE_FALLBACK = `calc(100vh - ${POPOVER_VIEWPORT_GUTTER} - ${POPOVER_VIEWPORT_GUTTER})`;
+const POPOVER_POSITION_AREA_MAX_INLINE_SIZE = `calc(100% - max(${POPOVER_VIEWPORT_GUTTER}, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px)))`;
+const POPOVER_POSITION_AREA_MAX_INLINE_SIZE_FALLBACK = `calc(100% - ${POPOVER_VIEWPORT_GUTTER})`;
+const POPOVER_INLINE_EDGE_GUTTER = `max(${POPOVER_VIEWPORT_GUTTER}, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))`;
+
+/**
+ * Find the trigger button inside a container element.
+ * Looks for `<button>` or `[role="button"]` — either the element itself
+ * or the first matching descendant.
+ */
+function findTriggerButton(el: HTMLElement): HTMLElement | null {
+  if (el.matches(BUTTON_SELECTOR)) {
+    return el;
+  }
+  return el.querySelector<HTMLElement>(BUTTON_SELECTOR);
+}
+
+// =============================================================================
+// Types
+// =============================================================================
+
+/**
+ * Props passed to render-prop children for explicit trigger wiring.
+ */
+export interface PopoverTriggerRenderProps {
+  /** Ref callback — attach to the trigger element for anchor positioning. */
+  ref: (el: HTMLElement | null) => void;
+  /** Toggle the popover open/closed. Pass the click event through so pointer and keyboard focus behavior can differ. */
+  onClick: (event?: {detail: number}) => void;
+  /** ARIA attribute: indicates the trigger opens a dialog-style popover. */
+  'aria-haspopup': 'dialog';
+  /** ARIA attribute: whether the popover is currently open. */
+  'aria-expanded': boolean;
+  /** ARIA attribute: ID of the controlled popover element. */
+  'aria-controls': string;
+}
+
+export interface PopoverProps extends Pick<BaseProps, 'className' | 'style'> {
+  /**
+   * The trigger element. Accepts either:
+   *
+   * **ReactNode (automatic mode):** Must contain a `<button>` or
+   * `[role="button"]` element — the popover locates it and applies
+   * click/keydown handlers and ARIA attributes automatically.
+   * Components that consume `InteractiveRoleContext` (e.g., Token)
+   * will render as a button automatically when placed here.
+   *
+   * **Render function (explicit mode):** Receives `PopoverTriggerRenderProps`
+   * with ref, onClick, and ARIA attributes. The consumer is responsible
+   * for attaching these to their trigger element. Use this for custom
+   * triggers or third-party components.
+   *
+   * The trigger is rendered inside an anchor wrapper used for CSS anchor
+   * positioning. The wrapper is stable (no pressed-state transforms),
+   * preventing popover position jitter.
+   *
+   * When `anchorRef` is provided, children can be omitted and the popover
+   * attaches to the external ref element as a sibling.
+   *
+   * @example
+   * ```
+   * <Popover content={...}><Button label="Open" /></Popover>
+   * <Popover content={...}><Token label="Filter" /></Popover>
+   * <Popover content={...}>
+   *   {(triggerProps) => <MyCustomTrigger {...triggerProps} />}
+   * </Popover>
+   * ```
+   */
+  children?: ReactNode | ((props: PopoverTriggerRenderProps) => ReactNode);
+
+  /**
+   * External ref to use as the popover anchor.
+   * When provided (and no children), the popover attaches to this element
+   * instead of wrapping children. The referenced element must be a
+   * `<button>` or `[role="button"]` — the popover applies click/keydown
+   * handlers and ARIA attributes to it directly.
+   */
+  anchorRef?: React.RefObject<HTMLElement>;
+
+  /**
+   * Content to display inside the popover.
+   */
+  content: ReactNode;
+
+  /**
+   * Position placement relative to the trigger.
+   * Uses CSS anchor positioning via useLayer.
+   * @default 'below'
+   */
+  placement?: LayerPlacement;
+
+  /**
+   * Alignment along the placement axis.
+   * @default 'start'
+   */
+  alignment?: LayerAlignment;
+
+  /**
+   * Whether the popover is open (controlled mode).
+   * Omit for uncontrolled behavior.
+   */
+  isOpen?: boolean;
+
+  /**
+   * Callback fired when the popover visibility changes.
+   */
+  onOpenChange?: (isOpen: boolean) => void;
+
+  /**
+   * Whether the popover is enabled.
+   * When false, trigger interactions are ignored.
+   * @default true
+   */
+  isEnabled?: boolean;
+
+  /**
+   * Width of the popover container.
+   * Numbers are px, strings used as-is.
+   * @default 'auto'
+   */
+  width?: number | string;
+
+  /**
+   * Inner padding of the popover surface, using the spacing scale.
+   * Accepts numeric spacing steps: 0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10.
+   * Matches the `padding` prop on `Card` and `Stack`.
+   *
+   * Pass `0` for a flush surface when the content owns its own edges — a
+   * list of rows whose hover paint reaches the edge, or a header row with a
+   * bottom rule — and pad the content itself.
+   *
+   * The padding sits on the painted surface (the `popover` theme target), so
+   * a theme's `padding` on that target replaces it rather than nesting.
+   * @default 3
+   */
+  padding?: SpacingStep;
+
+  /**
+   * Accessible label for the popover dialog.
+   * Recommended for accessibility when `role` is `'dialog'`.
+   */
+  label?: string;
+
+  /**
+   * ARIA role stamped on the popover content wrapper.
+   *
+   * Use `'dialog'` for dialog-style popovers. Use `'none'` when the popup
+   * content owns its own role, such as a child `role="menu"` or
+   * `role="listbox"`.
+   *
+   * @default 'dialog'
+   */
+  role?: 'dialog' | 'none';
+
+  /**
+   * Whether a dialog-style popover is modal (`aria-modal`). Only applies when
+   * `role` is `'dialog'`.
+   *
+   * @default true
+   */
+  isModal?: boolean;
+
+  /**
+   * Whether to include a hidden close button for accessibility.
+   * The button appears when keyboard users tab past the last element.
+   * @default true
+   */
+  hasCloseButton?: boolean;
+
+  /**
+   * Label for the hidden close button.
+   * @default "Close popover"
+   */
+  closeButtonLabel?: string;
+
+  /**
+   * Whether to move focus into the popover when it opens. Focus enters the
+   * first genuine caller content control; dialogs with none fall back to the
+   * labeled surface. The generated fallback close control is excluded from
+   * initial focus and reveals only when reached through keyboard navigation.
+   * Set to `false` for input-owned focus, inline showcases, or documentation
+   * previews.
+   * @default true
+   */
+  hasAutoFocus?: boolean;
+
+  /**
+   * Whether clicking outside dismisses the popover.
+   * Set to `false` for surfaces that should stay open until explicitly
+   * dismissed, like onboarding coachmarks or multi-step flows.
+   * @default true
+   */
+  hasLightDismiss?: boolean;
+
+  /**
+   * Whether pressing Escape dismisses the popover.
+   *
+   * Only takes full effect together with `hasLightDismiss={false}`: with
+   * light dismiss on, the browser's native light dismiss also closes on
+   * Escape. Set both to `false` for explicit-dismiss-only surfaces.
+   * @default true
+   */
+  hasEscapeDismiss?: boolean;
+
+  /**
+   * Test ID for the popover container.
+   */
+  'data-testid'?: string;
+}
+
+// =============================================================================
+// Styles
+// =============================================================================
+
+// Viewport-fit values are spelled out literally (Tailwind needs literal class
+// strings); they are the POPOVER_* constants above. A fallback chain is
+// written as a fallback declaration plus `@supports`-gated preferred ones.
+const styles = {
+  // Stable anchor wrapper — uses inline-flex to generate a box for CSS
+  // anchor positioning without affecting layout. The trigger element (e.g.
+  // Button) renders inside this wrapper. Because the wrapper itself is
+  // the anchor, pressed-state transforms on the child (e.g. :active scale)
+  // don't shift the anchor position and cause popover jitter.
+  anchorWrapper: 'inline-flex',
+  viewportFit: cn(
+    'box-border',
+    '[max-block-size:calc(100vh_-_var(--spacing-4)_-_var(--spacing-4))]',
+    'supports-[max-block-size:calc(100dvb_-_max(var(--spacing-4),env(safe-area-inset-top,0px))_-_max(var(--spacing-4),env(safe-area-inset-bottom,0px)))]:[max-block-size:calc(100dvb_-_max(var(--spacing-4),env(safe-area-inset-top,0px))_-_max(var(--spacing-4),env(safe-area-inset-bottom,0px)))]',
+  ),
+  viewportAligned: cn(
+    '[max-inline-size:calc(100%_-_var(--spacing-4))]',
+    'supports-[max-inline-size:calc(100%_-_max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px)))]:[max-inline-size:calc(100%_-_max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px)))]',
+  ),
+  viewportStart: cn(
+    'me-[max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))]',
+  ),
+  viewportEnd: cn(
+    'ms-[max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))]',
+  ),
+  viewportBlockStart: cn(
+    'mbe-[max(var(--spacing-4),env(safe-area-inset-bottom,0px))]',
+  ),
+  viewportBlockEnd: cn(
+    'mbs-[max(var(--spacing-4),env(safe-area-inset-top,0px))]',
+  ),
+  viewportCentered: cn(
+    'ms-[max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))]',
+    'me-[max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))]',
+    '[max-inline-size:calc(100vw_-_var(--spacing-4)_-_var(--spacing-4))]',
+    'supports-[max-inline-size:calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px)))]:[max-inline-size:calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px)))]',
+  ),
+  viewportBlockCentered: cn(
+    'mbs-[max(var(--spacing-4),env(safe-area-inset-top,0px))]',
+    'mbe-[max(var(--spacing-4),env(safe-area-inset-bottom,0px))]',
+    '[max-inline-size:calc(100vw_-_var(--spacing-4)_-_var(--spacing-4))]',
+    'supports-[max-inline-size:calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px)))]:[max-inline-size:calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px)))]',
+  ),
+  surfaceViewportFit: cn(
+    'box-border',
+    '[max-inline-size:calc(100vw_-_var(--spacing-4)_-_var(--spacing-4))]',
+    'supports-[max-inline-size:calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px)))]:[max-inline-size:calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px)))]',
+    '[max-block-size:calc(100vh_-_var(--spacing-4)_-_var(--spacing-4))]',
+    'supports-[max-block-size:calc(100dvb_-_max(var(--spacing-4),env(safe-area-inset-top,0px))_-_max(var(--spacing-4),env(safe-area-inset-bottom,0px)))]:[max-block-size:calc(100dvb_-_max(var(--spacing-4),env(safe-area-inset-top,0px))_-_max(var(--spacing-4),env(safe-area-inset-bottom,0px)))]',
+  ),
+  surfaceScrollable: 'overflow-auto overscroll-contain',
+  // Consumer width, routed through a custom property set inline.
+  customWidth: 'w-(--_popover-width)',
+  matchTriggerAligned: cn(
+    '[min-width:anchor-size(width)]',
+    'not-supports-[min-width:min(anchor-size(width),calc(100%_-_max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))))]:supports-[min-width:min(anchor-size(width),calc(100%_-_var(--spacing-4)))]:[min-width:min(anchor-size(width),calc(100%_-_var(--spacing-4)))]',
+    'supports-[min-width:min(anchor-size(width),calc(100%_-_max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))))]:[min-width:min(anchor-size(width),calc(100%_-_max(var(--spacing-4),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))))]',
+  ),
+  matchTriggerCentered: cn(
+    '[min-width:anchor-size(width)]',
+    'not-supports-[min-width:min(anchor-size(width),calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px))))]:supports-[min-width:min(anchor-size(width),calc(100vw_-_var(--spacing-4)_-_var(--spacing-4)))]:[min-width:min(anchor-size(width),calc(100vw_-_var(--spacing-4)_-_var(--spacing-4)))]',
+    'supports-[min-width:min(anchor-size(width),calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px))))]:[min-width:min(anchor-size(width),calc(100vi_-_max(var(--spacing-4),env(safe-area-inset-left,0px))_-_max(var(--spacing-4),env(safe-area-inset-right,0px))))]',
+  ),
+} as const;
+
+// =============================================================================
+// Component
+// =============================================================================
+
+/**
+ * A click-triggered popover for displaying interactive content anchored to a trigger.
+ *
+ * Implements the button + dialog ARIA pattern. The trigger must contain a
+ * `<button>` or `[role="button"]` element — the popover finds it and applies
+ * click/keydown handlers and ARIA attributes automatically.
+ *
+ * Uses an inline-flex wrapper as the CSS anchor for stable positioning
+ * (immune to pressed-state transforms like `:active { scale(0.98) }`).
+ *
+ * Focus is trapped inside the popover when open.
+ * Supports light dismiss by default (click outside or Escape to close).
+ *
+ * For hover-triggered overlays, use {@link HoverCard} instead.
+ *
+ * @example
+ * ```
+ * <Popover label="Settings" content={<SettingsPanel />} placement="below">
+ *   <Button label="Settings" />
+ * </Popover>
+ * <Popover
+ *   isOpen={isOpen}
+ *   onOpenChange={setIsOpen}
+ *   label="Filter"
+ *   content={<FilterForm />}>
+ *   <Button label="Filter" />
+ * </Popover>
+ * <Popover
+ *   anchorRef={myButtonRef}
+ *   label="Actions"
+ *   content={<ActionMenu />}
+ *   placement="below"
+ * />
+ * ```
+ */
+export function Popover({
+  children,
+  anchorRef,
+  content,
+  placement = 'below',
+  alignment = 'start',
+  isOpen,
+  onOpenChange,
+  isEnabled = true,
+  width,
+  padding = 3,
+  label,
+  role = 'dialog',
+  isModal,
+  hasCloseButton,
+  closeButtonLabel,
+  hasAutoFocus,
+  hasLightDismiss = true,
+  hasEscapeDismiss = true,
+  className,
+  style,
+  'data-testid': testId,
+}: PopoverProps): ReactElement {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const measurementFrameRef = useRef<number | null>(null);
+  const [hasOverflow, setHasOverflow] = useState(false);
+  const isControlled = isOpen !== undefined;
+
+  const handlePopoverShow = useCallback(() => {
+    onOpenChange?.(true);
+  }, [onOpenChange]);
+
+  const handlePopoverHide = useCallback(() => {
+    onOpenChange?.(false);
+  }, [onOpenChange]);
+
+  const popover = usePopover({
+    dialogLabel: label,
+    role,
+    isModal,
+    hasLightDismiss,
+    hasEscapeDismiss,
+    hasCloseButton,
+    closeButtonLabel,
+    hasAutoFocus,
+    // The surface is the box that paints background, radius and elevation, so
+    // it is the element the `popover` theme target has to sit on — a target on
+    // the content div inside it styles a box that paints nothing.
+    surfaceTarget: 'popover',
+    // Surface padding is a usePopover option so it lands on that same box,
+    // where a theme's `padding` replaces it instead of nesting inside it.
+    padding,
+    className: cn(
+      styles.surfaceViewportFit,
+      hasOverflow && styles.surfaceScrollable,
+      className,
+    ),
+    style,
+    onShow: handlePopoverShow,
+    onHide: handlePopoverHide,
+  });
+
+  const measureOverflow = useCallback(() => {
+    const surface = popover.contentRef.current;
+    if (!surface) {
+      return;
+    }
+    const nextHasOverflow =
+      surface.scrollHeight > surface.clientHeight + 1 ||
+      surface.scrollWidth > surface.clientWidth + 1;
+    // eslint-disable-next-line @eslint-react/set-state-in-effect -- DOM overflow measurement controls whether this surface becomes a scroll container
+    setHasOverflow(current =>
+      current === nextHasOverflow ? current : nextHasOverflow,
+    );
+  }, [popover.contentRef]);
+
+  const scheduleOverflowMeasurement = useCallback(() => {
+    if (measurementFrameRef.current != null) {
+      return;
+    }
+    measurementFrameRef.current = window.requestAnimationFrame(() => {
+      measurementFrameRef.current = null;
+      measureOverflow();
+    });
+  }, [measureOverflow]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!popover.isOpen) {
+      return;
+    }
+    const surface = popover.contentRef.current;
+    if (!surface) {
+      return;
+    }
+    measureOverflow();
+    const resizeObserver =
+      typeof ResizeObserver === 'undefined'
+        ? null
+        : new ResizeObserver(scheduleOverflowMeasurement);
+    const mutationObserver =
+      typeof MutationObserver === 'undefined'
+        ? null
+        : new MutationObserver(scheduleOverflowMeasurement);
+    resizeObserver?.observe(surface);
+    mutationObserver?.observe(surface, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+    surface.addEventListener('load', scheduleOverflowMeasurement, true);
+    window.addEventListener('resize', scheduleOverflowMeasurement);
+    window.visualViewport?.addEventListener(
+      'resize',
+      scheduleOverflowMeasurement,
+    );
+    return () => {
+      resizeObserver?.disconnect();
+      mutationObserver?.disconnect();
+      surface.removeEventListener('load', scheduleOverflowMeasurement, true);
+      window.removeEventListener('resize', scheduleOverflowMeasurement);
+      window.visualViewport?.removeEventListener(
+        'resize',
+        scheduleOverflowMeasurement,
+      );
+      if (measurementFrameRef.current != null) {
+        window.cancelAnimationFrame(measurementFrameRef.current);
+        measurementFrameRef.current = null;
+      }
+    };
+  }, [measureOverflow, popover.isOpen, scheduleOverflowMeasurement]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!popover.isOpen) {
+      return;
+    }
+    scheduleOverflowMeasurement();
+  }, [content, popover.isOpen, scheduleOverflowMeasurement]);
+
+  // Shared handler for click events on the trigger button.
+  const handleTriggerClick = useCallback(() => {
+    if (!isEnabled) {
+      return;
+    }
+    popover.toggle();
+  }, [isEnabled, popover]);
+
+  // Shared handler for keydown events on role="button" elements.
+  // Native <button> synthesizes click on Enter/Space, but role="button"
+  // does not — we need to handle it explicitly.
+  const handleTriggerKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleTriggerClick();
+      }
+    },
+    [handleTriggerClick],
+  );
+
+  /**
+   * Attach click/keydown handlers and ARIA attributes to a trigger button.
+   * Used by both sibling mode and children mode.
+   */
+  const attachTrigger = useCallback(
+    (button: HTMLElement) => {
+      // ARIA attributes
+      button.setAttribute(
+        'aria-haspopup',
+        popover.triggerProps['aria-haspopup'],
+      );
+      button.setAttribute(
+        'aria-expanded',
+        String(popover.triggerProps['aria-expanded']),
+      );
+      button.setAttribute(
+        'aria-controls',
+        popover.triggerProps['aria-controls'],
+      );
+
+      // Event handlers
+      button.addEventListener('click', handleTriggerClick);
+      // Only add keydown for role="button" — native <button> already
+      // synthesizes click events for Enter/Space.
+      const needsKeyDown =
+        button.tagName !== 'BUTTON' && button.getAttribute('role') === 'button';
+      if (needsKeyDown) {
+        button.addEventListener('keydown', handleTriggerKeyDown);
+      }
+
+      return () => {
+        button.removeAttribute('aria-haspopup');
+        button.removeAttribute('aria-expanded');
+        button.removeAttribute('aria-controls');
+        button.removeEventListener('click', handleTriggerClick);
+        if (needsKeyDown) {
+          button.removeEventListener('keydown', handleTriggerKeyDown);
+        }
+      };
+    },
+    [popover, handleTriggerClick, handleTriggerKeyDown],
+  );
+
+  // Sibling mode: attach to external anchorRef
+  useIsomorphicLayoutEffect(() => {
+    if (!anchorRef) {
+      return;
+    }
+
+    const el = anchorRef.current;
+    if (!el) {
+      return;
+    }
+
+    const button = findTriggerButton(el);
+    if (!button) {
+      devWarn(
+        'Popover',
+        'anchorRef must reference a <button> or [role="button"] element. ' +
+          'The popover trigger implements the button + dialog ARIA pattern.',
+      );
+    }
+    if (!button) {
+      return;
+    }
+
+    // Set up anchor positioning on the anchorRef element itself
+    popover.triggerRef(el);
+
+    // Attach handlers + ARIA to the button
+    const detach = attachTrigger(button);
+
+    return () => {
+      popover.triggerRef(null);
+      detach();
+    };
+  }, [anchorRef, popover, attachTrigger]);
+
+  // Children mode: use wrapper as CSS anchor, find button inside for
+  // ARIA + event handlers.
+  useIsomorphicLayoutEffect(() => {
+    if (anchorRef) {
+      return;
+    } // Skip if using anchorRef mode
+    if (typeof children === 'function') {
+      return;
+    } // Skip if using render prop mode
+
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    // Use the wrapper as the CSS anchor — it doesn't receive pressed-state
+    // transforms, so the anchor position stays stable.
+    popover.triggerRef(wrapper);
+
+    // Find the button inside the wrapper
+    const button = findTriggerButton(wrapper);
+    if (!button) {
+      devWarn(
+        'Popover',
+        'children must contain a <button> or [role="button"] element. ' +
+          'The popover trigger implements the button + dialog ARIA pattern.',
+      );
+    }
+    if (!button) {
+      return;
+    }
+
+    const detach = attachTrigger(button);
+
+    return () => {
+      popover.triggerRef(null);
+      detach();
+    };
+  }, [anchorRef, popover, attachTrigger]);
+
+  // Sync controlled state
+  useIsomorphicLayoutEffect(() => {
+    if (!isControlled) {
+      return;
+    }
+    if (isOpen && !popover.isOpen) {
+      popover.show();
+    } else if (!isOpen && popover.isOpen) {
+      popover.hide();
+    }
+  }, [isOpen, isControlled, popover]);
+
+  // Determine popover layer classes
+  const popoverSizeClassName = width
+    ? styles.customWidth
+    : alignment === 'center'
+      ? styles.matchTriggerCentered
+      : styles.matchTriggerAligned;
+  const popoverSizeStyle = width
+    ? ({'--_popover-width': cssLength(width)} as React.CSSProperties)
+    : undefined;
+  const isSidePlacement = placement === 'start' || placement === 'end';
+  const popoverViewportClassName =
+    alignment === 'center'
+      ? isSidePlacement
+        ? styles.viewportBlockCentered
+        : styles.viewportCentered
+      : cn(
+          styles.viewportAligned,
+          isSidePlacement
+            ? alignment === 'start'
+              ? styles.viewportBlockStart
+              : styles.viewportBlockEnd
+            : alignment === 'start'
+              ? styles.viewportStart
+              : styles.viewportEnd,
+        );
+  const layerClassName = cn(
+    styles.viewportFit,
+    popoverViewportClassName,
+    popoverSizeClassName,
+    layerAnimations[placement],
+  );
+
+  // Sibling mode: render only the popover (no wrapper needed)
+  if (anchorRef && children == null) {
+    return (
+      <>
+        {popover.render(<div data-testid={testId}>{content}</div>, {
+          placement,
+          alignment,
+          offset: spacingVars['--spacing-1'],
+          className: layerClassName,
+          style: popoverSizeStyle,
+        })}
+      </>
+    );
+  }
+
+  // Render prop mode: children is a function — pass trigger props directly
+  const isRenderProp = typeof children === 'function';
+
+  if (isRenderProp) {
+    const triggerProps: PopoverTriggerRenderProps = {
+      ref: popover.triggerRef,
+      onClick: handleTriggerClick,
+      'aria-haspopup': 'dialog',
+      'aria-expanded': popover.isOpen,
+      'aria-controls': popover.id,
+    };
+
+    return (
+      <>
+        {children(triggerProps)}
+        {popover.render(<div data-testid={testId}>{content}</div>, {
+          placement,
+          alignment,
+          offset: spacingVars['--spacing-1'],
+          className: layerClassName,
+          style: popoverSizeStyle,
+        })}
+      </>
+    );
+  }
+
+  // Automatic mode: wrap children in context + anchor wrapper
+  return (
+    <>
+      <InteractiveRoleContext value="button">
+        <div ref={wrapperRef} className={styles.anchorWrapper}>
+          {children}
+        </div>
+      </InteractiveRoleContext>
+      {popover.render(<div data-testid={testId}>{content}</div>, {
+        placement,
+        alignment,
+        offset: spacingVars['--spacing-1'],
+        className: layerClassName,
+        style: popoverSizeStyle,
+      })}
+    </>
+  );
+}
+
+Popover.displayName = 'Popover';

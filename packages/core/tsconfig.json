@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src", "../../test-utils"],
+  // The accessibility-contract lane (`*.a11y.*` inventories, renders and
+  // tests, plus the Playwright `*.spec.ts` bindings) is driven by Solo's
+  // internal `@solo/a11y-spec` harness and `@playwright/test`, neither
+  // of which is part of Solo. The files are kept verbatim for when that
+  // harness is brought over; until then they are not typechecked.
+  "exclude": ["node_modules", "dist", "src/**/*.a11y.*", "src/**/*.spec.ts"]
+}

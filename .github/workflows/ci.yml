@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Browser for the Arabic font render test
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: CSS checks
+        run: |
+          pnpm check:css
+          node scripts/sync-css-imports.mjs --check
+          node scripts/generate-tokens-css.mjs --check
+          node scripts/generate-i18n-runtime.mjs --check
+          node scripts/generate-template-stories.mjs --check
+          node scripts/generate-arabic-font.mjs --check
+          node scripts/generate-template-mock-text.mjs --check
+      - name: Docs check
+        run: pnpm docs:check
+      - name: Tests
+        run: pnpm test
+      - name: Storybook build
+        run: pnpm storybook:build

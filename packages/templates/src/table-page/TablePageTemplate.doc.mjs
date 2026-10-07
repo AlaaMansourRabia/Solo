@@ -1,0 +1,36 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'page',
+  name: 'Searchable Table',
+  displayName: 'Searchable Table',
+  description:
+    'Flat table of uniform rows under a block of record-level facts, narrowed three ways at once — a full-text search box, a scope toggle, and per-column popovers — with sortable and filterable columns, per-row hover detail, and totals derived from the visible rows that flag themselves as partial while a filter is on. The shape for one homogeneous list, not nested rows or groups with their own columns.',
+  displayNameAr: 'جدول قابل للبحث',
+  descriptionAr:
+    'جدول مسطّح من صفوف منتظمة أسفل كتلة من الحقائق على مستوى السجل، يُضيَّق بثلاث طرق في آن واحد — مربع بحث نصّي كامل، ومفتاح تبديل للنطاق، ونوافذ منبثقة لكل عمود — مع أعمدة قابلة للفرز والتصفية، وتفاصيل تظهر عند التمرير فوق كل صف، وإجماليات مشتقة من الصفوف المرئية تشير إلى أنها جزئية ما دام هناك مرشّح مفعَّل. هذا هو الشكل المناسب لقائمة واحدة متجانسة، لا لصفوف متداخلة أو مجموعات لها أعمدتها الخاصة.',
+  keywords: [
+    'search',
+    'filter',
+    'sort',
+    'table',
+    'flat rows',
+    'records',
+    'dataset',
+    'totals',
+    'roster',
+    'inventory',
+    'assets',
+    'registry',
+    'lookup',
+    'report table',
+    'numeric columns',
+    'pagination',
+    'csv export',
+  ],
+  isReady: true,
+  category: 'Table - Basic',
+  order: 10,
+  filter: 'Table',
+  previewAspectRatio: 16 / 10,
+  slug: 'table-page',
+};

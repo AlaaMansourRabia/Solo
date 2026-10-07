@@ -1,0 +1,43 @@
+'use client';
+
+import {useState} from 'react';
+import {Pagination} from '@solo/core/Pagination';
+import {Stack} from '@solo/core/Layout';
+
+export default function PaginationVariants() {
+  const [pagesPage, setPagesPage] = useState(3);
+  const [countPage, setCountPage] = useState(2);
+  const [compactPage, setCompactPage] = useState(5);
+  const [dotsPage, setDotsPage] = useState(3);
+
+  return (
+    <Stack direction="vertical" gap={5} hAlign="center" style={{width: '100%'}}>
+      <Pagination
+        page={dotsPage}
+        onChange={setDotsPage}
+        totalPages={8}
+        variant="dots"
+      />
+      <Pagination
+        page={compactPage}
+        onChange={setCompactPage}
+        totalPages={10}
+        variant="compact"
+      />
+      <Pagination
+        page={countPage}
+        onChange={setCountPage}
+        totalItems={200}
+        pageSize={20}
+        variant="count"
+      />
+      <Pagination
+        page={pagesPage}
+        onChange={setPagesPage}
+        totalItems={200}
+        pageSize={10}
+        variant="pages"
+      />
+    </Stack>
+  );
+}

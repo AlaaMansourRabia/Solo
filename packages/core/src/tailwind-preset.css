@@ -1,0 +1,36 @@
+/**
+ * Shared Tailwind configuration for compiling Solo component classes.
+ *
+ * Imported by every package stylesheet that compiles component utilities
+ * (`@solo/core/styles.css`, `@solo/charts/styles.css`) so all of them agree on
+ * variant semantics. Emits no CSS by itself.
+ */
+
+/*
+ * `hover:` is a plain `:hover` pseudo-class here. Tailwind v4 wraps `hover:`
+ * (and every `group-hover:` / `peer-hover:` built on it) in
+ * `@media (hover: hover)` by default, which would silently drop hover
+ * feedback on hybrid devices.
+ */
+@custom-variant hover (&:hover);
+
+/*
+ * Numeric utilities (`p-0`, `inset-0`, `gap-0`…) need a base spacing unit.
+ * Components use token shorthands (`p-(--spacing-2)`) for every non-zero
+ * value; this only exists so the zero/literal forms compile.
+ */
+@theme {
+  --spacing: 0.25rem;
+}
+
+/*
+ * Solo's shared "enabled" guard: zero specificity (`:where`) so it never
+ * outranks the state it gates. Use as `usable:hover:…`, `usable:active:…`.
+ */
+@custom-variant usable (&:where(:not(:disabled,[aria-disabled="true"])));
+
+/*
+ * Hover-capable pointer. Use where a state must sit under
+ * `@media (hover: hover)` explicitly (plain `hover:` is NOT media-gated here).
+ */
+@custom-variant can-hover (@media (hover: hover));

@@ -1,0 +1,21 @@
+'use client';
+
+import {useState} from 'react';
+import {NumberInput} from '@solo/core/NumberInput';
+
+export default function NumberInputClearableNumberInput() {
+  const [value, setValue] = useState<number | null>(75);
+  return (
+    <div style={{width: 300}}>
+      <NumberInput
+        label="Progress"
+        units="%"
+        min={0}
+        max={100}
+        value={value}
+        onChange={setValue}
+        hasClear
+      />
+    </div>
+  );
+}

@@ -1,0 +1,11 @@
+@keyframes solo-progress-bar-indeterminate-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
+/* RTL: mirror the slide so the indeterminate bar travels along the reading
+   flow. The magnitudes mirror the LTR keyframe. */
+@keyframes solo-progress-bar-indeterminate-slide-rtl {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-250%); }
+}

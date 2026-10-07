@@ -1,0 +1,721 @@
+[
+  {
+    "section": "Components",
+    "category": "Components",
+    "categoryAr": "المكوّنات",
+    "canary": false,
+    "overview": true,
+    "items": [
+      {
+        "type": "family",
+        "page": "AppShell",
+        "displayName": "App Shell",
+        "displayNameAr": "هيكل التطبيق"
+      },
+      {
+        "type": "component",
+        "page": "AspectRatio",
+        "displayName": "Aspect Ratio",
+        "displayNameAr": "نسبة العرض إلى الارتفاع"
+      },
+      {
+        "type": "family",
+        "page": "Avatar",
+        "displayName": "Avatar",
+        "displayNameAr": "صورة رمزية"
+      },
+      {
+        "type": "component",
+        "page": "Badge",
+        "displayName": "Badge",
+        "displayNameAr": "شارة"
+      },
+      {
+        "type": "component",
+        "page": "Banner",
+        "displayName": "Banner",
+        "displayNameAr": "لافتة"
+      },
+      {
+        "type": "component",
+        "page": "Blockquote",
+        "displayName": "Blockquote",
+        "displayNameAr": "اقتباس"
+      },
+      {
+        "type": "family",
+        "page": "BottomSheet",
+        "displayName": "Bottom Sheet",
+        "displayNameAr": "لوحة سفلية"
+      },
+      {
+        "type": "family",
+        "page": "Breadcrumbs",
+        "displayName": "Breadcrumbs",
+        "displayNameAr": "مسار التنقّل"
+      },
+      {
+        "type": "family",
+        "page": "Button",
+        "displayName": "Button",
+        "displayNameAr": "زر"
+      },
+      {
+        "type": "component",
+        "page": "Calendar",
+        "displayName": "Calendar",
+        "displayNameAr": "تقويم"
+      },
+      {
+        "type": "family",
+        "page": "Card",
+        "displayName": "Card",
+        "displayNameAr": "بطاقة"
+      },
+      {
+        "type": "component",
+        "page": "Carousel",
+        "displayName": "Carousel",
+        "displayNameAr": "عرض دوّار"
+      },
+      {
+        "type": "family",
+        "page": "Chat",
+        "displayName": "Chat",
+        "displayNameAr": "المحادثة"
+      },
+      {
+        "type": "family",
+        "page": "Checkbox",
+        "displayName": "Checkbox",
+        "displayNameAr": "مربع اختيار"
+      },
+      {
+        "type": "component",
+        "page": "Citation",
+        "displayName": "Citation",
+        "displayNameAr": "استشهاد"
+      },
+      {
+        "type": "component",
+        "page": "Code",
+        "displayName": "Code",
+        "displayNameAr": "تعليمات برمجية"
+      },
+      {
+        "type": "component",
+        "page": "CodeBlock",
+        "displayName": "Code Block",
+        "displayNameAr": "كتلة تعليمات برمجية"
+      },
+      {
+        "type": "family",
+        "page": "Collapsible",
+        "displayName": "Collapsible",
+        "displayNameAr": "عنصر قابل للطيّ"
+      },
+      {
+        "type": "family",
+        "page": "CommandPalette",
+        "displayName": "Command Palette",
+        "displayNameAr": "لوحة الأوامر"
+      },
+      {
+        "type": "family",
+        "page": "ContextMenu",
+        "displayName": "Context Menu",
+        "displayNameAr": "قائمة السياق"
+      },
+      {
+        "type": "family",
+        "page": "DateInput",
+        "displayName": "Date Input",
+        "displayNameAr": "حقل إدخال التاريخ"
+      },
+      {
+        "type": "family",
+        "page": "Dialog",
+        "displayName": "Dialog",
+        "displayNameAr": "مربع حوار"
+      },
+      {
+        "type": "component",
+        "page": "Divider",
+        "displayName": "Divider",
+        "displayNameAr": "فاصل"
+      },
+      {
+        "type": "family",
+        "page": "DropdownMenu",
+        "displayName": "Dropdown Menu",
+        "displayNameAr": "قائمة منسدلة"
+      },
+      {
+        "type": "component",
+        "page": "EmptyState",
+        "displayName": "Empty State",
+        "displayNameAr": "حالة فارغة"
+      },
+      {
+        "type": "family",
+        "page": "Field",
+        "displayName": "Field",
+        "displayNameAr": "حقل"
+      },
+      {
+        "type": "component",
+        "page": "FileInput",
+        "displayName": "File Input",
+        "displayNameAr": "حقل إدخال الملفات"
+      },
+      {
+        "type": "component",
+        "page": "Heading",
+        "displayName": "Heading",
+        "displayNameAr": "عنوان"
+      },
+      {
+        "type": "family",
+        "page": "HoverCard",
+        "displayName": "Hover Card",
+        "displayNameAr": "بطاقة التمرير"
+      },
+      {
+        "type": "component",
+        "page": "Icon",
+        "displayName": "Icon",
+        "displayNameAr": "أيقونة"
+      },
+      {
+        "type": "family",
+        "page": "Indicator",
+        "displayName": "Indicator",
+        "displayNameAr": "مؤشر"
+      },
+      {
+        "type": "component",
+        "page": "Item",
+        "displayName": "Item",
+        "displayNameAr": "عنصر"
+      },
+      {
+        "type": "component",
+        "page": "Kbd",
+        "displayName": "Kbd",
+        "displayNameAr": "مفتاح لوحة المفاتيح"
+      },
+      {
+        "type": "family",
+        "page": "Layout",
+        "displayName": "Layout",
+        "displayNameAr": "التخطيط"
+      },
+      {
+        "type": "component",
+        "page": "Lightbox",
+        "displayName": "Lightbox",
+        "displayNameAr": "عارض الصور"
+      },
+      {
+        "type": "component",
+        "page": "Link",
+        "displayName": "Link",
+        "displayNameAr": "رابط"
+      },
+      {
+        "type": "family",
+        "page": "List",
+        "displayName": "List",
+        "displayNameAr": "قائمة"
+      },
+      {
+        "type": "component",
+        "page": "Markdown",
+        "displayName": "Markdown",
+        "displayNameAr": "نص Markdown"
+      },
+      {
+        "type": "family",
+        "page": "MetadataList",
+        "displayName": "Metadata List",
+        "displayNameAr": "قائمة البيانات الوصفية"
+      },
+      {
+        "type": "component",
+        "page": "MoreMenu",
+        "displayName": "More Menu",
+        "displayNameAr": "قائمة المزيد"
+      },
+      {
+        "type": "family",
+        "page": "Navigation",
+        "displayName": "Navigation",
+        "displayNameAr": "التنقّل"
+      },
+      {
+        "type": "component",
+        "page": "NumberInput",
+        "displayName": "Number Input",
+        "displayNameAr": "حقل إدخال الأرقام"
+      },
+      {
+        "type": "component",
+        "page": "Outline",
+        "displayName": "Outline",
+        "displayNameAr": "فهرس المحتوى"
+      },
+      {
+        "type": "component",
+        "page": "OverflowList",
+        "displayName": "Overflow List",
+        "displayNameAr": "قائمة الفائض"
+      },
+      {
+        "type": "component",
+        "page": "Overlay",
+        "displayName": "Overlay",
+        "displayNameAr": "طبقة متراكبة"
+      },
+      {
+        "type": "component",
+        "page": "Pagination",
+        "displayName": "Pagination",
+        "displayNameAr": "ترقيم الصفحات"
+      },
+      {
+        "type": "family",
+        "page": "Popover",
+        "displayName": "Popover",
+        "displayNameAr": "نافذة منبثقة"
+      },
+      {
+        "type": "component",
+        "page": "PowerSearch",
+        "displayName": "Power Search",
+        "displayNameAr": "البحث المتقدّم"
+      },
+      {
+        "type": "component",
+        "page": "ProgressBar",
+        "displayName": "Progress Bar",
+        "displayNameAr": "شريط التقدّم"
+      },
+      {
+        "type": "family",
+        "page": "Radio",
+        "displayName": "Radio",
+        "displayNameAr": "زر اختيار"
+      },
+      {
+        "type": "family",
+        "page": "Resizable",
+        "displayName": "Resizable",
+        "displayNameAr": "عنصر قابل لتغيير الحجم"
+      },
+      {
+        "type": "component",
+        "page": "ScrollableArea",
+        "displayName": "Scrollable Area",
+        "displayNameAr": "منطقة قابلة للتمرير"
+      },
+      {
+        "type": "family",
+        "page": "SegmentedControl",
+        "displayName": "Segmented Control",
+        "displayNameAr": "عنصر تحكم مجزّأ"
+      },
+      {
+        "type": "family",
+        "page": "Selector",
+        "displayName": "Selector",
+        "displayNameAr": "محدِّد"
+      },
+      {
+        "type": "component",
+        "page": "Skeleton",
+        "displayName": "Skeleton",
+        "displayNameAr": "هيكل التحميل"
+      },
+      {
+        "type": "component",
+        "page": "Slider",
+        "displayName": "Slider",
+        "displayNameAr": "شريط تمرير"
+      },
+      {
+        "type": "component",
+        "page": "Spinner",
+        "displayName": "Spinner",
+        "displayNameAr": "مؤشر التحميل"
+      },
+      {
+        "type": "component",
+        "page": "StatusDot",
+        "displayName": "Status Dot",
+        "displayNameAr": "نقطة الحالة"
+      },
+      {
+        "type": "family",
+        "page": "Stepper",
+        "displayName": "Stepper",
+        "displayNameAr": "مؤشر الخطوات"
+      },
+      {
+        "type": "component",
+        "page": "Switch",
+        "displayName": "Switch",
+        "displayNameAr": "مفتاح تبديل"
+      },
+      {
+        "type": "family",
+        "page": "Table",
+        "displayName": "Table",
+        "displayNameAr": "جدول"
+      },
+      {
+        "type": "family",
+        "page": "Tabs",
+        "displayName": "Tabs",
+        "displayNameAr": "علامات تبويب"
+      },
+      {
+        "type": "component",
+        "page": "Text",
+        "displayName": "Text",
+        "displayNameAr": "نص"
+      },
+      {
+        "type": "component",
+        "page": "TextArea",
+        "displayName": "Text Area",
+        "displayNameAr": "منطقة نص"
+      },
+      {
+        "type": "component",
+        "page": "TextInput",
+        "displayName": "Text Input",
+        "displayNameAr": "حقل إدخال نصي"
+      },
+      {
+        "type": "component",
+        "page": "Thumbnail",
+        "displayName": "Thumbnail",
+        "displayNameAr": "صورة مصغّرة"
+      },
+      {
+        "type": "component",
+        "page": "TimeInput",
+        "displayName": "Time Input",
+        "displayNameAr": "حقل إدخال الوقت"
+      },
+      {
+        "type": "component",
+        "page": "Timer",
+        "displayName": "Timer",
+        "displayNameAr": "مؤقّت"
+      },
+      {
+        "type": "component",
+        "page": "Timestamp",
+        "displayName": "Timestamp",
+        "displayNameAr": "طابع زمني"
+      },
+      {
+        "type": "family",
+        "page": "Toast",
+        "displayName": "Toast",
+        "displayNameAr": "إشعار منبثق"
+      },
+      {
+        "type": "component",
+        "page": "Token",
+        "displayName": "Token",
+        "displayNameAr": "وسم"
+      },
+      {
+        "type": "component",
+        "page": "Tokenizer",
+        "displayName": "Tokenizer",
+        "displayNameAr": "حقل الوسوم"
+      },
+      {
+        "type": "component",
+        "page": "Toolbar",
+        "displayName": "Toolbar",
+        "displayNameAr": "شريط أدوات"
+      },
+      {
+        "type": "family",
+        "page": "Tooltip",
+        "displayName": "Tooltip",
+        "displayNameAr": "تلميح"
+      },
+      {
+        "type": "component",
+        "page": "TreeList",
+        "displayName": "Tree List",
+        "displayNameAr": "قائمة شجرية"
+      },
+      {
+        "type": "family",
+        "page": "Typeahead",
+        "displayName": "Typeahead",
+        "displayNameAr": "إكمال تلقائي"
+      },
+      {
+        "type": "component",
+        "page": "VisuallyHidden",
+        "displayName": "VisuallyHidden",
+        "displayNameAr": "مخفي بصريًّا"
+      }
+    ],
+    "utilities": [
+      {
+        "type": "component",
+        "page": "InternationalizationProvider",
+        "displayName": "Internationalization Provider",
+        "displayNameAr": "مزوّد التدويل"
+      },
+      {
+        "type": "component",
+        "page": "LayerProvider",
+        "displayName": "Layer Provider",
+        "displayNameAr": "مزوّد الطبقات"
+      },
+      {
+        "type": "component",
+        "page": "LinkProvider",
+        "displayName": "Link Provider",
+        "displayNameAr": "مزوّد الروابط"
+      },
+      {
+        "type": "component",
+        "page": "MediaTheme",
+        "displayName": "Media Theme",
+        "displayNameAr": "سمة الوسائط"
+      },
+      {
+        "type": "component",
+        "page": "SyntaxTheme",
+        "displayName": "Syntax Theme",
+        "displayNameAr": "سمة تمييز الصياغة"
+      },
+      {
+        "type": "component",
+        "page": "Theme",
+        "displayName": "Theme",
+        "displayNameAr": "سمة"
+      },
+      {
+        "type": "component",
+        "page": "useAnnounce",
+        "displayName": "useAnnounce",
+        "displayNameAr": "useAnnounce"
+      },
+      {
+        "type": "component",
+        "page": "useClickableContainer",
+        "displayName": "useClickableContainer",
+        "displayNameAr": "useClickableContainer"
+      },
+      {
+        "type": "component",
+        "page": "useClipboard",
+        "displayName": "useClipboard",
+        "displayNameAr": "useClipboard"
+      },
+      {
+        "type": "component",
+        "page": "useCollator",
+        "displayName": "useCollator",
+        "displayNameAr": "useCollator"
+      },
+      {
+        "type": "component",
+        "page": "useContainerReveal",
+        "displayName": "useContainerReveal",
+        "displayNameAr": "useContainerReveal"
+      },
+      {
+        "type": "component",
+        "page": "useDevWarning",
+        "displayName": "useDevWarning",
+        "displayNameAr": "useDevWarning"
+      },
+      {
+        "type": "component",
+        "page": "useEntryAnimation",
+        "displayName": "useEntryAnimation",
+        "displayNameAr": "useEntryAnimation"
+      },
+      {
+        "type": "component",
+        "page": "useFocusTrap",
+        "displayName": "useFocusTrap",
+        "displayNameAr": "useFocusTrap"
+      },
+      {
+        "type": "component",
+        "page": "useGridFocus",
+        "displayName": "useGridFocus",
+        "displayNameAr": "useGridFocus"
+      },
+      {
+        "type": "component",
+        "page": "useHotkeys",
+        "displayName": "useHotkeys",
+        "displayNameAr": "useHotkeys"
+      },
+      {
+        "type": "component",
+        "page": "useImageMode",
+        "displayName": "useImageMode",
+        "displayNameAr": "useImageMode"
+      },
+      {
+        "type": "component",
+        "page": "useIndicatorFocusRing",
+        "displayName": "useIndicatorFocusRing",
+        "displayNameAr": "useIndicatorFocusRing"
+      },
+      {
+        "type": "component",
+        "page": "useInputContainer",
+        "displayName": "useInputContainer",
+        "displayNameAr": "useInputContainer"
+      },
+      {
+        "type": "component",
+        "page": "useInputStatusIcon",
+        "displayName": "useInputStatusIcon",
+        "displayNameAr": "useInputStatusIcon"
+      },
+      {
+        "type": "component",
+        "page": "useInteractiveRole",
+        "displayName": "useInteractiveRole",
+        "displayNameAr": "useInteractiveRole"
+      },
+      {
+        "type": "component",
+        "page": "useKeyboardHint",
+        "displayName": "useKeyboardHint",
+        "displayNameAr": "useKeyboardHint"
+      },
+      {
+        "type": "component",
+        "page": "useLayer",
+        "displayName": "useLayer",
+        "displayNameAr": "useLayer"
+      },
+      {
+        "type": "component",
+        "page": "useListFocus",
+        "displayName": "useListFocus",
+        "displayNameAr": "useListFocus"
+      },
+      {
+        "type": "component",
+        "page": "useLocale",
+        "displayName": "useLocale",
+        "displayNameAr": "useLocale"
+      },
+      {
+        "type": "component",
+        "page": "useLongPress",
+        "displayName": "useLongPress",
+        "displayNameAr": "useLongPress"
+      },
+      {
+        "type": "component",
+        "page": "useMediaQuery",
+        "displayName": "useMediaQuery",
+        "displayNameAr": "useMediaQuery"
+      },
+      {
+        "type": "component",
+        "page": "useMenuPress",
+        "displayName": "useMenuPress",
+        "displayNameAr": "useMenuPress"
+      },
+      {
+        "type": "component",
+        "page": "useMergedRefs",
+        "displayName": "useMergedRefs",
+        "displayNameAr": "useMergedRefs"
+      },
+      {
+        "type": "component",
+        "page": "useOverflow",
+        "displayName": "useOverflow",
+        "displayNameAr": "useOverflow"
+      },
+      {
+        "type": "component",
+        "page": "useScrollableArea",
+        "displayName": "useScrollableArea",
+        "displayNameAr": "useScrollableArea"
+      },
+      {
+        "type": "component",
+        "page": "useScrollLock",
+        "displayName": "useScrollLock",
+        "displayNameAr": "useScrollLock"
+      },
+      {
+        "type": "component",
+        "page": "useScrollOverflow",
+        "displayName": "useScrollOverflow",
+        "displayNameAr": "useScrollOverflow"
+      },
+      {
+        "type": "component",
+        "page": "useStreamingText",
+        "displayName": "useStreamingText",
+        "displayNameAr": "useStreamingText"
+      },
+      {
+        "type": "component",
+        "page": "useTheme",
+        "displayName": "useTheme",
+        "displayNameAr": "useTheme"
+      },
+      {
+        "type": "component",
+        "page": "useTranslator",
+        "displayName": "useTranslator",
+        "displayNameAr": "useTranslator"
+      },
+      {
+        "type": "component",
+        "page": "useTreeFocus",
+        "displayName": "useTreeFocus",
+        "displayNameAr": "useTreeFocus"
+      },
+      {
+        "type": "component",
+        "page": "useTypeahead",
+        "displayName": "useTypeahead",
+        "displayNameAr": "useTypeahead"
+      }
+    ],
+    "order": 0
+  },
+  {
+    "section": "Canary components",
+    "category": "Charts",
+    "categoryAr": "المخططات",
+    "canary": true,
+    "package": "@solo/charts",
+    "items": [
+      {
+        "type": "family",
+        "page": "Charts",
+        "displayName": "Charts",
+        "displayNameAr": "المخططات"
+      }
+    ],
+    "utilities": [],
+    "order": 1
+  }
+]

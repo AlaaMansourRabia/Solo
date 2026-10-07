@@ -1,0 +1,21 @@
+/* Mount-only entry keyframes for useEntryAnimation.ts. */
+
+@keyframes solo-entry-slide-down {
+  from { opacity: 0; transform: translateY(calc(-1 * var(--spacing-2))); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes solo-entry-slide-up {
+  from { opacity: 0; transform: translateY(var(--spacing-2)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes solo-entry-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes solo-entry-scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

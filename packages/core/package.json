@@ -1,0 +1,55 @@
+{
+  "name": "@solo/core",
+  "version": "0.1.0",
+  "description": "Solo components styled with Tailwind CSS v4. Accessible, themeable React components.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./components.css": "./src/components.css",
+    "./tokens.css": "./src/theme/tokens.css",
+    "./reset.css": "./src/reset.css",
+    "./tailwind-theme.css": "./src/tailwind-theme.css",
+    "./theme/syntax": "./src/theme/syntax/index.ts",
+    "./theme/*": "./src/theme/*.ts",
+    "./utils/*": "./src/utils/*.ts",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./i18n": "./src/i18n/index.ts",
+    "./BaseProps": "./src/BaseProps.ts",
+    "./naming": "./src/naming.ts",
+    "./Calendar/utils": "./src/Calendar/utils.ts",
+    "./Markdown/utils": "./src/Markdown/utils.ts",
+    "./Markdown/remark": "./src/Markdown/remark.ts",
+    "./PowerSearch/utils": "./src/PowerSearch/utils.ts",
+    "./Resizable/utils": "./src/Resizable/utils.ts",
+    "./Selector/utils": "./src/Selector/utils.ts",
+    "./Table/utils": "./src/Table/utils.ts",
+    "./Typeahead/utils": "./src/Typeahead/utils.ts",
+    "./locales/*": "./src/i18n/generated-locales/*",
+    "./fonts/*": "./src/fonts/*",
+    "./*": "./src/*/index.ts"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/solo.css --minify",
+    "build": "pnpm build:css",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
+    "@heroicons/react": "^2.2.0",
+    "@solo/docs-types": "workspace:*"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "intl-messageformat": "^11.2.9",
+    "tailwind-merge": "^3.3.0"
+  }
+}

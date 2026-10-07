@@ -1,0 +1,36 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'page',
+  name: 'Filterable Table',
+  displayName: 'Filterable Table',
+  description:
+    'Flat row collection built around progressive filtering: a token bar that escalates into full query syntax, saved views that persist a filter set, column and grouping options, and a resizable detail pane.',
+  displayNameAr: 'جدول قابل للتصفية',
+  descriptionAr:
+    'مجموعة صفوف مسطّحة مبنية حول التصفية التدريجية: شريط رموز يتصاعد إلى صياغة استعلام كاملة، وطرق عرض محفوظة تحتفظ بمجموعة مرشّحات، وخيارات للأعمدة والتجميع، ولوحة تفاصيل قابلة لتغيير الحجم.',
+  keywords: [
+    'table',
+    'list',
+    'rows',
+    'records',
+    'grid',
+    'search',
+    'filtered dataset',
+    'searchable list',
+    'filters',
+    'faceted search',
+    'advanced search',
+    'results list',
+    'explorer',
+    'bulk actions',
+    'badges',
+    'detail drawer',
+    'csv export',
+  ],
+  isReady: true,
+  category: 'Table - Filtering',
+  order: 7,
+  filter: 'Table',
+  previewAspectRatio: 16 / 10,
+  slug: 'table-filter',
+};

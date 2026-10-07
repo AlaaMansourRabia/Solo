@@ -1,0 +1,5 @@
+/* Dash motion — see `dashMotion` in Spinner.tsx. 3.141592653589793 = PI. */
+@keyframes solo-spinner-dash-motion {
+  0% { stroke-dashoffset: 0px; }
+  100% { stroke-dashoffset: calc(var(--_spinner-ring-diameter) * -3.141592653589793); }
+}

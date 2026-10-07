@@ -1,0 +1,30 @@
+{
+  "name": "@solo/examples",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Example blocks for the Solo docs. Each src/<Component>/<Block>.tsx renders standalone; <Block>.doc.mjs describes it.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./styles.css": "./src/styles.css",
+    "./*": "./src/*.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@solo/charts": "workspace:*",
+    "@solo/core": "workspace:*",
+    "lucide-react": "1.23.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@solo/docs-types": "workspace:*",
+    "@solo/theme-neutral": "workspace:*"
+  }
+}

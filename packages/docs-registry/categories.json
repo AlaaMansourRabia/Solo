@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Action",
+    "nameAr": "الإجراءات"
+  },
+  {
+    "name": "Chat",
+    "nameAr": "المحادثة"
+  },
+  {
+    "name": "Container",
+    "nameAr": "الحاويات"
+  },
+  {
+    "name": "Content",
+    "nameAr": "المحتوى"
+  },
+  {
+    "name": "Data Visualization",
+    "nameAr": "عرض البيانات"
+  },
+  {
+    "name": "Feedback & Status",
+    "nameAr": "الملاحظات والحالة"
+  },
+  {
+    "name": "Form Controls",
+    "nameAr": "عناصر النماذج"
+  },
+  {
+    "name": "Layout",
+    "nameAr": "التخطيط"
+  },
+  {
+    "name": "Navigation",
+    "nameAr": "التنقّل"
+  },
+  {
+    "name": "Overlay",
+    "nameAr": "الطبقات المتراكبة"
+  },
+  {
+    "name": "Table & List",
+    "nameAr": "الجداول والقوائم"
+  },
+  {
+    "name": "Utility",
+    "nameAr": "الأدوات المساعدة"
+  }
+]

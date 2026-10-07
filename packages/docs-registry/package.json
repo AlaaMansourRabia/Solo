@@ -1,0 +1,12 @@
+{
+  "name": "@solo/docs-registry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Docs page grouping (families.json) and sidebar order (sidebar.json).",
+  "license": "MIT",
+  "exports": {
+    "./families.json": "./families.json",
+    "./sidebar.json": "./sidebar.json",
+    "./categories.json": "./categories.json"
+  }
+}

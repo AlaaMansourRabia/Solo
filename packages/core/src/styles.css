@@ -1,0 +1,40 @@
+/**
+ * @solo/core stylesheet — everything the components need, in one import:
+ *
+ *   @import "@solo/core/styles.css";
+ *
+ * Layer order:
+ *   reset → (tailwind theme/base) → solo-base → solo-theme → components → utilities
+ *
+ * Component utilities compile into `solo-base`, so `<Theme>` overrides
+ * (injected into `solo-theme`) and an app's own Tailwind utilities both win
+ * over component defaults by layer.
+ */
+
+@layer reset, theme, base, solo-base, solo-theme, components, utilities;
+
+@import "./reset.css";
+@import "./theme/tokens.css";
+@import "./tailwind-preset.css";
+@import "tailwindcss/utilities.css" layer(solo-base) source(none);
+
+@source "./";
+@source not "./**/*.test.{ts,tsx}";
+@source not "./**/__tests__";
+@source not "./i18n/generated-locales";
+
+/* Component stylesheets (keyframes and the rare rule Tailwind cannot express).
+ * Managed by scripts/sync-css-imports.mjs — do not edit by hand. */
+/* @css-imports:start */
+@import "./Button/Button.css";
+@import "./Chat/Chat.css";
+@import "./CodeBlock/CodeBlock.css";
+@import "./DateInput/DateInput.css";
+@import "./Dialog/Dialog.css";
+@import "./Layer/layerAnimations.css";
+@import "./ProgressBar/ProgressBar.css";
+@import "./Skeleton/Skeleton.css";
+@import "./Spinner/Spinner.css";
+@import "./StatusDot/StatusDot.css";
+@import "./hooks/useEntryAnimation.css";
+/* @css-imports:end */

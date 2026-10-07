@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FormLayout > matches snapshot for horizontal direction 1`] = `
+<div
+  class="solo-form-layout flex-col gap-(--spacing-4) grid grid-flow-col auto-cols-[1fr]"
+  data-direction="horizontal"
+  data-testid="layout"
+>
+  <input
+    placeholder="First"
+  />
+  <input
+    placeholder="Last"
+  />
+</div>
+`;
+
+exports[`FormLayout > matches snapshot for horizontal-labels direction 1`] = `
+<div
+  class="solo-form-layout flex-col grid [grid-template-columns:auto_1fr] gap-[var(--spacing-3)_var(--spacing-4)] items-start [@media(max-width:480px)]:flex [@media(max-width:480px)]:flex-col [@media(max-width:480px)]:gap-(--spacing-4)"
+  data-direction="horizontal-labels"
+  data-testid="layout"
+>
+  <label>
+    Name
+  </label>
+  <input
+    placeholder="Name"
+  />
+</div>
+`;
+
+exports[`FormLayout > matches snapshot for vertical direction 1`] = `
+<div
+  class="solo-form-layout flex flex-col gap-(--spacing-4)"
+  data-direction="vertical"
+  data-testid="layout"
+>
+  <input
+    placeholder="Name"
+  />
+  <input
+    placeholder="Email"
+  />
+</div>
+`;

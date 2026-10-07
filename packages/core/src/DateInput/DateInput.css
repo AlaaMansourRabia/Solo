@@ -1,0 +1,32 @@
+/*
+ * Wheel row falloff (Wheel.tsx). Rows tip away from the centre of the wheel:
+ * 0% is a row entering at the bottom of the scrollport, 50% centred, 100%
+ * leaving at the top — a `view()` timeline over the `cover` range.
+ */
+@keyframes solo-date-input-wheel-falloff {
+  0% {
+    opacity: 0.3;
+    transform: rotateX(52deg) scale(0.86);
+  }
+  50% {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: rotateX(-52deg) scale(0.86);
+  }
+}
+
+/* Motion-free equivalent: the depth cue survives as opacity alone. */
+@keyframes solo-date-input-wheel-fade {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

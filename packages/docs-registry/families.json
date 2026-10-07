@@ -1,0 +1,525 @@
+[
+  {
+    "page": "Charts",
+    "displayName": "Charts",
+    "displayNameAr": "المخططات",
+    "group": "Charts",
+    "package": "@solo/charts",
+    "description": "Chart lays out one or more mark definitions against shared responsive x and y scales. Use it for data visualizations that combine Solo chart marks, axes, grids, legends, tooltips, and custom interaction layers.",
+    "descriptionAr": "يرتّب Chart تعريف علامة واحدًا أو أكثر وفق مقاييس x وy مشتركة ومتجاوبة. استخدمه لعروض البيانات التي تجمع علامات مخططات Solo والمحاور والشبكات ووسائل الإيضاح والتلميحات وطبقات التفاعل المخصّصة.",
+    "members": [
+      "Chart",
+      "ChartAxis",
+      "ChartGrid",
+      "ChartLegend",
+      "ChartSwatch",
+      "ChartTooltip"
+    ]
+  },
+  {
+    "page": "AppShell",
+    "displayName": "App Shell",
+    "displayNameAr": "هيكل التطبيق",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "AppShell is the page shell for an application. It provides slots for top navigation, side navigation, banners, and main content. Use it as the root wrapper for every page. It handles responsive mobile navigation and skip-to-content automatically. Configure side nav collapse on SideNav with its collapsible prop.",
+    "descriptionAr": "AppShell هو هيكل الصفحة للتطبيق. يوفّر مواضع للتنقّل العلوي والتنقّل الجانبي واللافتات والمحتوى الرئيسي. استخدمه غلافًا جذريًّا لكل صفحة. يتولّى تلقائيًّا التنقّل المتجاوب على الأجهزة المحمولة والانتقال المباشر إلى المحتوى. اضبط طيّ التنقّل الجانبي على SideNav عبر الخاصية collapsible.",
+    "members": [
+      "AppShell",
+      "useAppShellMobile"
+    ]
+  },
+  {
+    "page": "Avatar",
+    "displayName": "Avatar",
+    "displayNameAr": "صورة رمزية",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Displays a user avatar with image, initials fallback, and optional status indicator.",
+    "descriptionAr": "يعرض صورة رمزية للمستخدم مع صورة، وأحرف أولى بديلة، ومؤشر حالة اختياري.",
+    "members": [
+      "Avatar",
+      "AvatarGroup",
+      "AvatarGroupOverflow",
+      "AvatarStatusDot"
+    ]
+  },
+  {
+    "page": "BottomSheet",
+    "displayName": "Bottom Sheet",
+    "displayNameAr": "لوحة سفلية",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "A mobile touch surface for filters, actions, forms, and detail views that should rise from the bottom of the viewport; use BottomSheetSwitcher for multi-step flows.",
+    "descriptionAr": "واجهة لمس للأجهزة المحمولة للمرشّحات والإجراءات والنماذج وطرق عرض التفاصيل التي ينبغي أن ترتفع من أسفل منفذ العرض؛ استخدم BottomSheetSwitcher للتدفقات متعددة الخطوات.",
+    "members": [
+      "BottomSheet",
+      "BottomSheetSwitcher"
+    ]
+  },
+  {
+    "page": "Breadcrumbs",
+    "displayName": "Breadcrumbs",
+    "displayNameAr": "مسار التنقّل",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Navigation container that renders a <nav> with an ordered list of breadcrumb items.",
+    "descriptionAr": "حاوية تنقّل تعرض عنصر <nav> يحتوي قائمة مرتّبة من عناصر مسار التنقّل.",
+    "members": [
+      "BreadcrumbItem",
+      "Breadcrumbs"
+    ]
+  },
+  {
+    "page": "Button",
+    "displayName": "Button",
+    "displayNameAr": "زر",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Button triggers an action when clicked. Use it for form submissions, confirmations, navigation, or any interaction that needs a clear call to action.",
+    "descriptionAr": "يُطلق Button إجراءً عند النقر عليه. استخدمه لإرسال النماذج، والتأكيدات، والتنقّل، أو أي تفاعل يحتاج إلى دعوة واضحة إلى الإجراء.",
+    "members": [
+      "Button",
+      "ButtonGroup",
+      "IconButton",
+      "ToggleButton",
+      "ToggleButtonGroup"
+    ]
+  },
+  {
+    "page": "Card",
+    "displayName": "Card",
+    "displayNameAr": "بطاقة",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Card is a bordered, elevated container for discrete, self-contained items: things you could reorder, remove, or interact with independently. Cards are NOT the default layout tool. Most content groups don't need a container at all; spacing and alignment create visual grouping naturally. Only reach for a Card when items need clear interaction boundaries or visual comparison in a grid.",
+    "descriptionAr": "Card حاوية ذات حدود ومرتفعة للعناصر المنفصلة القائمة بذاتها: عناصر يمكنك إعادة ترتيبها أو إزالتها أو التفاعل معها باستقلالية. البطاقات ليست أداة التخطيط الافتراضية. فمعظم مجموعات المحتوى لا تحتاج إلى حاوية أصلًا؛ إذ تُنشئ المسافات والمحاذاة التجميع البصري بشكل طبيعي. لا تلجأ إلى Card إلا حين تحتاج العناصر إلى حدود تفاعل واضحة أو مقارنة بصرية ضمن شبكة.",
+    "members": [
+      "Card",
+      "ClickableCard",
+      "SelectableCard"
+    ]
+  },
+  {
+    "page": "Chat",
+    "displayName": "Chat",
+    "displayNameAr": "المحادثة",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Layout shell for a chat composer. Arranges named slots (drawer, header, input, footer, send) with page-radius container, elevation, a keyboard-only editor focus ring, and concentric inner radius for child elements.",
+    "descriptionAr": "هيكل تخطيط لمحرّر رسائل المحادثة. يرتّب مواضع مسمّاة (الدرج، والترويسة، وحقل الإدخال، والتذييل، والإرسال) مع حاوية بنصف قطر الصفحة، وارتفاع بصري، وحلقة تركيز للمحرّر تظهر مع لوحة المفاتيح فقط، ونصف قطر داخلي متّحد المركز للعناصر الفرعية.",
+    "members": [
+      "ChatComposer",
+      "ChatComposerDrawer",
+      "ChatComposerInput",
+      "ChatComposerTokenElement",
+      "ChatDictationButton",
+      "ChatLayout",
+      "ChatLayoutScrollButton",
+      "ChatMessage",
+      "ChatMessageBubble",
+      "ChatMessageList",
+      "ChatMessageMetadata",
+      "ChatSendButton",
+      "ChatSystemMessage",
+      "ChatTokenizedText",
+      "ChatToolCalls"
+    ]
+  },
+  {
+    "page": "Checkbox",
+    "displayName": "Checkbox",
+    "displayNameAr": "مربع اختيار",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "CheckboxInput toggles a single on/off value. Use it for settings like \"Enable notifications\", terms acceptance, or opt-in choices. For multiple checkboxes in a group, use CheckboxList instead.",
+    "descriptionAr": "يبدّل CheckboxInput قيمة واحدة بين التشغيل والإيقاف. استخدمه لإعدادات مثل \"تفعيل الإشعارات\"، أو قبول الشروط، أو خيارات الاشتراك. لمجموعة من مربعات الاختيار، استخدم CheckboxList بدلًا منه.",
+    "members": [
+      "CheckboxInput",
+      "CheckboxList",
+      "CheckboxListItem"
+    ]
+  },
+  {
+    "page": "Collapsible",
+    "displayName": "Collapsible",
+    "displayNameAr": "عنصر قابل للطيّ",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "A primitive that makes any content collapsible: a trigger button toggles visibility of the content area, managing its own state or deferring to a parent CollapsibleGroup.",
+    "descriptionAr": "عنصر أساسي يجعل أي محتوى قابلًا للطيّ: يبدّل زر مُشغِّل ظهور منطقة المحتوى، ويدير حالته بنفسه أو يُحيلها إلى CollapsibleGroup أب.",
+    "members": [
+      "Collapsible",
+      "CollapsibleGroup",
+      "useCollapsible"
+    ]
+  },
+  {
+    "page": "CommandPalette",
+    "displayName": "Command Palette",
+    "displayNameAr": "لوحة الأوامر",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Root component. Manages open state, search, keyboard navigation, and composition slots.",
+    "descriptionAr": "المكوّن الجذري. يدير حالة الفتح والبحث والتنقّل عبر لوحة المفاتيح ومواضع التركيب.",
+    "members": [
+      "CommandPalette",
+      "CommandPaletteEmpty",
+      "CommandPaletteFooter",
+      "CommandPaletteGroup",
+      "CommandPaletteInput",
+      "CommandPaletteItem",
+      "CommandPaletteList"
+    ]
+  },
+  {
+    "page": "ContextMenu",
+    "displayName": "Context Menu",
+    "displayNameAr": "قائمة السياق",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "A context menu that appears on right-click at the cursor position. Wraps trigger content as children.",
+    "descriptionAr": "قائمة سياق تظهر عند النقر بزر الماوس الأيمن في موضع المؤشر. تغلّف محتوى المُشغِّل بوصفه عناصر فرعية.",
+    "members": [
+      "ContextMenu",
+      "ContextMenuItem"
+    ]
+  },
+  {
+    "page": "DateInput",
+    "displayName": "Date Input",
+    "displayNameAr": "حقل إدخال التاريخ",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "DateInput lets the user type or pick a date from a calendar popover. Use it for scheduling, deadlines, booking dates, or any form field that needs a specific calendar date.",
+    "descriptionAr": "يتيح DateInput للمستخدم كتابة تاريخ أو اختياره من نافذة منبثقة للتقويم. استخدمه للجدولة، والمواعيد النهائية، وتواريخ الحجز، أو أي حقل نموذج يحتاج إلى تاريخ تقويمي محدّد.",
+    "members": [
+      "DateInput",
+      "DateRangeInput",
+      "DateTimeInput"
+    ]
+  },
+  {
+    "page": "Dialog",
+    "displayName": "Dialog",
+    "displayNameAr": "مربع حوار",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Modal dialog using the native <dialog> element. Modal and inline content starts with theme body text defaults. Ancestor surface/group membership ends as a whole, including group-owned state. Explicit props and unrelated contexts remain unchanged. Place intentional groups and complete required providers inside the dialog.",
+    "descriptionAr": "مربع حوار مشروط يستخدم العنصر الأصلي <dialog>. يبدأ المحتوى المشروط والضمني بالقيم الافتراضية لنص المتن في السمة. تنتهي عضوية الواجهة أو المجموعة الموروثة من العناصر الأسلاف بالكامل، بما في ذلك الحالة التي تملكها المجموعة. تبقى الخصائص الصريحة والسياقات غير ذات الصلة دون تغيير. ضع المجموعات المقصودة والمزوّدات المطلوبة كاملة داخل مربع الحوار.",
+    "members": [
+      "AlertDialog",
+      "Dialog",
+      "DialogHeader",
+      "useImperativeAlertDialog",
+      "useImperativeDialog"
+    ]
+  },
+  {
+    "page": "DropdownMenu",
+    "displayName": "Dropdown Menu",
+    "displayNameAr": "قائمة منسدلة",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Action menu with a trigger button and anchored, bottom-sheet, or adaptive presentation.",
+    "descriptionAr": "قائمة إجراءات مع زر مُشغِّل وعرض مرتبط بالمُشغِّل، أو على هيئة لوحة سفلية، أو متكيّف.",
+    "members": [
+      "DropdownMenu",
+      "DropdownMenuCheckboxItem",
+      "DropdownMenuDivider",
+      "DropdownMenuItem",
+      "DropdownMenuRadioGroup",
+      "DropdownMenuRadioItem",
+      "DropdownMenuSubMenu"
+    ]
+  },
+  {
+    "page": "Field",
+    "displayName": "Field",
+    "displayNameAr": "حقل",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Low-level form field wrapper for custom controls that need a label, description, and optional/required indicators.",
+    "descriptionAr": "غلاف منخفض المستوى لحقول النماذج مخصّص لعناصر التحكم المخصّصة التي تحتاج إلى تسمية ووصف ومؤشرات للحقول الاختيارية أو المطلوبة.",
+    "members": [
+      "Field",
+      "FieldLabel",
+      "FieldStatus",
+      "InputGroup",
+      "InputGroupText"
+    ]
+  },
+  {
+    "page": "HoverCard",
+    "displayName": "Hover Card",
+    "displayNameAr": "بطاقة التمرير",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Component wrapper for hover card display: a richer, larger overlay triggered on hover or focus.",
+    "descriptionAr": "غلاف مكوّن لعرض بطاقة التمرير: طبقة متراكبة أغنى وأكبر تظهر عند التمرير فوق العنصر أو التركيز عليه.",
+    "members": [
+      "HoverCard",
+      "useHoverCard"
+    ]
+  },
+  {
+    "page": "Indicator",
+    "displayName": "Indicator",
+    "displayNameAr": "مؤشر",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "The checkbox visual: a square box with a checkmark or an indeterminate bar. Decorative (aria-hidden); the owning control keeps the input, role, accessible name, focus, and keyboard behavior.",
+    "descriptionAr": "الشكل المرئي لمربع الاختيار: مربع يحمل علامة اختيار أو شريطًا للحالة غير المحدّدة. زخرفي (aria-hidden)؛ ويحتفظ عنصر التحكم المالك بحقل الإدخال والدور والاسم القابل للوصول والتركيز وسلوك لوحة المفاتيح.",
+    "members": [
+      "CheckboxIndicator",
+      "CheckIndicator",
+      "RadioIndicator"
+    ]
+  },
+  {
+    "page": "Layout",
+    "displayName": "Layout",
+    "displayNameAr": "التخطيط",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "General five-slot layout primitive for arranging header, start, content, end, and footer regions.",
+    "descriptionAr": "عنصر تخطيط أساسي عام بخمسة مواضع لترتيب مناطق الترويسة والبداية والمحتوى والنهاية والتذييل.",
+    "members": [
+      "Center",
+      "FormLayout",
+      "Grid",
+      "GridSpan",
+      "HStack",
+      "Layout",
+      "LayoutContent",
+      "LayoutFooter",
+      "LayoutHeader",
+      "LayoutPanel",
+      "Section",
+      "Stack",
+      "StackItem",
+      "VStack"
+    ]
+  },
+  {
+    "page": "List",
+    "displayName": "List",
+    "displayNameAr": "قائمة",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "List container with density, dividers, and header support.",
+    "descriptionAr": "حاوية قائمة تدعم الكثافة والفواصل والترويسة.",
+    "members": [
+      "List",
+      "ListItem"
+    ]
+  },
+  {
+    "page": "MetadataList",
+    "displayName": "Metadata List",
+    "displayNameAr": "قائمة البيانات الوصفية",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Container for metadata items with column layout, orientation, and collapse support.",
+    "descriptionAr": "حاوية لعناصر البيانات الوصفية تدعم تخطيط الأعمدة والاتجاه والطيّ.",
+    "members": [
+      "MetadataList",
+      "MetadataListItem"
+    ]
+  },
+  {
+    "page": "Navigation",
+    "displayName": "Navigation",
+    "displayNameAr": "التنقّل",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "A slide-out drawer for mobile navigation. Accepts SideNav children.",
+    "descriptionAr": "درج منزلق للتنقّل على الأجهزة المحمولة. يقبل عناصر SideNav فرعية.",
+    "members": [
+      "MobileNav",
+      "MobileNavToggle",
+      "NavHeadingMenu",
+      "NavIcon",
+      "SideNav",
+      "SideNavCollapseButton",
+      "SideNavHeading",
+      "SideNavItem",
+      "SideNavSection",
+      "TopNav",
+      "TopNavHeading",
+      "TopNavItem",
+      "TopNavMegaMenu",
+      "TopNavMegaMenuFeaturedCard",
+      "TopNavMegaMenuItem",
+      "TopNavMenu"
+    ]
+  },
+  {
+    "page": "Popover",
+    "displayName": "Popover",
+    "displayNameAr": "نافذة منبثقة",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "A click-triggered popover for displaying interactive content anchored to a trigger element.",
+    "descriptionAr": "نافذة منبثقة تُفتح بالنقر لعرض محتوى تفاعلي مرتبط بعنصر مُشغِّل.",
+    "members": [
+      "Popover",
+      "usePopover"
+    ]
+  },
+  {
+    "page": "Radio",
+    "displayName": "Radio",
+    "displayNameAr": "زر اختيار",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Radio group container with field integration for label, description, and status.",
+    "descriptionAr": "حاوية مجموعة أزرار اختيار مدمجة مع الحقل للتسمية والوصف والحالة.",
+    "members": [
+      "RadioList",
+      "RadioListItem"
+    ]
+  },
+  {
+    "page": "Resizable",
+    "displayName": "Resizable",
+    "displayNameAr": "عنصر قابل لتغيير الحجم",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Draggable separator between panels. Pill-grip design: invisible at rest, visible on hover (0.6 opacity), fully opaque during drag (1.0). Keyboard-accessible.",
+    "descriptionAr": "فاصل قابل للسحب بين اللوحات. تصميم بمقبض على شكل قرص: غير مرئي في وضع السكون، ومرئي عند التمرير (عتامة 0.6)، ومعتم تمامًا أثناء السحب (1.0). يمكن الوصول إليه عبر لوحة المفاتيح.",
+    "members": [
+      "ResizeHandle",
+      "useResizable"
+    ]
+  },
+  {
+    "page": "SegmentedControl",
+    "displayName": "Segmented Control",
+    "displayNameAr": "عنصر تحكم مجزّأ",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Container wrapper providing context (value, onChange, size, isDisabled) to SegmentedControlItem children.",
+    "descriptionAr": "غلاف حاوية يوفّر السياق (value وonChange وsize وisDisabled) لعناصر SegmentedControlItem الفرعية.",
+    "members": [
+      "SegmentedControl",
+      "SegmentedControlItem"
+    ]
+  },
+  {
+    "page": "Selector",
+    "displayName": "Selector",
+    "displayNameAr": "محدِّد",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Dropdown selector for choosing from a list of options.",
+    "descriptionAr": "محدِّد منسدل للاختيار من قائمة خيارات.",
+    "members": [
+      "ComplexSelector",
+      "MultiSelector",
+      "Selector",
+      "SelectorOption"
+    ]
+  },
+  {
+    "page": "Stepper",
+    "displayName": "Stepper",
+    "displayNameAr": "مؤشر الخطوات",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Container component that manages step state and renders steps in horizontal or vertical orientation as an ordered list.",
+    "descriptionAr": "مكوّن حاوية يدير حالة الخطوات ويعرضها في اتجاه أفقي أو عمودي على هيئة قائمة مرتّبة.",
+    "members": [
+      "Step",
+      "Stepper"
+    ]
+  },
+  {
+    "page": "Table",
+    "displayName": "Table",
+    "displayNameAr": "جدول",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Styled, data-driven table with density, dividers, hover highlight, striped rows, and named plugin support. T must extend Record<string, unknown>.",
+    "descriptionAr": "جدول منسّق قائم على البيانات يدعم الكثافة والفواصل وإبراز الصف عند التمرير والصفوف المخطّطة ودعم الإضافات المسمّاة. يجب أن يمتد T من Record<string, unknown>.",
+    "members": [
+      "Table",
+      "TableBody",
+      "TableCell",
+      "TableFooter",
+      "TableHeader",
+      "TableHeaderCell",
+      "TableRow",
+      "TableSelectionToolbar",
+      "useTableColumnResize",
+      "useTableColumnSettings",
+      "useTableFiltering",
+      "useTableFilterState",
+      "useTableGroupedRows",
+      "useTablePagination",
+      "useTableRowExpansion",
+      "useTableRowIndex",
+      "useTableRowStatus",
+      "useTableSelection",
+      "useTableSelectionState",
+      "useTableSortable",
+      "useTableStickyColumns",
+      "useTableTreeData",
+      "useTableTreeState"
+    ]
+  },
+  {
+    "page": "Tabs",
+    "displayName": "Tabs",
+    "displayNameAr": "علامات تبويب",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Individual tab item that renders as a button or an anchor link, with selected-state styling and optional icons.",
+    "descriptionAr": "عنصر علامة تبويب منفرد يُعرض كزر أو كرابط ارتساء، مع تنسيق لحالة التحديد وأيقونات اختيارية.",
+    "members": [
+      "Tab",
+      "TabList",
+      "TabMenu"
+    ]
+  },
+  {
+    "page": "Toast",
+    "displayName": "Toast",
+    "displayNameAr": "إشعار منبثق",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Toast shows a brief, non-blocking notification to confirm an action or present temporary information. Use it for scenarios where the user needs feedback but not a decision, such as saving, deleting, or changing a status.\n\nFor production use, prefer the `useToast()` hook; it handles positioning, stacking, auto-dismiss, and deduplication via `ToastViewport`. Toasts stay within viewport and safe-area gutters, wrap long message content, and enter, exit, or swipe-dismiss toward their configured top or bottom edge. The vertical swipe uses the same spatial model as placement motion: top Toasts leave upward and bottom Toasts leave downward. Swipe waits for dominant edge-directed intent before cancelling native touch movement and reports the existing manual dismissal reason. Pen is supported as direct-contact input; mouse drag is excluded to avoid conflicting with desktop text selection, where the visible close control remains available. Set `isAutoHide: false` explicitly when an action or message must remain available. The `Toast` component renders the visual toast element inline and is useful for previews, documentation, and static showcases where the viewport lifecycle is not needed.",
+    "descriptionAr": "يعرض Toast إشعارًا موجزًا غير معطِّل لتأكيد إجراء أو تقديم معلومات مؤقتة. استخدمه في الحالات التي يحتاج فيها المستخدم إلى ملاحظة لا إلى قرار، مثل الحفظ أو الحذف أو تغيير الحالة.\n\nللاستخدام في بيئة الإنتاج، فضّل الخطّاف (hook) `useToast()`؛ فهو يتولّى تحديد الموضع والتكديس والإخفاء التلقائي وإزالة التكرار عبر `ToastViewport`. تبقى الإشعارات المنبثقة ضمن هوامش منفذ العرض والمنطقة الآمنة، وتلتفّ محتويات الرسائل الطويلة، وتدخل وتخرج أو تُغلق بالسحب نحو الحافة العلوية أو السفلية المضبوطة لها. يستخدم السحب العمودي النموذج المكاني نفسه لحركة التموضع: تغادر الإشعارات العلوية إلى الأعلى والسفلية إلى الأسفل. ينتظر السحب نية واضحة سائدة باتجاه الحافة قبل إلغاء حركة اللمس الأصلية، ويُبلغ عن سبب الإغلاق اليدوي الموجود. القلم مدعوم بوصفه إدخالًا بالتلامس المباشر؛ أما سحب الماوس فمستبعد لتجنّب التعارض مع تحديد النص على سطح المكتب، حيث يبقى زر الإغلاق المرئي متاحًا. اضبط `isAutoHide: false` صراحةً عندما يجب أن يبقى إجراء أو رسالة متاحًا. يعرض المكوّن `Toast` عنصر الإشعار المرئي ضمنيًّا، وهو مفيد للمعاينات والتوثيق وعروض العرض الثابتة التي لا تحتاج إلى دورة حياة منفذ العرض.",
+    "members": [
+      "Toast",
+      "useToast"
+    ]
+  },
+  {
+    "page": "Tooltip",
+    "displayName": "Tooltip",
+    "displayNameAr": "تلميح",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Component wrapper for tooltip display triggered on hover or focus.",
+    "descriptionAr": "غلاف مكوّن لعرض التلميح عند التمرير فوق العنصر أو التركيز عليه.",
+    "members": [
+      "Tooltip",
+      "useTooltip"
+    ]
+  },
+  {
+    "page": "Typeahead",
+    "displayName": "Typeahead",
+    "displayNameAr": "إكمال تلقائي",
+    "group": "Components",
+    "package": "@solo/core",
+    "description": "Styled typeahead with label, description, validation, and all field features. Wraps BaseTypeahead with Field for the primary use case.",
+    "descriptionAr": "إكمال تلقائي منسّق مع التسمية والوصف والتحقق من الصحة وجميع ميزات الحقل. يغلّف BaseTypeahead بالمكوّن Field لحالة الاستخدام الأساسية.",
+    "members": [
+      "BaseTypeahead",
+      "Typeahead",
+      "TypeaheadItem"
+    ]
+  }
+]

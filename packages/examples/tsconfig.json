@@ -1,0 +1,34 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@solo/core": [
+        "../core/src/index.ts"
+      ],
+      "@solo/core/locales/*": [
+        "../core/src/i18n/generated-locales/*"
+      ],
+      "@solo/core/*": [
+        "../core/src/*"
+      ],
+      "@solo/charts": [
+        "../charts/src/index.ts"
+      ],
+      "@solo/charts/*": [
+        "../charts/src/*"
+      ],
+      "@solo/theme-neutral": [
+        "../theme-neutral/src/source.ts"
+      ]
+    },
+    "types": [
+      "node",
+      "@testing-library/jest-dom",
+      "vitest/globals",
+      "vite/client"
+    ]
+  },
+  "include": [
+    "src"
+  ]
+}

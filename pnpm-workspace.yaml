@@ -1,0 +1,10 @@
+packages:
+  - 'packages/*'
+  - 'apps/*'
+
+linkWorkspacePackages: true
+
+allowBuilds:
+  esbuild: true
+  '@tailwindcss/oxide': true
+  '@parcel/watcher': true

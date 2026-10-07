@@ -1,0 +1,703 @@
+/** @type {import('@solo/docs-types').ComponentDoc} */
+
+export const docs = {
+  name: 'DateInput',
+  displayName: 'Date Input',
+  group: 'DateInput',
+  category: 'Form Controls',
+  keywords: [
+    'dateinput',
+    'datepicker',
+    'datefield',
+    'calendar',
+    'dateselect',
+    'dateentry',
+    'datechooser',
+  ],
+  props: [
+    {
+      name: 'label',
+      type: 'string',
+      description: 'Label text.',
+      required: true,
+    },
+    {
+      name: 'isLabelHidden',
+      type: 'boolean',
+      description: 'Visually hide the label.',
+      default: 'false',
+    },
+    {
+      name: 'description',
+      type: 'string',
+      description: 'Helper text displayed below the label.',
+    },
+    {
+      name: 'isOptional',
+      type: 'boolean',
+      description: 'Show an "(optional)" indicator next to the label.',
+      default: 'false',
+    },
+    {
+      name: 'isRequired',
+      type: 'boolean',
+      description: 'Mark the field as required.',
+      default: 'false',
+    },
+    {
+      name: 'isDisabled',
+      type: 'boolean',
+      description: 'Disable the input and calendar.',
+      default: 'false',
+    },
+    {
+      name: 'disabledMessage',
+      type: 'string',
+      description:
+        'Explains why the input is disabled. With isDisabled, shows a tooltip on hover/keyboard focus and keeps the field focusable via aria-disabled (activation stays blocked). Use this instead of wrapping a disabled DateInput in Tooltip. Disabled controls swallow the hover events an external Tooltip needs.',
+    },
+    {
+      name: 'value',
+      type: 'ISODateString',
+      description: 'Selected date in YYYY-MM-DD format.',
+    },
+    {
+      name: 'onChange',
+      type: '(value: ISODateString | undefined) => void',
+      description: 'Callback invoked when the selected date changes.',
+    },
+    {
+      name: 'changeAction',
+      type: '(value: ISODateString | undefined) => void | Promise<void>',
+      description:
+        'Async action fired after onChange. Drives optimistic UI updates via useTransition.',
+    },
+    {
+      name: 'isLoading',
+      type: 'boolean',
+      description:
+        'Whether the input is in a loading state. Disables interaction and shows a spinner.',
+      default: 'false',
+    },
+    {
+      name: 'min',
+      type: 'ISODateString',
+      description: 'Minimum selectable date (YYYY-MM-DD).',
+    },
+    {
+      name: 'max',
+      type: 'ISODateString',
+      description: 'Maximum selectable date (YYYY-MM-DD).',
+    },
+    {
+      name: 'dateConstraints',
+      type: 'ReadonlyArray<(date: Date) => boolean>',
+      description:
+        'Array of custom constraint functions that disable specific dates.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      description: 'Placeholder text shown in the text input.',
+      default: "'Select a date'",
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg'",
+      description: 'Size of the input control.',
+      default: "'md'",
+    },
+    {
+      name: 'status',
+      type: "{type: 'warning' | 'error' | 'success', message?: string}",
+      description:
+        'Status indicator object for error, warning, or success states with a message.',
+    },
+    {
+      name: 'statusVariant',
+      type: "'attached' | 'detached' | 'tooltip'",
+      description:
+        'How the status message is placed relative to the input. attached overlaps directly below the input (bordered treatment); detached floats below as a separate element with spacing; tooltip hides the message box and surfaces it in a tooltip on the status icon.',
+      default: "'attached'",
+    },
+    {
+      name: 'labelTooltip',
+      type: 'string',
+      description:
+        'Tooltip text displayed via an info icon at the end of the label.',
+    },
+    {
+      name: 'hasClear',
+      type: 'boolean',
+      description:
+        'Shows a clear (\u00d7) button when a date value is set. Clicking it clears the value and returns focus to the input.',
+      default: 'false',
+    },
+    {
+      name: 'numberOfMonths',
+      type: '1 | 2',
+      description:
+        'Number of months displayed simultaneously in the calendar popover.',
+      default: '1',
+    },
+    {
+      name: 'weekStartsOn',
+      type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'",
+      description:
+        'First day of week in the calendar popover. A number (0 = Sunday to 6 = Saturday) or a three-letter day name.',
+      default: '0',
+    },
+    {
+      name: 'format',
+      type: "'date' | 'date_long' | 'date_weekday' | 'system_date' | ((value: ISODateString) => string)",
+      description:
+        "How the committed date value is displayed. Named values are reused from Timestamp's format vocabulary: 'date' shows 'Mar 21, 2026', 'date_long' shows 'March 21, 2026', 'date_weekday' shows 'Wed, Mar 21, 2026', 'system_date' shows '2026-03-21'. A function receives the ISO value and returns a custom string. Applies only to the committed value, never to text being typed.",
+      default: "'date_long'",
+    },
+    {
+      name: 'presentation',
+      type: "'popover' | 'bottom-sheet' | 'native' | 'adaptive-bottom-sheet' | 'adaptive-native'",
+      description:
+        "Which surface draws the date picker. 'adaptive-native' (the default) uses Solo's calendar popover on a fine pointer and the browser/OS picker (input type=date) on a coarse pointer, keeping Solo fallbacks where a native control cannot express the value; 'native' always uses the browser/OS picker with no fallback; 'adaptive-bottom-sheet' uses the popover on a fine pointer and Solo's bottom-sheet picker on a coarse pointer; 'popover' and 'bottom-sheet' force that Solo surface on every pointer. Every value opens a picker; a typed-only field is TimeInput's alone. Use a non-native presentation for a field that needs weekStartsOn, numberOfMonths or dateConstraints, none of which a native picker can express.",
+      default: "'adaptive-native'",
+    },
+    {
+      name: 'nativePicker',
+      type: "'touch' | 'always' | 'never'",
+      description:
+        "Deprecated: use presentation ('touch' = 'adaptive-native', 'always' = 'native', 'never' = 'adaptive-bottom-sheet'). Still works exactly as released; presentation wins when both are set.",
+      default: "'touch'",
+    },
+    {
+      name: 'width',
+      type: 'SizeValue',
+      description:
+        'Width of the field (number = pixels, string used as-is, e.g. "100%"). Sizes the whole field (label, control, and status) so they stay aligned.',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      description:
+        'Tailwind classes for layout customization (margins, positioning, sizing), merged with the component classes through cn() (tailwind-merge), so a conflicting utility overrides the default.',
+    },
+  ],
+  theming: {
+    targets: [
+      {
+        className: 'solo-date-input',
+        visualProps: ['size', 'status'],
+        states: ['disabled'],
+      },
+      {className: 'solo-date-input-toggle-icon', states: ['state']},
+      {
+        className: 'solo-date-input-clear-icon',
+        deprecatedFor: 'input-clear-icon',
+      },
+    ],
+  },
+  usage: {
+    description:
+      'DateInput lets the user type or pick a date from a calendar popover. Use it for scheduling, deadlines, booking dates, or any form field that needs a specific calendar date.',
+    bestPractices: [
+      {
+        guidance: true,
+        description:
+          'Provide clear labels and descriptions so users understand what date is expected.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use min, max, and dateConstraints to restrict selectable dates to valid ranges.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use hasClear when the date is optional so the user can reset it.',
+      },
+      {
+        guidance: true,
+        description:
+          'Show a loading state with changeAction when the date triggers a server-side save.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use DateInput inside InputGroup when adding a short static prefix or suffix, such as a due-date hint.',
+      },
+      {
+        guidance: false,
+        description:
+          'Use a DateInput for free-form text that does not represent a calendar date.',
+      },
+      {
+        guidance: false,
+        description:
+          'Hide the label without surrounding context that makes the field purpose obvious.',
+      },
+      {
+        guidance: false,
+        description:
+          'Rely on the calendar alone; the text input lets users type dates directly, which is faster for known dates.',
+      },
+      {
+        guidance: false,
+        description:
+          'Wrap a disabled DateInput in Tooltip to explain why it is disabled; disabled triggers swallow the hover events the wrapper needs. Use the disabledMessage prop instead.',
+      },
+    ],
+    anatomy: [
+      {
+        name: 'Label',
+        required: true,
+        description: 'Text above the input describing what date is expected.',
+      },
+      {
+        name: 'Text input',
+        required: true,
+        description:
+          'A field where the user can type a date directly. Parses common formats like MM/DD/YYYY.',
+      },
+      {
+        name: 'Calendar icon',
+        required: true,
+        description:
+          'A button that opens the calendar popover for visual date picking.',
+      },
+      {
+        name: 'Calendar popover',
+        required: false,
+        description:
+          'A month grid that appears when the icon is clicked or the input is focused.',
+      },
+      {
+        name: 'Clear button',
+        required: false,
+        description:
+          'A × button that resets the date value. Shown when hasClear is true and a date is set.',
+      },
+      {
+        name: 'Status message',
+        required: false,
+        description: 'An error, warning, or success message below the input.',
+      },
+    ],
+  },
+};
+
+/** @type {import('@solo/docs-types').ComponentDoc} */
+export const docsZh = {
+  name: 'DateInput',
+  displayName: 'Date Input',
+  usage: {
+    description:
+      'DateInput lets the user type or pick a date from a calendar popover. Use it for scheduling, deadlines, booking dates, or any form field that needs a specific calendar date.',
+    bestPractices: [
+      {
+        guidance: true,
+        description:
+          'Provide clear labels and descriptions so users understand what date is expected.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use min, max, and dateConstraints to restrict selectable dates to valid ranges.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use hasClear when the date is optional so the user can reset it.',
+      },
+      {
+        guidance: true,
+        description:
+          'Show a loading state with changeAction when the date triggers a server-side save.',
+      },
+      {
+        guidance: false,
+        description:
+          'Use a DateInput for free-form text that does not represent a calendar date.',
+      },
+      {
+        guidance: false,
+        description:
+          'Hide the label without surrounding context that makes the field purpose obvious.',
+      },
+      {
+        guidance: false,
+        description:
+          'Rely on the calendar alone; the text input lets users type dates directly, which is faster for known dates.',
+      },
+      {
+        guidance: false,
+        description:
+          'Wrap a disabled DateInput in Tooltip to explain why it is disabled; disabled triggers swallow the hover events the wrapper needs. Use the disabledMessage prop instead.',
+      },
+    ],
+  },
+  props: [
+    {name: 'label', type: 'string', description: '标签文本。', required: true},
+    {
+      name: 'isLabelHidden',
+      type: 'boolean',
+      description: '视觉隐藏标签。',
+      default: 'false',
+    },
+    {
+      name: 'description',
+      type: 'string',
+      description: '显示在标签下方的辅助文本。',
+    },
+    {
+      name: 'isOptional',
+      type: 'boolean',
+      description: '在标签旁显示"(optional)"指示器。',
+      default: 'false',
+    },
+    {
+      name: 'isRequired',
+      type: 'boolean',
+      description: '将字段标记为必填。',
+      default: 'false',
+    },
+    {
+      name: 'isDisabled',
+      type: 'boolean',
+      description: '禁用输入框和日历。',
+      default: 'false',
+    },
+    {
+      name: 'disabledMessage',
+      type: 'string',
+      description:
+        '说明输入框为何被禁用。与 isDisabled 一起使用时，在悬停/键盘聚焦时显示提示，并通过 aria-disabled 保持输入框可聚焦（仍阻止输入和激活）。请使用此属性，而不是用 Tooltip 包裹已禁用的 DateInput。',
+    },
+    {
+      name: 'value',
+      type: 'ISODateString',
+      description: '选中的日期，YYYY-MM-DD 格式。',
+    },
+    {
+      name: 'onChange',
+      type: '(value: ISODateString | undefined) => void',
+      description: '选中日期变更时调用的回调。',
+    },
+    {
+      name: 'changeAction',
+      type: '(value: ISODateString | undefined) => void | Promise<void>',
+      description:
+        '在 onChange 之后触发的异步操作。通过 useTransition 驱动乐观更新。',
+    },
+    {
+      name: 'isLoading',
+      type: 'boolean',
+      description: '输入框是否处于加载状态。禁用交互并显示加载指示器。',
+      default: 'false',
+    },
+    {
+      name: 'min',
+      type: 'ISODateString',
+      description: '可选择的最早日期（YYYY-MM-DD）。',
+    },
+    {
+      name: 'max',
+      type: 'ISODateString',
+      description: '可选择的最晚日期（YYYY-MM-DD）。',
+    },
+    {
+      name: 'dateConstraints',
+      type: 'ReadonlyArray<(date: Date) => boolean>',
+      description: '自定义约束函数数组，用于禁用特定日期。',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      description: '文本输入框中显示的占位符文本。',
+      default: "'Select a date'",
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg'",
+      description: '输入控件的尺寸。',
+      default: "'md'",
+    },
+    {
+      name: 'status',
+      type: "{type: 'warning' | 'error' | 'success', message?: string}",
+      description: '错误、警告或成功状态的状态指示对象，附带消息。',
+    },
+    {
+      name: 'statusVariant',
+      type: "'attached' | 'detached' | 'tooltip'",
+      description:
+        '状态消息相对于输入框的放置方式。attached 直接叠加在输入框下方（带边框处理）；detached 作为独立元素浮于下方并留有间距；tooltip 隐藏消息框，并在状态图标上以提示气泡形式显示。',
+      default: "'attached'",
+    },
+    {
+      name: 'labelTooltip',
+      type: 'string',
+      description: '通过标签末尾的信息图标显示的提示文本。',
+    },
+    {
+      name: 'hasClear',
+      type: 'boolean',
+      description: '已设置日期值时显示清除（×）按钮。点击后清空值并将焦点返回输入框。',
+      default: 'false',
+    },
+    {
+      name: 'numberOfMonths',
+      type: '1 | 2',
+      description: '日历弹出层中同时显示的月份数量。',
+      default: '1',
+    },
+    {
+      name: 'weekStartsOn',
+      type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'",
+      description:
+        '日历弹出层中每周的起始日。可为数字（0=周日……6=周六）或三字母星期缩写。',
+      default: '0',
+    },
+    {
+      name: 'format',
+      type: "'date' | 'date_long' | 'date_weekday' | 'system_date' | ((value: ISODateString) => string)",
+      description:
+        "已选日期的显示格式。命名值复用 Timestamp 的格式词汇：'date' 显示 'Mar 21, 2026'，'date_long' 显示 'March 21, 2026'，'date_weekday' 显示 'Wed, Mar 21, 2026'，'system_date' 显示 '2026-03-21'。函数接收 ISO 值并返回自定义字符串。仅作用于已提交的值，不影响正在输入的文本。",
+      default: "'date_long'",
+    },
+    {
+      name: 'presentation',
+      type: "'popover' | 'bottom-sheet' | 'native' | 'adaptive-bottom-sheet' | 'adaptive-native'",
+      description:
+        "由哪个界面绘制日期选择器。'adaptive-native'（默认）在精细指针上使用 Solo 日历弹出层、在粗指针上使用浏览器/操作系统选择器（input type=date），且原生控件无法表达值时保留 Solo 回退；'native' 始终使用浏览器/操作系统选择器且不回退；'adaptive-bottom-sheet' 在精细指针上用弹出层、在粗指针上用 Solo 底部选择器；'popover' 与 'bottom-sheet' 在任何指针上强制使用对应 Solo 界面。每个值都会打开选择器；仅输入字段的呈现只属于 TimeInput。需要 weekStartsOn、numberOfMonths 或 dateConstraints 的字段应使用非原生呈现，原生选择器无法表达这些。",
+      default: "'adaptive-native'",
+    },
+    {
+      name: 'nativePicker',
+      type: "'touch' | 'always' | 'never'",
+      description:
+        "已弃用：请使用 presentation（'touch'='adaptive-native'、'always'='native'、'never'='adaptive-bottom-sheet'）。仍按已发布行为工作；同时设置时以 presentation 为准。",
+      default: "'touch'",
+    },
+    {
+      name: 'width',
+      type: 'SizeValue',
+      description: '字段宽度（数字为像素，字符串按原样使用，如 "100%"）。作用于整个字段（标签、控件和状态），使其保持对齐。',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      description:
+        '用于布局自定义的 Tailwind 类（外边距、定位、尺寸），通过 cn()（tailwind-merge）与组件自身的类合并，冲突的工具类会覆盖组件默认值。',
+    },
+  ],
+  theming: {
+    targets: [
+      {
+        className: 'solo-date-input',
+        visualProps: ['size', 'status'],
+        states: ['disabled'],
+      },
+      {className: 'solo-date-input-toggle-icon', states: ['state']},
+      {
+        className: 'solo-date-input-clear-icon',
+        deprecatedFor: 'input-clear-icon',
+      },
+    ],
+  },
+};
+
+/** @type {import('@solo/docs-types').ComponentTranslationDoc} */
+export const docsAr = {
+  description: 'يتيح DateInput للمستخدم كتابة تاريخ أو اختياره من نافذة تقويم منبثقة، ويُستخدم للجدولة والمواعيد النهائية وتواريخ الحجز وأي حقل نموذج يحتاج إلى تاريخ تقويمي محدد.',
+  propDescriptions: {
+    label: 'نص التسمية.',
+    isLabelHidden: 'يُخفي التسمية بصريًا.',
+    description: 'نص مساعد يُعرض أسفل التسمية.',
+    isOptional: 'يعرض مؤشر "(optional)" بجوار التسمية.',
+    isRequired: 'يحدد الحقل على أنه مطلوب.',
+    isDisabled: 'يعطّل حقل الإدخال والتقويم.',
+    disabledMessage: 'يوضح سبب تعطيل حقل الإدخال. مع isDisabled، يعرض تلميحًا عند التمرير أو التركيز بلوحة المفاتيح ويُبقي الحقل قابلًا للتركيز عبر aria-disabled (مع بقاء التفعيل محظورًا). استخدمه بدلًا من تغليف DateInput معطَّل داخل Tooltip، إذ تبتلع عناصر التحكم المعطَّلة أحداث التمرير التي يحتاجها Tooltip الخارجي.',
+    value: 'التاريخ المحدد بتنسيق YYYY-MM-DD.',
+    onChange: 'دالة استدعاء تُنفَّذ عند تغيّر التاريخ المحدد.',
+    changeAction: 'إجراء غير متزامن يُطلق بعد onChange. يقود تحديثات الواجهة التفاؤلية عبر useTransition.',
+    isLoading: 'ما إذا كان حقل الإدخال في حالة تحميل. يعطّل التفاعل ويعرض مؤشر تحميل.',
+    min: 'أدنى تاريخ قابل للاختيار (YYYY-MM-DD).',
+    max: 'أقصى تاريخ قابل للاختيار (YYYY-MM-DD).',
+    dateConstraints: 'مصفوفة من دوال القيود المخصصة التي تعطّل تواريخ معينة.',
+    placeholder: 'النص الإرشادي المعروض في حقل النص.',
+    size: 'حجم عنصر التحكم في الإدخال.',
+    status: 'كائن مؤشر الحالة لحالات الخطأ أو التحذير أو النجاح مع رسالة.',
+    statusVariant: 'كيفية وضع رسالة الحالة بالنسبة إلى حقل الإدخال. attached تتداخل مباشرةً أسفل الحقل (بمعالجة ذات حدود)؛ وdetached تطفو أسفله كعنصر منفصل مع تباعد؛ وtooltip تُخفي مربع الرسالة وتُظهرها في تلميح على أيقونة الحالة.',
+    labelTooltip: 'نص التلميح المعروض عبر أيقونة معلومات في نهاية التسمية.',
+    hasClear: 'يعرض زر مسح (×) عند ضبط قيمة تاريخ. النقر عليه يمسح القيمة ويعيد التركيز إلى حقل الإدخال.',
+    numberOfMonths: 'عدد الأشهر المعروضة في الوقت نفسه في نافذة التقويم المنبثقة.',
+    weekStartsOn: 'أول يوم في الأسبوع في نافذة التقويم المنبثقة. رقم (0 = الأحد إلى 6 = السبت) أو اسم يوم من ثلاثة أحرف.',
+    format: 'كيفية عرض قيمة التاريخ المعتمدة. تُعاد استخدام القيم المسماة من مفردات التنسيق في Timestamp: ‏\'date\' تعرض \'Mar 21, 2026\'، و\'date_long\' تعرض \'March 21, 2026\'، و\'date_weekday\' تعرض \'Wed, Mar 21, 2026\'، و\'system_date\' تعرض \'2026-03-21\'. وتتلقى الدالة قيمة ISO وتُرجع نصًا مخصصًا. ينطبق فقط على القيمة المعتمدة، وليس على النص أثناء كتابته.',
+    presentation: 'السطح الذي يرسم منتقي التاريخ. \'adaptive-native\' (الافتراضي) يستخدم نافذة التقويم المنبثقة من Solo مع المؤشر الدقيق، ومنتقي المتصفح/نظام التشغيل (input type=date) مع المؤشر الخشن، مع الإبقاء على بدائل Solo حيث لا يستطيع عنصر التحكم الأصلي التعبير عن القيمة؛ و\'native\' يستخدم دائمًا منتقي المتصفح/نظام التشغيل دون بديل؛ و\'adaptive-bottom-sheet\' يستخدم النافذة المنبثقة مع المؤشر الدقيق ومنتقي اللوحة السفلية من Solo مع المؤشر الخشن؛ و\'popover\' و\'bottom-sheet\' تفرضان سطح Solo ذاك مع كل أنواع المؤشرات. كل قيمة تفتح منتقيًا؛ أما الحقل المخصص للكتابة فقط فهو من اختصاص TimeInput وحده. استخدم عرضًا غير أصلي للحقل الذي يحتاج إلى weekStartsOn أو numberOfMonths أو dateConstraints، إذ لا يستطيع المنتقي الأصلي التعبير عن أيٍّ منها.',
+    nativePicker: 'مُهمَل: استخدم presentation ‏(\'touch\' = \'adaptive-native\'، و\'always\' = \'native\'، و\'never\' = \'adaptive-bottom-sheet\'). لا يزال يعمل تمامًا كما أُصدر؛ وتكون الأولوية لـ presentation عند ضبط كليهما.',
+    width: 'عرض الحقل (الرقم = بكسلات، والنص يُستخدم كما هو، مثل "100%"). يحدد حجم الحقل بأكمله (التسمية وعنصر التحكم والحالة) كي تبقى متحاذية.',
+    className: 'أصناف Tailwind لتخصيص التخطيط (الهوامش، والتموضع، والأحجام)، تُدمج مع أصناف المكوّن عبر cn() ‏(tailwind-merge)، بحيث تتجاوز الأداة المتعارضة القيمة الافتراضية.',
+  },
+  usage: {
+    description: 'يتيح DateInput للمستخدم كتابة تاريخ أو اختياره من نافذة تقويم منبثقة. استخدمه للجدولة أو المواعيد النهائية أو تواريخ الحجز أو أي حقل نموذج يحتاج إلى تاريخ تقويمي محدد.',
+    bestPractices: [
+      {
+        guidance: true,
+        description: 'وفّر تسميات وأوصافًا واضحة كي يفهم المستخدمون التاريخ المتوقع.',
+      },
+      {
+        guidance: true,
+        description: 'استخدم min وmax وdateConstraints لحصر التواريخ القابلة للاختيار في نطاقات صالحة.',
+      },
+      {
+        guidance: true,
+        description: 'استخدم hasClear عندما يكون التاريخ اختياريًا كي يتمكن المستخدم من إعادة تعيينه.',
+      },
+      {
+        guidance: true,
+        description: 'اعرض حالة التحميل باستخدام changeAction عندما يُطلق التاريخ عملية حفظ على الخادم.',
+      },
+      {
+        guidance: true,
+        description: 'استخدم DateInput داخل InputGroup عند إضافة بادئة أو لاحقة ثابتة قصيرة، مثل تلميح لتاريخ الاستحقاق.',
+      },
+      {
+        guidance: false,
+        description: 'استخدام DateInput لنص حر لا يمثل تاريخًا تقويميًا.',
+      },
+      {
+        guidance: false,
+        description: 'إخفاء التسمية دون سياق محيط يوضح الغرض من الحقل.',
+      },
+      {
+        guidance: false,
+        description: 'الاعتماد على التقويم وحده؛ فحقل النص يتيح للمستخدمين كتابة التواريخ مباشرةً، وهو أسرع للتواريخ المعروفة.',
+      },
+      {
+        guidance: false,
+        description: 'تغليف DateInput معطَّل داخل Tooltip لتوضيح سبب تعطيله؛ إذ تبتلع المشغِّلات المعطَّلة أحداث التمرير التي يحتاجها الغلاف. استخدم الخاصية disabledMessage بدلًا من ذلك.',
+      },
+    ],
+    anatomy: [
+      {
+        name: 'التسمية',
+        required: true,
+        description: 'نص أعلى حقل الإدخال يصف التاريخ المتوقع.',
+      },
+      {
+        name: 'حقل النص',
+        required: true,
+        description: 'حقل يمكن للمستخدم فيه كتابة تاريخ مباشرةً. يحلّل التنسيقات الشائعة مثل MM/DD/YYYY.',
+      },
+      {
+        name: 'أيقونة التقويم',
+        required: true,
+        description: 'زر يفتح نافذة التقويم المنبثقة لاختيار التاريخ بصريًا.',
+      },
+      {
+        name: 'نافذة التقويم المنبثقة',
+        required: false,
+        description: 'شبكة شهرية تظهر عند النقر على الأيقونة أو التركيز على حقل الإدخال.',
+      },
+      {
+        name: 'زر المسح',
+        required: false,
+        description: 'زر × يعيد تعيين قيمة التاريخ. يظهر عندما تكون hasClear صحيحة ويكون هناك تاريخ محدد.',
+      },
+      {
+        name: 'رسالة الحالة',
+        required: false,
+        description: 'رسالة خطأ أو تحذير أو نجاح أسفل حقل الإدخال.',
+      },
+    ],
+  },
+};
+
+/** @type {import('@solo/docs-types').ComponentTranslationDoc} */
+export const docsDense = {
+  description: 'text input w/ calendar popover for picking a date',
+  usage: {
+    description:
+      'DateInput lets the user type or pick a date from a calendar popover. Use for scheduling, deadlines, booking dates, or any form field needing a calendar date.',
+    bestPractices: [
+      {
+        guidance: true,
+        description:
+          'Provide clear labels + descriptions so users understand what date is expected.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use min, max, and dateConstraints to restrict selectable dates to valid ranges.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use hasClear when the date is optional so the user can reset it.',
+      },
+      {
+        guidance: true,
+        description:
+          'Show a loading state with changeAction when the date triggers a server-side save.',
+      },
+      {
+        guidance: true,
+        description:
+          'Use inside InputGroup for a short static prefix or suffix, such as a due-date hint.',
+      },
+      {
+        guidance: false,
+        description:
+          'Use a DateInput for free-form text that does not represent a calendar date.',
+      },
+      {
+        guidance: false,
+        description:
+          'Hide the label without surrounding context that makes the field purpose obvious.',
+      },
+      {
+        guidance: false,
+        description:
+          'Rely on the calendar alone; the text input lets users type dates directly, which is faster for known dates.',
+      },
+      {
+        guidance: false,
+        description:
+          'Wrap a disabled DateInput in Tooltip to explain why it is disabled; disabled triggers swallow the hover events the wrapper needs. Use the disabledMessage prop instead.',
+      },
+    ],
+  },
+  propDescriptions: {
+    label: 'label text',
+    isLabelHidden: 'visually hide label',
+    description: 'helper text below label',
+    isOptional: 'show "(optional)" indicator',
+    isRequired: 'mark field required',
+    isDisabled: 'disable input+calendar',
+    disabledMessage:
+      'reason shown in a tooltip on hover/focus when disabled; keeps field focusable via aria-disabled',
+    value: 'selected date YYYY-MM-DD',
+    onChange: 'callback on date change',
+    changeAction: 'async action after onChange; drives optimistic UI',
+    isLoading: 'loading state; disables interaction, shows spinner',
+    min: 'min selectable date (YYYY-MM-DD)',
+    max: 'max selectable date (YYYY-MM-DD)',
+    dateConstraints: 'custom constraint fns to disable specific dates',
+    placeholder: 'placeholder text in input',
+    size: 'input control size',
+    status: 'error/warning/success status w/ message',
+    statusVariant:
+      'How status message is placed: attached overlaps below input; detached floats below w/ spacing; tooltip hides the box and shows it on the status icon.',
+    labelTooltip: 'tooltip text via info icon at label end',
+    hasClear: 'Shows clear button when date is set. Clears value on click.',
+    numberOfMonths: 'months shown simultaneously in calendar popover',
+    weekStartsOn:
+      'first day of week in calendar (0=Sunday, or name e.g. "mon")',
+    format:
+      "committed-value display: 'date_long' (default, March 21, 2026), 'date' (Mar 21, 2026), 'date_weekday' (Wed, Mar 21, 2026), 'system_date' (2026-03-21), or (iso)=>string; reuses Timestamp vocabulary. Committed value only, not while typing.",
+    presentation:
+      "which surface draws the picker: 'adaptive-native' (default) = Solo popover on fine, browser/OS on coarse w/ Solo fallbacks; 'native' = browser/OS always, no fallback; 'adaptive-bottom-sheet' = popover fine / Solo sheet coarse; 'popover'/'bottom-sheet' force Solo. every value opens a picker (no text-only value; that is TimeInput's). use non-native for weekStartsOn/numberOfMonths/dateConstraints.",
+    nativePicker:
+      "deprecated, use presentation: 'touch'='adaptive-native', 'always'='native', 'never'='adaptive-bottom-sheet'. still works as released; presentation wins if both set.",
+    className: 'Tailwind classes for layout; merged via cn(), so conflicting utilities override defaults',
+  },
+};

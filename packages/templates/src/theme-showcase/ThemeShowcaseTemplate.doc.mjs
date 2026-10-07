@@ -1,0 +1,29 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'page',
+  name: 'Theme Showcase',
+  displayName: 'Theme Showcase',
+  description:
+    'Several unrelated product surfaces rendered together on one canvas so a token change can be judged across contexts at once. A comparison harness rather than a layout to ship.',
+  displayNameAr: 'معرض السمات',
+  descriptionAr:
+    'عدة واجهات منتجات غير مترابطة تُعرض معًا على لوحة واحدة ليُحكم على تغيير رمز التصميم عبر السياقات دفعة واحدة. أداة مقارنة لا تخطيط معدّ للإطلاق.',
+  keywords: [
+    'theme',
+    'tokens',
+    'palette',
+    'typography',
+    'styling',
+    'design system preview',
+  ],
+  isReady: true,
+  // Surfaced via the Themes page "Open in Playground" action, not the
+  // Templates gallery, so keep it out of the overview + playground menu.
+  // No `category` — it's hidden from the overview gallery (the only consumer
+  // of `category`), and 'Showcase' isn't part of the TemplateCategory taxonomy.
+  isHiddenFromOverview: true,
+  order: 54,
+  filter: null,
+  previewAspectRatio: 16 / 10,
+  slug: 'theme-showcase',
+};

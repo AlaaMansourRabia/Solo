@@ -1,0 +1,1017 @@
+/**
+ * @file Dialog.test.tsx
+ * @input Uses vitest, @testing-library/react, Dialog component
+ * @output Unit tests for Dialog component behavior
+ * @position Testing; validates Dialog.tsx implementation
+ *
+ * SYNC: When Dialog.tsx changes, update tests to match new behavior
+ */
+
+import { useState } from "react";
+import { readFileSync } from "node:fs";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import {
+  Dialog,
+  dialogFullscreenSafeAreaPaddingContract,
+  resolveDialogPositionOffsets,
+} from "./Dialog";
+import { DialogHeader } from "./DialogHeader";
+import { overlayPaddingReset } from "../Layout/padding.styles";
+import { defineTheme, generateThemeCSS } from "../theme";
+
+function generateThemeTestCSS(
+  theme: Parameters<typeof generateThemeCSS>[0],
+): string {
+  return Object.values(generateThemeCSS(theme)).join("\n");
+}
+
+function extractKeyframes(css: string, name: string): string {
+  const start = css.indexOf(`@keyframes ${name} {`);
+  if (start === -1) {
+    throw new Error(`Missing ${name} keyframes`);
+  }
+
+  const bodyStart = css.indexOf("{", start);
+  let depth = 0;
+  for (let index = bodyStart; index < css.length; index += 1) {
+    const char = css[index];
+    if (char === "{") {
+      depth += 1;
+    } else if (char === "}") {
+      depth -= 1;
+      if (depth === 0) {
+        return css.slice(start, index + 1);
+      }
+    }
+  }
+
+  throw new Error(`Unterminated ${name} keyframes`);
+}
+
+function extractThemeVars(css: string): Map<string, string> {
+  const vars = new Map<string, string>();
+  for (const match of css.matchAll(/(--solo-dialog-[\w-]+):\s*([^;]+);/g)) {
+    vars.set(match[1], match[2].trim());
+  }
+  return vars;
+}
+
+function resolveCSSVarFallback(
+  value: string,
+  vars: ReadonlyMap<string, string>,
+): string {
+  const trimmed = value.trim();
+  if (!trimmed.startsWith("var(") || !trimmed.endsWith(")")) {
+    return trimmed;
+  }
+
+  const inner = trimmed.slice(4, -1);
+  let depth = 0;
+  let commaIndex = -1;
+  for (let index = 0; index < inner.length; index += 1) {
+    const char = inner[index];
+    if (char === "(") {
+      depth += 1;
+    } else if (char === ")") {
+      depth -= 1;
+    } else if (char === "," && depth === 0) {
+      commaIndex = index;
+      break;
+    }
+  }
+
+  const varName = (
+    commaIndex === -1 ? inner : inner.slice(0, commaIndex)
+  ).trim();
+  const fallback = commaIndex === -1 ? "" : inner.slice(commaIndex + 1).trim();
+  return vars.has(varName)
+    ? vars.get(varName)!
+    : resolveCSSVarFallback(fallback, vars);
+}
+
+function normalizeCSSValue(value: string): string {
+  return value.replace(/\s+/g, "");
+}
+
+// Mock showModal and close methods since they're not fully implemented in jsdom
+beforeEach(() => {
+  HTMLDialogElement.prototype.showModal = vi.fn(function (
+    this: HTMLDialogElement,
+  ) {
+    this.setAttribute("open", "");
+  });
+  HTMLDialogElement.prototype.close = vi.fn(function (this: HTMLDialogElement) {
+    this.removeAttribute("open");
+  });
+});
+
+describe("Dialog", () => {
+  it("renders when isOpen is true", () => {
+    render(
+      <Dialog isOpen={true} onOpenChange={() => {}}>
+        Dialog content
+      </Dialog>,
+    );
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByText("Dialog content")).toBeInTheDocument();
+  });
+
+  it("calls showModal when opened", () => {
+    render(
+      <Dialog isOpen={true} onOpenChange={() => {}}>
+        Content
+      </Dialog>,
+    );
+    expect(HTMLDialogElement.prototype.showModal).toHaveBeenCalled();
+  });
+
+  it("does not show when isOpen is false", () => {
+    render(
+      <Dialog isOpen={false} onOpenChange={() => {}}>
+        Hidden content
+      </Dialog>,
+    );
+    const dialog = screen.getByRole("dialog", { hidden: true });
+    expect(dialog).not.toHaveAttribute("open");
+  });
+
+  it("has aria-modal attribute", () => {
+    render(
+      <Dialog isOpen={true} onOpenChange={() => {}}>
+        Content
+      </Dialog>,
+    );
+    expect(screen.getByRole("dialog")).toHaveAttribute("aria-modal", "true");
+  });
+
+  it("honors an initial-focus request from an action descendant", () => {
+    render(
+      <Dialog isOpen={true} onOpenChange={() => {}}>
+        <DialogHeader title="Choose an action" />
+        <button type="button" data-autofocus>
+          Continue
+        </button>
+      </Dialog>,
+    );
+
+    expect(screen.getByRole("button", { name: "Continue" })).toHaveFocus();
+  });
+
+  describe("purpose: info (default)", () => {
+    it("calls onOpenChange(false) when Escape is pressed", () => {
+      const handleHide = vi.fn();
+
+      render(
+        <Dialog isOpen={true} onOpenChange={handleHide} purpose="info">
+          Content
+        </Dialog>,
+      );
+
+      const dialog = screen.getByRole("dialog");
+      const escapeEvent = new KeyboardEvent("keydown", {
+        key: "Escape",
+        bubbles: true,
+        cancelable: true,
+      });
+      dialog.dispatchEvent(escapeEvent);
+      expect(handleHide).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("purpose: form", () => {
+    it("calls onOpenChange(false) when Escape is pressed", () => {
+      const handleHide = vi.fn();
+
+      render(
+        <Dialog isOpen={true} onOpenChange={handleHide} purpose="form">
+          Content
+        </Dialog>,
+      );
+
+      const dialog = screen.getByRole("dialog");
+      const escapeEvent = new KeyboardEvent("keydown", {
+        key: "Escape",
+        bubbles: true,
+        cancelable: true,
+      });
+      dialog.dispatchEvent(escapeEvent);
+      expect(handleHide).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("purpose: required", () => {
+    it("does not call onOpenChange when Escape is pressed", () => {
+      const handleHide = vi.fn();
+
+      render(
+        <Dialog isOpen={true} onOpenChange={handleHide} purpose="required">
+          Content
+        </Dialog>,
+      );
+
+      const dialog = screen.getByRole("alertdialog");
+      const escapeEvent = new KeyboardEvent("keydown", {
+        key: "Escape",
+        bubbles: true,
+        cancelable: true,
+      });
+      dialog.dispatchEvent(escapeEvent);
+      expect(handleHide).not.toHaveBeenCalled();
+    });
+
+    it("prevents default on cancel event", () => {
+      const handleHide = vi.fn();
+      render(
+        <Dialog isOpen={true} onOpenChange={handleHide} purpose="required">
+          Content
+        </Dialog>,
+      );
+
+      const dialog = screen.getByRole("alertdialog");
+      const cancelEvent = new Event("cancel", { cancelable: true });
+      dialog.dispatchEvent(cancelEvent);
+
+      expect(cancelEvent.defaultPrevented).toBe(true);
+      expect(handleHide).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("IME composition", () => {
+    // A CJK user presses Escape to cancel a half-formed character several times
+    // a sentence. jsdom models neither composition nor the close watcher, so
+    // these pin the wiring; the behaviour itself is measured in Chromium
+    // against the Layer Dismissal stories.
+    function DialogWithField({ onOpenChange }: { onOpenChange: () => void }) {
+      return (
+        <Dialog isOpen onOpenChange={onOpenChange} aria-label="Filters">
+          <input aria-label="Search" />
+        </Dialog>
+      );
+    }
+
+    it("claims the composing Escape instead of letting the browser act", () => {
+      const onOpenChange = vi.fn();
+      render(<DialogWithField onOpenChange={onOpenChange} />);
+
+      const event = new KeyboardEvent("keydown", {
+        key: "Escape",
+        bubbles: true,
+        cancelable: true,
+      });
+      Object.defineProperty(event, "isComposing", { value: true });
+      screen.getByRole("textbox", { name: "Search" }).dispatchEvent(event);
+
+      // Unclaimed, this press becomes a close request that arrives at
+      // handleCancel and closes the dialog on the same keystroke.
+      expect(event.defaultPrevented).toBe(true);
+      expect(onOpenChange).not.toHaveBeenCalled();
+    });
+
+    it("ignores a close request that arrives mid-composition", () => {
+      // The back gesture and the platform close watcher carry no composition
+      // state, so the dialog asks the stack rather than the event.
+      const onOpenChange = vi.fn();
+      render(<DialogWithField onOpenChange={onOpenChange} />);
+      const field = screen.getByRole("textbox", { name: "Search" });
+
+      fireEvent.compositionStart(field);
+      const duringComposition = new Event("cancel", { cancelable: true });
+      screen.getByRole("dialog").dispatchEvent(duringComposition);
+
+      expect(duringComposition.defaultPrevented).toBe(true);
+      expect(onOpenChange).not.toHaveBeenCalled();
+
+      fireEvent.compositionEnd(field);
+      screen
+        .getByRole("dialog")
+        .dispatchEvent(new Event("cancel", { cancelable: true }));
+
+      expect(onOpenChange).toHaveBeenCalledTimes(1);
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+    });
+  });
+
+  describe("nested-modal dismissal", () => {
+    function NestedModals({
+      isInnerOpen,
+      onOuterChange,
+      onInnerChange,
+    }: {
+      isInnerOpen: boolean;
+      onOuterChange: (isOpen: boolean) => void;
+      onInnerChange: (isOpen: boolean) => void;
+    }) {
+      return (
+        <Dialog
+          isOpen={true}
+          onOpenChange={onOuterChange}
+          purpose="info"
+          aria-label="Outer"
+        >
+          Outer content
+          <Dialog
+            isOpen={isInnerOpen}
+            onOpenChange={onInnerChange}
+            purpose="info"
+            aria-label="Inner"
+          >
+            Inner content
+          </Dialog>
+        </Dialog>
+      );
+    }
+
+    const getDialog = (label: string) =>
+      screen
+        .getAllByRole("dialog", { hidden: true })
+        .find((d) => d.getAttribute("aria-label") === label)!;
+
+    const pressEscape = (target: Element) => {
+      target.dispatchEvent(
+        new KeyboardEvent("keydown", {
+          key: "Escape",
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+    };
+
+    it("closes only the inner modal, not the outer, on Escape", () => {
+      const onOuterChange = vi.fn();
+      const onInnerChange = vi.fn();
+
+      render(
+        <NestedModals
+          isInnerOpen={true}
+          onOuterChange={onOuterChange}
+          onInnerChange={onInnerChange}
+        />,
+      );
+
+      const outer = getDialog("Outer");
+      const inner = getDialog("Inner");
+      expect(outer.contains(inner)).toBe(true);
+
+      pressEscape(inner);
+
+      expect(onInnerChange).toHaveBeenCalledTimes(1);
+      expect(onInnerChange).toHaveBeenCalledWith(false);
+      expect(onOuterChange).not.toHaveBeenCalled();
+    });
+
+    it("closes the outer modal on the next Escape once the inner one is gone", () => {
+      const onOuterChange = vi.fn();
+      const onInnerChange = vi.fn();
+
+      const { rerender } = render(
+        <NestedModals
+          isInnerOpen={true}
+          onOuterChange={onOuterChange}
+          onInnerChange={onInnerChange}
+        />,
+      );
+      rerender(
+        <NestedModals
+          isInnerOpen={false}
+          onOuterChange={onOuterChange}
+          onInnerChange={onInnerChange}
+        />,
+      );
+
+      pressEscape(getDialog("Outer"));
+
+      expect(onOuterChange).toHaveBeenCalledTimes(1);
+      expect(onOuterChange).toHaveBeenCalledWith(false);
+      expect(onInnerChange).not.toHaveBeenCalled();
+    });
+
+    it("closes the top-most modal on a browser-initiated cancel", () => {
+      const onOuterChange = vi.fn();
+      const onInnerChange = vi.fn();
+
+      render(
+        <NestedModals
+          isInnerOpen={true}
+          onOuterChange={onOuterChange}
+          onInnerChange={onInnerChange}
+        />,
+      );
+
+      const cancelEvent = new Event("cancel", { cancelable: true });
+      getDialog("Inner").dispatchEvent(cancelEvent);
+
+      expect(cancelEvent.defaultPrevented).toBe(true);
+      expect(onInnerChange).toHaveBeenCalledTimes(1);
+      expect(onInnerChange).toHaveBeenCalledWith(false);
+      expect(onOuterChange).not.toHaveBeenCalled();
+    });
+
+    it("leaves a modal that is not top-most open on a browser-initiated cancel", () => {
+      const onOuterChange = vi.fn();
+      const onInnerChange = vi.fn();
+
+      render(
+        <NestedModals
+          isInnerOpen={true}
+          onOuterChange={onOuterChange}
+          onInnerChange={onInnerChange}
+        />,
+      );
+
+      const cancelEvent = new Event("cancel", { cancelable: true });
+      getDialog("Outer").dispatchEvent(cancelEvent);
+
+      expect(cancelEvent.defaultPrevented).toBe(true);
+      expect(onOuterChange).not.toHaveBeenCalled();
+      expect(onInnerChange).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("focus restoration", () => {
+    it("closes without error when the captured invoker is removed", () => {
+      function RemovedInvokerExample() {
+        const [isOpen, setIsOpen] = useState(false);
+        const [showInvoker, setShowInvoker] = useState(true);
+        return (
+          <>
+            {showInvoker && (
+              <button type="button" onClick={() => setIsOpen(true)}>
+                Open dialog
+              </button>
+            )}
+            <Dialog
+              isOpen={isOpen}
+              onOpenChange={setIsOpen}
+              aria-label="Review changes"
+            >
+              <button type="button" onClick={() => setShowInvoker(false)}>
+                Remove opener
+              </button>
+              <button type="button" onClick={() => setIsOpen(false)}>
+                Close dialog
+              </button>
+            </Dialog>
+          </>
+        );
+      }
+
+      render(<RemovedInvokerExample />);
+      const invoker = screen.getByRole("button", { name: "Open dialog" });
+      invoker.focus();
+      fireEvent.click(invoker);
+      const dialog = screen.getByRole("dialog");
+
+      fireEvent.click(screen.getByRole("button", { name: "Remove opener" }));
+      expect(invoker.isConnected).toBe(false);
+
+      expect(() => {
+        fireEvent.click(screen.getByRole("button", { name: "Close dialog" }));
+      }).not.toThrow();
+      expect(dialog).not.toHaveAttribute("open");
+    });
+  });
+
+  describe("variant: standard", () => {
+    it("renders with default variant", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}}>
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    it("accepts custom width", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}} width={600}>
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    it("accepts custom maxHeight", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}} maxHeight="50vh">
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+  });
+
+  describe("variant: fullscreen", () => {
+    it("renders fullscreen variant", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}} variant="fullscreen">
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+  });
+
+  describe("responsive sizing", () => {
+    it("keeps the requested width but clamps standard dialogs to container and dynamic viewport gutters", () => {
+      render(
+        <Dialog
+          isOpen={true}
+          onOpenChange={() => {}}
+          width={600}
+          maxHeight="70dvh"
+          aria-label="Sized dialog"
+        >
+          Content
+        </Dialog>,
+      );
+
+      const dialog = screen.getByRole("dialog");
+      const inlineStyle = dialog.getAttribute("style") ?? "";
+      expect(dialog).toHaveClass(
+        "w-(--_dialog-width)",
+        "max-w-(--_dialog-max-width)",
+        "max-h-(--_dialog-max-height)",
+      );
+      expect(inlineStyle).toContain("--_dialog-width: 600px");
+      expect(inlineStyle).toContain(
+        "--_dialog-max-width: min(100%, calc(100dvw - var(--spacing-4) - var(--spacing-4)))",
+      );
+      expect(inlineStyle).toContain("--_dialog-max-height: 70dvh");
+    });
+
+    it("uses opacity-only fullscreen keyframes while standard dialogs keep directional movement", () => {
+      const css = readFileSync("packages/core/src/Dialog/Dialog.css", "utf8");
+      const enterDirectional = extractKeyframes(
+        css,
+        "solo-dialog-enter-directional",
+      );
+      const enterFullscreen = extractKeyframes(
+        css,
+        "solo-dialog-enter-fullscreen",
+      );
+
+      expect(enterDirectional).toContain("transform");
+      expect(enterDirectional).toContain("translate(var(--dialog-dir-x");
+      expect(enterDirectional).toContain("scale(0.95)");
+      expect(enterFullscreen).toContain("opacity");
+      expect(enterFullscreen).not.toContain("transform");
+      expect(enterFullscreen).not.toContain("translate");
+      expect(enterFullscreen).not.toContain("scale(");
+    });
+
+    it("applies the fullscreen keyframes only to an open fullscreen dialog", () => {
+      const { rerender } = render(
+        <Dialog
+          isOpen
+          variant="fullscreen"
+          onOpenChange={() => {}}
+          aria-label="Fullscreen dialog"
+        >
+          Content
+        </Dialog>,
+      );
+      const dialog = screen.getByRole("dialog");
+      expect(dialog).toHaveClass(
+        "[animation-name:solo-dialog-enter-fullscreen]",
+      );
+      expect(dialog).not.toHaveClass(
+        "[animation-name:solo-dialog-enter-directional]",
+      );
+
+      rerender(
+        <Dialog isOpen onOpenChange={() => {}} aria-label="Fullscreen dialog">
+          Content
+        </Dialog>,
+      );
+      expect(dialog).toHaveClass(
+        "[animation-name:solo-dialog-enter-directional]",
+      );
+    });
+
+    // Without the reset, a consumer that does not load reset.css sees the UA
+    // `dialog { border: solid }` frame.
+    it("resets the UA <dialog> border", () => {
+      render(
+        <Dialog isOpen onOpenChange={() => {}} aria-label="Bordered dialog">
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toHaveClass(
+        "[border-width:0]",
+        "[border-style:none]",
+      );
+    });
+
+    it("maps fullscreen safe-area insets to logical sides in LTR and RTL", () => {
+      expect(dialogFullscreenSafeAreaPaddingContract.inlineStart.ltr).toContain(
+        "safe-area-inset-left",
+      );
+      expect(dialogFullscreenSafeAreaPaddingContract.inlineEnd.ltr).toContain(
+        "safe-area-inset-right",
+      );
+      expect(dialogFullscreenSafeAreaPaddingContract.inlineStart.rtl).toContain(
+        "safe-area-inset-right",
+      );
+      expect(dialogFullscreenSafeAreaPaddingContract.inlineEnd.rtl).toContain(
+        "safe-area-inset-left",
+      );
+      expect(dialogFullscreenSafeAreaPaddingContract.inlineStart.rtl).not.toBe(
+        dialogFullscreenSafeAreaPaddingContract.inlineStart.ltr,
+      );
+      expect(dialogFullscreenSafeAreaPaddingContract.inlineEnd.rtl).not.toBe(
+        dialogFullscreenSafeAreaPaddingContract.inlineEnd.ltr,
+      );
+    });
+
+    it("protects default fullscreen content with safe-area padding", () => {
+      render(
+        <Dialog
+          isOpen={true}
+          onOpenChange={() => {}}
+          variant="fullscreen"
+          aria-label="Fullscreen dialog"
+        >
+          <div data-testid="child">Content</div>
+        </Dialog>,
+      );
+
+      const wrapper = screen.getByTestId("child").parentElement!;
+      // No compiled CSS in jsdom: assert the padding classes carry the contract.
+      expect(wrapper).toHaveClass(
+        `ps-[${normalizeCSSValue(dialogFullscreenSafeAreaPaddingContract.inlineStart.ltr)}]`,
+        `pe-[${normalizeCSSValue(dialogFullscreenSafeAreaPaddingContract.inlineEnd.ltr)}]`,
+      );
+      expect(wrapper.parentElement!.tagName).toBe("DIALOG");
+    });
+
+    it("applies RTL fullscreen safe-area padding to the opposite logical edges", () => {
+      render(
+        <div dir="rtl">
+          <Dialog
+            isOpen={true}
+            onOpenChange={() => {}}
+            variant="fullscreen"
+            aria-label="Fullscreen RTL dialog"
+          >
+            <div data-testid="rtl-child">Content</div>
+          </Dialog>
+        </div>,
+      );
+
+      const wrapper = screen.getByTestId("rtl-child").parentElement!;
+      expect(wrapper).toHaveClass(
+        `[&:is([dir=rtl]_*)]:ps-[${normalizeCSSValue(dialogFullscreenSafeAreaPaddingContract.inlineStart.rtl)}]`,
+        `[&:is([dir=rtl]_*)]:pe-[${normalizeCSSValue(dialogFullscreenSafeAreaPaddingContract.inlineEnd.rtl)}]`,
+      );
+    });
+
+    it("resolves theme zero padding before the default fullscreen safe-area fallback", () => {
+      const zeroPaddingTheme = defineTheme({
+        name: "dialog-zero-padding-test",
+        components: {
+          dialog: {
+            base: { padding: "0" },
+          },
+        },
+      });
+
+      const vars = extractThemeVars(generateThemeTestCSS(zeroPaddingTheme));
+      expect(vars.get("--solo-dialog-padding")).toBe("0");
+      expect(
+        resolveCSSVarFallback(
+          dialogFullscreenSafeAreaPaddingContract.blockStart,
+          vars,
+        ),
+      ).toBe("0");
+      expect(
+        resolveCSSVarFallback(
+          dialogFullscreenSafeAreaPaddingContract.inlineStart.ltr,
+          vars,
+        ),
+      ).toBe("0");
+      expect(
+        resolveCSSVarFallback(
+          dialogFullscreenSafeAreaPaddingContract.inlineEnd.rtl,
+          vars,
+        ),
+      ).toBe("0");
+    });
+  });
+
+  describe("position prop", () => {
+    it("accepts position configuration", () => {
+      render(
+        <Dialog
+          isOpen={true}
+          onOpenChange={() => {}}
+          position={{ top: 100, end: 20 }}
+        >
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    it("handles string position values", () => {
+      render(
+        <Dialog
+          isOpen={true}
+          onOpenChange={() => {}}
+          position={{ top: "10vh", start: "5vw" }}
+        >
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    it("accepts logical start/end position configuration", () => {
+      render(
+        <Dialog
+          isOpen={true}
+          onOpenChange={() => {}}
+          position={{ top: 100, start: 20, end: 40 }}
+        >
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+  });
+
+  // Physical-vs-logical mapping is verified against the pure resolver so we can
+  // assert the exact emitted CSS offsets without relying on CSS class
+  // generation or a browser. The public DialogPosition union forbids mixing
+  // logical and physical inline offsets (enforced at compile time, below), so
+  // the resolver has no precedence logic — it just maps what it's given.
+  describe("resolveDialogPositionOffsets (physical-vs-logical mapping)", () => {
+    it("maps logical start/end to inset-inline offsets (mirror under RTL)", () => {
+      // insetInlineStart/End are direction-relative: the browser resolves them
+      // to left/right per `dir`, so the same value mirrors under RTL.
+      const offsets = resolveDialogPositionOffsets({ start: 20, end: 40 });
+      expect(offsets.insetInlineStart).toBe("20px");
+      expect(offsets.insetInlineEnd).toBe("40px");
+      // No physical offsets requested → auto.
+    });
+
+    it("combines block-axis top/bottom with an inline pair", () => {
+      const offsets = resolveDialogPositionOffsets({ top: 100, start: 12 });
+      expect(offsets.top).toBe("100px");
+      expect(offsets.insetInlineStart).toBe("12px");
+      // Everything unset falls back to auto.
+      expect(offsets.bottom).toBe("auto");
+      expect(offsets.insetInlineEnd).toBe("auto");
+    });
+
+    it("passes through string offsets (vw/vh/etc.) for logical offsets", () => {
+      const logical = resolveDialogPositionOffsets({
+        start: "5vw",
+        end: "10%",
+      });
+      expect(logical.insetInlineStart).toBe("5vw");
+      expect(logical.insetInlineEnd).toBe("10%");
+    });
+  });
+
+  it("forwards additional props to dialog element", () => {
+    render(
+      <Dialog isOpen={true} onOpenChange={() => {}} data-testid="custom-dialog">
+        Content
+      </Dialog>,
+    );
+    expect(screen.getByTestId("custom-dialog")).toBeInTheDocument();
+  });
+
+  it("does not forward native open prop to dialog element", () => {
+    render(
+      <Dialog
+        isOpen={false}
+        onOpenChange={() => {}}
+        {...({ open: true } as Record<string, unknown>)}
+      >
+        Content
+      </Dialog>,
+    );
+    const dialog = screen.getByRole("dialog", { hidden: true });
+    // isOpen=false controls state; native open prop must not leak through
+    expect(dialog).not.toHaveAttribute("open");
+  });
+
+  describe("alertdialog role", () => {
+    it('sets role="alertdialog" when purpose is "required"', () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}} purpose="required">
+          Content
+        </Dialog>,
+      );
+      expect(screen.getByRole("alertdialog")).toBeInTheDocument();
+    });
+
+    it('does not set role="alertdialog" when purpose is "info"', () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}} purpose="info">
+          Content
+        </Dialog>,
+      );
+      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    it('does not set role="alertdialog" when purpose is "form"', () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}} purpose="form">
+          Content
+        </Dialog>,
+      );
+      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+  });
+
+  describe("accessible name", () => {
+    it("is labelled by the DialogHeader title by default", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}}>
+          <DialogHeader title="Dialog title" />
+        </Dialog>,
+      );
+      const dialog = screen.getByRole("dialog");
+      const heading = screen.getByRole("heading", { name: "Dialog title" });
+      expect(heading.id).not.toBe("");
+      expect(dialog).toHaveAttribute("aria-labelledby", heading.id);
+      expect(dialog).toHaveAccessibleName("Dialog title");
+    });
+
+    it("is labelled by the text content of a node title", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}}>
+          <DialogHeader
+            title={
+              <span>
+                Rich <strong>dialog</strong> title
+              </span>
+            }
+          />
+        </Dialog>,
+      );
+      const dialog = screen.getByRole("dialog");
+      const heading = screen.getByRole("heading", { level: 2 });
+      expect(dialog).toHaveAttribute("aria-labelledby", heading.id);
+      expect(dialog).toHaveAccessibleName("Rich dialog title");
+    });
+
+    it("prefers a consumer-provided aria-label over the header title", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}} aria-label="Custom name">
+          <DialogHeader title="Dialog title" />
+        </Dialog>,
+      );
+      const dialog = screen.getByRole("dialog");
+      expect(dialog).not.toHaveAttribute("aria-labelledby");
+      expect(dialog).toHaveAccessibleName("Custom name");
+    });
+
+    it("prefers a consumer-provided aria-labelledby over the header title", () => {
+      render(
+        <>
+          <span id="external-label">External name</span>
+          <Dialog
+            isOpen={true}
+            onOpenChange={() => {}}
+            aria-labelledby="external-label"
+          >
+            <DialogHeader title="Dialog title" />
+          </Dialog>
+        </>,
+      );
+      const dialog = screen.getByRole("dialog");
+      expect(dialog).toHaveAttribute("aria-labelledby", "external-label");
+      expect(dialog).toHaveAccessibleName("External name");
+    });
+
+    it("omits aria-labelledby and warns when open with no name source", () => {
+      const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+      try {
+        render(
+          <Dialog isOpen={true} onOpenChange={() => {}}>
+            Content
+          </Dialog>,
+        );
+        const dialog = screen.getByRole("dialog");
+        expect(dialog).not.toHaveAttribute("aria-labelledby");
+        expect(warnSpy).toHaveBeenCalledTimes(1);
+        expect(warnSpy).toHaveBeenCalledWith(
+          expect.stringContaining("accessible name"),
+        );
+      } finally {
+        warnSpy.mockRestore();
+      }
+    });
+
+    it("does not warn when the header provides a title", () => {
+      const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+      try {
+        render(
+          <Dialog isOpen={true} onOpenChange={() => {}}>
+            <DialogHeader title="Dialog title" />
+          </Dialog>,
+        );
+        expect(warnSpy).not.toHaveBeenCalled();
+      } finally {
+        warnSpy.mockRestore();
+      }
+    });
+  });
+
+  describe("inner flex wrapper", () => {
+    it("wraps children in a flex container for scroll support", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}}>
+          <div data-testid="child">Content</div>
+        </Dialog>,
+      );
+      const child = screen.getByTestId("child");
+      const wrapper = child.parentElement!;
+      expect(wrapper.tagName).toBe("DIV");
+      expect(wrapper.parentElement!.tagName).toBe("DIALOG");
+    });
+  });
+
+  describe("edge compensation isolation", () => {
+    it("does not inherit edge compensation from ancestor containers", () => {
+      // With container-driven edge compensation (via :has() + data attributes),
+      // dialogs no longer need to reset CSS custom properties — the compensation
+      // is scoped to each container's own slot wrappers.
+      render(
+        <div>
+          <Dialog isOpen={true} onOpenChange={() => {}}>
+            <div data-testid="child">Content</div>
+          </Dialog>
+        </div>,
+      );
+
+      const dialog = screen.getByRole("dialog");
+      expect(dialog).toBeInTheDocument();
+    });
+  });
+
+  describe("isInline", () => {
+    it("renders children in a div without a <dialog> element", () => {
+      const { container } = render(
+        <Dialog isOpen={true} isInline onOpenChange={() => {}}>
+          <div data-testid="child">Inline content</div>
+        </Dialog>,
+      );
+      expect(screen.getByText("Inline content")).toBeInTheDocument();
+      expect(container.querySelector("dialog")).toBeNull();
+    });
+
+    it("renders nothing when isOpen is false", () => {
+      const { container } = render(
+        <Dialog isOpen={false} isInline onOpenChange={() => {}}>
+          <div data-testid="child">Hidden content</div>
+        </Dialog>,
+      );
+      expect(screen.queryByText("Hidden content")).not.toBeInTheDocument();
+      expect(container.querySelector("dialog")).toBeNull();
+    });
+
+    it("does not call showModal", () => {
+      render(
+        <Dialog isOpen={true} isInline onOpenChange={() => {}}>
+          Content
+        </Dialog>,
+      );
+      expect(HTMLDialogElement.prototype.showModal).not.toHaveBeenCalled();
+    });
+
+    it("suppresses DialogHeader auto-focus", () => {
+      const before = document.createElement("button");
+      before.type = "button";
+      document.body.appendChild(before);
+      before.focus();
+
+      render(
+        <Dialog isOpen={true} isInline onOpenChange={() => {}}>
+          <DialogHeader title="Inline title" />
+        </Dialog>,
+      );
+
+      expect(before).toHaveFocus();
+      before.remove();
+    });
+  });
+
+  describe("container padding isolation", () => {
+    it("resets container padding custom properties on the root dialog element", () => {
+      render(
+        <Dialog isOpen={true} onOpenChange={() => {}}>
+          Content
+        </Dialog>,
+      );
+      const dialog = screen.getByRole("dialog");
+      expect(dialog.className).toContain(overlayPaddingReset.reset);
+    });
+  });
+});

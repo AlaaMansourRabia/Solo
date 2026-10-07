@@ -1,0 +1,51 @@
+'use client';
+
+import {ChatComposer, ChatComposerDrawer} from '@solo/core/Chat';
+import {Token} from '@solo/core/Token';
+import {ProgressBar} from '@solo/core/ProgressBar';
+import {Stack} from '@solo/core/Layout';
+import {Button} from '@solo/core/Button';
+import {Icon} from '@solo/core/Icon';
+import {PaperClipIcon, AtSymbolIcon} from '@heroicons/react/24/outline';
+
+export default function ChatComposerDrawerWithProgress() {
+  return (
+    <Stack direction="vertical" gap={4} width={450} maxWidth="100%">
+      <ChatComposer
+        onSubmit={() => {}}
+        drawer={
+          <ChatComposerDrawer count={3} label="Attachments">
+            <Token label="design-spec.pdf" onRemove={() => {}} />
+            <Token label="api-schema.json" onRemove={() => {}} />
+            <Token label="screenshot.png" onRemove={() => {}} />
+          </ChatComposerDrawer>
+        }
+        headerActions={
+          <>
+            <Button
+              label="Mention"
+              variant="ghost"
+              size="sm"
+              icon={<Icon icon={AtSymbolIcon} size="sm" />}
+              isIconOnly
+              onClick={() => {}}
+            />
+            <Button
+              label="Attach"
+              variant="ghost"
+              size="sm"
+              icon={<Icon icon={PaperClipIcon} size="sm" />}
+              isIconOnly
+              onClick={() => {}}
+            />
+          </>
+        }
+        headerContext={
+          <Stack direction="horizontal" gap={2} vAlign="center">
+            <ProgressBar value={42} label="Context usage" isLabelHidden />
+          </Stack>
+        }
+      />
+    </Stack>
+  );
+}

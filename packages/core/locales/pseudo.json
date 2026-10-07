@@ -1,0 +1,1133 @@
+{
+  "@solo.pagination.label": {
+    "defaultMessage": "⟦Þàĝíñàţíóñ⟧"
+  },
+  "@solo.pagination.previous": {
+    "defaultMessage": "⟦Ĝó ţó þřéṽíóúš þàĝé⟧"
+  },
+  "@solo.pagination.next": {
+    "defaultMessage": "⟦Ĝó ţó ñéẋţ þàĝé⟧"
+  },
+  "@solo.pagination.previousBy": {
+    "defaultMessage": "⟦Ĝó ƀàçķ {step, number} {step, plural, one {page} other {pages}}⟧"
+  },
+  "@solo.pagination.nextBy": {
+    "defaultMessage": "⟦Ĝó ƒóřŵàřð {step, number} {step, plural, one {page} other {pages}}⟧"
+  },
+  "@solo.pagination.first": {
+    "defaultMessage": "⟦Ĝó ţó ƒířšţ þàĝé⟧"
+  },
+  "@solo.pagination.last": {
+    "defaultMessage": "⟦Ĝó ţó łàšţ þàĝé⟧"
+  },
+  "@solo.pagination.goToPage": {
+    "defaultMessage": "⟦Ĝó ţó þàĝé {page, number}⟧"
+  },
+  "@solo.pagination.goToPageInput": {
+    "defaultMessage": "⟦Ĝó ţó þàĝé⟧"
+  },
+  "@solo.pagination.pageLabel": {
+    "defaultMessage": "⟦Þàĝé⟧"
+  },
+  "@solo.pagination.ofTotalPages": {
+    "defaultMessage": "⟦/ {total, number}⟧"
+  },
+  "@solo.pagination.pageIndicators": {
+    "defaultMessage": "⟦Þàĝé íñðíçàţóřš⟧"
+  },
+  "@solo.pagination.itemsPerPage": {
+    "defaultMessage": "⟦Íţéɱš þéř þàĝé⟧"
+  },
+  "@solo.pagination.count": {
+    "defaultMessage": "⟦{from, number}–{to, number} óƒ {total, number}⟧"
+  },
+  "@solo.pagination.pageOfTotal": {
+    "defaultMessage": "⟦Þàĝé {current, number} óƒ {total, number}⟧"
+  },
+  "@solo.pagination.pageAnnounce": {
+    "defaultMessage": "⟦Þàĝé {current, number}⟧"
+  },
+  "@solo.powersearch.editor.field": {
+    "defaultMessage": "⟦Ƒíéłð⟧"
+  },
+  "@solo.powersearch.editor.operator": {
+    "defaultMessage": "⟦Óþéřàţóř⟧"
+  },
+  "@solo.powersearch.editor.addFilter": {
+    "defaultMessage": "⟦+ Àðð ƒíłţéř⟧"
+  },
+  "@solo.powersearch.editor.removeFilter": {
+    "defaultMessage": "⟦Řéɱóṽé ƒíłţéř⟧"
+  },
+  "@solo.powersearch.editor.groupOperator": {
+    "defaultMessage": "⟦Ĝřóúþ óþéřàţóř⟧"
+  },
+  "@solo.powersearch.editor.group": {
+    "defaultMessage": "⟦Ĝřóúþ⟧"
+  },
+  "@solo.powersearch.editor.delete": {
+    "defaultMessage": "⟦Ðéłéţé⟧"
+  },
+  "@solo.powersearch.editor.cancel": {
+    "defaultMessage": "⟦Çàñçéł⟧"
+  },
+  "@solo.powersearch.editor.apply": {
+    "defaultMessage": "⟦Àþþłý⟧"
+  },
+  "@solo.powersearch.valueEditor.value": {
+    "defaultMessage": "⟦Ṽàłúé⟧"
+  },
+  "@solo.powersearch.valueEditor.values": {
+    "defaultMessage": "⟦Ṽàłúéš⟧"
+  },
+  "@solo.powersearch.valueEditor.time": {
+    "defaultMessage": "⟦Ţíɱé⟧"
+  },
+  "@solo.powersearch.valueEditor.date": {
+    "defaultMessage": "⟦Ðàţé⟧"
+  },
+  "@solo.powersearch.valueEditor.relativeDate": {
+    "defaultMessage": "⟦Řéłàţíṽé ðàţé⟧"
+  },
+  "@solo.powersearch.valueEditor.startDate": {
+    "defaultMessage": "⟦Šţàřţ ðàţé⟧"
+  },
+  "@solo.powersearch.valueEditor.endDate": {
+    "defaultMessage": "⟦Éñð ðàţé⟧"
+  },
+  "@solo.powersearch.valueEditor.entities": {
+    "defaultMessage": "⟦Éñţíţíéš⟧"
+  },
+  "@solo.powersearch.valueEditor.searchPlaceholder": {
+    "defaultMessage": "⟦Šéàřçĥ…⟧"
+  },
+  "@solo.powersearch.valueEditor.enterValuePlaceholder": {
+    "defaultMessage": "⟦Éñţéř ṽàłúé…⟧"
+  },
+  "@solo.powersearch.valueEditor.addValuesPlaceholder": {
+    "defaultMessage": "⟦Àðð ṽàłúéš…⟧"
+  },
+  "@solo.powersearch.valueEditor.enterNumberPlaceholder": {
+    "defaultMessage": "⟦Éñţéř ñúɱƀéř…⟧"
+  },
+  "@solo.powersearch.valueEditor.selectValuesPlaceholder": {
+    "defaultMessage": "⟦Šéłéçţ ṽàłúéš…⟧"
+  },
+  "@solo.powersearch.operator.contains": {
+    "defaultMessage": "⟦çóñţàíñš⟧"
+  },
+  "@solo.powersearch.operator.notContains": {
+    "defaultMessage": "⟦ðóéš ñóţ çóñţàíñ⟧"
+  },
+  "@solo.powersearch.operator.startsWith": {
+    "defaultMessage": "⟦šţàřţš ŵíţĥ⟧"
+  },
+  "@solo.powersearch.operator.notStartsWith": {
+    "defaultMessage": "⟦ðóéš ñóţ šţàřţ ŵíţĥ⟧"
+  },
+  "@solo.powersearch.operator.endsWith": {
+    "defaultMessage": "⟦éñðš ŵíţĥ⟧"
+  },
+  "@solo.powersearch.operator.notEndsWith": {
+    "defaultMessage": "⟦ðóéš ñóţ éñð ŵíţĥ⟧"
+  },
+  "@solo.powersearch.operator.is": {
+    "defaultMessage": "⟦íš⟧"
+  },
+  "@solo.powersearch.operator.isNot": {
+    "defaultMessage": "⟦íš ñóţ⟧"
+  },
+  "@solo.powersearch.operator.equals": {
+    "defaultMessage": "⟦íš⟧"
+  },
+  "@solo.powersearch.operator.notEquals": {
+    "defaultMessage": "⟦íš ñóţ⟧"
+  },
+  "@solo.powersearch.operator.greaterThan": {
+    "defaultMessage": "⟦íš ĝřéàţéř ţĥàñ⟧"
+  },
+  "@solo.powersearch.operator.lessThan": {
+    "defaultMessage": "⟦íš łéšš ţĥàñ⟧"
+  },
+  "@solo.powersearch.operator.greaterThanOrEqual": {
+    "defaultMessage": "⟦íš ĝřéàţéř ţĥàñ óř éɋúàł ţó⟧"
+  },
+  "@solo.powersearch.operator.lessThanOrEqual": {
+    "defaultMessage": "⟦íš łéšš ţĥàñ óř éɋúàł ţó⟧"
+  },
+  "@solo.powersearch.operator.before": {
+    "defaultMessage": "⟦íš ƀéƒóřé⟧"
+  },
+  "@solo.powersearch.operator.after": {
+    "defaultMessage": "⟦íš àƒţéř⟧"
+  },
+  "@solo.powersearch.operator.between": {
+    "defaultMessage": "⟦íš ƀéţŵééñ⟧"
+  },
+  "@solo.powersearch.operator.isTrue": {
+    "defaultMessage": "⟦íš ţřúé⟧"
+  },
+  "@solo.powersearch.operator.isFalse": {
+    "defaultMessage": "⟦íš ƒàłšé⟧"
+  },
+  "@solo.powersearch.operator.isAnyOf": {
+    "defaultMessage": "⟦íš àñý óƒ⟧"
+  },
+  "@solo.powersearch.operator.isNoneOf": {
+    "defaultMessage": "⟦íš ñóñé óƒ⟧"
+  },
+  "@solo.powersearch.valueEditor.itemsCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {item} other {items}}⟧"
+  },
+  "@solo.powersearch.valueEditor.entitiesCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {entity} other {entities}}⟧"
+  },
+  "@solo.powersearch.valueEditor.dateRange": {
+    "defaultMessage": "⟦ðàţé řàñĝé⟧"
+  },
+  "@solo.powersearch.valueEditor.filtersCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {filter} other {filters}}⟧"
+  },
+  "@solo.powersearch.resultCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {result} other {results}}⟧"
+  },
+  "@solo.alertDialog.cancel": {
+    "defaultMessage": "⟦Çàñçéł⟧"
+  },
+  "@solo.appShell.mobileNavigation": {
+    "defaultMessage": "⟦Ṁóƀíłé ñàṽíĝàţíóñ⟧"
+  },
+  "@solo.appShell.skipToContent": {
+    "defaultMessage": "⟦Šķíþ ţó çóñţéñţ⟧"
+  },
+  "@solo.avatar.nameWithStatus": {
+    "defaultMessage": "⟦{name}, {status}⟧"
+  },
+  "@solo.avatarGroup.label": {
+    "defaultMessage": "⟦Àṽàţàřš⟧"
+  },
+  "@solo.avatarGroup.keyboardHint": {
+    "defaultMessage": "⟦Úšé àřřóŵ ķéýš ţó ɱóṽé ƀéţŵééñ àṽàţàřš⟧"
+  },
+  "@solo.avatarGroup.overflow": {
+    "defaultMessage": "⟦{count, number} ɱóřé⟧"
+  },
+  "@solo.banner.dismiss": {
+    "defaultMessage": "⟦Ðíšɱíšš⟧"
+  },
+  "@solo.banner.dismissTitled": {
+    "defaultMessage": "⟦{dismiss} {title}⟧"
+  },
+  "@solo.calendar.previousMonth": {
+    "defaultMessage": "⟦Þřéṽíóúš ɱóñţĥ⟧"
+  },
+  "@solo.calendar.nextMonth": {
+    "defaultMessage": "⟦Ñéẋţ ɱóñţĥ⟧"
+  },
+  "@solo.calendar.daySelected": {
+    "defaultMessage": "⟦{date}, šéłéçţéð⟧"
+  },
+  "@solo.calendar.dayRangeStart": {
+    "defaultMessage": "⟦{date}, řàñĝé šţàřţ⟧"
+  },
+  "@solo.calendar.dayRangeEnd": {
+    "defaultMessage": "⟦{date}, řàñĝé éñð⟧"
+  },
+  "@solo.calendar.dayRangeStartAndEnd": {
+    "defaultMessage": "⟦{date}, řàñĝé šţàřţ àñð řàñĝé éñð⟧"
+  },
+  "@solo.calendar.dayInRange": {
+    "defaultMessage": "⟦{date}, íñ řàñĝé⟧"
+  },
+  "@solo.calendar.rangeStartAnnounce": {
+    "defaultMessage": "⟦Šţàřţ ðàţé {date}. Šéłéçţ àñ éñð ðàţé.⟧"
+  },
+  "@solo.calendar.rangeCompleteAnnounce": {
+    "defaultMessage": "⟦Šéłéçţéð řàñĝé: {start} ţó {end}.⟧"
+  },
+  "@solo.calendar.rangeClearedAnnounce": {
+    "defaultMessage": "⟦Çłéàřéð šţàřţ ðàţé {date}. Šéłéçţ à šţàřţ ðàţé.⟧"
+  },
+  "@solo.carousel.label": {
+    "defaultMessage": "⟦Çàřóúšéł⟧"
+  },
+  "@solo.carousel.scrollLeft": {
+    "defaultMessage": "⟦Šçřółł łéƒţ⟧"
+  },
+  "@solo.carousel.scrollRight": {
+    "defaultMessage": "⟦Šçřółł říĝĥţ⟧"
+  },
+  "@solo.carousel.slideLabel": {
+    "defaultMessage": "⟦Šłíðé {current, number} óƒ {total, number}⟧"
+  },
+  "@solo.chart.label": {
+    "defaultMessage": "⟦Çĥàřţ⟧"
+  },
+  "@solo.chart.labelWithSeries": {
+    "defaultMessage": "⟦Çĥàřţ óƒ {series} ƀý {xKey}⟧"
+  },
+  "@solo.chart.dataTableCaption": {
+    "defaultMessage": "⟦{label} ðàţà⟧"
+  },
+  "@solo.chartLegend.label": {
+    "defaultMessage": "⟦Çĥàřţ łéĝéñð⟧"
+  },
+  "@solo.chat.status.sending": {
+    "defaultMessage": "⟦Šéñðíñĝ⟧"
+  },
+  "@solo.chat.status.sent": {
+    "defaultMessage": "⟦Šéñţ⟧"
+  },
+  "@solo.chat.status.delivered": {
+    "defaultMessage": "⟦Ðéłíṽéřéð⟧"
+  },
+  "@solo.chat.status.read": {
+    "defaultMessage": "⟦Řéàð⟧"
+  },
+  "@solo.chat.status.failed": {
+    "defaultMessage": "⟦Ƒàíłéð⟧"
+  },
+  "@solo.chat.messageAriaLabel": {
+    "defaultMessage": "⟦Ṁéššàĝé {status}⟧"
+  },
+  "@solo.chat.pastedText.expand": {
+    "defaultMessage": "⟦Éẋþàñð⟧"
+  },
+  "@solo.checkboxList.item.checkbox": {
+    "defaultMessage": "⟦Çĥéçķƀóẋ⟧"
+  },
+  "@solo.commandPalette.emptySearch": {
+    "defaultMessage": "⟦Ñó řéšúłţš⟧"
+  },
+  "@solo.commandPalette.emptyBootstrap": {
+    "defaultMessage": "⟦Ţýþé ţó šéàřçĥ⟧"
+  },
+  "@solo.commandPalette.resultCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {result} other {results}}⟧"
+  },
+  "@solo.commandPalette.noResultsFor": {
+    "defaultMessage": "⟦Ñó řéšúłţš ƒóř {query}⟧"
+  },
+  "@solo.commandPalette.loading": {
+    "defaultMessage": "⟦Łóàðíñĝ⟧"
+  },
+  "@solo.dateRangeInput.presetDateRanges": {
+    "defaultMessage": "⟦Þřéšéţ ðàţé řàñĝéš⟧"
+  },
+  "@solo.dateTimeInput.timePlaceholder": {
+    "defaultMessage": "⟦Šéłéçţ à ţíɱé⟧"
+  },
+  "@solo.dialog.close": {
+    "defaultMessage": "⟦Çłóšé⟧"
+  },
+  "@solo.dropdownMenu.label": {
+    "defaultMessage": "⟦Ṁéñú⟧"
+  },
+  "@solo.dropdownMenu.back": {
+    "defaultMessage": "⟦Ɓàçķ⟧"
+  },
+  "@solo.dropdownMenu.backTo": {
+    "defaultMessage": "⟦Ɓàçķ ţó {parent}⟧"
+  },
+  "@solo.lightbox.close": {
+    "defaultMessage": "⟦Çłóšé⟧"
+  },
+  "@solo.lightbox.previous": {
+    "defaultMessage": "⟦Þřéṽíóúš⟧"
+  },
+  "@solo.lightbox.next": {
+    "defaultMessage": "⟦Ñéẋţ⟧"
+  },
+  "@solo.chatTypingIndicator.one": {
+    "defaultMessage": "⟦{name} íš ţýþíñĝ…⟧"
+  },
+  "@solo.chatTypingIndicator.many": {
+    "defaultMessage": "⟦{names} àřé ţýþíñĝ…⟧"
+  },
+  "@solo.chatTypingIndicator.others": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {other} other {others}}⟧"
+  },
+  "@solo.listInput.emptyTitle": {
+    "defaultMessage": "⟦Ñó {itemName}š ýéţ⟧"
+  },
+  "@solo.listInput.emptyDescription": {
+    "defaultMessage": "⟦Àðð à {itemName} ţó ĝéţ šţàřţéð.⟧"
+  },
+  "@solo.listInput.addItem": {
+    "defaultMessage": "⟦Àðð {itemName}⟧"
+  },
+  "@solo.listInput.removeItem": {
+    "defaultMessage": "⟦Řéɱóṽé {itemName} {position, number}⟧"
+  },
+  "@solo.listInput.removeUnavailable": {
+    "defaultMessage": "⟦Řéɱóṽé íš úñàṽàíłàƀłé ŵĥíłé ţĥé łíšţ íš ðíšàƀłéð⟧"
+  },
+  "@solo.listInput.reorderItem": {
+    "defaultMessage": "⟦Řéóřðéř {itemName} {position, number}⟧"
+  },
+  "@solo.listInput.fieldLabelWithPosition": {
+    "defaultMessage": "⟦{header}, {itemName} {position, number} óƒ {total, number}⟧"
+  },
+  "@solo.listInput.reorderInstructions": {
+    "defaultMessage": "⟦Úšé Àřřóŵ Úþ óř Àřřóŵ Ðóŵñ ţó ɱóṽé ţĥíš íţéɱ óñé þóšíţíóñ. Þřéšš Šþàçé óř Éñţéř ţó þíçķ íţ úþ ƒóř éẋţéñðéð ķéýƀóàřð řéóřðéříñĝ.⟧"
+  },
+  "@solo.listInput.announceAdded": {
+    "defaultMessage": "⟦Àððéð {itemName} {position, number}.⟧"
+  },
+  "@solo.listInput.announceRemoved": {
+    "defaultMessage": "⟦Řéɱóṽéð {itemName} {position, number}.⟧"
+  },
+  "@solo.listInput.announceGrabbed": {
+    "defaultMessage": "⟦{itemName} {position, number} ĝřàƀƀéð. Úšé àřřóŵ ķéýš ţó ɱóṽé, Šþàçé óř Éñţéř ţó ðřóþ, àñð Éšçàþé ţó çàñçéł.⟧"
+  },
+  "@solo.listInput.announceMovedToPosition": {
+    "defaultMessage": "⟦{itemName} ɱóṽéð ţó þóšíţíóñ {position, number} óƒ {total, number}.⟧"
+  },
+  "@solo.listInput.announceReorderCancelled": {
+    "defaultMessage": "⟦Řéóřðéříñĝ çàñçéłłéð.⟧"
+  },
+  "@solo.listInput.announceReturnedToPosition": {
+    "defaultMessage": "⟦{itemName} řéţúřñéð ţó þóšíţíóñ {position, number}.⟧"
+  },
+  "@solo.listInput.announceDropped": {
+    "defaultMessage": "⟦{itemName} ðřóþþéð àţ þóšíţíóñ {position, number} óƒ {total, number}.⟧"
+  },
+  "@solo.listInput.announceAlreadyAtBoundary": {
+    "defaultMessage": "⟦Ţĥíš {itemName} íš àłřéàðý {boundary, select, first {first} last {last} other {}}.⟧"
+  },
+  "@solo.markdownHeadingLinks.copied": {
+    "defaultMessage": "⟦Łíñķ çóþíéð⟧"
+  },
+  "@solo.markdownHeadingLinks.copy": {
+    "defaultMessage": "⟦Çóþý łíñķ ţó {heading}⟧"
+  },
+  "@solo.markdown.taskList": {
+    "defaultMessage": "⟦Ţàšķ łíšţ⟧"
+  },
+  "@solo.markdown.table": {
+    "defaultMessage": "⟦Ţàƀłé⟧"
+  },
+  "@solo.mobileNav.closeNavigation": {
+    "defaultMessage": "⟦Çłóšé ñàṽíĝàţíóñ⟧"
+  },
+  "@solo.multiSelector.selectAll": {
+    "defaultMessage": "⟦Šéłéçţ àłł⟧"
+  },
+  "@solo.multiSelector.searchPlaceholder": {
+    "defaultMessage": "⟦Šéàřçĥ…⟧"
+  },
+  "@solo.multiSelector.searchOptions": {
+    "defaultMessage": "⟦Šéàřçĥ óþţíóñš⟧"
+  },
+  "@solo.multiSelector.empty": {
+    "defaultMessage": "⟦Ñó óþţíóñš⟧"
+  },
+  "@solo.multiSelector.selectAllPartiallySelected": {
+    "defaultMessage": "⟦{label}, þàřţíàłłý šéłéçţéð⟧"
+  },
+  "@solo.popover.close": {
+    "defaultMessage": "⟦Çłóšé þóþóṽéř⟧"
+  },
+  "@solo.selector.searchPlaceholder": {
+    "defaultMessage": "⟦Šéàřçĥ…⟧"
+  },
+  "@solo.selector.searchOptions": {
+    "defaultMessage": "⟦Šéàřçĥ óþţíóñš⟧"
+  },
+  "@solo.selector.empty": {
+    "defaultMessage": "⟦Ñó óþţíóñš⟧"
+  },
+  "@solo.sideNav.label": {
+    "defaultMessage": "⟦Šíðé ñàṽíĝàţíóñ⟧"
+  },
+  "@solo.sideNav.resizeSidebar": {
+    "defaultMessage": "⟦Řéšížé šíðéƀàř⟧"
+  },
+  "@solo.sideNav.heading.openMenu": {
+    "defaultMessage": "⟦Óþéñ ɱéñú⟧"
+  },
+  "@solo.tabList.label": {
+    "defaultMessage": "⟦Ţàƀš⟧"
+  },
+  "@solo.table.label": {
+    "defaultMessage": "⟦Ţàƀłé⟧"
+  },
+  "@solo.table.noData": {
+    "defaultMessage": "⟦Ñó ðàţà⟧"
+  },
+  "@solo.table.filter.allPlaceholder": {
+    "defaultMessage": "⟦Àłł⟧"
+  },
+  "@solo.table.filter.reset": {
+    "defaultMessage": "⟦Řéšéţ⟧"
+  },
+  "@solo.table.filter.apply": {
+    "defaultMessage": "⟦Àþþłý⟧"
+  },
+  "@solo.table.rowStatus.columnHeader": {
+    "defaultMessage": "⟦Řóŵ šţàţúš⟧"
+  },
+  "@solo.table.selection.bulkActionsLabel": {
+    "defaultMessage": "⟦Ɓúłķ àçţíóñš⟧"
+  },
+  "@solo.table.selection.clearAll": {
+    "defaultMessage": "⟦Úñšéłéçţ Àłł⟧"
+  },
+  "@solo.table.selection.selectedCount": {
+    "defaultMessage": "⟦{count, number} šéłéçţéð⟧"
+  },
+  "@solo.table.selection.selectAllRows": {
+    "defaultMessage": "⟦Šéłéçţ àłł řóŵš⟧"
+  },
+  "@solo.table.selection.selectRow": {
+    "defaultMessage": "⟦Šéłéçţ řóŵ⟧"
+  },
+  "@solo.table.selection.selectRowNamed": {
+    "defaultMessage": "⟦Šéłéçţ {label}⟧"
+  },
+  "@solo.table.sort.ascending": {
+    "defaultMessage": "⟦Šóřţ àšçéñðíñĝ⟧"
+  },
+  "@solo.table.sort.descending": {
+    "defaultMessage": "⟦Šóřţ ðéšçéñðíñĝ⟧"
+  },
+  "@solo.table.sort.clear": {
+    "defaultMessage": "⟦Çłéàř šóřţ⟧"
+  },
+  "@solo.table.sort.direction.ascending": {
+    "defaultMessage": "⟦àšçéñðíñĝ⟧"
+  },
+  "@solo.table.sort.direction.descending": {
+    "defaultMessage": "⟦ðéšçéñðíñĝ⟧"
+  },
+  "@solo.table.sort.sortBy": {
+    "defaultMessage": "⟦Šóřţ ƀý {label}⟧"
+  },
+  "@solo.table.sort.sortedBy": {
+    "defaultMessage": "⟦Šóřţ ƀý {label}, šóřţéð {direction}⟧"
+  },
+  "@solo.table.sort.sortedByWithPriority": {
+    "defaultMessage": "⟦Šóřţ ƀý {label}, šóřţéð {direction}, þříóříţý {rank, number} óƒ {total, number}⟧"
+  },
+  "@solo.toast.dismiss": {
+    "defaultMessage": "⟦Ðíšɱíšš ñóţíƒíçàţíóñ⟧"
+  },
+  "@solo.toast.viewport": {
+    "defaultMessage": "⟦Ñóţíƒíçàţíóñš⟧"
+  },
+  "@solo.tokenizer.clearAll": {
+    "defaultMessage": "⟦Çłéàř àłł⟧"
+  },
+  "@solo.topNav.heading.openMenu": {
+    "defaultMessage": "⟦Óþéñ ɱéñú⟧"
+  },
+  "@solo.topNav.landmarkLabel": {
+    "defaultMessage": "⟦Ţóþ ñàṽíĝàţíóñ⟧"
+  },
+  "@solo.treeList.toggleChildren": {
+    "defaultMessage": "⟦Ţóĝĝłé çĥíłðřéñ⟧"
+  },
+  "@solo.typeahead.emptySearchResults": {
+    "defaultMessage": "⟦Ñó řéšúłţš ƒóúñð⟧"
+  },
+  "@solo.typeahead.loading": {
+    "defaultMessage": "⟦Łóàðíñĝ⟧"
+  },
+  "@solo.typeahead.searchResults": {
+    "defaultMessage": "⟦Šéàřçĥ řéšúłţš⟧"
+  },
+  "@solo.typeahead.clearSelection": {
+    "defaultMessage": "⟦Çłéàř šéłéçţíóñ⟧"
+  },
+  "@solo.breadcrumbs.label": {
+    "defaultMessage": "⟦Ɓřéàðçřúɱƀ⟧"
+  },
+  "@solo.chat.composer.placeholder": {
+    "defaultMessage": "⟦Ţýþé à ɱéššàĝé…⟧"
+  },
+  "@solo.chat.composerDrawer.label": {
+    "defaultMessage": "⟦Íţéɱš⟧"
+  },
+  "@solo.chat.composerInput.label": {
+    "defaultMessage": "⟦Ṁéššàĝé íñþúţ⟧"
+  },
+  "@solo.chat.speechRecognition.noSpeechDetected": {
+    "defaultMessage": "⟦Ñó šþééçĥ ŵàš ðéţéçţéð.⟧"
+  },
+  "@solo.commandPalette.label": {
+    "defaultMessage": "⟦Çóɱɱàñð þàłéţţé⟧"
+  },
+  "@solo.commandPalette.input.placeholder": {
+    "defaultMessage": "⟦Šéàřçĥ…⟧"
+  },
+  "@solo.commandPalette.list.label": {
+    "defaultMessage": "⟦Çóɱɱàñðš⟧"
+  },
+  "@solo.contextMenu.label": {
+    "defaultMessage": "⟦Çóñţéẋţ ɱéñú⟧"
+  },
+  "@solo.dateInput.placeholder": {
+    "defaultMessage": "⟦Šéłéçţ à ðàţé⟧"
+  },
+  "@solo.dateInput.dialogLabel": {
+    "defaultMessage": "⟦Çĥóóšé ðàţé⟧"
+  },
+  "@solo.dateInput.closeCalendar": {
+    "defaultMessage": "⟦Çłóšé çàłéñðàř⟧"
+  },
+  "@solo.dateInput.openCalendar": {
+    "defaultMessage": "⟦Óþéñ çàłéñðàř⟧"
+  },
+  "@solo.dateInput.toggleCalendarClose": {
+    "defaultMessage": "⟦Çłóšé çàłéñðàř⟧"
+  },
+  "@solo.dateInput.clear": {
+    "defaultMessage": "⟦Çłéàř {label}⟧"
+  },
+  "@solo.dateInput.invalidDate": {
+    "defaultMessage": "⟦Íñṽàłíð ðàţé⟧"
+  },
+  "@solo.dateInput.resetPicking": {
+    "defaultMessage": "⟦Řéšéţ⟧"
+  },
+  "@solo.dateInput.savePicking": {
+    "defaultMessage": "⟦Šàṽé⟧"
+  },
+  "@solo.dateInput.doneChoosingMonth": {
+    "defaultMessage": "⟦Ðóñé⟧"
+  },
+  "@solo.dateInput.chooseMonthYear": {
+    "defaultMessage": "⟦{monthYear}, Çĥóóšé ɱóñţĥ àñð ýéàř⟧"
+  },
+  "@solo.dateInput.monthWheel": {
+    "defaultMessage": "⟦Ṁóñţĥ⟧"
+  },
+  "@solo.dateInput.yearWheel": {
+    "defaultMessage": "⟦Ýéàř⟧"
+  },
+  "@solo.dateTimeInput.timeHint12h": {
+    "defaultMessage": "⟦é.ĝ., 2:30 ÞṀ⟧"
+  },
+  "@solo.dateTimeInput.timeHint24h": {
+    "defaultMessage": "⟦é.ĝ., 14:30⟧"
+  },
+  "@solo.dateTimeInput.timeSuffix": {
+    "defaultMessage": "⟦{label} ţíɱé⟧"
+  },
+  "@solo.dateTimeInput.timeOptionsLabel": {
+    "defaultMessage": "⟦{label} óþţíóñš⟧"
+  },
+  "@solo.dateRangeInput.placeholder": {
+    "defaultMessage": "⟦Šéłéçţ ðàţé řàñĝé⟧"
+  },
+  "@solo.dateRangeInput.dialogLabel": {
+    "defaultMessage": "⟦Çĥóóšé ðàţé řàñĝé⟧"
+  },
+  "@solo.dateTimeInput.placeholder": {
+    "defaultMessage": "⟦Šéłéçţ à ðàţé⟧"
+  },
+  "@solo.dateTimeInput.dialogLabel": {
+    "defaultMessage": "⟦Çĥóóšé ðàţé àñð ţíɱé⟧"
+  },
+  "@solo.dateTimeInput.pickerMode": {
+    "defaultMessage": "⟦Ðàţé/ţíɱé šéçţíóñ⟧"
+  },
+  "@solo.dateTimeInput.dateTab": {
+    "defaultMessage": "⟦Ðàţé⟧"
+  },
+  "@solo.dateTimeInput.timeTab": {
+    "defaultMessage": "⟦Ţíɱé⟧"
+  },
+  "@solo.dateTimeInput.openTimePicker": {
+    "defaultMessage": "⟦Óþéñ {label}⟧"
+  },
+  "@solo.dateTimeInput.saveDatePicking": {
+    "defaultMessage": "⟦Šàṽé ðàţé⟧"
+  },
+  "@solo.dateTimeInput.hourWheel": {
+    "defaultMessage": "⟦Ĥóúř⟧"
+  },
+  "@solo.dateTimeInput.minuteWheel": {
+    "defaultMessage": "⟦Ṁíñúţé⟧"
+  },
+  "@solo.dateTimeInput.secondWheel": {
+    "defaultMessage": "⟦Šéçóñð⟧"
+  },
+  "@solo.dateTimeInput.meridiemWheel": {
+    "defaultMessage": "⟦ÀṀ/ÞṀ⟧"
+  },
+  "@solo.dateTimeInput.meridiemAM": {
+    "defaultMessage": "⟦ÀṀ⟧"
+  },
+  "@solo.dateTimeInput.meridiemPM": {
+    "defaultMessage": "⟦ÞṀ⟧"
+  },
+  "@solo.link.newTab": {
+    "defaultMessage": "⟦(óþéñš íñ ñéŵ ţàƀ)⟧"
+  },
+  "@solo.mobileNav.toggle.open": {
+    "defaultMessage": "⟦Óþéñ ñàṽíĝàţíóñ⟧"
+  },
+  "@solo.moreMenu.label": {
+    "defaultMessage": "⟦Ṁóřé óþţíóñš⟧"
+  },
+  "@solo.multiSelector.selectPlaceholder": {
+    "defaultMessage": "⟦Šéłéçţ…⟧"
+  },
+  "@solo.outline.label": {
+    "defaultMessage": "⟦Ţàƀłé óƒ çóñţéñţš⟧"
+  },
+  "@solo.powersearch.label": {
+    "defaultMessage": "⟦Šéàřçĥ⟧"
+  },
+  "@solo.powersearch.placeholder": {
+    "defaultMessage": "⟦Šéàřçĥ…⟧"
+  },
+  "@solo.resizable.collapsed": {
+    "defaultMessage": "⟦Çółłàþšéð⟧"
+  },
+  "@solo.resizable.handle.label": {
+    "defaultMessage": "⟦Řéšížé ĥàñðłé⟧"
+  },
+  "@solo.selector.placeholder": {
+    "defaultMessage": "⟦Šéłéçţ…⟧"
+  },
+  "@solo.sideNav.heading.dialogLabel": {
+    "defaultMessage": "⟦Ñàṽíĝàţíóñ ɱéñú⟧"
+  },
+  "@solo.table.pagination.label": {
+    "defaultMessage": "⟦Ţàƀłé þàĝíñàţíóñ⟧"
+  },
+  "@solo.table.pagination.labelAbove": {
+    "defaultMessage": "⟦{label} (ţóþ)⟧"
+  },
+  "@solo.table.pagination.labelBelow": {
+    "defaultMessage": "⟦{label} (ƀóţţóɱ)⟧"
+  },
+  "@solo.timeInput.placeholder": {
+    "defaultMessage": "⟦Šéłéçţ à ţíɱé⟧"
+  },
+  "@solo.timeInput.invalidTime": {
+    "defaultMessage": "⟦Íñṽàłíð ţíɱé⟧"
+  },
+  "@solo.timeInput.openPicker": {
+    "defaultMessage": "⟦Óþéñ {label}⟧"
+  },
+  "@solo.topNav.heading.dialogLabel": {
+    "defaultMessage": "⟦Ñàṽíĝàţíóñ ɱéñú⟧"
+  },
+  "@solo.typeahead.searchPlaceholder": {
+    "defaultMessage": "⟦Šéàřçĥ…⟧"
+  },
+  "@solo.banner.collapse": {
+    "defaultMessage": "⟦Çółłàþšé⟧"
+  },
+  "@solo.banner.expand": {
+    "defaultMessage": "⟦Éẋþàñð⟧"
+  },
+  "@solo.button.loading": {
+    "defaultMessage": "⟦Łóàðíñĝ⟧"
+  },
+  "@solo.spinner.loading": {
+    "defaultMessage": "⟦Łóàðíñĝ⟧"
+  },
+  "@solo.chatComposerDrawer.expand": {
+    "defaultMessage": "⟦Éẋþàñð {label}⟧"
+  },
+  "@solo.chatComposerDrawer.collapse": {
+    "defaultMessage": "⟦Çółłàþšé {label}⟧"
+  },
+  "@solo.chatDictationButton.startDictation": {
+    "defaultMessage": "⟦Šţàřţ ðíçţàţíóñ⟧"
+  },
+  "@solo.chatDictationButton.stopDictation": {
+    "defaultMessage": "⟦Šţóþ ðíçţàţíóñ⟧"
+  },
+  "@solo.chatLayout.newMessages": {
+    "defaultMessage": "⟦Ñéŵ ɱéššàĝéš⟧"
+  },
+  "@solo.chatLayoutScrollButton.scrollToBottom": {
+    "defaultMessage": "⟦Šçřółł ţó ƀóţţóɱ⟧"
+  },
+  "@solo.chatMessage.messageFrom": {
+    "defaultMessage": "⟦Ṁéššàĝé ƒřóɱ {sender}⟧"
+  },
+  "@solo.chatSendButton.stop": {
+    "defaultMessage": "⟦Šţóþ⟧"
+  },
+  "@solo.chatSendButton.send": {
+    "defaultMessage": "⟦Šéñð⟧"
+  },
+  "@solo.chatToolCalls.error": {
+    "defaultMessage": "⟦Éřřóř: {message}⟧"
+  },
+  "@solo.chatToolCalls.status.pending": {
+    "defaultMessage": "⟦Þéñðíñĝ⟧"
+  },
+  "@solo.chatToolCalls.status.running": {
+    "defaultMessage": "⟦Řúññíñĝ⟧"
+  },
+  "@solo.chatToolCalls.status.complete": {
+    "defaultMessage": "⟦Çóɱþłéţé⟧"
+  },
+  "@solo.chatToolCalls.status.error": {
+    "defaultMessage": "⟦Ƒàíłéð⟧"
+  },
+  "@solo.chatToolCalls.groupLabel": {
+    "defaultMessage": "⟦{count} ţóół çàłłš⟧"
+  },
+  "@solo.chatTriggerMenu.suggestions": {
+    "defaultMessage": "⟦Šúĝĝéšţíóñš⟧"
+  },
+  "@solo.citation.label": {
+    "defaultMessage": "⟦Çíţàţíóñ {number}: {title}⟧"
+  },
+  "@solo.codeBlock.copied": {
+    "defaultMessage": "⟦Çóþíéð⟧"
+  },
+  "@solo.codeBlock.copyCode": {
+    "defaultMessage": "⟦Çóþý çóðé⟧"
+  },
+  "@solo.codeBlock.code": {
+    "defaultMessage": "⟦Çóðé⟧"
+  },
+  "@solo.field.optional": {
+    "defaultMessage": "⟦Óþţíóñàł⟧"
+  },
+  "@solo.field.required": {
+    "defaultMessage": "⟦Řéɋúířéð⟧"
+  },
+  "@solo.fileInput.clearLabel": {
+    "defaultMessage": "⟦Çłéàř {label}⟧"
+  },
+  "@solo.fileInput.dropHint": {
+    "defaultMessage": "⟦Ðřóþ ƒíłéš ĥéřé⟧"
+  },
+  "@solo.fileInput.errorInvalidType": {
+    "defaultMessage": "⟦\"{fileName}\" íš ñóţ àñ àççéþţéð ƒíłé ţýþé⟧"
+  },
+  "@solo.fileInput.errorMaxFiles": {
+    "defaultMessage": "⟦Ṁàẋíɱúɱ {maxFiles} ƒíłéš àłłóŵéð⟧"
+  },
+  "@solo.fileInput.errorMaxSize": {
+    "defaultMessage": "⟦\"{fileName}\" éẋçééðš {maxSize} łíɱíţ⟧"
+  },
+  "@solo.fileInput.fileSelected": {
+    "defaultMessage": "⟦1 ƒíłé šéłéçţéð: {fileName}⟧"
+  },
+  "@solo.fileInput.filesSelected": {
+    "defaultMessage": "⟦{count} ƒíłéš šéłéçţéð⟧"
+  },
+  "@solo.fileInput.placeholder": {
+    "defaultMessage": "⟦Çĥóóšé ƒíłé⟧"
+  },
+  "@solo.fileInput.placeholderMultiple": {
+    "defaultMessage": "⟦Çĥóóšé ƒíłéš⟧"
+  },
+  "@solo.fileInput.required": {
+    "defaultMessage": "⟦Řéɋúířéð⟧"
+  },
+  "@solo.fileInput.triggerWithFiles": {
+    "defaultMessage": "⟦{label}, {fileNames}⟧"
+  },
+  "@solo.keyboardHint.toNavigate": {
+    "defaultMessage": "⟦ţó ñàṽíĝàţé⟧"
+  },
+  "@solo.lightbox.mediaViewer": {
+    "defaultMessage": "⟦Ṁéðíà ṽíéŵéř⟧"
+  },
+  "@solo.lightbox.zoom": {
+    "defaultMessage": "⟦Žóóɱ⟧"
+  },
+  "@solo.lightbox.zoomedIn": {
+    "defaultMessage": "⟦Žóóɱéð íñ, úšé àřřóŵ ķéýš ţó þàñ⟧"
+  },
+  "@solo.lightbox.zoomedOut": {
+    "defaultMessage": "⟦Žóóɱéð óúţ⟧"
+  },
+  "@solo.metadataList.showMore": {
+    "defaultMessage": "⟦Šĥóŵ ɱóřé⟧"
+  },
+  "@solo.metadataList.showLess": {
+    "defaultMessage": "⟦Šĥóŵ łéšš⟧"
+  },
+  "@solo.mobileNav.navigation": {
+    "defaultMessage": "⟦Ñàṽíĝàţíóñ⟧"
+  },
+  "@solo.multiSelector.clearAll": {
+    "defaultMessage": "⟦Çłéàř àłł {label}⟧"
+  },
+  "@solo.input.readOnly": {
+    "defaultMessage": "⟦Řéàð óñłý⟧"
+  },
+  "@solo.input.statusButton.error": {
+    "defaultMessage": "⟦Éřřóř ðéţàíłš⟧"
+  },
+  "@solo.input.statusButton.warning": {
+    "defaultMessage": "⟦Ŵàřñíñĝ ðéţàíłš⟧"
+  },
+  "@solo.input.statusButton.success": {
+    "defaultMessage": "⟦Šúççéšš ðéţàíłš⟧"
+  },
+  "@solo.numberInput.clearLabel": {
+    "defaultMessage": "⟦Çłéàř {label}⟧"
+  },
+  "@solo.numberInput.decrementLabel": {
+    "defaultMessage": "⟦Ðéçřéɱéñţ {label}⟧"
+  },
+  "@solo.numberInput.incrementLabel": {
+    "defaultMessage": "⟦Íñçřéɱéñţ {label}⟧"
+  },
+  "@solo.selector.clearLabel": {
+    "defaultMessage": "⟦Çłéàř {label}⟧"
+  },
+  "@solo.sideNavCollapseButton.expandSidebar": {
+    "defaultMessage": "⟦Éẋþàñð šíðéƀàř⟧"
+  },
+  "@solo.sideNavCollapseButton.collapseSidebar": {
+    "defaultMessage": "⟦Çółłàþšé šíðéƀàř⟧"
+  },
+  "@solo.sideNavItem.expand": {
+    "defaultMessage": "⟦Éẋþàñð {label}⟧"
+  },
+  "@solo.sideNavItem.collapse": {
+    "defaultMessage": "⟦Çółłàþšé {label}⟧"
+  },
+  "@solo.sideNavItem.submenuLabel": {
+    "defaultMessage": "⟦{label} šúƀɱéñú⟧"
+  },
+  "@solo.tableFiltering.filterByColumn": {
+    "defaultMessage": "⟦Ƒíłţéř {header}⟧"
+  },
+  "@solo.tableGroupedRows.expandGroup": {
+    "defaultMessage": "⟦Éẋþàñð ĝřóúþ {groupKey}⟧"
+  },
+  "@solo.tableGroupedRows.collapseGroup": {
+    "defaultMessage": "⟦Çółłàþšé ĝřóúþ {groupKey}⟧"
+  },
+  "@solo.tableRowExpansion.collapseRow": {
+    "defaultMessage": "⟦Çółłàþšé řóŵ⟧"
+  },
+  "@solo.tableRowExpansion.expandRow": {
+    "defaultMessage": "⟦Éẋþàñð řóŵ⟧"
+  },
+  "@solo.tableRowExpansion.columnHeader": {
+    "defaultMessage": "⟦Řóŵ éẋþàñšíóñ⟧"
+  },
+  "@solo.tableRowExpansion.collapseAllRows": {
+    "defaultMessage": "⟦Çółłàþšé àłł řóŵš⟧"
+  },
+  "@solo.tableRowExpansion.expandAllRows": {
+    "defaultMessage": "⟦Éẋþàñð àłł řóŵš⟧"
+  },
+  "@solo.stepper.label": {
+    "defaultMessage": "⟦Þřóĝřéšš⟧"
+  },
+  "@solo.stepper.previousStep": {
+    "defaultMessage": "⟦Þřéṽíóúš šţéþ⟧"
+  },
+  "@solo.stepper.nextStep": {
+    "defaultMessage": "⟦Ñéẋţ šţéþ⟧"
+  },
+  "@solo.step.goToStep": {
+    "defaultMessage": "⟦Ĝó ţó šţéþ {stepNumber, number}: {label}⟧"
+  },
+  "@solo.step.goToStepWithStatus": {
+    "defaultMessage": "⟦Ĝó ţó šţéþ {stepNumber, number}: {label}, {status}⟧"
+  },
+  "@solo.step.optional": {
+    "defaultMessage": "⟦Óþţíóñàł⟧"
+  },
+  "@solo.step.status.completed": {
+    "defaultMessage": "⟦çóɱþłéţéð⟧"
+  },
+  "@solo.step.status.warning": {
+    "defaultMessage": "⟦ŵàřñíñĝ⟧"
+  },
+  "@solo.step.status.error": {
+    "defaultMessage": "⟦éřřóř⟧"
+  },
+  "@solo.switch.loading": {
+    "defaultMessage": "⟦Łóàðíñĝ⟧"
+  },
+  "@solo.tableTree.collapseRow": {
+    "defaultMessage": "⟦Çółłàþšé řóŵ⟧"
+  },
+  "@solo.tableTree.expandRow": {
+    "defaultMessage": "⟦Éẋþàñð řóŵ⟧"
+  },
+  "@solo.tableTree.collapseAllRows": {
+    "defaultMessage": "⟦Çółłàþšé àłł řóŵš⟧"
+  },
+  "@solo.tableTree.expandAllRows": {
+    "defaultMessage": "⟦Éẋþàñð àłł řóŵš⟧"
+  },
+  "@solo.textArea.charactersRemaining": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {character} other {characters}} řéɱàíñíñĝ⟧"
+  },
+  "@solo.textArea.charactersOverLimit": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {character} other {characters}} óṽéř ţĥé łíɱíţ⟧"
+  },
+  "@solo.textInput.clearLabel": {
+    "defaultMessage": "⟦Çłéàř {label}⟧"
+  },
+  "@solo.thumbnail.remove": {
+    "defaultMessage": "⟦Řéɱóṽé {accessibleName}⟧"
+  },
+  "@solo.thumbnail.open": {
+    "defaultMessage": "⟦Óþéñ {accessibleName}⟧"
+  },
+  "@solo.thumbnail.fallbackName": {
+    "defaultMessage": "⟦Ţĥúɱƀñàíł⟧"
+  },
+  "@solo.timeInput.clearLabel": {
+    "defaultMessage": "⟦Çłéàř {label}⟧"
+  },
+  "@solo.timestamp.copyValue": {
+    "defaultMessage": "⟦Çóþý {value}⟧"
+  },
+  "@solo.timestamp.copy": {
+    "defaultMessage": "⟦Çóþý⟧"
+  },
+  "@solo.timestamp.copied": {
+    "defaultMessage": "⟦Çóþíéð⟧"
+  },
+  "@solo.timestamp.detailsLabel": {
+    "defaultMessage": "⟦Ţíɱéšţàɱþ ðéţàíłš⟧"
+  },
+  "@solo.token.remove": {
+    "defaultMessage": "⟦Řéɱóṽé {label}⟧"
+  },
+  "@solo.commandPalette.footer.navigate": {
+    "defaultMessage": "⟦Ñàṽíĝàţé⟧"
+  },
+  "@solo.commandPalette.footer.select": {
+    "defaultMessage": "⟦Šéłéçţ⟧"
+  },
+  "@solo.commandPalette.footer.close": {
+    "defaultMessage": "⟦Çłóšé⟧"
+  },
+  "@solo.multiSelector.selectionCleared": {
+    "defaultMessage": "⟦Šéłéçţíóñ çłéàřéð⟧"
+  },
+  "@solo.multiSelector.allSelected": {
+    "defaultMessage": "⟦Àłł šéłéçţéð⟧"
+  },
+  "@solo.multiSelector.selectionCount": {
+    "defaultMessage": "⟦{count, number} óƒ {total, number} šéłéçţéð⟧"
+  },
+  "@solo.multiSelector.emptySearchResults": {
+    "defaultMessage": "⟦Ñó řéšúłţš ƒóúñð⟧"
+  },
+  "@solo.multiSelector.resultCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {result} other {results}}⟧"
+  },
+  "@solo.selector.emptySearchResults": {
+    "defaultMessage": "⟦Ñó řéšúłţš ƒóúñð⟧"
+  },
+  "@solo.selector.resultCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {result} other {results}}⟧"
+  },
+  "@solo.typeahead.resultCount": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {result} other {results}}⟧"
+  },
+  "@solo.tokenizer.tokenAdded": {
+    "defaultMessage": "⟦Àððéð {label}⟧"
+  },
+  "@solo.tokenizer.tokenRemoved": {
+    "defaultMessage": "⟦Řéɱóṽéð {label}⟧"
+  },
+  "@solo.lightbox.imagePosition": {
+    "defaultMessage": "⟦Íɱàĝé {index, number} óƒ {total, number}⟧"
+  },
+  "@solo.lightbox.mediaPosition": {
+    "defaultMessage": "⟦{alt}, {index, number} óƒ {total, number}⟧"
+  },
+  "@solo.transferList.selectedLabel": {
+    "defaultMessage": "⟦Šéłéçţéð⟧"
+  },
+  "@solo.transferList.availableLabel": {
+    "defaultMessage": "⟦Àṽàíłàƀłé⟧"
+  },
+  "@solo.transferList.ungroupedLabel": {
+    "defaultMessage": "⟦Óţĥéř⟧"
+  },
+  "@solo.transferList.searchPlaceholder": {
+    "defaultMessage": "⟦Šéàřçĥ…⟧"
+  },
+  "@solo.transferList.searchLabel": {
+    "defaultMessage": "⟦Šéàřçĥ {label}⟧"
+  },
+  "@solo.transferList.selectedEmpty": {
+    "defaultMessage": "⟦Ñó šéłéçţéð óþţíóñš⟧"
+  },
+  "@solo.transferList.availableEmpty": {
+    "defaultMessage": "⟦Ñó àṽàíłàƀłé óþţíóñš⟧"
+  },
+  "@solo.transferList.noResults": {
+    "defaultMessage": "⟦Ñó řéšúłţš⟧"
+  },
+  "@solo.transferList.clear": {
+    "defaultMessage": "⟦Çłéàř⟧"
+  },
+  "@solo.transferList.addAll": {
+    "defaultMessage": "⟦Àðð àłł⟧"
+  },
+  "@solo.transferList.addOption": {
+    "defaultMessage": "⟦Àðð {label}⟧"
+  },
+  "@solo.transferList.removeOption": {
+    "defaultMessage": "⟦Řéɱóṽé {label}⟧"
+  },
+  "@solo.transferList.reorderOption": {
+    "defaultMessage": "⟦Řéóřðéř {label}⟧"
+  },
+  "@solo.transferList.transferDisabled": {
+    "defaultMessage": "⟦{label} çàññóţ ƀé ɱóṽéð⟧"
+  },
+  "@solo.transferList.reorderDisabled": {
+    "defaultMessage": "⟦{label} çàññóţ ƀé řéóřðéřéð⟧"
+  },
+  "@solo.transferList.reorderInstructions": {
+    "defaultMessage": "⟦Þřéšš Šþàçé óř Éñţéř ţó þíçķ úþ àñ íţéɱ. Úšé Àřřóŵ Úþ, Àřřóŵ Ðóŵñ, Ĥóɱé, óř Éñð ţó ɱóṽé íţ. Þřéšš Šþàçé óř Éñţéř ţó ðřóþ, óř Éšçàþé ţó çàñçéł.⟧"
+  },
+  "@solo.transferList.announceAdded": {
+    "defaultMessage": "⟦{label} àððéð. {count, number} {count, plural, one {item} other {items}} šéłéçţéð.⟧"
+  },
+  "@solo.transferList.announceRemoved": {
+    "defaultMessage": "⟦{label} řéɱóṽéð. {count, number} {count, plural, one {item} other {items}} šéłéçţéð.⟧"
+  },
+  "@solo.transferList.announceBulkAdded": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {item} other {items}} àððéð.⟧"
+  },
+  "@solo.transferList.announceBulkRemoved": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {item} other {items}} řéɱóṽéð.⟧"
+  },
+  "@solo.transferList.announceGrabbed": {
+    "defaultMessage": "⟦{label} þíçķéð úþ, þóšíţíóñ {position, number} óƒ {total, number}. Úšé àřřóŵ ķéýš ţó ɱóṽé, Šþàçé óř Éñţéř ţó ðřóþ, óř Éšçàþé ţó çàñçéł.⟧"
+  },
+  "@solo.transferList.announceMoveCancelled": {
+    "defaultMessage": "⟦{label} ɱóṽé çàñçéłłéð.⟧"
+  },
+  "@solo.transferList.announceDropped": {
+    "defaultMessage": "⟦{label} ðřóþþéð àţ þóšíţíóñ {position, number} óƒ {total, number}.⟧"
+  },
+  "@solo.transferList.announceReturned": {
+    "defaultMessage": "⟦{label} řéţúřñéð ţó þóšíţíóñ {position, number}.⟧"
+  },
+  "@solo.transferList.announceMovedToPosition": {
+    "defaultMessage": "⟦{label}, þóšíţíóñ {position, number} óƒ {total, number}.⟧"
+  },
+  "@solo.transferList.announceSearchResults": {
+    "defaultMessage": "⟦{count, number} {count, plural, one {item} other {items}} ƒóúñð.⟧"
+  },
+  "@solo.transferListSelector.apply": {
+    "defaultMessage": "⟦Àþþłý⟧"
+  },
+  "@solo.transferListSelector.cancel": {
+    "defaultMessage": "⟦Çàñçéł⟧"
+  },
+  "@solo.transferListSelector.triggerLabel": {
+    "defaultMessage": "⟦{count, number} šéłéçţéð⟧"
+  }
+}

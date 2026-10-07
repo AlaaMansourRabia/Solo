@@ -1,0 +1,9 @@
+@keyframes solo-button-spinner-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes solo-button-content-hide {
+  from { color: inherit; }
+  to { color: transparent; }
+}

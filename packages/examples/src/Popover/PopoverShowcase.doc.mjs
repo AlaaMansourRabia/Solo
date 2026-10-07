@@ -1,0 +1,15 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'block',
+  exampleFor: 'Popover',
+  alsoShowcaseFor: ['usePopover'],
+  name: 'Popover',
+  displayName: 'Popover',
+  displayNameAr: 'Popover — نظرة عامة',
+  descriptionAr: 'عرض شامل لمكوّن Popover.',
+  isReady: true,
+  order: 0,
+  aspectRatio: 1,
+  isShowcase: true,
+  componentsUsed: ['Popover', 'Button', 'Layout', 'Text', 'Divider'],
+};

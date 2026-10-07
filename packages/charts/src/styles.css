@@ -1,0 +1,19 @@
+/**
+ * @solo/charts stylesheet. Import after `@solo/core/styles.css`:
+ *
+ *   @import "@solo/core/styles.css";
+ *   @import "@solo/charts/styles.css";
+ *
+ * Chart component utilities compile into `solo-base`, like core's.
+ */
+
+@layer reset, theme, base, solo-base, solo-theme, components, utilities;
+
+@import "../../core/src/tailwind-preset.css";
+@import "tailwindcss/utilities.css" layer(solo-base) source(none);
+
+@source "./";
+@source not "./**/*.test.{ts,tsx}";
+
+/* @css-imports:start */
+/* @css-imports:end */

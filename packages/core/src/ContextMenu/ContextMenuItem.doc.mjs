@@ -1,0 +1,206 @@
+/** @type {import('@solo/docs-types').ComponentDoc} */
+
+export const docs = {
+  name: 'ContextMenuItem',
+  subComponentOf: 'ContextMenu',
+  displayName: 'Context Menu Item',
+  isHiddenFromOverview: true,
+  description: 'Menu item component for compound mode. Re-exported from DropdownMenuItem for discoverability.',
+  props: [
+    {
+      name: 'icon',
+      type: 'ReactNode | IconType',
+      description: 'Icon to display before the label.',
+    },
+    {
+      name: 'label',
+      required: true,
+      type: 'ReactNode',
+      description: 'Primary label text.',
+    },
+    {
+      name: 'description',
+      type: 'ReactNode',
+      description: 'Secondary description text displayed below the label.',
+    },
+    {
+      name: 'onClick',
+      type: '(event: MouseEvent) => void',
+      description:
+        "Callback when the item is selected. A keyboard activation arrives as a synthesized click carrying the key's modifiers. On a row with `href` it runs before the browser navigates and is skipped for a modified click (⌘, Ctrl, Shift, Alt, middle button), which is left to the browser.",
+    },
+    {
+      name: 'href',
+      type: 'string',
+      description:
+        'Address the row navigates to. The row then renders as a real anchor with role="menuitem" (through LinkProvider), so a modified click or a middle click keeps the browser\'s meaning — a new tab — instead of running onClick.',
+    },
+    {
+      name: 'target',
+      type: "'_blank' | '_self'",
+      description: 'Link target. Only used with href.',
+    },
+    {
+      name: 'rel',
+      type: 'string',
+      description:
+        'Link relationship. noopener noreferrer is added for target="_blank". Only used with href.',
+    },
+    {
+      name: 'isDisabled',
+      type: 'boolean',
+      description: 'Whether the item is disabled. A disabled item cannot be activated.',
+      default: 'false',
+    },
+    {
+      name: 'hasCloseOnSelect',
+      type: 'boolean',
+      description:
+        'Whether activating the item closes the menu. Set false for an action that reports its result on the item itself.',
+      default: 'true',
+    },
+    {
+      name: 'variant',
+      type: "'default' | 'destructive'",
+      description:
+        "Visual variant. 'destructive' renders the label, description, and icon in the error color for dangerous actions (e.g. Delete).",
+      default: "'default'",
+    },
+    {
+      name: 'endContent',
+      type: 'ReactNode',
+      description: 'Additional content rendered after the label and description.',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      description: 'Tailwind classes for layout customization (margins, positioning, sizing), merged with the component classes through cn() (tailwind-merge), so a conflicting utility overrides the default.',
+    },
+  ],
+  playground: {
+    defaults: {
+      label: 'Edit',
+      description: 'Modify this item',
+    },
+  },
+};
+
+export const docsZh = {
+  name: 'ContextMenuItem',
+  isHiddenFromOverview: true,
+  displayName: 'Context Menu Item',
+  description: '复合模式的菜单项组件。从 DropdownMenuItem 重新导出以便发现。',
+  props: [
+    {
+      name: 'icon',
+      type: 'ReactNode | IconType',
+      description: '显示在标签前的图标。',
+    },
+    {
+      name: 'label',
+      required: true,
+      type: 'ReactNode',
+      description: '主标签文本。',
+    },
+    {
+      name: 'description',
+      type: 'ReactNode',
+      description: '显示在标签下方的次要描述文本。',
+    },
+    {
+      name: 'onClick',
+      type: '(event: MouseEvent) => void',
+      description:
+        '选中该项时的回调。键盘激活会以携带修饰键的合成点击到达；带 href 的行会在浏览器导航前运行，带修饰键的点击则交给浏览器处理。',
+    },
+    {
+      name: 'href',
+      type: 'string',
+      description:
+        '该行导航到的地址。此时该行渲染为带 role="menuitem" 的真实链接，带修饰键的点击或中键点击保留浏览器语义（新标签页）。',
+    },
+    {
+      name: 'target',
+      type: "'_blank' | '_self'",
+      description: '链接目标。仅与 href 一起使用。',
+    },
+    {
+      name: 'rel',
+      type: 'string',
+      description: '链接关系。target="_blank" 时自动加入 noopener noreferrer。',
+    },
+    {
+      name: 'isDisabled',
+      type: 'boolean',
+      description: '该项是否禁用。禁用的项无法被激活。',
+      default: 'false',
+    },
+    {
+      name: 'hasCloseOnSelect',
+      type: 'boolean',
+      description:
+        '激活该项时是否关闭菜单。若操作要在该项上就地反馈结果，请设为 false。',
+      default: 'true',
+    },
+    {
+      name: 'variant',
+      type: "'default' | 'destructive'",
+      description:
+        "视觉变体。'destructive' 会以错误色渲染标签、描述和图标，用于危险操作（如删除）。",
+      default: "'default'",
+    },
+    {
+      name: 'endContent',
+      type: 'ReactNode',
+      description: '在标签和描述之后渲染的附加内容。',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      description: '用于布局自定义的 Tailwind 类（外边距、定位、尺寸），通过 cn()（tailwind-merge）与组件自身的类合并，冲突的工具类会覆盖组件默认值。',
+    },
+  ],
+};
+
+/** @type {import('@solo/docs-types').ComponentTranslationDoc} */
+export const docsAr = {
+  description: 'مكوّن عنصر قائمة للوضع المركّب. يُعاد تصديره من DropdownMenuItem لتسهيل اكتشافه.',
+  propDescriptions: {
+    icon: 'أيقونة تُعرض قبل التسمية.',
+    label: 'نص التسمية الرئيسي.',
+    description: 'نص وصف ثانوي يُعرض أسفل التسمية.',
+    onClick: 'دالة استدعاء عند تحديد العنصر. يصل التفعيل بلوحة المفاتيح على شكل نقرة مُركَّبة تحمل مفاتيح التعديل الخاصة بالمفتاح. في صف يحتوي على `href` تُنفَّذ قبل أن ينتقل المتصفح، وتُتخطّى عند النقر مع مفتاح تعديل (⌘ أو Ctrl أو Shift أو Alt أو الزر الأوسط)، إذ يُترك ذلك للمتصفح.',
+    href: 'العنوان الذي ينتقل إليه الصف. يُعرض الصف حينها كرابط حقيقي بـ role="menuitem" (عبر LinkProvider)، بحيث تحتفظ النقرة مع مفتاح تعديل أو النقرة الوسطى بمعناها في المتصفح — علامة تبويب جديدة — بدلًا من تنفيذ onClick.',
+    target: 'هدف الرابط. يُستخدم مع href فقط.',
+    rel: 'علاقة الرابط. تُضاف noopener noreferrer عند target="_blank". يُستخدم مع href فقط.',
+    isDisabled: 'ما إذا كان العنصر معطَّلًا. لا يمكن تفعيل العنصر المعطَّل.',
+    hasCloseOnSelect: 'ما إذا كان تفعيل العنصر يغلق القائمة. اضبطها على false لإجراء يعرض نتيجته على العنصر نفسه.',
+    variant: 'النمط المرئي. يعرض \'destructive\' التسمية والوصف والأيقونة بلون الخطأ للإجراءات الخطِرة (مثل الحذف).',
+    endContent: 'محتوى إضافي يُعرض بعد التسمية والوصف.',
+    className: 'أصناف Tailwind لتخصيص التخطيط (الهوامش، والتموضع، والتحجيم)، تُدمَج مع أصناف المكوّن عبر cn() (tailwind-merge)، بحيث تتجاوز الأداةُ المتعارضة القيمةَ الافتراضية.',
+  },
+};
+
+export const docsDense = {
+  name: 'ContextMenuItem',
+  isHiddenFromOverview: true,
+  displayName: 'Context Menu Item',
+  description: 're-exported DropdownMenuItem for compound mode',
+  propDescriptions: {
+    icon: 'icon before label',
+    label: 'primary label text',
+    description: 'secondary text below label',
+    onClick:
+      'selection callback (event); keyboard activation = synthesized click w/ modifiers; skipped for a modified click on an href row',
+    href: 'row is a real anchor w/ role=menuitem; modified/middle click keeps browser meaning',
+    target: "link target ('_blank' | '_self'), with href",
+    rel: 'link rel; noopener noreferrer added for _blank',
+    isDisabled: 'disables the item',
+    hasCloseOnSelect:
+      'false keeps the menu open on activation (in-place result on the item)',
+    variant:
+      "'destructive' renders the item in the error color for dangerous actions",
+    endContent: 'additional content after label+description',
+    className: 'Tailwind classes for root container',
+  },
+};

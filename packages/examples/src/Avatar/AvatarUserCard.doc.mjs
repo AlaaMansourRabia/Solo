@@ -1,0 +1,14 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'block',
+  exampleFor: 'Avatar',
+  name: 'Avatar — User Card',
+  displayName: 'Avatar — User Card',
+  description: 'Place an avatar next to a name and role to create a user card row. Use for comment headers, contact lists, profile sections, or anywhere you need to identify a person at a glance.',
+  displayNameAr: 'Avatar — بطاقة المستخدم',
+  descriptionAr: 'ضع صورة رمزية بجانب اسم ودور لإنشاء صف بطاقة مستخدم. استخدمها لترويسات التعليقات، أو قوائم جهات الاتصال، أو أقسام الملفات الشخصية، أو في أي مكان تحتاج فيه إلى التعرّف على شخص بنظرة سريعة.',
+  isReady: true,
+  order: 7,
+  aspectRatio: 16 / 9,
+  componentsUsed: ['Avatar', 'Layout', 'Text'],
+};

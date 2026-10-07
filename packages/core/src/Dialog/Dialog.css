@@ -1,0 +1,14 @@
+/* Standard dialogs rise into place from the --dialog-dir-x/y offset. */
+@keyframes solo-dialog-enter-directional {
+  from {
+    opacity: 0;
+    transform: translate(var(--dialog-dir-x, 0px), var(--dialog-dir-y, 16px)) scale(0.95);
+  }
+  to { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+
+/* Fullscreen dialogs fade only: a full-viewport surface has nowhere to move. */
+@keyframes solo-dialog-enter-fullscreen {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
