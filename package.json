@@ -15,6 +15,7 @@
     "build": "pnpm -F @solo/core build && pnpm -F @solo/charts build",
     "typecheck": "tsc -p packages/core --noEmit && tsc -p packages/charts --noEmit && tsc -p packages/theme-neutral --noEmit && tsc -p packages/docs-types --noEmit && tsc -p packages/examples --noEmit && tsc -p packages/templates --noEmit && tsc -p apps/storybook --noEmit",
     "test": "vitest run",
+    "test:perf": "SOLO_PERF=1 vitest run",
     "test:watch": "vitest",
     "check:use-client": "node scripts/check-use-client.mjs",
     "check:css": "node scripts/check-css.mjs",

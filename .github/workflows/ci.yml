@@ -34,6 +34,8 @@ jobs:
         run: pnpm docs:check
       - name: Tests
         run: pnpm test
+      - name: Performance tests (run alone, one file at a time)
+        run: pnpm test:perf
       - name: Storybook build
         run: pnpm storybook:build
       - name: RTL mirror check (asymmetric components, real browser)

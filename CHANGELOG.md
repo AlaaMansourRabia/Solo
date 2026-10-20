@@ -9,6 +9,9 @@ that section into the release notes.
 
 ## Unreleased
 
+- CI runs the timing tests (`*.perf.test.*`) separately, one file at a time, so a
+  busy test run can no longer make them fail (`pnpm test:perf`).
+
 ## 0.1.0 — 2026-10-20
 
 The first public release of Solo: a React design system styled with Tailwind

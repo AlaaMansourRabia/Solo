@@ -14,6 +14,12 @@ import react from '@vitejs/plugin-react';
 const coreSrc = path.resolve(__dirname, 'packages/core/src');
 const chartsSrc = path.resolve(__dirname, 'packages/charts/src');
 
+// Timing tests (*.perf.test.*) measure ratios that are only meaningful on an
+// otherwise idle machine, so `pnpm test` skips them and `pnpm test:perf`
+// (SOLO_PERF=1) runs only them, one file at a time.
+const isPerfRun = process.env.SOLO_PERF === '1';
+const PERF = '**/*.perf.test.{ts,tsx,mjs}';
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -36,7 +42,7 @@ export default defineConfig({
     testTimeout: 30_000,
     hookTimeout: 30_000,
     execArgv: ['--max-old-space-size=4096'],
-    include: [
+    include: isPerfRun ? [`packages/*/src/${PERF}`] : [
       'packages/core/src/**/*.test.{ts,tsx,mjs}',
       'packages/eslint-plugin/src/**/*.test.{ts,tsx,mjs}',
       'packages/charts/src/**/*.test.{ts,tsx,mjs}',
@@ -46,6 +52,12 @@ export default defineConfig({
     ],
     // The accessibility-contract lane needs Solo's internal
     // `@solo/a11y-spec` harness, which is not part of Solo.
-    exclude: ['**/node_modules/**', '**/dist/**', '**/*.a11y.*'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/*.a11y.*',
+      ...(isPerfRun ? [] : [PERF]),
+    ],
+    ...(isPerfRun ? {fileParallelism: false} : {}),
   },
 });
