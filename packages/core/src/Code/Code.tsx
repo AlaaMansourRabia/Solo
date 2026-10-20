@@ -65,6 +65,17 @@ export interface CodeProps extends BaseProps<HTMLElement> {
  *
  * For fenced code blocks with syntax highlighting, use `CodeBlock`.
  *
+ * @agentGuidance
+ * Code marks short inline references such as function names, variables, file
+ * paths, and command-line flags. Use CodeBlock for standalone or multi-line
+ * snippets.
+ *
+ * Don't:
+ * - Use Code for multi-line or standalone snippets. Use CodeBlock instead so
+ *   readers get appropriate block formatting and syntax support.
+ * - Use Code as an interactive copy or navigation control. Pair it with the
+ *   appropriate Button or Link when an action is required.
+ *
  * @example
  * ```
  * <Text type="body">

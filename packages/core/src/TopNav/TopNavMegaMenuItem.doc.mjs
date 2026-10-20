@@ -21,7 +21,7 @@ export const docs = {
     {
       name: 'icon',
       type: 'ReactNode',
-      description: 'Optional icon element displayed to the left.',
+      description: 'Optional icon element displayed before the label (start side).',
       slotElements: [
         {
           __element: 'Icon',
@@ -96,7 +96,7 @@ export const docsAr = {
   propDescriptions: {
     title: 'عنوان العرض لعنصر القائمة.',
     description: 'نص وصف اختياري يُعرض أسفل العنوان.',
-    icon: 'عنصر أيقونة اختياري يُعرض على اليسار.',
+    icon: 'عنصر أيقونة اختياري يُعرض قبل التسمية (جهة البداية).',
     href: 'عنوان URL الذي يُنتقل إليه عند النقر.',
     onClick: 'دالة استدعاء عند النقر على العنصر.',
     as: 'مكوّن مخصص يُعرض بدلًا من <a> لعناصر الروابط. يتجاوز القيمة الافتراضية على مستوى المزوّد التي يضبطها LinkProvider.',

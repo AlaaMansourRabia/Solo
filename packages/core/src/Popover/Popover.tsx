@@ -339,6 +339,21 @@ const styles = {
  *
  * For hover-triggered overlays, use {@link HoverCard} instead.
  *
+ * @agentGuidance
+ * A click-triggered overlay anchored to a button or trigger element. Use it for
+ * secondary actions, inline confirmations, or supplementary information that
+ * does not warrant a full dialog. For hover previews use HoverCard, for brief
+ * helper text use Tooltip.
+ *
+ * Don't:
+ * - Nest popovers inside other popovers; it creates confusing focus and
+ *   navigation.
+ * - Assume input complexity alone determines the presentation; evaluate the
+ *   task's focus, space, and interaction requirements.
+ * - Assume scrolling alone means Popover is the wrong component; a bounded
+ *   Popover may scroll while a focused anchored interaction remains
+ *   appropriate.
+ *
  * @example
  * ```
  * <Popover label="Settings" content={<SettingsPanel />} placement="below">

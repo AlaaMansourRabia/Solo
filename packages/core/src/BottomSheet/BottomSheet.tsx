@@ -518,6 +518,15 @@ function SwitcherBottomSheetItem({
 /**
  * A mobile touch sheet that either owns a native dialog or participates in a
  * BottomSheetSwitcher shared dialog when given a sheetId inside that context.
+ *
+ * @agentGuidance
+ * A mobile touch surface for filters, actions, forms, and detail views that
+ * should rise from the bottom of the viewport; use BottomSheetSwitcher for
+ * multi-step flows.
+ *
+ * Don't:
+ * - Don't make the sheet content overly long. Consider breaking it into steps
+ *   and using Bottom Sheet Switcher.
  */
 export function BottomSheet(props: BottomSheetProps) {
   const switcher = use(BottomSheetSwitcherContext);

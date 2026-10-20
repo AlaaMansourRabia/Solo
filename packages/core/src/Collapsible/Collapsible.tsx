@@ -223,6 +223,22 @@ export interface CollapsibleProps extends BaseProps {
  * Use inside Card for elevated collapsible sections.
  * Wrap multiple instances in CollapsibleGroup for accordion behavior.
  *
+ * @agentGuidance
+ * Collapsible hides and reveals content behind a trigger button. Use it in
+ * settings panels, FAQ pages, or detail views to keep the page scannable while
+ * letting users drill into sections they care about. Wrap multiple collapsibles
+ * in CollapsibleGroup for accordion behavior. For custom collapsible
+ * components, use the `useCollapsible` hook directly (`solo hook
+ * useCollapsible`).
+ *
+ * Don't:
+ * - Hide critical or required content behind a collapsible; users may not
+ *   discover it.
+ * - Nest collapsibles more than two levels deep; it makes content hard to find
+ *   and navigate.
+ * - Use a collapsible for a single short paragraph; just show the text directly
+ *   instead.
+ *
  * @example
  * ```
  * <Collapsible trigger="Details">

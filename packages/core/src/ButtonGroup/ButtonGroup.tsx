@@ -119,6 +119,22 @@ const elevationStyles = {
  * Members that render their own layer — a Button with a `tooltip`, or a
  * DropdownMenu — compose correctly, including as the trailing member.
  *
+ * @agentGuidance
+ * ButtonGroup joins related actions into a single connected control. Use it
+ * when multiple buttons represent related choices or operations that belong
+ * together visually, like copy/cut/paste, or undo/redo.
+ *
+ * Don't:
+ * - Don't mix wildly different actions. A Save button next to a Delete button
+ *   in the same group is confusing.
+ * - Don't use ButtonGroup for navigation. Use SegmentedControl or TabList for
+ *   switching between views.
+ * - Don't nest ButtonGroups. If you need multiple groups, place them side by
+ *   side with a gap.
+ * - Don't disable the group to show that an action is in flight. A disabled
+ *   member drops focus, so a keyboard user loses their place; leave the group
+ *   enabled and show progress on the button that started the work.
+ *
  * @example
  * ```
  * <ButtonGroup label="Actions">

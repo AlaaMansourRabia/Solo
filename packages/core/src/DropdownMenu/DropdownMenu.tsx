@@ -1334,6 +1334,21 @@ function DropdownMenuPopover({
   );
 }
 
+/**
+ * @agentGuidance
+ * A dropdown menu that displays a list of actionable items in a popup triggered
+ * by a button. Use to present action options as a next step in a process, or to
+ * offer contextual actions without cluttering the interface. Like the menus of
+ * macOS and iOS, the row under the pointer when it is released is the row that
+ * acts, the highlight follows a held mouse or finger, a mouse opens it on press
+ * and can drag straight into it, and a finger held on the trigger opens it with
+ * the finger down.
+ *
+ * Don't:
+ * - Use a DropdownMenu for navigation; use a navigation component instead.
+ * - Place more than 10–12 items in a single menu without grouping them into
+ *   sections.
+ */
 export function DropdownMenu(props: DropdownMenuProps) {
   const {onOpenChange} = props;
   // Both presentations hang the menu off ONE control.

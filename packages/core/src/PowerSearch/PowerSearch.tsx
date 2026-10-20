@@ -473,6 +473,19 @@ type PopoverState =
  * and value in an edit popover. Filters appear as tokens that can be clicked
  * to edit or removed individually.
  *
+ * @agentGuidance
+ * PowerSearch is a structured filter bar where each token represents a field,
+ * operator, and value. Use it for complex multi-dimensional filtering when
+ * users need to combine multiple search criteria. For simple single-field
+ * search, use a text input instead.
+ *
+ * Don't:
+ * - Use PowerSearch for simple keyword searches; a standard text input is more
+ *   appropriate for single-field lookups.
+ * - Wrap a disabled PowerSearch in Tooltip to explain why it is disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * const config = {

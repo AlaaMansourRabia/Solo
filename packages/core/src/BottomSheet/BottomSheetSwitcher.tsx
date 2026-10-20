@@ -179,6 +179,17 @@ export interface BottomSheetSwitcherProps extends BaseProps<HTMLDialogElement> {
  * one shared native dialog. During a handoff the previous panel stays visible
  * and inert beneath the entering panel, then fades after motion completes.
  *
+ * @agentGuidance
+ * Coordinates a multi-step bottom-sheet flow in one shared dialog; set
+ * activeSheet to a nested BottomSheet's sheetId to open or switch steps, and to
+ * null to close.
+ *
+ * Don't:
+ * - Don't split information across sheets when people need to compare it; use a
+ *   full-page layout that keeps the relevant content visible together instead.
+ * - Don't use the switcher when multiple panels must stay interactive or
+ *   visible together; activeSheet intentionally selects one interactive step.
+ *
  * @example
  * ```
  * <BottomSheetSwitcher

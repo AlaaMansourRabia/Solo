@@ -1839,6 +1839,15 @@ function renderBlock(
  * Renders a markdown string as Solo components. Supports streaming with
  * smooth fade-in animation via isStreaming.
  *
+ * @agentGuidance
+ * Renders a markdown string as Solo-styled components. Use Markdown for
+ * user-generated content, AI responses, and documentation; it handles headings,
+ * lists, tables, code blocks, and citations with consistent styling.
+ *
+ * Don't:
+ * - Use Markdown for hand-authored layouts; use Text and Heading directly when
+ *   you control the content.
+ *
  * @example
  * ```
  * <Markdown>

@@ -1,5 +1,9 @@
 export {Chart, type ChartProps} from './Chart';
-export {ChartAxis, type ChartAxisProps} from './ChartAxis';
+export {
+  ChartAxis,
+  type ChartAxisProps,
+  type ChartAxisPosition,
+} from './ChartAxis';
 export {ChartGrid, type ChartGridProps} from './ChartGrid';
 export {
   ChartLegend,
@@ -58,6 +62,7 @@ export type {
   ResolvedPositions,
   SeriesContext,
   ChartMargin,
+  ChartMarginInput,
   ChartScale,
   YBaseline,
   ColorAccessor,

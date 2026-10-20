@@ -144,7 +144,7 @@ export interface TopNavMenuItemData {
   description?: string;
 
   /**
-   * Optional icon element displayed to the left.
+   * Optional icon element displayed before the label (start side).
    */
   icon?: ReactNode;
 

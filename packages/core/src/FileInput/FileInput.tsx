@@ -323,6 +323,20 @@ export interface FileInputProps extends Omit<
 /**
  * A file input component with optional drag-and-drop support.
  *
+ * @agentGuidance
+ * FileInput provides file upload with optional drag-and-drop support. Use it
+ * for single or multiple file selection with built-in validation for file type,
+ * size, and count. Pair with validation status for upload feedback.
+ *
+ * Don't:
+ * - Don't use FileInput for directory or folder uploads; that is not supported
+ *   in v1.
+ * - Don't avoid dropzone mode unless space is constrained; drag-and-drop is the
+ *   expected interaction for file uploads.
+ * - Don't wrap a disabled FileInput in Tooltip to explain why it's disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <FileInput label="Resume" value={file} onChange={setFile} accept=".pdf" />

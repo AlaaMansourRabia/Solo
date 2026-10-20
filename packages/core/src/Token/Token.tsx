@@ -166,6 +166,23 @@ const colorStyles = {
  * container pattern is used with an invisible `<a>` so the remove `<button>`
  * renders as a sibling of the link rather than nested inside it.
  *
+ * @agentGuidance
+ * Token is a small, inline element for representing discrete pieces of
+ * associated data, like tags, categories, or selections. Use it to label
+ * content, show active filters, or represent removable items like selected
+ * recipients in a compose field.
+ *
+ * Don't:
+ * - Don't use tokens for primary actions or navigation; use Button or Link
+ *   instead. Tokens are for displaying metadata, not triggering workflows.
+ * - Don't use a token for a read-only status or category label on an item
+ *   ("Beta", "Active", "Failed"); use Badge. Tokens represent data the user
+ *   adds, selects or removes: filters, recipients, chosen tags.
+ * - Don't hide the label unless the icon alone is universally understood. A
+ *   color dot without text is ambiguous.
+ * - Don't mix too many colors in one token group. Stick to two or three
+ *   meaningful colors so the palette stays scannable.
+ *
  * @example
  * ```
  * <Token label="Tag" />

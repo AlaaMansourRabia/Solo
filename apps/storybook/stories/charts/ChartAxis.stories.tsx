@@ -52,9 +52,9 @@ export const AllPositions: Story = {
       axes={
         <>
           <ChartAxis position="top" showAxisLine showTicks />
-          <ChartAxis position="right" showAxisLine showTicks />
+          <ChartAxis position="end" showAxisLine showTicks />
           <ChartAxis position="bottom" showAxisLine showTicks />
-          <ChartAxis position="left" showAxisLine showTicks />
+          <ChartAxis position="start" showAxisLine showTicks />
         </>
       }
       height={300}

@@ -48,7 +48,15 @@ import {
 import type {SeriesDef, ChartPointerEvent} from './types';
 import {isBandScale, xPixel} from './utils';
 
-export type ChartTooltipPlacement = 'auto' | 'right' | 'left' | 'top';
+export type ChartTooltipPlacement =
+  | 'auto'
+  | 'start'
+  | 'end'
+  | 'top'
+  /** @deprecated Physical — stays right of the point in RTL. Use `'end'`. */
+  | 'right'
+  /** @deprecated Physical — stays left of the point in RTL. Use `'start'`. */
+  | 'left';
 
 export interface ChartTooltipProps {
   /**
@@ -78,8 +86,11 @@ export interface ChartTooltipProps {
   showHoverDots?: boolean;
   /**
    * Card placement relative to the hovered point:
-   * - `'auto'` (default): right of the point, flips to left if it would overflow
-   * - `'right'` / `'left'` / `'top'`: pinned position
+   * - `'auto'` (default): on the end side of the point (right in LTR, left in
+   *   RTL), flipping to the other side if it would overflow
+   * - `'start'` / `'end'` / `'top'`: pinned position; start/end follow the
+   *   reading direction
+   * - `'left'` / `'right'`: deprecated physical pins
    */
   placement?: ChartTooltipPlacement;
 }
@@ -139,6 +150,19 @@ const DefaultTooltipContent = memo(function DefaultTooltipContent({
  * Subscribes to the chart's pointer event stream and only re-renders when the
  * hovered data index changes (not on every pointer move). Card coordinates retain
  * their previous state when the resolved point and browser geometry are unchanged.
+ *
+ * @agentGuidance
+ * ChartTooltip shows grouped values for the chart position nearest the pointer.
+ * Use Chart’s tooltip prop or its configuration object for the standard
+ * integration; direct composition remains available when you need explicit
+ * child composition.
+ *
+ * Don't:
+ * - Put information required to understand the chart only in the tooltip. The
+ *   current interaction is pointer-driven and does not establish a focus
+ *   trigger or aria-describedby relationship.
+ * - Render interactive controls inside the custom tooltip body. The surface is
+ *   presentational and does not accept pointer input.
  */
 export function ChartTooltip({
   series = [],
@@ -157,6 +181,7 @@ export function ChartTooltip({
     xScale,
     width,
     height,
+    isRTL,
   } = useChart();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [cardPosition, setCardPosition] = useState({x: 0, y: 0});
@@ -221,9 +246,20 @@ export function ChartTooltip({
       const viewportHeight = window.innerHeight;
       const gap = 8;
 
+      const physical =
+        placement === 'start'
+          ? isRTL
+            ? 'right'
+            : 'left'
+          : placement === 'end'
+            ? isRTL
+              ? 'left'
+              : 'right'
+            : placement;
+
       let x: number;
       let y = screenY;
-      switch (placement) {
+      switch (physical) {
         case 'left':
           x = screenX - cardWidth - gap;
           break;
@@ -236,10 +272,15 @@ export function ChartTooltip({
           break;
         case 'auto':
         default: {
+          // Prefer the end side (reading direction), flip when it overflows.
           const rightX = screenX + gap;
-          x =
-            rightX + cardWidth > viewportWidth
-              ? screenX - cardWidth - gap
+          const leftX = screenX - cardWidth - gap;
+          x = isRTL
+            ? leftX < 0
+              ? rightX
+              : leftX
+            : rightX + cardWidth > viewportWidth
+              ? leftX
               : rightX;
         }
       }
@@ -253,7 +294,7 @@ export function ChartTooltip({
         current.x === x && current.y === y ? current : {x, y},
       );
     },
-    [svgRef, margin, placement, hideLayer, showLayer],
+    [svgRef, margin, placement, isRTL, hideLayer, showLayer],
   );
 
   // ─── Subscribe to pointer events ───────────────────────────────────────

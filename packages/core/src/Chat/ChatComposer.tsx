@@ -90,15 +90,15 @@ export interface ChatComposerProps extends Omit<
 
   /** Collapsible drawer rendered above the input — attachments, context chips, etc. Use ChatComposerDrawer. */
   drawer?: ReactNode;
-  /** Actions rendered on the left side of the header (e.g. attach, mention buttons). Use icon-only `size="sm"` buttons. */
+  /** Actions rendered at the start of the header (e.g. attach, mention buttons). Use icon-only `size="sm"` buttons. */
   headerActions?: ReactNode;
-  /** Contextual info rendered on the right side of the header (e.g. context window usage, ProgressBar). */
+  /** Contextual info rendered at the end of the header (e.g. context window usage, ProgressBar). */
   headerContext?: ReactNode;
   /** Custom input element — replaces the default textarea */
   input?: ReactNode;
-  /** Actions rendered on the left side of the footer. Use `size="md"` buttons to match the send button height. */
+  /** Actions rendered at the start of the footer. Use `size="md"` buttons to match the send button height. */
   footerActions?: ReactNode;
-  /** Actions rendered to the left of the send button. Use `size="md"` buttons to match the send button height. */
+  /** Actions rendered just before the send button (on its start side). Use `size="md"` buttons to match the send button height. */
   sendActions?: ReactNode;
   /** Custom send button — replaces the default */
   sendButton?: ReactNode;

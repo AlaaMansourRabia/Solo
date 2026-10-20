@@ -206,6 +206,22 @@ export function resolveStyleColor(color: TextColor): BuiltinTextColor {
 /**
  * Semantic text component. Renders text with type-based styling from the theme.
  *
+ * @agentGuidance
+ * Text renders styled body text and headings from the theme. Use Text with a
+ * semantic type for body copy, labels, and captions, and Heading for section
+ * titles that output the correct h1–h6 element.
+ *
+ * Don't:
+ * - Override size and weight when a semantic type already matches; extra
+ *   overrides fight the theme and break when themes change.
+ * - Skip heading levels in the document outline; go h1 then h2 then h3, never
+ *   h1 then h3.
+ * - Use raw HTML tags like <p>, <h1>–<h6>, or <span> for text; Text and Heading
+ *   apply the correct theme tokens automatically.
+ * - Pass a `variant` prop; Text does not have a `variant` prop. Use `type` for
+ *   semantic styling (body, label, large, supporting, code) or use Heading for
+ *   headings.
+ *
  * @example
  * ```
  * <Text type="body">Body text</Text>

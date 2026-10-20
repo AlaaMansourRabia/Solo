@@ -23,7 +23,7 @@ export default function ChartTrendComparison() {
       axes={
         <>
           <ChartAxis position="bottom" />
-          <ChartAxis position="left" />
+          <ChartAxis position="start" />
         </>
       }
       height={280}

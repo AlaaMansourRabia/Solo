@@ -172,6 +172,19 @@ function getIconA11yProps(
 /**
  * Renders an icon from the icon registry or a custom SVG component.
  *
+ * @agentGuidance
+ * Icons are small visual symbols that represent actions, objects, or concepts.
+ * They improve scannability and reinforce meaning alongside text. Supports both
+ * direct SVG components and semantic icon names that adapt to the active theme.
+ *
+ * Don't:
+ * - Use icons as the sole means of conveying meaning; always provide a text
+ *   alternative.
+ * - Resize icons with arbitrary pixel values; use the provided size props.
+ * - Mix icon styles (e.g. outline and filled) within the same context.
+ * - Render raw SVG elements; always wrap in Icon for consistent sizing and
+ *   color.
+ *
  * @example
  * ```
  * <Icon icon="close" size="md" color="primary" />

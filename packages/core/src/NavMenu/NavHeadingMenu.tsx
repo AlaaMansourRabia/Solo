@@ -61,6 +61,12 @@ export interface NavHeadingMenuProps extends BaseProps<HTMLDivElement> {
  * The parent heading component injects the close callback via context,
  * so items automatically dismiss the popover on selection.
  *
+ * @agentGuidance
+ * Accessible menu container and items for nav heading popovers. NavHeadingMenu
+ * provides role="menu" with keyboard navigation; NavHeadingMenuItem renders
+ * individual selectable items. Pass as the menu prop of SideNavHeading or
+ * TopNavHeading.
+ *
  * @example
  * ```
  * <SideNavHeading

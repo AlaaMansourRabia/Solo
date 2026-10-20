@@ -128,6 +128,24 @@ export interface CheckboxListProps extends Omit<
  * Composes Field (for label, description, status) and List
  * (for density, dividers) with a context provider for collection mode.
  *
+ * @agentGuidance
+ * CheckboxList shows a small group of checkboxes so users can turn several
+ * options on or off at once. Place it in settings pages, filter panels, or
+ * forms where every choice should be visible without scrolling. For a single
+ * standalone checkbox (like "I agree to the terms"), use CheckboxInput instead.
+ * If only one option can be picked, use RadioList. If the list is long enough
+ * to need searching or scrolling, use MultiSelector instead.
+ *
+ * Don't:
+ * - Show a CheckboxList when the user can only pick one thing; that is what
+ *   RadioList is for.
+ * - Put buttons or links inside the trailing slot (endContent); the whole row
+ *   is already tappable, so a nested button creates two competing click
+ *   targets.
+ * - Wrap a disabled CheckboxList in Tooltip to explain why it is disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <CheckboxList

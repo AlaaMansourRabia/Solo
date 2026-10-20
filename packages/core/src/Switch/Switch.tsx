@@ -324,6 +324,20 @@ export interface SwitchProps extends Omit<BaseProps, 'onChange'> {
 /**
  * A toggle switch component for boolean values.
  *
+ * @agentGuidance
+ * A toggle control for on/off states that take effect immediately. Supports
+ * labels, descriptions, loading states, and validation. Use it for settings or
+ * preferences that apply instantly. For changes requiring a form submission,
+ * use a checkbox instead.
+ *
+ * Don't:
+ * - Use for options that require a form submission to take effect; use a
+ *   checkbox instead.
+ * - Use a switch for multi-state values; it's strictly on/off.
+ * - Wrap a disabled switch in Tooltip to explain why it is disabled; disabled
+ *   controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <Switch

@@ -52,6 +52,7 @@ export const docs = {
       {guidance: false, description: 'Use semantic status variants (success, warning, error, info) for categories or informational content. These are visually loud and should only indicate system state.'},
       {guidance: false, description: 'Repeat the same badge in every row of a table or list. If the same value appears in most rows, it\'s not adding information; use plain text for common states and reserve badges for the exceptional ones.'},
       {guidance: false, description: 'Make badges clickable; they are read-only indicators. Use a button or link if the user needs to take action.'},
+      {guidance: false, description: 'Use badges for things the user adds, selects or removes (filters, recipients, chosen tags); use Token.'},
     ],
     anatomy: [
       {name: 'Icon', required: false, description: 'An optional leading icon that helps identify the badge type at a glance.'},
@@ -78,6 +79,7 @@ export const docsZh = {
       {guidance: false, description: 'Use semantic status variants (success, warning, error, info) for categories or informational content. These are visually loud and should only indicate system state.'},
       {guidance: false, description: 'Repeat the same badge in every row of a table or list. If the same value appears in most rows, it\'s not adding information; use plain text for common states and reserve badges for the exceptional ones.'},
       {guidance: false, description: 'Make badges clickable; they are read-only indicators. Use a button or link if the user needs to take action.'},
+      {guidance: false, description: 'Use badges for things the user adds, selects or removes (filters, recipients, chosen tags); use Token.'},
     ],
     anatomy: [
       {name: 'Icon', required: false, description: 'An optional leading icon that helps identify the badge type at a glance.'},
@@ -158,6 +160,10 @@ export const docsAr = {
         guidance: false,
         description: 'اجعل الشارات قابلة للنقر؛ فهي مؤشرات للقراءة فقط. استخدم زرًا أو رابطًا إذا احتاج المستخدم إلى اتخاذ إجراء.',
       },
+      {
+        guidance: false,
+        description: 'استخدم الشارات لعناصر يضيفها المستخدم أو يختارها أو يزيلها (عوامل التصفية والمستلمين والوسوم المختارة)؛ استخدم Token.',
+      },
     ],
     anatomy: [
       {
@@ -191,6 +197,7 @@ export const docsDense = {
       {guidance: false, description: 'Use status variants for non-status info. "6h window", "12 types", category names are NOT statuses.'},
       {guidance: false, description: 'Repeat loud badges in every row. Common/default states should be plain text; reserve badges for the exceptional.'},
       {guidance: false, description: 'Make badges clickable; they are read-only. Use a button or link for actions.'},
+      {guidance: false, description: 'Use for user-added/removable items (filters, recipients); use Token.'},
     ],
     anatomy: [
       {name: 'Icon', required: false, description: 'Optional leading icon.'},

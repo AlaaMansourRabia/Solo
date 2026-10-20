@@ -215,6 +215,18 @@ function preventDefaultClick(event: React.MouseEvent<HTMLAnchorElement>): void {
  * Uses Text internally for typography styling.
  * Wrap your app in <Theme> to apply a theme.
  *
+ * @agentGuidance
+ * A styled anchor for inline and standalone text navigation. Supports external
+ * links, underline variants, tooltips, and custom link components for router
+ * integration. Use it for navigating between pages or to external URLs.
+ *
+ * Don't:
+ * - Use Link for actions that do not navigate; use a Button instead.
+ * - Use generic text like "click here" or "read more"; describe the
+ *   destination.
+ * - Set `label` on text links; `aria-label` prevents assistive technology from
+ *   reading the actual link content.
+ *
  * @example
  * ```
  * <Link href="/docs">Documentation</Link>

@@ -104,6 +104,17 @@ export interface InternationalizationProviderProps {
 /**
  * Provides locale + additional messages + overrides to all solo
  * components in the subtree.
+ *
+ * @agentGuidance
+ * Wraps your app to set the active locale and (optionally) merge additional
+ * translation catalogs + per-locale overrides. Solo components inside the
+ * subtree resolve their strings against this context. If no provider is
+ * present, components fall back to the shipped English defaults.
+ *
+ * Don't:
+ * - Cast custom catalog maps to `any`; the i18n package exports
+ *   `ProviderMessagesByLocale`, `MessagesByLocale`, `Catalog`, and
+ *   `RuntimeCatalog` for local catalog typing.
  */
 export function InternationalizationProvider({
   locale,

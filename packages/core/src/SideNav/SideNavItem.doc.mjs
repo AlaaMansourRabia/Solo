@@ -56,7 +56,7 @@ export const docs = {
     {
       name: 'endContent',
       type: 'ReactNode',
-      description: 'Passive right-side content only (badges, counts). Interactive controls go in actions.',
+      description: 'Passive end-side content only (badges, counts). Interactive controls go in actions.',
       slotElements: [
         {
           __element: 'Icon',
@@ -228,7 +228,7 @@ export const docsDense = {
     href: 'Navigation URL.',
     onClick: 'Click handler.',
     endContent:
-      'Passive right-side content only (badges, counts). Interactive controls go in actions.',
+      'Passive end-side content only (badges, counts). Interactive controls go in actions.',
     actions:
       'Row-level secondary controls (icon buttons, menus) rendered as siblings of the primary element, after the expand/collapse toggle and before nested children in DOM/focus order. Inherit the row control size via SizeContext (explicit size wins). Hidden when rail collapsed. Passive content goes in endContent; interactive content goes here.',
     children: 'Sub-items for nesting.',

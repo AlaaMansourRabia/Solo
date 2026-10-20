@@ -163,9 +163,9 @@ export const docs = {
   usage: {
     anatomy,
     description:
-      'Toolbar is a horizontal bar with left, center, and right areas. Use it for contextual actions within a content area (above a table, inside a card, or in a panel), not as a page-level header. Set the size once on the toolbar and all buttons, inputs, and tabs inside it match automatically.',
+      'Toolbar is a horizontal bar with start, center, and end areas (they mirror in right-to-left layouts). Use it for contextual actions within a content area (above a table, inside a card, or in a panel), not as a page-level header. Set the size once on the toolbar and all buttons, inputs, and tabs inside it match automatically.',
     bestPractices: [
-      {guidance: true, description: 'Put secondary actions like "Back" on the left, and primary actions like "Save" on the right.'},
+      {guidance: true, description: 'Put secondary actions like "Back" at the start, and primary actions like "Save" at the end.'},
       {guidance: true, description: 'Make temporary toolbars like bulk selection visually distinct so users can tell they\'re contextual, for example with a background color or border.'},
       {guidance: true, description: 'Visually separate the toolbar from the content below it, with a divider, a background variant, or both.'},
       {guidance: true, description: 'Use Toolbar as a card header when the header has interactive actions like filter or add; it gives you slot layout, keyboard navigation, and size cascading. If the header is just a title with no actions, a LayoutHeader or Section is enough.'},
@@ -199,9 +199,9 @@ export const docsZh = {
   usage: {
     anatomy,
     description:
-      'Toolbar is a horizontal bar with left, center, and right areas. Use it for contextual actions within a content area (above a table, inside a card, or in a panel), not as a page-level header. Set the size once on the toolbar and all buttons, inputs, and tabs inside it match automatically.',
+      'Toolbar is a horizontal bar with start, center, and end areas (they mirror in right-to-left layouts). Use it for contextual actions within a content area (above a table, inside a card, or in a panel), not as a page-level header. Set the size once on the toolbar and all buttons, inputs, and tabs inside it match automatically.',
     bestPractices: [
-      {guidance: true, description: 'Put secondary actions like "Back" on the left, and primary actions like "Save" on the right.'},
+      {guidance: true, description: 'Put secondary actions like "Back" at the start, and primary actions like "Save" at the end.'},
       {guidance: true, description: 'Make temporary toolbars like bulk selection visually distinct so users can tell they\'re contextual, for example with a background color or border.'},
       {guidance: true, description: 'Visually separate the toolbar from the content below it, with a divider, a background variant, or both.'},
       {guidance: true, description: 'Use Toolbar as a card header when the header has interactive actions like filter or add; it gives you slot layout, keyboard navigation, and size cascading. If the header is just a title with no actions, a LayoutHeader or Section is enough.'},
@@ -214,13 +214,13 @@ export const docsZh = {
 
 /** @type {import('@solo/docs-types').ComponentTranslationDoc} */
 export const docsAr = {
-  description: 'Toolbar شريط أفقي بمناطق يسرى ووسطى ويمنى، يُستخدم للإجراءات السياقية داخل منطقة المحتوى.',
+  description: 'Toolbar شريط أفقي بمناطق للبداية والوسط والنهاية (تنعكس في التخطيطات من اليمين إلى اليسار)، يُستخدم للإجراءات السياقية داخل منطقة المحتوى.',
   usage: {
-    description: 'Toolbar شريط أفقي بمناطق يسرى ووسطى ويمنى. استخدمه للإجراءات السياقية داخل منطقة محتوى (أعلى جدول، أو داخل بطاقة، أو في لوحة)، لا كترويسة على مستوى الصفحة. عيّن الحجم مرة واحدة على شريط الأدوات فتتطابق معه تلقائيًا جميع الأزرار وحقول الإدخال وعلامات التبويب داخله.',
+    description: 'Toolbar شريط أفقي بمناطق للبداية والوسط والنهاية (تنعكس في التخطيطات من اليمين إلى اليسار). استخدمه للإجراءات السياقية داخل منطقة محتوى (أعلى جدول، أو داخل بطاقة، أو في لوحة)، لا كترويسة على مستوى الصفحة. عيّن الحجم مرة واحدة على شريط الأدوات فتتطابق معه تلقائيًا جميع الأزرار وحقول الإدخال وعلامات التبويب داخله.',
     bestPractices: [
       {
         guidance: true,
-        description: 'ضع الإجراءات الثانوية مثل "رجوع" على اليسار، والإجراءات الأساسية مثل "حفظ" على اليمين.',
+        description: 'ضع الإجراءات الثانوية مثل "رجوع" في البداية، والإجراءات الأساسية مثل "حفظ" في النهاية.',
       },
       {
         guidance: true,
@@ -283,13 +283,13 @@ export const docsAr = {
 
 /** @type {import('@solo/docs-types').ComponentTranslationDoc} */
 export const docsDense = {
-  description: 'Horizontal bar w/ left, center, right areas. For contextual actions in content, not page headers. Size cascades to children.',
+  description: 'Horizontal bar w/ start, center, end areas (mirror in RTL). For contextual actions in content, not page headers. Size cascades to children.',
   usage: {
     anatomy,
     description:
-      'Horizontal bar w/ left, optional center, right. For contextual actions within content (tables, cards, panels), not page-level headers. Size cascades to children.',
+      'Horizontal bar w/ start, optional center, end (mirror in RTL). For contextual actions within content (tables, cards, panels), not page-level headers. Size cascades to children.',
     bestPractices: [
-      {guidance: true, description: 'Secondary actions (Back) left, primary actions (Save) right.'},
+      {guidance: true, description: 'Secondary actions (Back) at the start, primary actions (Save) at the end.'},
       {guidance: true, description: 'Make temporary toolbars (bulk selection) visually distinct, e.g. background color or border.'},
       {guidance: true, description: 'Separate toolbar from content: divider, background variant, or both.'},
       {guidance: true, description: 'Use Toolbar as card header when it has actions (filter, add). Just a title? Use LayoutHeader/Section.'},

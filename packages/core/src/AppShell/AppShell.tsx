@@ -330,6 +330,19 @@ const styles = {
  * Supports two height modes (`fill` and `auto`), responsive side nav
  * collapse, and mobile overlay with backdrop.
  *
+ * @agentGuidance
+ * AppShell is the page shell for an application. It provides slots for top
+ * navigation, side navigation, banners, and main content. Use it as the root
+ * wrapper for every page. It handles responsive mobile navigation and
+ * skip-to-content automatically. Configure side nav collapse on SideNav with
+ * its collapsible prop.
+ *
+ * Don't:
+ * - Nest one AppShell inside another; it's the outermost layout frame.
+ * - Use for sub-page layouts; use Layout for content areas within AppShell.
+ * - Add your own skip link or <main> element. AppShell already renders both,
+ *   and a second main landmark makes the first ambiguous.
+ *
  * @example
  * ```
  * <AppShell

@@ -243,7 +243,7 @@ export interface SideNavItemProps extends BaseProps<HTMLElement> {
    */
   onClick?: (e: React.MouseEvent) => void;
   /**
-   * Passive right-side content only (badges, counts). Interactive
+   * Passive end-side content only (badges, counts). Interactive
    * controls (icon buttons, menus) go in `actions`. `endContent`
    * renders inside the primary link or button.
    */

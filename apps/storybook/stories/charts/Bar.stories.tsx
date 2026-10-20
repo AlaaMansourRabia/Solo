@@ -12,7 +12,7 @@ export default meta;
 const axes = (
   <>
     <ChartAxis position="bottom" />
-    <ChartAxis position="left" />
+    <ChartAxis position="start" />
   </>
 );
 
@@ -30,7 +30,7 @@ export const Simple: StoryObj = {
         axes={
           <>
             <ChartAxis position="bottom" />
-            <ChartAxis position="left" tickFormat={currency('$', locale)} />
+            <ChartAxis position="start" tickFormat={currency('$', locale)} />
           </>
         }
         height={300}

@@ -147,6 +147,17 @@ export interface CenterProps extends BaseProps<HTMLDivElement> {
  * vertical dimensions. In vertical writing, the current single-axis behavior
  * follows flex main/cross axes; `both` still centers on both axes.
  *
+ * @agentGuidance
+ * Center aligns content to the middle of its container. Use it for empty
+ * states, loading screens, login forms, or any content that should sit in the
+ * center of the available space.
+ *
+ * Don't:
+ * - Wrap large page sections in Center. Use Layout or AppShell for page-level
+ *   structure.
+ * - Use Center for horizontal lists of items. Use Stack with hAlign="center"
+ *   instead.
+ *
  * @example
  * ```
  * <Center width={300} height={200}>

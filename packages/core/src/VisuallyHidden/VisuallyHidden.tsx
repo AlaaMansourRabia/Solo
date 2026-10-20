@@ -59,6 +59,18 @@ const styles = {
  * should not see: accessible names for icon-only controls, `aria-live`
  * announcement regions, and supplementary screen-reader context.
  *
+ * @agentGuidance
+ * Renders content in the accessibility tree while hiding it visually. Use for
+ * accessible names on icon-only controls, aria-live announcement regions, and
+ * supplementary screen-reader context. Deliberately has no styling props; the
+ * whole point is to stay invisible.
+ *
+ * Don't:
+ * - Use it to hide content from everyone; it stays in the accessibility tree;
+ *   use conditional rendering or `hidden` to remove content entirely.
+ * - Put interactive controls inside it; the content is not visible and cannot
+ *   receive pointer input.
+ *
  * @example
  * ```
  * <IconButton icon="trash" label="">

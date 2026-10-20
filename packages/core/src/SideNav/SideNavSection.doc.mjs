@@ -45,7 +45,7 @@ export const docs = {
     {
       name: 'endContent',
       type: 'ReactNode',
-      description: 'Right-side content in the section header.',
+      description: 'End-side content in the section header.',
       slotElements: [
         {
           __element: 'Icon',
@@ -125,7 +125,7 @@ export const docsAr = {
     title: 'عنوان القسم.',
     subtitle: 'العنوان الفرعي للقسم.',
     children: 'عناصر القسم.',
-    endContent: 'محتوى الجانب الأيمن في ترويسة القسم.',
+    endContent: 'محتوى جهة النهاية في ترويسة القسم.',
     isHeaderHidden: 'يُخفي ترويسة القسم بصريًا مع إبقائها متاحة لقارئ الشاشة.',
     className: 'أصناف Tailwind لتخصيص التخطيط (الهوامش والتموضع والأبعاد)، تُدمج مع أصناف المكوّن عبر cn() (tailwind-merge)، بحيث تتجاوز الأداة المتعارضة القيمة الافتراضية.',
   },

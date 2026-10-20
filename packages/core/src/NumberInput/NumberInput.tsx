@@ -461,6 +461,19 @@ function getSteppedValue({
  * Commits text edits on blur or Enter and only calls onChange when the whole
  * draft passes validation.
  *
+ * @agentGuidance
+ * A form input for numeric values with built-in validation, min/max
+ * constraints, and step controls. Use NumberInput for quantities, measurements,
+ * percentages, and similar inputs.
+ *
+ * Don't:
+ * - Use NumberInput for free-form text that happens to contain numbers; use
+ *   TextInput instead.
+ * - Set both isOptional and isRequired on the same field.
+ * - Wrap a disabled NumberInput in Tooltip to explain why it's disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <NumberInput label="Quantity" value={quantity} onChange={setQuantity} />

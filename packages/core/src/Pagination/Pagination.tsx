@@ -273,6 +273,19 @@ export function generatePageRange(
  * dot indicators, or minimal prev/next navigation. Works with known totals
  * or cursor-based pagination.
  *
+ * @agentGuidance
+ * Pagination lets users step through pages of content. Place it below a table,
+ * list, or card grid so users can move forward and backward through results.
+ * Pick a variant to match the context: numbered pages for data tables, a count
+ * for large lists, compact for tight spaces, or dots for carousels.
+ *
+ * Don't:
+ * - Show pagination when all items fit on a single page; there is nothing to
+ *   paginate.
+ * - Use the dots variant for more than about 10 pages; the dots become too
+ *   small to be useful.
+ * - Place pagination above the content; users expect it at the bottom.
+ *
  * @example
  * ```
  * <Pagination

@@ -192,6 +192,15 @@ const KEYBOARD_PAN_OFFSETS: Record<string, [number, number]> = {
  * trapping and top-layer placement. Dismiss via Escape, close button,
  * or backdrop click.
  *
+ * @agentGuidance
+ * A fullscreen overlay for viewing images and videos at full resolution.
+ * Supports single-item and gallery modes with prev/next navigation, optional
+ * zoom and pan for images, and native video controls.
+ *
+ * Don't:
+ * - Use the lightbox for non-image content; it is specialized for images.
+ * - Nest interactive content inside captions; keep them plain text.
+ *
  * @example
  * ```
  * <Lightbox

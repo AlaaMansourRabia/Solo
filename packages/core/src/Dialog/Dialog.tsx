@@ -362,6 +362,22 @@ export interface DialogProps extends BaseProps<HTMLDialogElement> {
  * dialog via aria-labelledby; pass `aria-label` or `aria-labelledby` to
  * override.
  *
+ * @agentGuidance
+ * Dialog displays a modal overlay that blocks interaction with the page until
+ * the user responds. Use it for delete confirmations, edit forms, terms
+ * acceptance, or any decision that should not be skipped. For cases where you
+ * want to show a dialog without managing open state, use the
+ * `useImperativeDialog` hook: call `dialog.show(content)` and render
+ * `dialog.element` in your tree.
+ *
+ * Don't:
+ * - Use a dialog for simple messages that could be shown inline or as a toast
+ *   notification.
+ * - Nest dialogs inside other dialogs; restructure the flow into steps within a
+ *   single dialog instead.
+ * - Use the fullscreen variant for simple confirmations; it is meant for
+ *   complex content like editors or long forms.
+ *
  * @example
  * ```
  * const [isOpen, setIsOpen] = useState(false);

@@ -167,6 +167,21 @@ export interface ToolbarProps extends BaseProps<HTMLDivElement> {
  * (Button, TextInput, TabList, Selector) via SizeContext, and applies
  * edge compensation so ghost buttons align flush at container edges.
  *
+ * @agentGuidance
+ * Toolbar is a horizontal bar with start, center, and end areas (they mirror in
+ * right-to-left layouts). Use it for contextual actions within a content area
+ * (above a table, inside a card, or in a panel), not as a page-level header.
+ * Set the size once on the toolbar and all buttons, inputs, and tabs inside it
+ * match automatically.
+ *
+ * Don't:
+ * - Put too many actions in one toolbar; move less common items into a
+ *   MoreMenu.
+ * - Set size on individual child buttons; set it once on the toolbar and it
+ *   cascades automatically.
+ * - Use Toolbar for app-wide navigation like main menu links or sign out; use
+ *   TopNav or LayoutHeader for that.
+ *
  * @example
  * ```
  * <Toolbar label="Actions" size="sm"

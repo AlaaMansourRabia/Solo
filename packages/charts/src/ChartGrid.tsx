@@ -33,6 +33,18 @@ const styles = {
  * Pair with `<ChartAxis>` so users always see an axis line beside the
  * grid — the components are designed to be used together.
  *
+ * @agentGuidance
+ * ChartGrid draws horizontal and vertical guide lines from the scales owned by
+ * a parent Chart. Use it in the Chart grid slot so guides share the plot
+ * dimensions and tick values used by the chart.
+ *
+ * Don't:
+ * - Use grid lines as the only way to communicate a value or distinction. Keep
+ *   meaningful chart information in labels, marks, and the parent Chart
+ *   alternative.
+ * - Expect tickCount to thin categorical band centers. It requests density only
+ *   for continuous scales; categorical vertical guides render once per band.
+ *
  * @example
  * ```
  * <ChartGrid />                 // horizontal grid lines (default)

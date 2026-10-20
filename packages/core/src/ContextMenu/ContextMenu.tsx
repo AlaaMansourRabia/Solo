@@ -213,6 +213,17 @@ export type ContextMenuProps = ContextMenuDataProps | ContextMenuCompoundProps;
  *
  * Both modes share the same DOM-based keyboard navigation via useListFocus.
  *
+ * @agentGuidance
+ * A right-click context menu that appears at the cursor position. Use to
+ * provide contextual actions for specific elements or regions without
+ * cluttering the UI with visible buttons.
+ *
+ * Don't:
+ * - Use a ContextMenu as the only way to access important actions; not all
+ *   users know to right-click.
+ * - Place more than 10–12 items in a single menu without grouping them into
+ *   sections.
+ *
  * @example
  * ```
  * <ContextMenu

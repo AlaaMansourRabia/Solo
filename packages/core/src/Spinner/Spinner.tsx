@@ -434,6 +434,18 @@ export interface SpinnerProps extends BaseProps<HTMLSpanElement> {
 /**
  * An animated loading indicator. Available in four sizes and four color shades.
  *
+ * @agentGuidance
+ * An animated loading indicator for processes with unknown duration, such as
+ * data fetching or form submission. Supports visible labels, multiple sizes,
+ * and a dark background variant. For content with known dimensions, use
+ * Skeleton instead.
+ *
+ * Don't:
+ * - Use for content areas with known dimensions; use Skeleton to preserve
+ *   layout instead.
+ * - Stack multiple spinners in the same view; use one to represent the overall
+ *   loading state.
+ *
  * @example
  * ```
  * <Spinner />

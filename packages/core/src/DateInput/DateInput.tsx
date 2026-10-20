@@ -920,6 +920,21 @@ PointerDateField.displayName = 'PointerDateField';
  * with a calendar icon and the formatted date — and differ only in what
  * opens. Nothing moves; the field just starts opening a sheet.
  *
+ * @agentGuidance
+ * DateInput lets the user type or pick a date from a calendar popover. Use it
+ * for scheduling, deadlines, booking dates, or any form field that needs a
+ * specific calendar date.
+ *
+ * Don't:
+ * - Use a DateInput for free-form text that does not represent a calendar date.
+ * - Hide the label without surrounding context that makes the field purpose
+ *   obvious.
+ * - Rely on the calendar alone; the text input lets users type dates directly,
+ *   which is faster for known dates.
+ * - Wrap a disabled DateInput in Tooltip to explain why it is disabled;
+ *   disabled triggers swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <DateInput

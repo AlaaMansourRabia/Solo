@@ -256,6 +256,17 @@ function ItemRenderer<T extends SearchableItem>({
  *
  * Input and footer are rendered by default — only pass them to replace the defaults.
  *
+ * @agentGuidance
+ * CommandPalette is a searchable dialog for quick access to commands,
+ * navigation, and actions. Use it as a keyboard-driven launcher powered by
+ * SearchSource for filtering and selection.
+ *
+ * Don't:
+ * - Use CommandPalette for simple dropdowns or menus; use Menu or Selector for
+ *   inline selections.
+ * - Add too many groups or items; curate results to keep the palette fast and
+ *   scannable.
+ *
  * @compositionHint
  *   - `input` slot: CommandPaletteInput (default)
  *   - `footer` slot: CommandPaletteFooter (default)

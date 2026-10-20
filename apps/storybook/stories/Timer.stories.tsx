@@ -54,6 +54,25 @@ function EarlierStartStory() {
   return <Timer startTime={startedAt} />;
 }
 
+function CountdownStory() {
+  const [endsAt] = useState(() => Date.now() + 95_000);
+  const [isClosed, setIsClosed] = useState(false);
+  return (
+    <Stack direction="horizontal" gap={2} vAlign="center">
+      <Text type="supporting" color="secondary">
+        {isClosed ? 'Bidding closed' : 'Auction ends in'}
+      </Text>
+      <Timer
+        endTime={endsAt}
+        format="clock"
+        type="body"
+        color="primary"
+        onComplete={() => setIsClosed(true)}
+      />
+    </Stack>
+  );
+}
+
 function TypographyStory() {
   const [startedAt] = useState(() => Date.now() - 128_000);
   return (
@@ -83,6 +102,10 @@ export const WaitingMessage: Story = {
 
 export const EarlierStart: Story = {
   render: () => <EarlierStartStory />,
+};
+
+export const Countdown: Story = {
+  render: () => <CountdownStory />,
 };
 
 export const Typography: Story = {

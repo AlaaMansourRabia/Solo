@@ -217,6 +217,20 @@ export type CalendarProps = CalendarSingleProps | CalendarRangeProps;
 /**
  * A calendar component for selecting dates or date ranges.
  *
+ * @agentGuidance
+ * Calendar lets the user pick a date or date range from a month grid. Use it in
+ * booking flows, scheduling UIs, date filters, or anywhere the user needs to
+ * see surrounding dates for context.
+ *
+ * Don't:
+ * - Use a calendar for dates far in the past or future like a birth date. A
+ *   text input is faster for open-ended entry.
+ * - Use a bare Calendar as a form field. For a date or a start and end date the
+ *   user fills in, use DateInput or DateRangeInput: they wrap Calendar in a
+ *   labelled field with typed entry and a popover.
+ * - Disable large blocks of dates without context. The user should understand
+ *   why dates are unavailable.
+ *
  * @example
  * ```
  * <Calendar value={selectedDate} onChange={setSelectedDate} />

@@ -116,6 +116,36 @@ interface ToastSurfaceProps extends ToastProps {
  * a theme is free to define an "inverted" background that is not.
  * Pauses auto-dismiss on hover and focus.
  *
+ * @agentGuidance
+ * Toast shows a brief, non-blocking notification to confirm an action or
+ * present temporary information. Use it for scenarios where the user needs
+ * feedback but not a decision, such as saving, deleting, or changing a status.
+ * For production use, prefer the `useToast()` hook; it handles positioning,
+ * stacking, auto-dismiss, and deduplication via `ToastViewport`. Toasts stay
+ * within viewport and safe-area gutters, wrap long message content, and enter,
+ * exit, or swipe-dismiss toward their configured top or bottom edge. The
+ * vertical swipe uses the same spatial model as placement motion: top Toasts
+ * leave upward and bottom Toasts leave downward. Swipe waits for dominant
+ * edge-directed intent before cancelling native touch movement and reports the
+ * existing manual dismissal reason. Pen is supported as direct-contact input;
+ * mouse drag is excluded to avoid conflicting with desktop text selection,
+ * where the visible close control remains available. Set `isAutoHide: false`
+ * explicitly when an action or message must remain available. The `Toast`
+ * component renders the visual toast element inline and is useful for previews,
+ * documentation, and static showcases where the viewport lifecycle is not
+ * needed. Deduplication and lifecycle options belong to `showToast()` from
+ * `useToast()`, not to `Toast`: `uniqueID` (dedupe key), `collisionBehavior`
+ * (`overwrite` by default, or `ignore`) for when a toast with the same uniqueID
+ * is already shown, and `onHide(reason)`, fired when the toast is removed.
+ *
+ * Don't:
+ * - Don't use a toast for critical errors that block the user. Use Banner for
+ *   persistent, in-context messaging that requires acknowledgment.
+ * - Don't put long or multi-line content in a toast; it disappears after 5
+ *   seconds and the user may not finish reading.
+ * - Don't show form validation errors as toasts. Use inline field validation so
+ *   the user can see exactly which field needs fixing.
+ *
  * @example
  * ```
  * <Toast

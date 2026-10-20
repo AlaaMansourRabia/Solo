@@ -245,6 +245,22 @@ export interface TextInputProps extends Omit<
 /**
  * A text input component for collecting user input.
  *
+ * @agentGuidance
+ * TextInput collects short-form text like names, emails, or search queries. Use
+ * it for single-line values where the expected input is brief. Pair it with
+ * validation status to guide users through required or formatted fields.
+ *
+ * Don't:
+ * - Don't use placeholder text as a replacement for a label; placeholders
+ *   disappear on focus and are not reliably read by screen readers.
+ * - Don't use TextInput for multi-line content like comments or descriptions;
+ *   use TextArea instead.
+ * - Don't mark every field as required; only flag mandatory fields so users are
+ *   not overwhelmed by validation errors.
+ * - Don't wrap a disabled TextInput in Tooltip to explain why it's disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <TextInput label="Name" value={name} onChange={setName} />

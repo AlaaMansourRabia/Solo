@@ -204,6 +204,20 @@ export interface ToggleButtonProps extends BaseProps<HTMLButtonElement> {
  * Works standalone (with `isPressed`/`onPressedChange`) or inside
  * ToggleButtonGroup (which controls selection via `value`).
  *
+ * @agentGuidance
+ * ToggleButton switches between selected and unselected states to represent a
+ * persistent on/off choice. Use it standalone for binary actions like bold,
+ * mute, or favorite, or inside a ToggleButtonGroup for single-select or
+ * multi-select toolbar controls.
+ *
+ * Don't:
+ * - Don't use a ToggleButton for one-time actions like "Submit" or "Delete";
+ *   those are regular Buttons, not toggles.
+ * - Don't mix ToggleButtons with regular Buttons inside the same group; use
+ *   only ToggleButtons in a ToggleButtonGroup.
+ * - Don't use a ToggleButton for on/off settings that persist across sessions;
+ *   use a Switch instead, which better communicates "setting" semantics.
+ *
  * @example
  * ```
  * const [isBold, setIsBold] = useState(false);

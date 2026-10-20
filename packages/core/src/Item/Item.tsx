@@ -296,6 +296,20 @@ const densityStyles = {
  * description + end content" layout pattern. Use as a building block for list items,
  * menu items, contact rows, notification items, and more.
  *
+ * @agentGuidance
+ * A single, flexible item primitive that unifies the "start content + label +
+ * description + end content" pattern across Solo. Use it wherever you need a
+ * structured row: dropdown menus, selectors, contact lists, notifications, file
+ * browsers, and activity feeds.
+ *
+ * Don't:
+ * - Don't nest interactive elements (buttons, links) inside an interactive
+ *   Item; it creates confusing focus and click targets.
+ * - Don't use Item for navigation between views; use proper navigation
+ *   components instead.
+ * - Don't add read/unread or inbox-specific behavior directly; compose a thin
+ *   wrapper like PreviewItem instead.
+ *
  * @example
  * ```
  * <Item

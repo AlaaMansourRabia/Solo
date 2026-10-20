@@ -447,6 +447,25 @@ function EndLane({
   );
 }
 
+/**
+ * @agentGuidance
+ * Tokenizer is a multi-select input that lets users search, select, and manage
+ * multiple items displayed as removable chips. Use it when users need to build
+ * a set of selections from a searchable data source, like adding team members,
+ * applying tags, or choosing filters.
+ *
+ * Don't:
+ * - Don't use Tokenizer for single-item selection; use Typeahead instead.
+ *   Tokenizer is for building sets of two or more items.
+ * - Avoid applying custom colors to individual tokens inside a Tokenizer; use
+ *   the default token style for visual consistency across the set.
+ * - Don't hide the label; every Tokenizer needs a visible label so users
+ *   understand what they are selecting. Use isLabelHidden only when surrounding
+ *   context makes the purpose obvious.
+ * - Wrap a disabled Tokenizer in Tooltip to explain why it is disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ */
 export function Tokenizer<T extends SearchableItem>({
   label,
   isLabelHidden = false,

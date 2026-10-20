@@ -28,7 +28,7 @@ export const docs = {
     {
       name: 'heading',
       type: 'ReactNode',
-      description: 'Heading slot content (logo, brand): positioned at the left edge of the nav bar.',
+      description: 'Heading slot content (logo, brand): positioned at the start edge of the nav bar.',
       slotElements: [
         {
           __element: 'Text',
@@ -43,7 +43,7 @@ export const docs = {
     {
       name: 'startContent',
       type: 'ReactNode',
-      description: 'Start content slot for navigation items or breadcrumbs: positioned after the heading, left-aligned.',
+      description: 'Start content slot for navigation items or breadcrumbs: positioned after the heading, start-aligned.',
       slotElements: [
         {
           __element: 'Icon',
@@ -86,7 +86,7 @@ export const docs = {
     {
       name: 'endContent',
       type: 'ReactNode',
-      description: 'End content slot for search, icons, or user profile: positioned at the right edge.',
+      description: 'End content slot for search, icons, or user profile: positioned at the end edge.',
       slotElements: [
         {
           __element: 'Icon',
@@ -165,11 +165,11 @@ export const docsZh = {
 export const docsAr = {
   description: 'حاوية شريط التنقّل الرئيسي بتخطيط قائم على الفتحات. تُقبل العناصر الفرعية كاسم بديل لـ startContent.',
   propDescriptions: {
-    heading: 'محتوى فتحة العنوان (الشعار، العلامة التجارية): يتموضع عند الحافة اليسرى لشريط التنقّل.',
-    startContent: 'فتحة المحتوى البادئ لعناصر التنقّل أو مسار التنقّل: تتموضع بعد العنوان، بمحاذاة اليسار.',
+    heading: 'محتوى فتحة العنوان (الشعار، العلامة التجارية): يتموضع عند حافة البداية لشريط التنقّل.',
+    startContent: 'فتحة المحتوى البادئ لعناصر التنقّل أو مسار التنقّل: تتموضع بعد العنوان، بمحاذاة البداية.',
     children: 'اسم بديل لـ startContent. فضّل startContent عند التركيب مع heading أو centerContent أو endContent؛ إذ يمنع children نمط عناصر التنقّل الشائع في React من إسقاط العناصر بصمت.',
     centerContent: 'فتحة المحتوى الأوسط (علامات التبويب، شريط البحث، التنقّل الأساسي): عند توفيرها، يتحول التخطيط إلى شبكة CSS من ثلاثة أعمدة لتوسيط أفقي حقيقي.',
-    endContent: 'فتحة المحتوى الختامي للبحث أو الأيقونات أو الملف الشخصي للمستخدم: تتموضع عند الحافة اليمنى.',
+    endContent: 'فتحة المحتوى الختامي للبحث أو الأيقونات أو الملف الشخصي للمستخدم: تتموضع عند حافة النهاية.',
     label: 'التسمية القابلة للوصول لمَعلم التنقّل، تُطبَّق كـ aria-label على عنصر <nav>.',
     className: 'أصناف Tailwind لتخصيص التخطيط (الهوامش والتموضع والأبعاد)، تُدمج مع أصناف المكوّن عبر cn() (tailwind-merge)، بحيث تتجاوز الأداة المتعارضة القيمة الافتراضية.',
   },

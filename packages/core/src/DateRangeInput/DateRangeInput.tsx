@@ -378,6 +378,19 @@ export interface DateRangeInputProps extends Omit<
  * A date range picker with a button trigger that opens a popover
  * containing a dual-month calendar and optional preset ranges.
  *
+ * @agentGuidance
+ * DateRangeInput lets users select a start and end date from a dual-month
+ * calendar popover. Use it for filtering data by time period, report
+ * generation, analytics dashboards, and booking flows.
+ *
+ * Don't:
+ * - Use DateRangeInput when only a single date is needed; use DateInput
+ *   instead.
+ * - Hide the label without surrounding context that makes the purpose obvious.
+ * - Wrap a disabled DateRangeInput in Tooltip to explain why it is disabled;
+ *   disabled triggers swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <DateRangeInput

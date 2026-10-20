@@ -270,6 +270,18 @@ export interface ComplexSelectorProps<Value> extends Omit<
  * using the supplied `value`, `onChange`, and `close` helpers to compose the
  * right accessible structure for the custom selector.
  *
+ * @agentGuidance
+ * Use ComplexSelector when a selection needs richer custom content than a
+ * Selector option row. It is intentionally one component: ComplexSelector owns
+ * the field, trigger, popover, focus restore, and changeAction flow, while the
+ * content render prop owns the selector-specific accessible structure.
+ *
+ * Don't:
+ * - Do not rebuild trigger ARIA, popover focus management, or changeAction
+ *   handling in product code.
+ * - Do not use ComplexSelector for a plain single-column text list; use
+ *   Selector instead.
+ *
  * @example
  * ```
  * <ComplexSelector

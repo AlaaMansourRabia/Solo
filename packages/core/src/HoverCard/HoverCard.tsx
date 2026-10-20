@@ -232,6 +232,18 @@ function mergeIds(...ids: (string | undefined | null)[]): string | undefined {
  * Uses a display:contents wrapper so children refs are preserved.
  * Uses CSS anchor positioning and the Popover API for optimal performance.
  *
+ * @agentGuidance
+ * HoverCard shows additional information when the user hovers or focuses a
+ * trigger element. Use it for profile cards, link summaries, or inline
+ * definitions where the user needs more context without navigating away.
+ *
+ * Don't:
+ * - Place critical actions or required information inside a hover card; users
+ *   may miss content that only appears on hover.
+ * - Use a hover card when a simple Tooltip or Popover would suffice.
+ * - Use a HoverCard for content the user must interact with; it disappears when
+ *   the cursor leaves.
+ *
  * @example
  * ```
  * <HoverCard

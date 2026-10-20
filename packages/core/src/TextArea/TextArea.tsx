@@ -311,6 +311,22 @@ export interface TextAreaProps extends Omit<
 /**
  * A multi-line text input component for collecting longer user input.
  *
+ * @agentGuidance
+ * TextArea is a multi-line text input for collecting longer-form content like
+ * comments, descriptions, or messages. Use it when the expected input spans
+ * multiple lines. For shorter, single-line values, use TextInput.
+ *
+ * Don't:
+ * - Avoid using TextArea for short, single-line values like names or emails;
+ *   use TextInput instead.
+ * - Don't rely solely on placeholder text to communicate the purpose of the
+ *   field; placeholders disappear on focus and are not accessible labels.
+ * - Don't show a status message without also setting the status type; the
+ *   colored border and icon are what draw the user's attention to the message.
+ * - Don't wrap a disabled TextArea in Tooltip to explain why it's disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <TextArea label="Description" value={description} onChange={setDescription} />

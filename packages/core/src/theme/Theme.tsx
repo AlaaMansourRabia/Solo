@@ -273,6 +273,26 @@ function useRootThemeSync(
  * it syncs `data-theme` and `data-solo-theme` to `<html>` so browser
  * chrome reflects the active mode and @scope'd CSS reaches portals.
  * Nested Theme instances skip the sync.
+ *
+ * @agentGuidance
+ * Wraps a subtree with a specific Solo theme. For static production themes,
+ * import the CSS of a pre-built theme plus its built theme object (for example
+ * `@solo/theme-neutral/theme.css` and `@solo/theme-neutral/built`) for
+ * first-paint and SSR performance. Use runtime `defineTheme()` when themes are
+ * dynamic or for prototyping. `defineTheme` accepts a `tokens` object whose
+ * keys are CSS custom property names (always prefixed with `--`). Common token
+ * names include `--color-accent`, `--color-background-surface`,
+ * `--color-background-body`, `--color-text-primary`, `--color-text-secondary`,
+ * `--radius-container`, `--spacing-1` through `--spacing-6`. Values can be a
+ * string (same for light/dark) or a `[light, dark]` tuple. Example: ```ts
+ * import {defineTheme} from '@solo/core/theme'; const myTheme = defineTheme({
+ * name: 'ocean', tokens: { '--color-accent': ['#0077B6', '#48CAE4'],
+ * '--color-background-surface': ['#F0F8FF', '#0A1628'], '--color-text-primary':
+ * ['#0A1317', '#FFFFFF'], '--radius-container': '16px', }, }); ```
+ *
+ * Don't:
+ * - Default to runtime themes in SSR production apps. Component overrides
+ *   inject after hydration instead of shipping as static CSS.
  */
 export function Theme({
   theme,

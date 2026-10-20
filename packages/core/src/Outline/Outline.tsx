@@ -202,6 +202,20 @@ function getIndentStyle(level: number) {
  * and Enter/Space activate — so a long table of contents costs one Tab press,
  * not one per heading.
  *
+ * @agentGuidance
+ * A table-of-contents sidebar for documentation pages, help centers, wikis, and
+ * long settings pages. Use it for navigation within a single page, not for app
+ * routes. Features a sliding indicator track that animates to the active
+ * heading. The list is a single tab stop: arrow keys move between headings,
+ * Home/End jump to the ends, and Enter/Space activate.
+ *
+ * Don't:
+ * - Use Outline for application navigation - use SideNav or TopNav for routes.
+ * - Use Outline for expandable hierarchy - use TreeList when nodes need expand
+ *   and collapse.
+ * - Rely on onNavigateEnd to mean "arrived" - it also fires when the user
+ *   interrupts the scroll.
+ *
  * @example
  * ```
  * <Outline

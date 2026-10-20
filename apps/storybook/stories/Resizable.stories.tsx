@@ -171,7 +171,7 @@ export const Collapsible: Story = {
                   {sidebar.isCollapsed && (
                     <button
                       onClick={() => sidebar.expand()}
-                      style={{marginLeft: 8}}>
+                      style={{marginInlineStart: 8}}>
                       Expand
                     </button>
                   )}
@@ -436,7 +436,7 @@ export const WithLayout: Story = {
                   {sidebar.isCollapsed && (
                     <button
                       onClick={() => sidebar.expand()}
-                      style={{marginLeft: 8}}>
+                      style={{marginInlineStart: 8}}>
                       Expand
                     </button>
                   )}

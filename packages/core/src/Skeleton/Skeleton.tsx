@@ -136,6 +136,17 @@ export interface SkeletonProps extends BaseProps<HTMLDivElement> {
  * Renders a pulsing block with configurable width, height, and border radius.
  * Use the `index` prop to stagger animation timing across multiple skeletons.
  *
+ * @agentGuidance
+ * An animated shimmer placeholder that previews the shape of content while it
+ * loads. Use it to build loading screens that match the layout of the real
+ * content. For content with unknown dimensions, use Spinner instead.
+ *
+ * Don't:
+ * - Use when the content dimensions are unknown; use Spinner instead.
+ * - Combine with a Spinner on the same content area; pick one loading pattern.
+ * - Show skeletons indefinitely; if loading takes too long, show an error or
+ *   empty state instead.
+ *
  * @example
  * ```
  * <Skeleton width={200} height={20} />

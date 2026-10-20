@@ -557,6 +557,19 @@ function RangeCodeContent({
  * Read-only code display with syntax highlighting, line numbers,
  * and optional copy button.
  *
+ * @agentGuidance
+ * CodeBlock renders syntax-highlighted code with line numbers, a copy button,
+ * and optional collapsible sections. Use CodeBlock for multi-line snippets like
+ * source files, terminal commands, and configuration examples. Use Code for
+ * inline references to function names, variables, or CLI flags within body
+ * text.
+ *
+ * Don't:
+ * - Enable line numbers on short snippets (under 5 lines) where they add
+ *   clutter without helping navigation.
+ * - Nest a code block inside a scrollable container. Use the maxHeight prop
+ *   instead, which handles overflow natively.
+ *
  * @example
  * ```
  * <CodeBlock code="const x = 42;" language="javascript" />

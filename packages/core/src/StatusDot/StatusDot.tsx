@@ -121,6 +121,20 @@ export interface StatusDotProps extends BaseProps<HTMLSpanElement> {
  * `aria-label` for accessibility. Styles use Solo theme tokens via Tailwind classes.
  * Wrap your app in `<Theme>` to apply a theme.
  *
+ * @agentGuidance
+ * A small colored dot that communicates status like online/offline presence or
+ * severity levels. Supports five semantic variants and an optional pulse
+ * animation. Always pair with a visible text label, as color alone should not
+ * carry meaning.
+ *
+ * Don't:
+ * - Rely on color alone to communicate status; StatusDot is not fully
+ *   accessible in isolation, so the builder must make the status
+ *   distinguishable in context via a label, an icon, or an accessible
+ *   alternative.
+ * - Use the pulse animation for purely decorative purposes; reserve it for
+ *   states that require immediate attention.
+ *
  * @example
  * ```
  * <StatusDot variant="success" label="Online" />

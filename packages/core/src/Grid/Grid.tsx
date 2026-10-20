@@ -270,6 +270,17 @@ function buildCappedTemplate(
  * - `columns={{minWidth: 280, repeat: 'fit'}}` — responsive auto-fit (stretch)
  * - `columns={{minWidth: 280, max: 4}}` — responsive, capped at 4 columns
  *
+ * @agentGuidance
+ * A CSS grid layout container for arranging children in rows and columns. Use
+ * Grid for card galleries, dashboards, and any multi-column layout. Supports
+ * fixed column counts and responsive columns that reflow based on available
+ * width.
+ *
+ * Don't:
+ * - Write manual CSS grid; Grid handles spacing and responsive behavior for
+ *   you.
+ * - Use `HStack` with wrapping for grids; use Grid instead.
+ *
  * @example
  * ```
  * <Grid columns={3} gap={4}>

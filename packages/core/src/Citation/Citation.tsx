@@ -96,6 +96,16 @@ const styles = {
   icon: 'w-(--spacing-3) h-(--spacing-3)',
 } as const;
 
+/**
+ * @agentGuidance
+ * Citations display inline references to external sources. Use them to
+ * attribute information within AI-generated responses, articles, or anywhere
+ * provenance and source links are needed.
+ *
+ * Don't:
+ * - Mix label and number variants in the same paragraph. Pick one style per
+ *   context for visual consistency.
+ */
 export function Citation({
   ref,
   source,

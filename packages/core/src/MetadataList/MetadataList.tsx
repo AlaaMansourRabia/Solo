@@ -142,6 +142,16 @@ const dynamicStyles = {
 const LABEL_START: MetadataListLabelConfig = {position: 'start'};
 const LABEL_TOP: MetadataListLabelConfig = {position: 'top'};
 
+/**
+ * @agentGuidance
+ * MetadataList displays key-value pairs for object attributes like quality,
+ * condition, and status, in a structured layout. Use it for detail panels,
+ * settings summaries, and record information.
+ *
+ * Don't:
+ * - Use for extensive form input; use a form layout instead.
+ * - Use for data that doesn't have a clear key-value structure.
+ */
 export function MetadataList({
   children,
   columns = 'single',

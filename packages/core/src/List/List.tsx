@@ -127,6 +127,20 @@ const dynamicStyles = {
  * up to the container padding available on each edge, for alignment with
  * sibling content such as a section heading.
  *
+ * @agentGuidance
+ * A vertical collection of items with consistent spacing, dividers, and
+ * optional markers. Supports headers, icons, avatars, badges, and interactive
+ * items with click or link behavior. Use it to display ordered or unordered
+ * groups of related content.
+ *
+ * Don't:
+ * - Place interactive elements inside an interactive list item; it creates
+ *   nested click targets and confusing focus behavior.
+ * - Use a list for a single item or for laying out unrelated content; lists
+ *   imply a meaningful collection.
+ * - Mix clickable and non-clickable items in the same list without clear visual
+ *   distinction.
+ *
  * @example
  * ```
  * <List>

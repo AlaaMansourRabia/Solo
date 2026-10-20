@@ -42,6 +42,21 @@ export interface ChartMargin {
   left: number;
 }
 
+/**
+ * Plot inset override in CSS pixels. `start` and `end` are logical: in a
+ * right-to-left layout `start` is the right edge, where the value axis sits.
+ */
+export interface ChartMarginInput {
+  top?: number;
+  bottom?: number;
+  start?: number;
+  end?: number;
+  /** @deprecated Use `start`. Also follows the reading direction. */
+  left?: number;
+  /** @deprecated Use `end`. Also follows the reading direction. */
+  right?: number;
+}
+
 /** Resolved pixel position for a single data point in a series */
 export interface ResolvedPoint {
   /** Pixel x in plot area coordinates */

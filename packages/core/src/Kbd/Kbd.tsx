@@ -131,6 +131,14 @@ export interface KbdProps extends BaseProps<HTMLSpanElement> {
  * SSR-safe — defers platform detection through useSyncExternalStore to avoid
  * hydration mismatches.
  *
+ * @agentGuidance
+ * Renders a keyboard shortcut as styled key badges. Use Kbd in tooltips, menus,
+ * and help text to show key combinations.
+ *
+ * Don't:
+ * - Use Kbd as the only way to discover an action; shortcuts should supplement
+ *   visible controls, not replace them.
+ *
  * @example
  * ```
  * <Kbd keys="mod+k" />

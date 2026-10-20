@@ -162,6 +162,19 @@ export interface RadioListProps extends Omit<
 /**
  * A radio group component for single-value selection.
  *
+ * @agentGuidance
+ * A group of options where only one can be selected at a time. All options are
+ * visible at once, making it easy to compare choices. Use it when users need to
+ * pick one option from a small set.
+ *
+ * Don't:
+ * - Use when multiple selections are needed; use CheckboxList instead.
+ * - Use for long lists; use Selector for better discoverability.
+ * - Use horizontal layout with more than 4 options; it wraps awkwardly.
+ * - Wrap a disabled RadioList in Tooltip to explain why it is disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <RadioList

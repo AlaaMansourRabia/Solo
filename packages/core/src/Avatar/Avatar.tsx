@@ -459,6 +459,19 @@ function DefaultIcon({size}: {size: number}) {
  * Displays an image when available, falling back to initials derived from
  * the name prop, or a generic person icon if neither is provided.
  *
+ * @agentGuidance
+ * Avatar represents a person or team with a profile photo, initials, or a
+ * default icon. Use it in comment headers, contact lists, chat messages, user
+ * cards, and anywhere you need to identify someone visually.
+ *
+ * Don't:
+ * - Rely on a status label to name an interactive avatar. "Online" says nothing
+ *   about where the link goes.
+ * - Use Avatar for logos, product images, or anything that isn't a person or
+ *   team. Use an image or icon instead.
+ * - Use className to override shape. Use the shape prop instead so themes can
+ *   control it globally.
+ *
  * @example
  * ```
  * <Avatar src="/user.jpg" name="John Doe" />

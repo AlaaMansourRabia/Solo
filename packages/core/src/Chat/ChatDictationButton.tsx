@@ -79,6 +79,20 @@ const SIZE_CONFIG = {
  * Microphone button for voice input in a chat composer.
  * Requires the return value of useChatDictation.
  *
+ * @agentGuidance
+ * ChatDictationButton is a toggle button that starts and stops voice dictation
+ * inside a chat composer. It pairs with useChatDictation to show a microphone
+ * icon when idle and animated frequency bars when listening. Place it in the
+ * sendActions slot of ChatComposer.
+ *
+ * Don't:
+ * - Don't use the dictation button outside a chat composer context. It's
+ *   designed for the composer's send-action layout, not as a standalone
+ *   recording control.
+ * - Don't forget to handle the unsupported case. The button hides itself by
+ *   default when the browser lacks SpeechRecognition, but you should still
+ *   design the composer to work without it.
+ *
  * @example
  * ```
  * <ChatDictationButton dictation={dictation} />

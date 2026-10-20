@@ -297,4 +297,72 @@ describe('Timer', () => {
     expect(timer).not.toHaveAttribute('aria-live');
     expect(timer).not.toHaveAttribute('role');
   });
+
+  describe('countdown (endTime)', () => {
+    it('shows the time remaining and counts down', () => {
+      const endTime = Date.now() + 90_000;
+      render(<Timer endTime={endTime} format="clock" data-testid="timer" />);
+      const timer = screen.getByTestId('timer');
+      expect(timer).toHaveTextContent('1:30');
+      expect(timer).toHaveAttribute('datetime', 'PT90S');
+
+      act(() => {
+        vi.advanceTimersByTime(30_000);
+      });
+      expect(timer).toHaveTextContent('1:00');
+    });
+
+    it('rounds up so the last second stays visible until the deadline', () => {
+      const endTime = Date.now() + 1_500;
+      render(<Timer endTime={endTime} data-testid="timer" />);
+      const timer = screen.getByTestId('timer');
+      expect(timer).toHaveTextContent('2s');
+      act(() => {
+        vi.advanceTimersByTime(600);
+      });
+      expect(timer).toHaveTextContent('1s');
+      act(() => {
+        vi.advanceTimersByTime(900);
+      });
+      expect(timer).toHaveTextContent('0s');
+    });
+
+    it('stops at zero and calls onComplete exactly once', () => {
+      const onComplete = vi.fn();
+      const endTime = Date.now() + 3_000;
+      render(
+        <Timer endTime={endTime} onComplete={onComplete} data-testid="timer" />,
+      );
+      act(() => {
+        vi.advanceTimersByTime(10_000);
+      });
+      expect(screen.getByTestId('timer')).toHaveTextContent('0s');
+      expect(onComplete).toHaveBeenCalledTimes(1);
+      expect(vi.getTimerCount()).toBe(0);
+    });
+
+    it('treats a deadline in the past as already complete', () => {
+      const onComplete = vi.fn();
+      render(
+        <Timer
+          endTime={Date.now() - 5_000}
+          onComplete={onComplete}
+          data-testid="timer"
+        />,
+      );
+      expect(screen.getByTestId('timer')).toHaveTextContent('0s');
+      expect(onComplete).toHaveBeenCalledTimes(1);
+    });
+
+    it('updates by the minute above an hour in elapsed format', () => {
+      const endTime = Date.now() + 2 * 60 * 60_000;
+      render(<Timer endTime={endTime} data-testid="timer" />);
+      const timer = screen.getByTestId('timer');
+      expect(timer).toHaveTextContent('2h 00m');
+      act(() => {
+        vi.advanceTimersByTime(60_000);
+      });
+      expect(timer).toHaveTextContent('1h 59m');
+    });
+  });
 });

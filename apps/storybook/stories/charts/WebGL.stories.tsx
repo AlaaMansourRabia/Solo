@@ -21,7 +21,7 @@ export default meta;
 const axes = (
   <>
     <ChartAxis position="bottom" />
-    <ChartAxis position="left" />
+    <ChartAxis position="start" />
   </>
 );
 
@@ -92,7 +92,7 @@ export const Heatmap: StoryObj = {
       axes={
         <>
           <ChartAxis position="bottom" />
-          <ChartAxis position="left" showAxisLine />
+          <ChartAxis position="start" showAxisLine />
         </>
       }
       height={280}

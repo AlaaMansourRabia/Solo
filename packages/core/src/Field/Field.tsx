@@ -176,6 +176,24 @@ export interface FieldProps extends Omit<
 /**
  * A form field wrapper that provides label and description.
  *
+ * @agentGuidance
+ * Field is a low-level wrapper for custom, native, or third-party controls that
+ * do not already provide field label, description, and status UI. Use it when
+ * you need the Field shell around a control you own; use styled Solo inputs
+ * like TextInput, Typeahead, and Select directly when they already expose
+ * label, description, and validation props.
+ *
+ * Don't:
+ * - Nest Field around styled inputs such as TextInput, Typeahead, Select,
+ *   DateInput, or TextArea; those components already render their own Field
+ *   shell.
+ * - Use the attached status variant on non-bordered controls such as sliders,
+ *   switches, or checkboxes; use detached so the message does not overlap the
+ *   control.
+ * - Set both isOptional and isRequired on the same field.
+ * - Hide the label without providing an alternative way for the user to
+ *   understand the field purpose.
+ *
  * @example
  * ```
  * const id = useId();

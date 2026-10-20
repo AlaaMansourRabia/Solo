@@ -144,6 +144,17 @@ export interface ScrollableAreaProps extends Omit<
  * semantics must stay unchanged. Native scrolling and platform scrollbars remain
  * authoritative.
  *
+ * @agentGuidance
+ * Provides a native scroll viewport and a real observed content box. The
+ * viewport enters the tab order only while a requested logical axis is
+ * effectively scrollable, and containment applies only to effective axes.
+ *
+ * Don't:
+ * - Hide the native scrollbar without another visible and operable overflow
+ *   affordance.
+ * - Add another overflow wrapper around ScrollableArea; one native viewport
+ *   should own scrolling.
+ *
  * @example
  * ```
  * <ScrollableArea axis="block" label="Activity history">

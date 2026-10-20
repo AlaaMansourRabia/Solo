@@ -1,0 +1,231 @@
+# Solo
+
+> Solo is a React design system — accessible components, design tokens and charts — styled with Tailwind CSS v4, with first-class Arabic and right-to-left support. Components are imported from `@solo/core` (charts from `@solo/charts`).
+
+Pick components by role, not by look: each entry says what the component is for and what to use instead when it is the wrong fit. Style with logical start/end utilities (`ms-4`, `text-start`), never left/right. See AGENTS.md for the full rules.
+
+- [Full catalog](llms-full.txt): purpose, do / don't, props and hooks for every component
+- [Agent guide](AGENTS.md): how to choose components, RTL rules, tokens, checks
+
+## Action
+
+- Button: Button triggers an action when clicked.
+- ButtonGroup: ButtonGroup joins related actions into a single connected control.
+- ContextMenu: A right-click context menu that appears at the cursor position.
+  - ContextMenuItem: Menu item component for compound mode.
+- DropdownMenu: A dropdown menu that displays a list of actionable items in a popup triggered by a button.
+  - DropdownMenuCheckboxItem: A checkable menu item (role="menuitemcheckbox") that toggles an independent boolean.
+  - DropdownMenuDivider: A horizontal rule separating groups of rows in a compound menu.
+  - DropdownMenuItem: Helper component for custom item rendering with consistent styling.
+  - DropdownMenuRadioGroup: A single-select group of radio menu items (role="group" of menuitemradio).
+  - DropdownMenuRadioItem: A single option in a DropdownMenuRadioGroup (role="menuitemradio").
+  - DropdownMenuSubMenu: A single menu row that reveals a nested flyout of its own items.
+- IconButton: A button that shows only an icon with no visible text.
+- Link: A styled anchor for inline and standalone text navigation.
+  - LinkProvider: Provider that sets the default link component for all Solo link-rendering components in the subtree.
+- MoreMenu: MoreMenu is a three-dot button that opens a list of actions.
+- SegmentedControl: A segmented button group that allows users to make a single selection from a small set of mutually exclusive options.
+  - SegmentedControlItem: Individual segment item rendering as a radio button within the segmented control.
+- ToggleButton: ToggleButton switches between selected and unselected states to represent a persistent on/off choice.
+  - ToggleButtonGroup: Groups toggle buttons for exclusive (single) or multi-select behavior.
+- Toolbar: Toolbar is a horizontal bar with start, center, and end areas (they mirror in right-to-left layouts).
+
+## Chat
+
+- Chat: Chat is a family of composable primitives for building AI and human chat experiences.
+  - ChatComposer: ChatComposer is the message-entry shell for a chat surface.
+  - ChatComposerDrawer: Use ChatComposerDrawer in the ChatComposer drawer slot for supplementary content such as attachments, context chips, or previews.
+  - ChatComposerInput: Pass ChatComposerInput to ChatComposer's input slot when the draft needs trigger menus, inline tokens, history recall, dictation insertion, or file intake.
+  - ChatComposerTokenElement: Renders a single token chip outside the contentEditable input.
+  - ChatLayout: ChatLayout is the layout shell for full-page chat interfaces.
+  - ChatLayoutScrollButton: Floating scroll-to-bottom button that appears when the user scrolls away from the latest messages.
+  - ChatMessage: Sender context wrapper: handles avatar, name, metadata, and alignment based on sender role.
+  - ChatMessageBubble: Styled content container for the chat "bubble." Reads sender from parent ChatMessage context to auto-style the background.
+  - ChatMessageList: Presentational message container with density context and infinite scroll support.
+  - ChatMessageMetadata: Place ChatMessageMetadata below a message or in the last ChatMessageBubble metadata slot to show a timestamp, footer content, and optional delivery status.
+  - ChatSendButton: Use ChatSendButton as ChatComposer’s send control when the action should switch between sending and stopping.
+  - ChatSystemMessage: Use ChatSystemMessage for concise, non-sender content inside a chat transcript.
+  - ChatTokenizedText: Use ChatTokenizedText inside a chat message when stored plain text contains serialized token values that should be projected as inline badges or caller-rendered token content.
+  - ChatToolCalls: ChatToolCalls displays tool or function call invocations from an LLM response.
+- ChatDictationButton: ChatDictationButton is a toggle button that starts and stops voice dictation inside a chat composer.
+
+## Container
+
+- Card: Card is a bordered, elevated container for discrete, self-contained items: things you could reorder, remove, or interact with independently.
+- Carousel: Carousel scrolls a row of items horizontally when they overflow the available width.
+- ClickableCard: An interactive card for navigation or action targets.
+- Collapsible: Collapsible hides and reveals content behind a trigger button.
+  - CollapsibleGroup: Coordinates multiple Collapsible instances so only one (single mode) or any number (multiple mode) can be open at a time.
+- SelectableCard: A card that toggles between selected and unselected states with an accent border.
+
+## Content
+
+- Avatar: Avatar represents a person or team with a profile photo, initials, or a default icon.
+  - AvatarStatusDot: Size-aware status indicator dot that reads avatar size from context and scales proportionally.
+- AvatarGroup: AvatarGroup displays multiple avatars in an overlapping row with an optional overflow indicator.
+  - AvatarGroupOverflow: AvatarGroupOverflow appears at the end of an AvatarGroup to summarize people who are not shown individually.
+- Blockquote: A quotation block with a rule on its inline-start edge and secondary text color.
+- Citation: Citations display inline references to external sources.
+- Code: Code marks short inline references such as function names, variables, file paths, and command-line flags.
+- CodeBlock: CodeBlock renders syntax-highlighted code with line numbers, a copy button, and optional collapsible sections.
+- EmptyState: EmptyState shows a placeholder when a content area has no data.
+- Icon: Icons are small visual symbols that represent actions, objects, or concepts.
+- Kbd: Renders a keyboard shortcut as styled key badges.
+- Markdown: Renders a markdown string as Solo-styled components.
+- Text: Text renders styled body text and headings from the theme.
+  - Heading: Semantic heading component that renders h1-h6 elements with themed styling, themed sizing via type scale tokens, and line-clamp truncation.
+- Thumbnail: Thumbnail displays a compact, square preview of an image attachment.
+- Timer: Displays a live duration for active work without scheduling a React render on every tick: the time elapsed since startTime, or — with endTime — the time remaining until a deadline (a countdown).
+- Timestamp: Timestamp formats a date or time value into human-readable text.
+- Token: Token is a small, inline element for representing discrete pieces of associated data, like tags, categories, or selections.
+
+## Data Visualization
+
+- Chart: Chart lays out one or more mark definitions against shared responsive x and y scales.
+- ChartAxis: ChartAxis renders tick labels and optional edge and tick lines from the scales owned by a parent Chart.
+- ChartGrid: ChartGrid draws horizontal and vertical guide lines from the scales owned by a parent Chart.
+- ChartLegend: ChartLegend pairs series labels with decorative mark-shaped color swatches.
+- ChartSwatch: ChartSwatch renders the small decorative mark that pairs a chart series color with its visible label.
+- ChartTooltip: ChartTooltip shows grouped values for the chart position nearest the pointer.
+
+## Feedback & Status
+
+- Badge: Badge highlights a status or category at a glance.
+- Banner: Banner shows a persistent message at the top of a page or section.
+- ProgressBar: A horizontal bar showing the completion progress of a task.
+- Skeleton: An animated shimmer placeholder that previews the shape of content while it loads.
+- Spinner: An animated loading indicator for processes with unknown duration, such as data fetching or form submission.
+- StatusDot: A small colored dot that communicates status like online/offline presence or severity levels.
+
+## Form Controls
+
+- Calendar: Calendar lets the user pick a date or date range from a month grid.
+- CheckboxInput: CheckboxInput toggles a single on/off value.
+- CheckboxList: CheckboxList shows a small group of checkboxes so users can turn several options on or off at once.
+  - CheckboxListItem: Individual checkbox item with label, description, and end content slot.
+- ComplexSelector: Use ComplexSelector when a selection needs richer custom content than a Selector option row.
+- DateInput: DateInput lets the user type or pick a date from a calendar popover.
+- DateRangeInput: DateRangeInput lets users select a start and end date from a dual-month calendar popover.
+- DateTimeInput: DateTimeInput combines date and time selection in one field.
+- Field: Field is a low-level wrapper for custom, native, or third-party controls that do not already provide field label, description, and status UI.
+  - FieldLabel: Standalone label component with optional/required indicators and tooltip support.
+  - FieldStatus: FieldStatus renders validation feedback for fields and field-like controls.
+- FileInput: FileInput provides file upload with optional drag-and-drop support.
+- Indicator: Indicators are the componentized selection visuals shared by CheckboxInput, RadioList, and menu selection rows.
+  - CheckboxIndicator: The checkbox visual: a square box with a checkmark or an indeterminate bar.
+  - CheckIndicator: The mark on a chosen option: a checkmark by default, and nothing at all when unchosen, so a listbox shows no empty box beside every row.
+  - RadioIndicator: The radio visual: a circle with a filled inner dot when selected.
+- InputGroup: InputGroup connects an input with prefix/suffix addons in a single visual unit.
+  - InputGroupText: A prefix or suffix text element rendered inside InputGroup.
+- MultiSelector: A checkbox dropdown for selecting multiple values from a list.
+- NumberInput: A form input for numeric values with built-in validation, min/max constraints, and step controls.
+- PowerSearch: PowerSearch is a structured filter bar where each token represents a field, operator, and value.
+- RadioList: A group of options where only one can be selected at a time.
+  - RadioListItem: Individual radio item with label, description, and content slots.
+- Selector: A dropdown selector for choosing a single value from a list of options.
+  - SelectorOption: Helper component for custom item rendering inside an Selector renderOption prop.
+- Slider: A draggable control for selecting a numeric value or range within defined bounds.
+- Switch: A toggle control for on/off states that take effect immediately.
+- TextArea: TextArea is a multi-line text input for collecting longer-form content like comments, descriptions, or messages.
+- TextInput: TextInput collects short-form text like names, emails, or search queries.
+- TimeInput: TimeInput uses a browser/OS time picker on coarse pointers by default and Solo's typed field on fine pointers.
+- Tokenizer: Tokenizer is a multi-select input that lets users search, select, and manage multiple items displayed as removable chips.
+- Typeahead: A searchable input for selecting a single item from a large or dynamic dataset.
+  - BaseTypeahead: Composable combobox engine providing a bare input, search, keyboard navigation, and a styled result dropdown.
+  - TypeaheadItem: Default dropdown item renderer for typeahead results.
+
+## Layout
+
+- AppShell: AppShell is the page shell for an application.
+- AspectRatio: Maintains a fixed width-to-height ratio for its children as its container resizes.
+- Center: Center aligns content to the middle of its container.
+- Divider: A visual separator that divides content into distinct sections.
+- FormLayout: A layout container that arranges form fields with consistent spacing and direction.
+- Grid: A CSS grid layout container for arranging children in rows and columns.
+  - GridSpan: Grid item that spans multiple columns or rows.
+- Layout: Layout is a general five-slot primitive for arranging header, start, content, end, and footer regions within a page or bounded container.
+  - LayoutContent: Scrollable main content area.
+  - LayoutFooter: Bottom bar for action bars, pagination, and status bars.
+  - LayoutHeader: Top bar for page titles, app bars, and toolbars.
+  - LayoutPanel: Sidebar for navigation, settings, or inspector panels.
+  - Section: Section is the correct way to create page regions and group related content on a page.
+- Resizable: Hook-based resizable panel system.
+  - ResizeHandle: Draggable separator between panels.
+- ScrollableArea: Provides a native scroll viewport and a real observed content box.
+
+## Navigation
+
+- Breadcrumbs: Breadcrumbs show a trail of links from the root to the current page.
+  - BreadcrumbItem: BreadcrumbItem represents one destination, action, current location, or sibling-menu trigger inside a Breadcrumbs trail.
+- MobileNav: A slide-out drawer for mobile navigation.
+  - MobileNavToggle: Hamburger button that opens/closes the mobile nav drawer.
+- NavHeadingMenu: Accessible menu container and items for nav heading popovers.
+- NavIcon: NavIcon is a circular icon container with an accent-colored background.
+- Outline: A table-of-contents sidebar for documentation pages, help centers, wikis, and long settings pages.
+- Pagination: Pagination lets users step through pages of content.
+- SideNav: A sidebar navigation component for organizing application pages with sections, nested items, and icons.
+  - SideNavCollapseButton: Toggle button for sidenav collapse.
+  - SideNavHeading: Product/suite/account heading with smart interaction boundary logic for links and a menu popover.
+  - SideNavItem: Navigation item with icon, selected state, optional end content, and nesting support via children.
+  - SideNavSection: Section grouping with an optional title, subtitle, and end content.
+- Stepper: Steppers display progress through a sequence of logical and numbered steps.
+  - Step: Individual step within a Stepper.
+- TabList: TabList provides tab-style navigation for organizing content into categorized sections.
+  - Tab: Individual tab item that renders as a button or an anchor link, with selected-state styling and optional icons.
+  - TabMenu: Overflow menu trigger that opens a dropdown of additional tab options, showing the selected option's label as the trigger text.
+- TopNav: TopNav is a horizontal navigation bar for product-level navigation in application headers.
+  - TopNavHeading: Product/suite/account heading for the TopNav heading slot.
+  - TopNavItem: Navigation link item for use in TopNav startContent: renders as an anchor with hover and selected states.
+  - TopNavMegaMenu: Navigation item that displays a full-width mega menu panel on hover.
+  - TopNavMegaMenuFeaturedCard: Standard featured card for the TopNavMegaMenu featured slot.
+  - TopNavMegaMenuItem: An individual item inside an TopNavMegaMenu.
+  - TopNavMenu: Navigation item that displays a hover-triggered popover menu with rich items containing an icon, title, and optional description.
+
+## Overlay
+
+- AlertDialog: AlertDialog asks the user to confirm a destructive or irreversible action before it happens.
+- BottomSheet: A mobile touch surface for filters, actions, forms, and detail views that should rise from the bottom of the viewport; use BottomSheetSwitcher for multi-step flows.
+- BottomSheetSwitcher: Coordinates a multi-step bottom-sheet flow in one shared dialog; set activeSheet to a nested BottomSheet's sheetId to open or switch steps, and to null to close.
+- CommandPalette: CommandPalette is a searchable dialog for quick access to commands, navigation, and actions.
+  - CommandPaletteEmpty: Empty state display for the results area.
+  - CommandPaletteFooter: Footer showing keyboard navigation hints.
+  - CommandPaletteGroup: Visual grouping with a heading label.
+  - CommandPaletteInput: Search input slot.
+  - CommandPaletteItem: A selectable item.
+  - CommandPaletteList: Scrollable results container.
+- Dialog: Dialog displays a modal overlay that blocks interaction with the page until the user responds.
+  - DialogHeader: Use DialogHeader to give a dialog a labelled title area and optional close control.
+- HoverCard: HoverCard shows additional information when the user hovers or focuses a trigger element.
+- Lightbox: A fullscreen overlay for viewing images and videos at full resolution.
+- Overlay: Overlay layers action or supporting content over media, cards, video, or other bounded surfaces with an optional scrim and reveal behavior.
+- Popover: A click-triggered overlay anchored to a button or trigger element.
+- Toast: Toast shows a brief, non-blocking notification to confirm an action or present temporary information.
+- Tooltip: A short text hint that appears on hover or focus, anchored to a trigger element.
+
+## Table & List
+
+- Item: A single, flexible item primitive that unifies the "start content + label + description + end content" pattern across Solo.
+- List: A vertical collection of items with consistent spacing, dividers, and optional markers.
+  - ListItem: List item with label, description, start/end content slots, and interactive patterns.
+- MetadataList: MetadataList displays key-value pairs for object attributes like quality, condition, and status, in a structured layout.
+  - MetadataListItem: A single labeled metadata value within an MetadataList.
+- OverflowList: A horizontal list that automatically hides items when they exceed the available width.
+- Table: Table displays structured data in rows and columns with consistent dimensionality.
+  - TableBody: <tbody> wrapper for children mode.
+  - TableCell: <td> wrapper that reads TableContext to apply density padding, font size, and divider borders when used inside Table.
+  - TableFooter: <tfoot> wrapper for children mode.
+  - TableHeader: <thead> wrapper for children mode.
+  - TableHeaderCell: <th> wrapper that reads TableContext to apply density padding, semibold weight, secondary text color, and divider borders when used inside Table.
+  - TableRow: <tr> wrapper that reads TableContext to apply striped, hover, and divider styles when used inside Table.
+  - TableSelectionToolbar: Pass both outputs of useTableSelectionState to their matching consumers: selectionConfig to useTableSelection and selectionState to TableSelectionToolbar.
+- TreeList: An expandable tree structure for displaying hierarchical data with branch connector lines.
+
+## Utility
+
+- InternationalizationProvider: Wraps your app to set the active locale and (optionally) merge additional translation catalogs + per-locale overrides.
+- Layer: Layer utilities provide the app-level provider used by overlay systems.
+  - LayerProvider: App-level provider for layer systems such as toast viewports and imperative modals.
+- MediaTheme: Provides token overrides for content rendered on inverted surfaces: media overlays, scrims, toasts, and tooltips.
+- SyntaxTheme: Applies syntax highlighting colors to CodeBlock and any code component in the subtree.
+- Theme: Wraps a subtree with a specific Solo theme.
+- VisuallyHidden: Renders content in the accessibility tree while hiding it visually.

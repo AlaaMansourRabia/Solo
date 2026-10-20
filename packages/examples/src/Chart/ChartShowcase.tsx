@@ -22,7 +22,7 @@ export default function ChartShowcase() {
       axes={
         <>
           <ChartAxis position="bottom" />
-          <ChartAxis position="left" />
+          <ChartAxis position="start" />
         </>
       }
       height={260}

@@ -1857,6 +1857,28 @@ PointerDateTimeField.displayName = 'PointerDateTimeField';
  * A combined date and time picker whose `presentation` prop chooses both
  * surfaces. Native modes use OS-owned date and time controls in Solo field
  * chrome; the deprecated `nativePicker` maps to the same surfaces.
+ *
+ * @agentGuidance
+ * DateTimeInput combines date and time selection in one field. With
+ * presentation="adaptive-native" (the default), mouse/trackpad devices use Solo
+ * typed fields and popovers, while coarse-pointer devices use browser/OS date
+ * and time controls in the same two-segment field. presentation="native" uses
+ * both native controls on every pointer; presentation="adaptive-bottom-sheet"
+ * keeps Solo's own surfaces — pointer fields on fine pointers and the
+ * coordinated Date/Time bottom sheet on coarse pointers; "popover" and
+ * "bottom-sheet" force one Solo surface on every pointer. The closed segments
+ * stay side by side when at least 400px is available and wrap into full-width
+ * rows below 400px, independent of viewport width. Use it for scheduling, event
+ * creation, deadline setting, or any form field that needs a specific datetime.
+ *
+ * Don't:
+ * - Use DateTimeInput when only a date is needed; use DateInput instead.
+ * - Use DateTimeInput when only a time is needed; use TimeInput instead.
+ * - Hide the label without surrounding context that makes the field purpose
+ *   obvious.
+ * - Wrap a disabled DateTimeInput in Tooltip to explain why it is disabled;
+ *   disabled triggers swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
  */
 export function DateTimeInput(props: DateTimeInputProps) {
   const isTouch = useMediaQuery(TOUCH_POINTER_QUERY);

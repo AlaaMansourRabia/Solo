@@ -269,6 +269,20 @@ function defaultFormatValueLabel(value: number, max: number): string {
  * Styles use Solo theme tokens via Tailwind classes.
  * Wrap your app in <Theme> to apply a theme.
  *
+ * @agentGuidance
+ * A horizontal bar showing the completion progress of a task. Use it for
+ * operations where the duration is known, or as an animated indicator when
+ * progress can't be calculated. Supports semantic color variants, value labels,
+ * and custom formatting.
+ *
+ * Don't:
+ * - Place icons or labels inside the bar; compose them alongside it using
+ *   layout components.
+ * - Use a progress bar for instant actions; it's meant for operations that take
+ *   noticeable time.
+ * - Use multiple progress bars stacked together for the same operation; use one
+ *   bar with a value label instead.
+ *
  * @example
  * ```
  * <ProgressBar value={75} label="Upload progress" />

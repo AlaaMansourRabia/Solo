@@ -97,6 +97,27 @@ export interface BadgeProps extends BaseProps<HTMLSpanElement> {
  * Styles use Solo theme tokens via Tailwind classes.
  * Wrap your app in <Theme> to apply a theme.
  *
+ * @agentGuidance
+ * Badge highlights a status or category at a glance. Use it sparingly: only
+ * when a value represents a distinct state (Active, Failed) or a grouping tag
+ * (Engineering, Design). Most metadata (dates, durations, counts, descriptions)
+ * should be plain description text, not badges.
+ *
+ * Don't:
+ * - Apply a "success" badge to every healthy/active/normal item. If all rows
+ *   show green "Active" badges, none stand out; the badge adds noise, not
+ *   information. Show only the states that need user attention (errors,
+ *   warnings, pending actions).
+ * - Use badges for metadata. Durations ("6h window"), counts ("12 trigger
+ *   types"), dates, and descriptions are not statuses or categories; use
+ *   description text (Text with type="supporting") instead.
+ * - Use semantic status variants (success, warning, error, info) for categories
+ *   or informational content. These are visually loud and should only indicate
+ *   system state.
+ * - Repeat the same badge in every row of a table or list. If the same value
+ *   appears in most rows, it's not adding information; use plain text for
+ *   common states and reserve badges for the exceptional ones.
+ *
  * @example
  * ```
  * <Badge label="Active" />

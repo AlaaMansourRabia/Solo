@@ -5,7 +5,7 @@ export const docs = {
   subComponentOf: 'Table',
   displayName: 'useTableRowIndex',
   description:
-    'Hook that returns a TablePlugin which prepends a right-aligned, monospaced row-number column. Numbering follows the rendered data order (reflecting the current sort / filter / pagination view) and starts at 1 by default. Solo renderCell receives only the row item, so the plugin takes the rendered data array to derive each ordinal.',
+    'Hook that returns a TablePlugin which prepends an end-aligned, monospaced row-number column. Numbering follows the rendered data order (reflecting the current sort / filter / pagination view) and starts at 1 by default. Solo renderCell receives only the row item, so the plugin takes the rendered data array to derive each ordinal.',
   props: [
     {
       name: 'data',
@@ -37,7 +37,7 @@ export const docs = {
 
 /** @type {import('@solo/docs-types').ComponentTranslationDoc} */
 export const docsAr = {
-  description: 'خطّاف (hook) يُرجع TablePlugin يضيف في البداية عمودًا لأرقام الصفوف محاذى إلى اليمين بخط أحادي المسافة. يتبع الترقيم ترتيب البيانات المعروضة (بما يعكس عرض الفرز / الترشيح / ترقيم الصفحات الحالي) ويبدأ من 1 افتراضيًا. لا يتلقى renderCell في Solo سوى عنصر الصف، لذا تأخذ الإضافة مصفوفة البيانات المعروضة لاشتقاق رقم كل صف.',
+  description: 'خطّاف (hook) يُرجع TablePlugin يضيف في البداية عمودًا لأرقام الصفوف محاذى إلى النهاية بخط أحادي المسافة. يتبع الترقيم ترتيب البيانات المعروضة (بما يعكس عرض الفرز / الترشيح / ترقيم الصفحات الحالي) ويبدأ من 1 افتراضيًا. لا يتلقى renderCell في Solo سوى عنصر الصف، لذا تأخذ الإضافة مصفوفة البيانات المعروضة لاشتقاق رقم كل صف.',
   propDescriptions: {
     data: 'مصفوفة البيانات المعروضة حاليًا في الجدول (بعد الفرز/الترشيح/الصفحة). يتبع الترقيم هذا الترتيب.',
     getRowKey: 'دالة اختيارية لاستخراج المفتاح تُرجع سلسلة نصية فريدة لكل صف. عند توفيرها، يعتمد البحث عن الفهرس على السلسلة المُرجعة؛ وإلا فتُطابق العناصر بهوية المرجع. احفظها باستخدام useCallback للحصول على هوية ثابتة للإضافة.',
@@ -49,7 +49,7 @@ export const docsAr = {
 /** @type {import('@solo/docs-types').ComponentTranslationDoc} */
 export const docsDense = {
   description:
-    'Returns a TablePlugin that prepends a right-aligned monospaced row-number column. Numbering follows the rendered data order (current sort/filter/page view), 1-based by default. Pass the rendered data array; renderCell only receives the item so the plugin derives ordinals from it.',
+    'Returns a TablePlugin that prepends an end-aligned monospaced row-number column. Numbering follows the rendered data order (current sort/filter/page view), 1-based by default. Pass the rendered data array; renderCell only receives the item so the plugin derives ordinals from it.',
   propDescriptions: {
     data: 'The rendered data array (post sort/filter/page). Numbering follows this order.',
     getRowKey: 'Optional key extractor returning a unique string per row; otherwise items match by reference.',

@@ -36,7 +36,7 @@ const meta = {
       axes={
         <>
           <ChartAxis position="bottom" />
-          <ChartAxis position="left" />
+          <ChartAxis position="start" />
         </>
       }
       height={300}
@@ -67,7 +67,7 @@ export const ContinuousX: Story = {
       axes={
         <>
           <ChartAxis position="bottom" />
-          <ChartAxis position="left" />
+          <ChartAxis position="start" />
         </>
       }
       height={300}

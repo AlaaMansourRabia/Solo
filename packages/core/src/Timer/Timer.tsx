@@ -3,8 +3,8 @@
 /**
  * @file Timer.tsx
  * @input Uses an optional start time, standardized format, Timestamp typography, BaseProps, and React ref
- * @output Exports Timer, TimerProps, and TimerFormat with non-rendering elapsed-time updates
- * @position Core content primitive for elapsed duration in active operations
+ * @output Exports Timer, TimerProps, and TimerFormat with non-rendering elapsed and countdown updates
+ * @position Core content primitive for elapsed or remaining duration in active operations
  *
  * SYNC: When modified, update these files to stay in sync:
  * - /packages/core/src/Timer/Timer.doc.mjs
@@ -94,6 +94,25 @@ function getPresentation(
   };
 }
 
+/**
+ * Countdown display: remaining time rounded UP to the shown precision, so
+ * "1s" stays on screen until the deadline is reached and "0s" means done.
+ */
+function getRemainingDisplayMilliseconds(remaining: number): number {
+  return Math.ceil(remaining / ONE_SECOND_MS) * ONE_SECOND_MS;
+}
+
+function getMillisecondsUntilNextCountdownChange(
+  remaining: number,
+  format: TimerFormat,
+): number {
+  const precision =
+    format === 'elapsed' && remaining > ONE_HOUR_SECONDS * ONE_SECOND_MS
+      ? ONE_MINUTE_MS
+      : ONE_SECOND_MS;
+  return Math.min(remaining % precision || precision, MAX_TIMEOUT_MS);
+}
+
 function getMillisecondsUntilNextChange(
   now: number,
   startTime: number,
@@ -124,6 +143,14 @@ export interface TimerProps extends Omit<
    */
   startTime?: number;
   /**
+   * Unix time in milliseconds to count DOWN to. When set, Timer shows the
+   * time remaining until `endTime` (never below zero) instead of the time
+   * elapsed since `startTime`, stops ticking at zero and calls `onComplete`.
+   */
+  endTime?: number;
+  /** Called once when a countdown (`endTime`) reaches zero. */
+  onComplete?: () => void;
+  /**
    * Standard duration representation.
    * @default 'elapsed'
    */
@@ -145,20 +172,38 @@ export interface TimerProps extends Omit<
 }
 
 /**
- * Displays a standardized elapsed duration without scheduling React tick renders.
+ * Displays a live duration — time elapsed since `startTime`, or time
+ * remaining until `endTime` (a countdown) — without scheduling React tick
+ * renders.
  *
  * Timer writes changing text and its ISO 8601 duration directly to the owned
  * `<time>` node. Use `elapsed` for compact duration text or `clock` for a
  * stopwatch-like reading.
  *
+ * @agentGuidance
+ * Displays a live duration for active work without scheduling a React render on
+ * every tick: the time elapsed since startTime, or — with endTime — the time
+ * remaining until a deadline (a countdown). Elapsed format updates by second
+ * below one hour and by minute after one hour; clock format remains
+ * second-precise.
+ *
+ * Don't:
+ * - Do not use Timer for dates, time zones, or relative calendar language; use
+ *   Timestamp instead.
+ * - Do not add aria-live unless hearing an announcement every tick is
+ *   appropriate for the specific task.
+ *
  * @example
  * ```
  * <Timer />
  * <Timer format="clock" />
+ * <Timer endTime={auction.endsAt} format="clock" onComplete={closeBidding} />
  * ```
  */
 export function Timer({
   startTime,
+  endTime,
+  onComplete,
   format = 'elapsed',
   type = 'supporting',
   size,
@@ -173,7 +218,18 @@ export function Timer({
   const timerRef = useRef<HTMLTimeElement>(null);
   const mergedRef = useMergedRefs(ref, timerRef);
   const resolvedFormat = resolveFormat(format);
-  const initialPresentation = getPresentation(0, resolvedFormat);
+  const isCountdown = endTime !== undefined && Number.isFinite(endTime);
+  const initialPresentation = getPresentation(
+    isCountdown
+      ? getRemainingDisplayMilliseconds(Math.max(0, endTime - mountTime))
+      : 0,
+    resolvedFormat,
+  );
+  // Latest callback without restarting the tick loop when it changes identity.
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     const resolvedStartTime =
@@ -184,15 +240,10 @@ export function Timer({
     let previousDateTime: string | undefined;
     let previousText: string | undefined;
 
-    const tick = () => {
-      const now = Date.now();
-      const elapsedMilliseconds = getElapsedMilliseconds(
-        now,
-        resolvedStartTime,
-      );
-      const presentation = getPresentation(elapsedMilliseconds, resolvedFormat);
-      const node = timerRef.current;
+    let hasCompleted = false;
 
+    const write = (presentation: TimerPresentation) => {
+      const node = timerRef.current;
       if (node != null) {
         if (presentation.text !== previousText) {
           node.textContent = presentation.text;
@@ -203,6 +254,36 @@ export function Timer({
           previousDateTime = presentation.dateTime;
         }
       }
+    };
+
+    const countdownTick = (deadline: number) => {
+      const remaining = Math.max(0, deadline - Date.now());
+      write(
+        getPresentation(
+          getRemainingDisplayMilliseconds(remaining),
+          resolvedFormat,
+        ),
+      );
+      if (remaining === 0) {
+        if (!hasCompleted) {
+          hasCompleted = true;
+          onCompleteRef.current?.();
+        }
+        return;
+      }
+      timeoutID = setTimeout(
+        () => countdownTick(deadline),
+        getMillisecondsUntilNextCountdownChange(remaining, resolvedFormat),
+      );
+    };
+
+    const tick = () => {
+      const now = Date.now();
+      const elapsedMilliseconds = getElapsedMilliseconds(
+        now,
+        resolvedStartTime,
+      );
+      write(getPresentation(elapsedMilliseconds, resolvedFormat));
 
       timeoutID = setTimeout(
         tick,
@@ -215,13 +296,17 @@ export function Timer({
       );
     };
 
-    tick();
+    if (endTime !== undefined && Number.isFinite(endTime)) {
+      countdownTick(endTime);
+    } else {
+      tick();
+    }
     return () => {
       if (timeoutID !== undefined) {
         clearTimeout(timeoutID);
       }
     };
-  }, [mountTime, resolvedFormat, startTime]);
+  }, [mountTime, resolvedFormat, startTime, endTime]);
 
   const timerProps = mergeProps(themeProps('timer'), {className, style});
 
@@ -235,7 +320,7 @@ export function Timer({
       <time
         {...rest}
         ref={mergedRef}
-        dateTime="PT0S"
+        dateTime={initialPresentation.dateTime}
         className={styles.time}>
         {initialPresentation.text}
       </time>

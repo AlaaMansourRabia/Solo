@@ -156,6 +156,16 @@ function findInitialTabbableId(items: TreeListItemData[]): string | undefined {
  * Positional data (nestedLevel, isLast, ancestorsIsLast) is computed during
  * rendering — no context, no cloneElement, no force-update mechanism.
  *
+ * @agentGuidance
+ * An expandable tree structure for displaying hierarchical data with branch
+ * connector lines. Use it for file explorers, nested category browsers, or any
+ * interface that visualizes parent-child relationships.
+ *
+ * Don't:
+ * - Nest more than 4–5 levels deep; flatten the structure or use a different
+ *   pattern.
+ * - Use a tree for flat, non-hierarchical data; use a List instead.
+ *
  * @example
  * ```
  * <TreeList

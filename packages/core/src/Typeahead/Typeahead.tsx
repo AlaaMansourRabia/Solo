@@ -333,6 +333,23 @@ function EndLane({
   );
 }
 
+/**
+ * @agentGuidance
+ * A searchable input for selecting a single item from a large or dynamic
+ * dataset. Results appear as the user types, with support for async data
+ * sources, debounced search, and custom item rendering. Use it when the option
+ * list is too large for a Selector dropdown.
+ *
+ * Don't:
+ * - Use for short, static option lists; use Selector for better
+ *   discoverability.
+ * - Use for multi-selection; use Tokenizer instead.
+ * - Place multiple Typeaheads adjacent to each other without clear labels
+ *   differentiating them.
+ * - Wrap a disabled Typeahead in Tooltip to explain why it is disabled;
+ *   disabled triggers swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ */
 export function Typeahead<T extends SearchableItem>({
   ref,
   label,

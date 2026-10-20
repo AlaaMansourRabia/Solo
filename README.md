@@ -11,7 +11,24 @@ Solo is a React design system — **core components, design tokens and charts** 
 | `@solo/templates` | 55 page templates for the Templates gallery |
 | `@solo/docs-types` | Authoring types for `.doc.mjs` files (`ComponentDoc`, `TemplateDoc`, …) |
 | `@solo/docs-registry` | `families.json` (which components share a page) and `sidebar.json` |
+| `@solo/eslint-plugin` | `logical-direction` lint rule for apps built with Solo: flags left/right styling that breaks RTL |
 | `@solo/storybook` | Storybook for every component, chart and template |
+
+## For AI coding agents
+
+Agents choose components by reading names and descriptions, so the decision
+rules have to reach them as text:
+
+- [`llms.txt`](./llms.txt) — every component with one line on what it is for.
+- [`llms-full.txt`](./llms-full.txt) — purpose, do / don't (which sibling to
+  use instead), props and hooks for every component.
+- [`AGENTS.md`](./AGENTS.md) — how to choose components, the right-to-left
+  rules, tokens and checks.
+- Each component's JSDoc carries the same purpose and don'ts under
+  `@agentGuidance`, so they show on hover and in the source.
+
+All of it is generated from the `.doc.mjs` files (`pnpm generate:agent-docs`;
+CI fails when it is stale).
 
 ## Getting started
 
@@ -150,9 +167,23 @@ Storybook has a **Templates** section with one full-screen story per template
   categories to Arabic. Template filter names: `TEMPLATE_FILTER_NAMES_AR` in
   `@solo/docs-types`. Terminology: `docs/i18n/ar-glossary.md`.
 - **RTL.** Components use logical properties (start/end, inline/block), so
-  they mirror under `dir="rtl"`; `pnpm docs:check` fails on new physical-
-  direction classes (`rtl-physical-classes`; exceptions in
-  `scripts/rtl-allowlist.json`).
+  they mirror under `dir="rtl"`. Three layers keep it that way:
+  - `pnpm docs:check` (`rtl-physical-classes`) fails on physical classes
+    (`ml-4`, `text-left`; exceptions in `scripts/rtl-allowlist.json`) and on
+    physical inline styles (`style={{marginLeft}}`; exceptions need a
+    `// rtl-allow: <reason>` comment).
+  - `pnpm rtl:mirror` (in CI, after the Storybook build) renders 26
+    asymmetric parts in a real browser — ProgressBar label/value/fill/marks,
+    Slider, Switch, Stepper, Pagination, inputs, Banner, Avatar, Calendar,
+    Breadcrumbs, Chat, Tabs, SideNav, charts — and fails unless each one
+    mirrors.
+  - Apps built with Solo add `@solo/eslint-plugin`
+    (`export default [solo.configs.recommended]`); its `logical-direction`
+    rule flags physical classes, `cn()` strings and inline styles, and names
+    the logical replacement.
+- **Logical props.** Public APIs take `start`/`end`, not `left`/`right`:
+  `ChartAxis position`, `ChartTooltip placement`, `Chart margin`. The old
+  `left`/`right` values remain as deprecated aliases.
 - **Arabic typography.** Arabic-script content — `lang="ar" | "fa" | "ur"`
   (read from the page's own `<html lang>` too, so it works with
   `<Theme syncRoot={false}>`), or right-to-left content with no `lang`
@@ -178,9 +209,9 @@ Storybook has a **Templates** section with one full-screen story per template
   are shown in Arabic (code, `translate="no"` and input values are left
   alone; React updates are re-translated). Brand/company names, dates, IDs,
   file names and code stay as written by design.
-- **Charts.** In RTL the plot mirrors: the x scale runs right → left, a
-  `left` axis (and the wider margin) moves to the right edge, reference-line
-  `start`/`end` labels flip. Axis text inherits the Arabic font, and month /
+- **Charts.** In RTL the plot mirrors: the x scale runs right → left, the
+  `start` axis (and its wider margin) moves to the right edge, reference-line
+  `start`/`end` labels flip, and the tooltip prefers the end side. Axis text inherits the Arabic font, and month /
   weekday / quarter tick labels come from the shared vocabulary in
   `packages/templates/src/i18n/common.ar.json` (composite labels such as
   "Mar 12" or "9:00 AM" are translated word by word).

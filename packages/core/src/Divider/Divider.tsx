@@ -95,6 +95,15 @@ const fullBleedStyles = {
  * Provides horizontal and vertical dividers with optional labels.
  * Uses Solo design tokens for colors and spacing.
  *
+ * @agentGuidance
+ * A visual separator that divides content into distinct sections. Use to create
+ * clear boundaries between groups of related content, or to demarcate
+ * interactive regions within a layout.
+ *
+ * Don't:
+ * - Overuse dividers; rely on spacing and layout to separate content when
+ *   possible.
+ *
  * @example
  * ```
  * <Divider label="or" />

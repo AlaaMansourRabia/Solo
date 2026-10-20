@@ -183,6 +183,26 @@ export interface CardProps extends BaseProps<HTMLDivElement> {
  * Applies card-specific appearance (background, border, border-radius)
  * and sets CSS variables for child layout components.
  *
+ * @agentGuidance
+ * Card is a bordered, elevated container for discrete, self-contained items:
+ * things you could reorder, remove, or interact with independently. Cards are
+ * NOT the default layout tool. Most content groups don't need a container at
+ * all; spacing and alignment create visual grouping naturally. Only reach for a
+ * Card when items need clear interaction boundaries or visual comparison in a
+ * grid.
+ *
+ * Don't:
+ * - Default to cards for visual grouping. A heading + Stack with proper spacing
+ *   creates hierarchy without adding borders everywhere. Cards should be the
+ *   exception, not the default.
+ * - Wrap page sections in cards. "General Settings", "Notification
+ *   Preferences", form groups: these are page regions, use Section or heading +
+ *   stack.
+ * - Create identical card grids (icon + heading + text, repeated). Vary the
+ *   layout or question whether cards are needed at all.
+ * - Nest cards inside other cards; flatten the hierarchy or use spacing and
+ *   dividers instead.
+ *
  * @compositionHint Use as a top-level container for elevated content.
  * Pair with Layout for structured header/content/footer layouts.
  *

@@ -5,6 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "generate:agent-docs": "node scripts/generate-agent-docs.mjs",
+    "rtl:mirror": "node scripts/rtl-mirror-check.mjs",
     "generate:i18n-runtime": "node scripts/generate-i18n-runtime.mjs && node packages/core/scripts/build-pseudo-locale.mjs",
     "postinstall": "node scripts/generate-i18n-runtime.mjs --best-effort",
     "storybook": "pnpm -F @solo/storybook dev",
@@ -16,7 +18,7 @@
     "check:use-client": "node scripts/check-use-client.mjs",
     "check:css": "node scripts/check-css.mjs",
     "docs:check": "node scripts/docs-check.mjs",
-    "check": "pnpm typecheck && pnpm check:css && node scripts/sync-css-imports.mjs --check && node scripts/generate-tokens-css.mjs --check && node scripts/generate-i18n-runtime.mjs --check && node scripts/generate-template-stories.mjs --check && node scripts/generate-arabic-font.mjs --check && node scripts/generate-template-mock-text.mjs --check && pnpm docs:check"
+    "check": "pnpm typecheck && pnpm check:css && node scripts/sync-css-imports.mjs --check && node scripts/generate-tokens-css.mjs --check && node scripts/generate-i18n-runtime.mjs --check && node scripts/generate-template-stories.mjs --check && node scripts/generate-arabic-font.mjs --check && node scripts/generate-template-mock-text.mjs --check && node scripts/generate-agent-docs.mjs --check && pnpm docs:check"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.0",

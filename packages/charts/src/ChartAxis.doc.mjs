@@ -10,7 +10,7 @@ export const docs = {
 
   usage: {
     description:
-      'ChartAxis renders tick labels and optional edge and tick lines from the scales owned by a parent Chart. Use it in the Chart axes slot for physical top, right, bottom, or left plot edges.',
+      'ChartAxis renders tick labels and optional edge and tick lines from the scales owned by a parent Chart. Use it in the Chart axes slot for the top or bottom plot edge, or the start or end edge (which mirror in right-to-left layouts).',
     bestPractices: [
       {
         guidance: true,
@@ -78,8 +78,9 @@ export const docs = {
   props: [
     {
       name: 'position',
-      type: "'top' | 'right' | 'bottom' | 'left'",
-      description: 'Physical plot edge on which to render the axis.',
+      type: "'top' | 'bottom' | 'start' | 'end' | 'left' | 'right'",
+      description:
+        "Plot edge on which to render the axis. 'start' and 'end' are logical: 'start' is the left edge in left-to-right layouts and the right edge in right-to-left layouts, so the value axis follows the reading direction. 'left' and 'right' are deprecated aliases for 'start' and 'end'.",
       required: true,
     },
     {
@@ -142,7 +143,7 @@ export const docs = {
   axes={
     <>
       <ChartAxis position="bottom" />
-      <ChartAxis position="left" tickFormat={value => String(value)} />
+      <ChartAxis position="start" tickFormat={value => String(value)} />
     </>
   }
 />;`,
@@ -163,7 +164,7 @@ export const docs = {
 export const docsAr = {
   description: 'يعرض ChartAxis تسميات العلامات وخط الحافة وخطوط العلامات الاختيارية على حافة المخطط المحددة اعتمادًا على المقاييس التي يملكها المكوّن الأب Chart.',
   propDescriptions: {
-    position: 'حافة منطقة الرسم الفعلية التي يُعرض عليها المحور.',
+    position: "حافة منطقة الرسم التي يُعرض عليها المحور. القيمتان 'start' و'end' منطقيتان: 'start' هي الحافة اليسرى في التخطيطات من اليسار إلى اليمين والحافة اليمنى في التخطيطات من اليمين إلى اليسار، فيتبع محور القيم اتجاه القراءة. القيمتان 'left' و'right' اسمان مستعاران متقادمان لـ'start' و'end'.",
     tickCount: 'العدد التقريبي للعلامات في المقاييس المتصلة، وتختار d3 القيم النهائية.',
     maxTicks: 'الحد الأقصى لعدد التسميات المعروضة. تُتخطّى التسميات بالتساوي عندما تكون المجموعة المولَّدة أكبر.',
     tickFormat: 'ينسّق كل علامة مُبقاة. عند إغفاله، تستخدم المقاييس المتصلة تنسيق d3 وتستخدم المقاييس الفئوية (band) نصوص فئاتها.',
@@ -173,7 +174,7 @@ export const docsAr = {
     showTicks: 'ما إذا كانت تُرسم علامة متجهة إلى الخارج عند كل علامة مُبقاة.',
   },
   usage: {
-    description: 'يعرض ChartAxis تسميات العلامات وخط الحافة وخطوط العلامات الاختيارية انطلاقًا من المقاييس التي يملكها المكوّن الأب Chart. استخدمه في خانة المحاور في Chart لحواف منطقة الرسم الفعلية: العلوية أو اليمنى أو السفلية أو اليسرى.',
+    description: 'يعرض ChartAxis تسميات العلامات وخط الحافة وخطوط العلامات الاختيارية انطلاقًا من المقاييس التي يملكها المكوّن الأب Chart. استخدمه في خانة المحاور في Chart للحافة العلوية أو السفلية لمنطقة الرسم، أو لحافة البداية أو النهاية (اللتين تنعكسان في التخطيطات من اليمين إلى اليسار).',
     bestPractices: [
       {
         guidance: true,

@@ -251,6 +251,17 @@ function AreaProvider({
  * - Settings page with nav panel → Layout with `start` + `content`
  * - Simple vertical stack of items → use VStack instead
  *
+ * @agentGuidance
+ * Layout is a general five-slot primitive for arranging header, start, content,
+ * end, and footer regions within a page or bounded container. AppShell owns the
+ * page shell and app-wide navigation behavior; use HStack or VStack for simple
+ * directional stacking.
+ *
+ * Don't:
+ * - Use Layout for simple stacking layouts; use HStack or VStack instead.
+ * - Use Layout as the page shell or for app-wide navigation; use AppShell for
+ *   that responsibility.
+ *
  * @example
  * ```
  * <Layout

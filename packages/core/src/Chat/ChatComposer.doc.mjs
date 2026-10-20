@@ -93,7 +93,7 @@ export const docs = {
     {
       name: 'headerActions',
       type: 'ReactNode',
-      description: 'Slot: left-aligned header actions (attach, mention buttons). Use icon-only size="sm" buttons.',
+      description: 'Slot: start-aligned header actions (attach, mention buttons). Use icon-only size="sm" buttons.',
       slotElements: [
         {
           __element: 'Button',
@@ -108,7 +108,7 @@ export const docs = {
     {
       name: 'headerContext',
       type: 'ReactNode',
-      description: 'Slot: right-aligned contextual info in the header (context window usage, ProgressBar, supporting text).',
+      description: 'Slot: end-aligned contextual info in the header (context window usage, ProgressBar, supporting text).',
       slotElements: [
         {
           __element: 'Text',
@@ -136,7 +136,7 @@ export const docs = {
     {
       name: 'footerActions',
       type: 'ReactNode',
-      description: 'Slot: left-aligned footer actions (model selector, etc).',
+      description: 'Slot: start-aligned footer actions (model selector, etc).',
       slotElements: [
         {
           __element: 'Button',
@@ -151,7 +151,7 @@ export const docs = {
     {
       name: 'sendActions',
       type: 'ReactNode',
-      description: 'Slot: actions to the left of the send button.',
+      description: 'Slot: actions just before the send button (on its start side).',
       slotElements: [
         {
           __element: 'Button',
@@ -305,11 +305,11 @@ export const docsDense = {
     elevation:
       'resting elevation of composer body: low (default; low→med on hover/focus) | none (flat with border); keyboard-focused editor gets the shared ring in either mode; pointer focus does not',
     drawer: 'slot: collapsible drawer above input: attachments, context chips, etc.; use ChatComposerDrawer',
-    headerActions: 'slot: left header actions (attach, mention); icon-only sm buttons',
-    headerContext: 'slot: right header context info (window usage, ProgressBar, text)',
+    headerActions: 'slot: start-side header actions (attach, mention); icon-only sm buttons',
+    headerContext: 'slot: end-side header context info (window usage, ProgressBar, text)',
     input: 'slot: custom input; replaces default. use ChatComposerInput for triggers/tokens, or wire any input via useChatComposerContext() (value/onChange/onSubmit/canSend + register focus on inputControlRef)',
-    footerActions: 'slot: left footer actions (model selector etc)',
-    sendActions: 'slot: actions left of send btn',
+    footerActions: 'slot: start-side footer actions (model selector etc)',
+    sendActions: 'slot: actions before (start side of) send btn',
     sendButton: 'slot: custom send btn; replaces default',
     status: 'status msg below/above composer',
     statusPosition: 'status render position',

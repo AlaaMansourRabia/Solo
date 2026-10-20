@@ -147,10 +147,10 @@ export const docs = {
     },
     {
       name: 'margin',
-      type: '{top?: number; right?: number; bottom?: number; left?: number}',
+      type: '{top?: number; bottom?: number; start?: number; end?: number; left?: number; right?: number}',
       description:
-        'Plot inset overrides in CSS pixels for top, right, bottom, and left.',
-      default: '{top: 24, right: 24, bottom: 32, left: 48}',
+        "Plot inset overrides in CSS pixels. 'start' and 'end' are logical: the start inset holds the value axis and moves to the right edge in right-to-left layouts. 'left' and 'right' are deprecated aliases for 'start' and 'end'.",
+      default: '{top: 24, end: 24, bottom: 32, start: 48}',
     },
     {
       name: 'yBaseline',
@@ -185,7 +185,7 @@ export const docs = {
         'Axis content rendered after the series, normally one or more ChartAxis elements.',
       slotElements: [
         {__element: 'ChartAxis', props: {position: 'bottom'}},
-        {__element: 'ChartAxis', props: {position: 'left'}},
+        {__element: 'ChartAxis', props: {position: 'start'}},
       ],
     },
     {
@@ -264,7 +264,7 @@ const series = [
   axes={
     <>
       <ChartAxis position="bottom" />
-      <ChartAxis position="left" />
+      <ChartAxis position="start" />
     </>
   }
   legend
@@ -295,7 +295,7 @@ export const docsAr = {
     series:
       'تعريفات العلامات المُنشأة بدوال مساعدة مثل bar() أو line() أو area() أو dot(). أنشئ مصفوفة جديدة لكل Chart.',
     height: 'ارتفاع المخطط بوحدات بكسل CSS.',
-    margin: 'تجاوزات الإزاحة الداخلية لمساحة الرسم بوحدات بكسل CSS للأعلى واليمين والأسفل واليسار.',
+    margin: "تجاوزات الإزاحة الداخلية لمساحة الرسم بوحدات بكسل CSS. القيمتان 'start' و'end' منطقيتان: تحمل إزاحة البداية محور القيم وتنتقل إلى الحافة اليمنى في التخطيطات من اليمين إلى اليسار. القيمتان 'left' و'right' اسمان مستعاران متقادمان لـ'start' و'end'.",
     yBaseline:
       'طريقة اشتقاق Chart لنطاق y عند إغفال yDomain: صفر وهامش علوي بحسب نوع العلامة، أو تماثل حول الصفر، أو ملاءمة دقيقة لمدى البيانات.',
     yDomain:

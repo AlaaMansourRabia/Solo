@@ -38,6 +38,7 @@ export default defineConfig({
     execArgv: ['--max-old-space-size=4096'],
     include: [
       'packages/core/src/**/*.test.{ts,tsx,mjs}',
+      'packages/eslint-plugin/src/**/*.test.{ts,tsx,mjs}',
       'packages/charts/src/**/*.test.{ts,tsx,mjs}',
       'packages/theme-neutral/src/**/*.test.{ts,tsx,mjs}',
       'packages/examples/src/**/*.test.{ts,tsx,mjs}',

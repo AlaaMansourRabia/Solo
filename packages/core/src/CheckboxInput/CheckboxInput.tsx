@@ -202,6 +202,20 @@ export interface CheckboxInputProps extends Omit<BaseProps, 'onChange'> {
 /**
  * A checkbox input component for toggling boolean values.
  *
+ * @agentGuidance
+ * CheckboxInput toggles a single on/off value. Use it for settings like "Enable
+ * notifications", terms acceptance, or opt-in choices. For multiple checkboxes
+ * in a group, use CheckboxList instead.
+ *
+ * Don't:
+ * - Use a checkbox for mutually exclusive choices; use RadioList when only one
+ *   option can be selected.
+ * - Use a checkbox for actions that take effect immediately; use a toggle
+ *   switch or button instead.
+ * - Wrap a disabled checkbox in Tooltip to explain why it is disabled; disabled
+ *   controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <CheckboxInput

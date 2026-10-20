@@ -286,6 +286,16 @@ export interface SideNavProps extends BaseProps<HTMLElement> {
  * Five vertical zones: sticky header + action area at top,
  * scrollable nav content in the middle, and sticky footer + icon bar at bottom.
  *
+ * @agentGuidance
+ * A sidebar navigation component for organizing application pages with
+ * sections, nested items, and icons. Use SideNav as the primary navigation when
+ * an app has 5 or more destinations or requires hierarchical grouping.
+ *
+ * Don't:
+ * - Include a SideNavHeading when a TopNav is already providing app identity;
+ *   this duplicates branding.
+ * - Use for filtering content; use tabs or filter buttons instead.
+ *
  * @example
  * ```
  * <SideNav

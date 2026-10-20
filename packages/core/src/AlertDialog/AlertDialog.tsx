@@ -118,6 +118,34 @@ export interface AlertDialogProps extends BaseProps<HTMLDialogElement> {
  * The `isInline` preview path is not modal, so it renders `role="group"`
  * instead — the alertdialog role would promise modality it does not have.
  *
+ * @agentGuidance
+ * AlertDialog asks the user to confirm a destructive or irreversible action
+ * before it happens. Use it for things like deleting content, revoking access,
+ * or discarding unsaved changes. It implements the WAI-ARIA APG [Alert Dialog
+ * pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/):
+ * `role="alertdialog"`, a title linked by `aria-labelledby`, a consequence
+ * description linked by `aria-describedby`, focus moved into the dialog on open
+ * and returned to the trigger on close, and no dismissal by clicking outside.
+ * Escape cancels. AlertDialog passes its requested width through to Dialog,
+ * which clamps the surface to the container and dynamic viewport with token
+ * gutters. Generic Dialog footers should wrap, but Dialog does not own action
+ * semantics or order; consumer composition controls that. AlertDialog owns its
+ * confirmation semantics: above 640px, actions render horizontally and may move
+ * onto another row; at 640px and below, the destructive action appears above
+ * Cancel and both buttons fill the footer width. Button labels retain their
+ * standard single-line behavior. The breakpoint follows available width, not
+ * pointer or hover capability. The body scrolls when block space is
+ * constrained. For cases where you want to show an alert without managing open
+ * state, use the `useImperativeAlertDialog` hook: call `alert.show(options)`
+ * and render `alert.element` in your tree.
+ *
+ * Don't:
+ * - Use AlertDialog for non-destructive actions; use a standard Dialog instead.
+ * - Rely on color alone to signal danger; the action label itself should say
+ *   what will happen.
+ * - Close the dialog from onAction before the work finishes; hold it open with
+ *   isActionLoading and call onOpenChange(false) when the action settles.
+ *
  * @example
  * ```
  * <AlertDialog

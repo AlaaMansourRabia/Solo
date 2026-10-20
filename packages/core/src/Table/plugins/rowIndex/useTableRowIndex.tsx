@@ -51,7 +51,7 @@ const styles = {
   ),
 } as const;
 /**
- * Returns a {@link TablePlugin} that prepends a right-aligned, monospaced
+ * Returns a {@link TablePlugin} that prepends an end-aligned, monospaced
  * row-number column. Numbering follows the order of the rendered `data` array,
  * so it reflects the current sort / filter / pagination view.
  *

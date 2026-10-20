@@ -104,6 +104,23 @@ const listStyles = {
  * `isCurrent` explicitly set — handled by each item via DOM inspection,
  * no React child introspection needed.
  *
+ * @agentGuidance
+ * Breadcrumbs show a trail of links from the root to the current page. Use them
+ * at the top of detail pages, settings panels, or anywhere the user needs to
+ * see where they are and navigate back up.
+ *
+ * Don't:
+ * - Use breadcrumbs as the primary navigation. They supplement a sidebar or top
+ *   nav, not replace it.
+ * - Show breadcrumbs on top-level pages that have no parent; they add clutter
+ *   without helping the user.
+ * - Let the trail grow beyond 5 levels. If you need more, consider simplifying
+ *   the page hierarchy instead.
+ * - Mirror a separator the bidi algorithm already mirrors. An angle-quote glyph
+ *   such as › is Bidi_Mirrored, so it flips under RTL on its own and
+ *   rtlStyles.mirror would flip it back. An arrow glyph such as → and any Icon
+ *   separator are not, so those do need rtlStyles.mirror through className.
+ *
  * @example
  * ```
  * <Breadcrumbs>

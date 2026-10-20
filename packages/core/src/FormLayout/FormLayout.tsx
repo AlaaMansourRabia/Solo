@@ -108,6 +108,20 @@ export interface FormLayoutProps extends BaseProps<HTMLDivElement> {
  * Provides direction context to children via `FormLayoutContext`.
  * Supports nesting — a horizontal layout inside a vertical layout works naturally.
  *
+ * @agentGuidance
+ * A layout container that arranges form fields with consistent spacing and
+ * direction. FormLayout handles where fields go, not state or submission. Wrap
+ * it in a <form> for that. Supports vertical (default), horizontal, and
+ * horizontal-labels directions, and can be nested to mix them.
+ *
+ * Don't:
+ * - Use FormLayout for form state or submission. It's just layout. Wrap it in a
+ *   <form> for that.
+ * - Put unrelated fields side by side in a horizontal layout. Save it for
+ *   fields that belong together.
+ * - Nest horizontal-labels inside another FormLayout. It uses CSS Grid and
+ *   needs to be the outermost container.
+ *
  * @example
  * ```
  * <FormLayout>

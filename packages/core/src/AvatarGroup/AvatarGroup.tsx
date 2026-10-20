@@ -88,6 +88,17 @@ const styles = {
  * Consumers handle slicing — pass only the avatars you want visible,
  * then add an AvatarGroupOverflow for the "+N" indicator.
  *
+ * @agentGuidance
+ * AvatarGroup displays multiple avatars in an overlapping row with an optional
+ * overflow indicator. Uses a compositional API: pass Avatar children directly
+ * so each avatar can carry its own props (status dots, click handlers, etc.).
+ *
+ * Don't:
+ * - Don't nest AvatarGroups; use a single group with all avatars.
+ * - Don't set size on the child avatars. The group's size wins over each
+ *   child's own size prop, including when the group leaves size at its default,
+ *   so a child's size is silently ignored inside a group.
+ *
  * @example
  * ```
  * <AvatarGroup size="lg">

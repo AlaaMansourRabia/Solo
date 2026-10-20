@@ -812,6 +812,22 @@ TimeField.displayName = 'TimeField';
 /**
  * A time input whose `presentation` prop chooses the selection surface;
  * the deprecated `nativePicker` maps to the same surfaces.
+ *
+ * @agentGuidance
+ * TimeInput uses a browser/OS time picker on coarse pointers by default and
+ * Solo's typed field on fine pointers. It converts values to a standard format
+ * and supports arrow-key adjustment on the typed surface. Use it in forms,
+ * scheduling flows, or any interface where users need to select a specific
+ * time.
+ *
+ * Don't:
+ * - Don't use TimeInput for combined date-and-time selection; pair it with a
+ *   separate DateInput instead.
+ * - Don't hide the label; even when space is tight, keep the label visible or
+ *   provide a description so the purpose is clear.
+ * - Wrap a disabled TimeInput in Tooltip to explain why it is disabled;
+ *   disabled triggers swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
  */
 export function TimeInput(props: TimeInputProps) {
   const isTouch = useMediaQuery(TOUCH_POINTER_QUERY);

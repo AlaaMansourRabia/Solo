@@ -575,6 +575,18 @@ function filterOptionsByQuery(
  * A multi-select dropdown component with checkboxes for choosing
  * multiple items from a list of options.
  *
+ * @agentGuidance
+ * A checkbox dropdown for selecting multiple values from a list. Selected items
+ * can display as a count, labels, or badges. Use it for filtering or when
+ * presenting a finite set of options where multiple choices are needed.
+ *
+ * Don't:
+ * - Use for single-value selection; use Selector instead.
+ * - Show more than ~20 options without enabling search.
+ * - Wrap a disabled MultiSelector in Tooltip to explain why it is disabled;
+ *   disabled triggers swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <MultiSelector

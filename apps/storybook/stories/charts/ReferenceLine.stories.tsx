@@ -18,7 +18,7 @@ export default meta;
 const axes = (
   <>
     <ChartAxis position="bottom" />
-    <ChartAxis position="left" />
+    <ChartAxis position="start" />
   </>
 );
 

@@ -80,6 +80,19 @@ export interface EmptyStateProps extends BaseProps<HTMLDivElement> {
  * Uses `role="status"` to announce content to screen readers.
  * Styles use Solo theme tokens via Tailwind classes. Wrap your app in <Theme> to apply a theme.
  *
+ * @agentGuidance
+ * EmptyState shows a placeholder when a content area has no data. Use it for
+ * empty lists, zero search results, first-time setups, or cleared inboxes.
+ * Always include a title and a next step so the user is not stuck.
+ *
+ * Don't:
+ * - Leave an empty state without guidance; always explain what happened and
+ *   what the user can do next.
+ * - Use a generic message like "No data"; be specific about what is empty and
+ *   why.
+ * - Use an EmptyState for error messages that require immediate action; use a
+ *   Banner instead.
+ *
  * @example
  * ```
  * <EmptyState

@@ -218,6 +218,18 @@ const paddingStyles = {
  * rendered on the top layer via Layer so they escape any parent overflow
  * clipping.
  *
+ * @agentGuidance
+ * Carousel scrolls a row of items horizontally when they overflow the available
+ * width. Use it for card grids, image galleries, product lists, or any set of
+ * items that should be browsable without taking up the full page.
+ *
+ * Don't:
+ * - Use a carousel for content every user must see. Not everyone scrolls
+ *   horizontally, so put critical content above the fold.
+ * - Auto-advance items. Let the user scroll at their own pace.
+ * - Nest carousels. A carousel inside a carousel is confusing and breaks
+ *   keyboard navigation.
+ *
  * @example
  * ```
  * <Carousel gap={1}>

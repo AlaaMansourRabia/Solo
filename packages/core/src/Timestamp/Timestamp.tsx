@@ -240,6 +240,21 @@ function isRelativeFormat(
  * formats, and auto formatting. Optionally shows a hover card with the full
  * absolute time (copyable) and can update live.
  *
+ * @agentGuidance
+ * Timestamp formats a date or time value into human-readable text. Use it to
+ * show when something was created, updated, or is scheduled; picking relative
+ * for recency, absolute for precision, or auto to let the component decide.
+ *
+ * Don't:
+ * - Don't display raw Unix timestamps or ISO strings to users; always pass them
+ *   through Timestamp to get a human-readable format.
+ * - Avoid system_date or system_time formats in user-facing UI; they are meant
+ *   for developer tools, logs, and machine-readable contexts.
+ * - Don't disable the hover card on relative timestamps; users expect to hover
+ *   for the full date when they see "3 hours ago".
+ * - Don't stack many zones into one card; it is capped at 300px wide and long
+ *   labelled lines wrap. Two or three entries read well.
+ *
  * @example
  * ```
  * <Timestamp value="2026-02-19T17:00:00Z" />

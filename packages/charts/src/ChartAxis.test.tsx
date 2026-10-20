@@ -230,9 +230,9 @@ describe('ChartAxis right-to-left', () => {
     expect(offset('Feb')).toBeGreaterThan(offset('Mar'));
   });
 
-  it('renders a left axis on the right edge, anchored against the plot', () => {
-    renderRtl(<ChartAxis position="left" />);
-    const axis = screen.getByRole('group', {name: 'left axis'});
+  it('renders the start axis on the right edge, anchored against the plot', () => {
+    renderRtl(<ChartAxis position="start" />);
+    const axis = screen.getByRole('group', {name: 'right axis'});
     // 600 − (logical margins swapped: start gutter 48 now on the right, 24 on the left).
     expect(axis.getAttribute('transform')).toBe('translate(528,0)');
     const label = axis.querySelector('text')!;
@@ -242,4 +242,39 @@ describe('ChartAxis right-to-left', () => {
     expect(label.getAttribute('text-anchor')).toBe('end');
   });
 
+
 });
+
+describe('ChartAxis logical positions', () => {
+  it('places start on the left and end on the right in LTR', () => {
+    renderChart(
+      <>
+        <ChartAxis position="start" />
+        <ChartAxis position="end" />
+      </>,
+    );
+    expect(
+      screen.getByRole('group', {name: 'left axis'}),
+    ).toHaveAttribute('data-position', 'start');
+    expect(screen.getByRole('group', {name: 'right axis'})).toHaveAttribute(
+      'transform',
+      'translate(528,0)',
+    );
+  });
+
+  it('keeps left and right as aliases for start and end', () => {
+    renderChart(
+      <>
+        <ChartAxis position="left" />
+        <ChartAxis position="right" />
+      </>,
+    );
+    expect(
+      screen.getByRole('group', {name: 'left axis'}),
+    ).toHaveAttribute('data-position', 'start');
+    expect(
+      screen.getByRole('group', {name: 'right axis'}),
+    ).toHaveAttribute('data-position', 'end');
+  });
+});
+

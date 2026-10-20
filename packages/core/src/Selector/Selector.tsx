@@ -666,6 +666,25 @@ function filterOptionsByQuery(
 /**
  * A selector/dropdown component for choosing from a list of options.
  *
+ * @agentGuidance
+ * A dropdown selector for choosing a single value from a list of options.
+ * Supports labels, validation, descriptions, and required/optional states. Use
+ * it in forms and settings when presenting a moderate number of options.
+ * Keyboard typeahead matches a native select: typing on the focused closed
+ * trigger selects the matching option directly, repeated presses cycle through
+ * options sharing a first letter, and spaces count as match characters ("new y"
+ * reaches "New York"). With the menu open, typing moves the highlight and Enter
+ * commits. With hasSearch, typing on the closed trigger opens the popup and
+ * seeds the search input.
+ *
+ * Don't:
+ * - Use for action menus; use Dropdown Menu for triggering commands or
+ *   navigation.
+ * - Use when there are only two options; use a SegmentedControl or radio
+ *   buttons instead.
+ * - Use Selector for navigation; links should be links, not dropdown options.
+ * - Use for yes/no or on/off choices; use Switch or CheckboxInput instead.
+ *
  * @example
  * ```
  * <Selector

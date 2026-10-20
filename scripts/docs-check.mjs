@@ -20,7 +20,9 @@
  *   template-assets  every asset a template references exists
  *   rtl-physical-classes  no physical-direction class (ml/mr/pl/pr/left/right/
  *                    border-l/r, rounded-l/r, text-left/right…) outside
- *                    scripts/rtl-allowlist.json
+ *                    scripts/rtl-allowlist.json, and no physical property in
+ *                    a JSX style={{…}} (marginLeft, left, textAlign:'right'…)
+ *                    unless the line above says `// rtl-allow: <reason>`
  *   font-tokens      core + neutral define --font-family-body-arabic /
  *                    --font-family-heading-arabic; no literal font-family in
  *                    component CSS or inline styles (tokens or inherit only)
@@ -39,6 +41,7 @@ import {execFileSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 import {findPhysicalClasses, loadAllowlist} from './rtl-physical-classes.mjs';
+import {checkStyleProperty} from '../packages/eslint-plugin/src/physical.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -744,6 +747,39 @@ for (const name of OVERVIEW_CATEGORIES) {
     if (!(cls in allow)) {
       fail('rtl-physical-classes', `${pkg}: "${cls}" (${decl}) does not mirror in RTL — use the logical utility (ms/me/ps/pe/start/end/text-start/border-s/rounded-s…) or add it to scripts/rtl-allowlist.json with a reason`);
     }
+  }
+}
+
+// Inline styles: the compiled-CSS scan above can't see style={{marginLeft}}.
+// Same detector as @solo/eslint-plugin's logical-direction rule.
+{
+  const roots = [CORE, CHARTS, EXAMPLES, TEMPLATES, P('apps/storybook/stories')];
+  const files = roots.filter(r => fs.existsSync(r)).flatMap(r =>
+    walk(r, f => /\.tsx$/.test(f) && !/\.test\.tsx$/.test(f) && !f.includes('__tests__')));
+  for (const file of files) {
+    const text = fs.readFileSync(file, 'utf8');
+    if (!text.includes('style=')) continue;
+    const sf = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    const lines = text.split('\n');
+    const visit = node => {
+      if (ts.isJsxAttribute(node) && node.name.getText(sf) === 'style' && node.initializer && ts.isJsxExpression(node.initializer)
+          && node.initializer.expression && ts.isObjectLiteralExpression(node.initializer.expression)) {
+        for (const prop of node.initializer.expression.properties) {
+          if (!ts.isPropertyAssignment(prop)) continue;
+          const name = ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name) ? prop.name.text : null;
+          if (!name) continue;
+          const value = ts.isStringLiteral(prop.initializer) ? prop.initializer.text
+            : ts.isNumericLiteral(prop.initializer) ? Number(prop.initializer.text) : undefined;
+          const hit = checkStyleProperty(name, value);
+          if (!hit) continue;
+          const line = sf.getLineAndCharacterOfPosition(prop.getStart(sf)).line;
+          if (/rtl-allow:\s*\S/.test(lines[line] ?? '') || /rtl-allow:\s*\S/.test(lines[line - 1] ?? '')) continue;
+          fail('rtl-physical-classes', `${path.relative(root, file)}:${line + 1}: style \`${name}\` does not mirror in RTL — use \`${hit.replacement}\`, or add \`// rtl-allow: <reason>\` on the line above`);
+        }
+      }
+      ts.forEachChild(node, visit);
+    };
+    visit(sf);
   }
 }
 

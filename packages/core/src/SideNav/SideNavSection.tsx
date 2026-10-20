@@ -67,7 +67,7 @@ export interface SideNavSectionProps extends BaseProps<HTMLDivElement> {
    */
   children: ReactNode;
   /**
-   * Right-side content in the section header.
+   * End-side content in the section header.
    */
   endContent?: ReactNode;
   /**

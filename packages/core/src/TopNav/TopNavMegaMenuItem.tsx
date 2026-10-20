@@ -79,7 +79,7 @@ export interface TopNavMegaMenuItemProps extends Omit<
   title: string;
   /** Optional description text displayed below the title. */
   description?: string;
-  /** Optional icon element displayed to the left. */
+  /** Optional icon element displayed before the label (start side). */
   icon?: ReactNode;
   /** URL to navigate to when clicked. */
   href?: string;

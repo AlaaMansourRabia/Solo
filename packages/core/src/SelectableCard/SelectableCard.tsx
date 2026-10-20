@@ -212,6 +212,13 @@ export interface SelectableCardProps extends Omit<BaseProps, 'onChange'> {
  * the accessible role, label, and checked state. The card surface
  * is a plain <div> — no role or tabIndex on the container.
  *
+ * @agentGuidance
+ * A card that toggles between selected and unselected states with an accent
+ * border. For navigation use ClickableCard.
+ *
+ * Don't:
+ * - Use for navigation; use ClickableCard for that.
+ *
  * @compositionHint Use for multi-select or single-select card groups.
  * Manage selection state externally — use a Set for multi-select
  * or a single value for radio-style selection.

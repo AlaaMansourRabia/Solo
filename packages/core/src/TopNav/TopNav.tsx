@@ -101,6 +101,19 @@ export interface TopNavProps extends BaseProps<HTMLElement> {
  * React children pattern. When `centerContent` is provided, the layout switches
  * to a three-column CSS grid to keep center content horizontally centered.
  *
+ * @agentGuidance
+ * TopNav is a horizontal navigation bar for product-level navigation in
+ * application headers. Use TopNav for 5 or fewer always-visible navigation
+ * items, or minimal navigation paired with search and controls. For complex
+ * navigation hierarchies, use a sidebar; to filter content, use tabs or filter
+ * buttons instead.
+ *
+ * Don't:
+ * - Avoid using TopNav to filter page content; use Tabs or filter controls
+ *   instead.
+ * - Avoid deeply nested navigation hierarchies; keep menus to one level of
+ *   depth.
+ *
  * @example
  * ```
  * <TopNav

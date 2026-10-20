@@ -111,6 +111,18 @@ export interface InputGroupProps extends Omit<
  * Groups an input with prefix/suffix addons in a visually connected
  * container with shared border and focus ring.
  *
+ * @agentGuidance
+ * InputGroup connects an input with prefix/suffix addons in a single visual
+ * unit. Use it for URL fields, currency inputs, search fields with action
+ * buttons, or any input that needs contextual decorations.
+ *
+ * Don't:
+ * - Don't put multiple text inputs in one group; use separate fields instead.
+ * - Don't use InputGroup for unrelated inputs; it's for a single input with
+ *   decorations.
+ * - Don't use InputGroup with TextArea, Slider, Switch, CheckboxInput, or
+ *   RadioList.
+ *
  * @example
  * ```
  * <InputGroup label="Price">

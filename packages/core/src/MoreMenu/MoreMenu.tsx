@@ -113,6 +113,14 @@ export interface MoreMenuProps extends Pick<
  *
  * A convenience wrapper around DropdownMenu with icon-only button defaults.
  *
+ * @agentGuidance
+ * MoreMenu is a three-dot button that opens a list of actions. Use it for
+ * secondary actions that don't need to be always visible, like in table rows,
+ * card headers, or toolbars.
+ *
+ * Don't:
+ * - Hide primary actions inside a MoreMenu; they should be directly visible.
+ *
  * @example
  * ```
  * <MoreMenu

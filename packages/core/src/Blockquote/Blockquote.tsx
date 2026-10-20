@@ -43,6 +43,18 @@ const styles = {
  * Renders a semantic `<blockquote>` with an inline-start rule and secondary
  * text color, matching the Solo visual language.
  *
+ * @agentGuidance
+ * A quotation block with a rule on its inline-start edge and secondary text
+ * color. Use to highlight quoted content, testimonials, or excerpts. The rule
+ * and padding are logical, so they move to the right edge in right-to-left
+ * locales.
+ *
+ * Don't:
+ * - Use for callout boxes or informational notes; use Banner for those.
+ * - Wrap the attribution in your own <footer>. A <footer> inside a <blockquote>
+ *   becomes a contentinfo document landmark, and a page with several quotes
+ *   then reports several page footers.
+ *
  * @example
  * ```
  * <Blockquote>Design is not just what it looks like.</Blockquote>

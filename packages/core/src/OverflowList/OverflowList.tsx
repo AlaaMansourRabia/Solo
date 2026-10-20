@@ -219,6 +219,16 @@ export interface OverflowListProps extends BaseProps<HTMLDivElement> {
  * causing visual flickering. The overflow indicator is also measured
  * automatically so no manual width value is needed.
  *
+ * @agentGuidance
+ * A horizontal list that automatically hides items when they exceed the
+ * available width. Use OverflowList for breadcrumbs, toolbars, tag lists, or
+ * any row that needs to collapse gracefully at smaller sizes.
+ *
+ * Don't:
+ * - Use OverflowList for a vertical stack; horizontal multi-row wrap is
+ *   supported via maxRows, but items still flow left-to-right, not
+ *   top-to-bottom.
+ *
  * @example
  * ```
  * <OverflowList

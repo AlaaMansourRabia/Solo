@@ -21,6 +21,9 @@ export const docs = {
     'minutes',
     'hours',
     'stopwatch',
+    'countdown',
+    'remaining',
+    'deadline',
     'waiting',
     'loading',
     'processing',
@@ -31,6 +34,17 @@ export const docs = {
       type: 'number',
       description:
         "Unix time in milliseconds when the measured operation began. Omit it to start from this Timer's mount.",
+    },
+    {
+      name: 'endTime',
+      type: 'number',
+      description:
+        'Unix time in milliseconds to count down to. When set, Timer shows the time remaining (never below zero) instead of the time elapsed, stops at zero and calls onComplete.',
+    },
+    {
+      name: 'onComplete',
+      type: '() => void',
+      description: 'Called once when a countdown (endTime) reaches zero.',
     },
     {
       name: 'format',
@@ -89,6 +103,10 @@ export const docs = {
       code: '<Timer startTime={operationStartedAt} />',
     },
     {
+      label: 'Countdown to a deadline',
+      code: '<Timer endTime={auctionEndsAt} format="clock" onComplete={closeBidding} />',
+    },
+    {
       label: 'Match surrounding text',
       code: `<Text>
   Processing for <Timer type="inherit" color="inherit" />
@@ -105,7 +123,7 @@ export const docs = {
   usage: {
     anatomy,
     description:
-      'Displays a standardized elapsed duration for active work without scheduling a React render on every tick. Elapsed format updates by second below one hour and by minute after one hour; clock format remains second-precise.',
+      'Displays a live duration for active work without scheduling a React render on every tick: the time elapsed since startTime, or — with endTime — the time remaining until a deadline (a countdown). Elapsed format updates by second below one hour and by minute after one hour; clock format remains second-precise.',
     bestPractices: [
       {
         guidance: true,
@@ -123,6 +141,11 @@ export const docs = {
           'Pass startTime when the operation began before Timer mounted so the display reflects the complete wait.',
       },
       {
+        guidance: true,
+        description:
+          'Pass endTime for a countdown to a deadline (an auction closing, a session expiring, an offer ending); use onComplete to react when it reaches zero.',
+      },
+      {
         guidance: false,
         description:
           'Do not use Timer for dates, time zones, or relative calendar language; use Timestamp instead.',
@@ -138,9 +161,11 @@ export const docs = {
 
 /** @type {import('@solo/docs-types').ComponentTranslationDoc} */
 export const docsAr = {
-  description: 'يعرض Timer مدة منقضية موحَّدة للعمل النشط دون جدولة عرض React مع كل نبضة.',
+  description: 'يعرض Timer مدة حيّة للعمل النشط دون جدولة عرض React مع كل نبضة: الوقت المنقضي منذ startTime، أو — مع endTime — الوقت المتبقي حتى موعد نهائي (عدّ تنازلي).',
   propDescriptions: {
     startTime: 'وقت Unix بالمللي ثانية عند بدء العملية المقاسة. احذفه للبدء من لحظة تركيب Timer هذا.',
+    endTime: 'وقت Unix بالمللي ثانية للعدّ التنازلي حتى بلوغه. عند تعيينه يعرض Timer الوقت المتبقي (لا يقل عن الصفر) بدل الوقت المنقضي، ويتوقف عند الصفر ويستدعي onComplete.',
+    onComplete: 'يُستدعى مرة واحدة عندما يصل العدّ التنازلي (endTime) إلى الصفر.',
     format: 'التمثيل القياسي للمدة. يستخدم elapsed وحدات مختصرة ويُسقط الثواني بعد ساعة واحدة؛ ويستخدم clock الصيغة m:ss أو h:mm:ss.',
     type: 'نوع النص الدلالي. يستخدم سلوك الطباعة نفسه المستخدم في Timestamp.',
     size: 'تجاوز صريح لحجم الخط. يتجاوز الحجم المستمد من type.',
@@ -150,11 +175,12 @@ export const docsAr = {
     style: 'أنماط مضمَّنة لغلاف Text. فضّل className للتنسيق.',
   },
   usage: {
-    description: 'يعرض مدة منقضية موحَّدة للعمل النشط دون جدولة عرض React مع كل نبضة. تتحدّث الصيغة elapsed كل ثانية قبل مرور ساعة وكل دقيقة بعدها؛ بينما تبقى الصيغة clock دقيقة على مستوى الثانية.',
+    description: 'يعرض مدة حيّة للعمل النشط دون جدولة عرض React مع كل نبضة: الوقت المنقضي منذ startTime، أو — مع endTime — الوقت المتبقي حتى موعد نهائي (عدّ تنازلي). تتحدّث الصيغة elapsed كل ثانية قبل مرور ساعة وكل دقيقة بعدها؛ بينما تبقى الصيغة clock دقيقة على مستوى الثانية.',
     bestPractices: [
       {guidance: true, description: 'استخدم elapsed لنص مدة مختصر قد يمتد عبر ثوانٍ أو دقائق أو ساعات.'},
       {guidance: true, description: 'استخدم clock للأسطح الشبيهة بساعة الإيقاف حيث تبقى الثواني ذات معنى بعد مرور ساعة.'},
       {guidance: true, description: 'مرّر startTime عندما تكون العملية قد بدأت قبل تركيب Timer كي يعكس العرض مدة الانتظار الكاملة.'},
+      {guidance: true, description: 'مرّر endTime للعدّ التنازلي حتى موعد نهائي (إغلاق مزاد، انتهاء جلسة، انتهاء عرض)؛ واستخدم onComplete للتصرّف عند بلوغه الصفر.'},
       {guidance: false, description: 'لا تستخدم Timer للتواريخ أو المناطق الزمنية أو لغة التقويم النسبية؛ استخدم Timestamp بدلًا من ذلك.'},
       {guidance: false, description: 'لا تضف aria-live ما لم يكن سماع إعلان مع كل نبضة مناسبًا للمهمة المحددة.'},
     ],
@@ -167,10 +193,12 @@ export const docsAr = {
 /** @type {import('@solo/docs-types').ComponentTranslationDoc} */
 export const docsDense = {
   description:
-    'Standardized elapsed or stopwatch duration with clock-derived, non-rendering DOM updates.',
+    'Standardized elapsed, stopwatch or countdown (endTime) duration with clock-derived, non-rendering DOM updates.',
   propDescriptions: {
     startTime:
       "operation start as Unix milliseconds; omit to count from Timer's mount",
+    endTime: 'deadline as Unix milliseconds; switches to a countdown that stops at zero',
+    onComplete: 'called once when the countdown reaches zero',
     format: 'elapsed compact units or clock stopwatch notation',
     type: 'semantic text type; defaults to supporting like Timestamp',
     size: 'explicit font size override',

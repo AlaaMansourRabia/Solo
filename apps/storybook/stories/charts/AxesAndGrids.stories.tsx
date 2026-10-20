@@ -50,7 +50,7 @@ export const Playground: StoryObj<Args> = {
             showTicks={args.showTicks}
           />
           <ChartAxis
-            position="left"
+            position="start"
             showAxisLine={args.leftAxisLine}
             showTicks={args.showTicks}
           />

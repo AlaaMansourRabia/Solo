@@ -173,6 +173,17 @@ function mergeIds(...ids: (string | undefined | null)[]): string | undefined {
  * Uses a display:contents wrapper so children refs are preserved.
  * Uses CSS anchor positioning and the Popover API for optimal performance.
  *
+ * @agentGuidance
+ * A short text hint that appears on hover or focus, anchored to a trigger
+ * element. Use it to describe icon-only buttons, show the full text of
+ * truncated labels, or provide supplementary context without cluttering the UI.
+ *
+ * Don't:
+ * - Place interactive elements like links or buttons inside a tooltip; use
+ *   HoverCard or Popover instead.
+ * - Use tooltips for essential information that users must see to complete a
+ *   task.
+ *
  * @example
  * ```
  * <Tooltip content="Helpful tooltip text" placement="above">

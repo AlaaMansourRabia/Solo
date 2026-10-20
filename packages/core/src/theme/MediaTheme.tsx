@@ -81,6 +81,20 @@ export interface MediaThemeProps {
  * Wraps children with `data-solo-media` — the theme's CSS targets this
  * attribute to apply inverted tokens. Parent component overrides flow
  * through unchanged; only tokens change for the surface context.
+ *
+ * @agentGuidance
+ * Provides token overrides for content rendered on inverted surfaces: media
+ * overlays, scrims, toasts, and tooltips. The base behavior flips color-scheme
+ * so all light-dark() tokens resolve to the correct side. Only a small set of
+ * tokens need explicit overrides beyond that. Themes can further customize
+ * component appearance on media surfaces via onDark/onLight in defineTheme(),
+ * with both token overrides (e.g. "--color-accent": "#90CAF9") and component
+ * overrides (e.g. ghost buttons get a border on dark surfaces).
+ *
+ * Don't:
+ * - Use MediaTheme for app-level dark mode: use Theme with mode="dark" or
+ *   mode="system" instead. MediaTheme is for local surface inversions, not
+ *   page-wide color scheme.
  */
 export function MediaTheme({
   mode,

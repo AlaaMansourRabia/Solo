@@ -300,6 +300,21 @@ const arrowSizeStyles = {
  * Tab navigation wrapper. Provides context for value/onChange/size
  * to Tab and TabMenu children.
  *
+ * @agentGuidance
+ * TabList provides tab-style navigation for organizing content into categorized
+ * sections. Use it to let users switch between related views without leaving
+ * the page, with overflow items handled by a built-in "more" menu.
+ *
+ * Don't:
+ * - Use tabs for sequential steps or workflows; use a stepper or wizard pattern
+ *   instead.
+ * - Place more than 6–8 visible tabs before the overflow menu; prioritize the
+ *   most important categories.
+ * - Confuse TabList with SegmentedControl or ToggleButton. TabList is for
+ *   navigation between views. SegmentedControl and ToggleButton are input
+ *   controls: SegmentedControl always has exactly one selected option, while
+ *   ToggleButton can be toggled on or off.
+ *
  * @example
  * ```
  * <TabList value={activeTab} onChange={setActiveTab}>

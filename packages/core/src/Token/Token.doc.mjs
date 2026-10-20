@@ -93,11 +93,12 @@ export const docs = {
     description:
       'Token is a small, inline element for representing discrete pieces of associated data, like tags, categories, or selections. Use it to label content, show active filters, or represent removable items like selected recipients in a compose field.',
     bestPractices: [
-      {guidance: true, description: 'Use color to distinguish categories (for example, green for "Active", red for "Blocked", blue for "In Review") so users can scan status at a glance.'},
+      {guidance: true, description: 'Use color to tell kinds of token apart within a group (for example people, teams and labels in one recipient field) so users can scan them at a glance.'},
       {guidance: true, description: 'Provide an onRemove callback when tokens represent user selections that can be undone, like filters or multi-select values.'},
       {guidance: true, description: 'Add a leading icon when it helps identify the token type faster, like a person icon for user tokens or a tag icon for labels.'},
       {guidance: true, description: 'Keep labels short: one to three words. Tokens truncate with ellipsis when the text overflows.'},
       {guidance: false, description: 'Don\'t use tokens for primary actions or navigation; use Button or Link instead. Tokens are for displaying metadata, not triggering workflows.'},
+      {guidance: false, description: 'Don\'t use a token for a read-only status or category label on an item ("Beta", "Active", "Failed"); use Badge. Tokens represent data the user adds, selects or removes: filters, recipients, chosen tags.'},
       {guidance: false, description: 'Don\'t hide the label unless the icon alone is universally understood. A color dot without text is ambiguous.'},
       {guidance: false, description: 'Don\'t mix too many colors in one token group. Stick to two or three meaningful colors so the palette stays scannable.'},
     ],
@@ -198,11 +199,12 @@ export const docsZh = {
     description:
       'Token is a small, inline element for representing discrete pieces of associated data, like tags, categories, or selections. Use it to label content, show active filters, or represent removable items like selected recipients in a compose field.',
     bestPractices: [
-      {guidance: true, description: 'Use color to distinguish categories (for example, green for "Active", red for "Blocked", blue for "In Review") so users can scan status at a glance.'},
+      {guidance: true, description: 'Use color to tell kinds of token apart within a group (for example people, teams and labels in one recipient field) so users can scan them at a glance.'},
       {guidance: true, description: 'Provide an onRemove callback when tokens represent user selections that can be undone, like filters or multi-select values.'},
       {guidance: true, description: 'Add a leading icon when it helps identify the token type faster, like a person icon for user tokens or a tag icon for labels.'},
       {guidance: true, description: 'Keep labels short: one to three words. Tokens truncate with ellipsis when the text overflows.'},
       {guidance: false, description: 'Don\'t use tokens for primary actions or navigation; use Button or Link instead. Tokens are for displaying metadata, not triggering workflows.'},
+      {guidance: false, description: 'Don\'t use a token for a read-only status or category label on an item ("Beta", "Active", "Failed"); use Badge. Tokens represent data the user adds, selects or removes: filters, recipients, chosen tags.'},
       {guidance: false, description: 'Don\'t hide the label unless the icon alone is universally understood. A color dot without text is ambiguous.'},
       {guidance: false, description: 'Don\'t mix too many colors in one token group. Stick to two or three meaningful colors so the palette stays scannable.'},
     ],
@@ -237,7 +239,7 @@ export const docsAr = {
     bestPractices: [
       {
         guidance: true,
-        description: 'استخدم اللون للتمييز بين الفئات (مثلًا: الأخضر لـ "Active"، والأحمر لـ "Blocked"، والأزرق لـ "In Review") كي يتمكن المستخدمون من مسح الحالة بنظرة سريعة.',
+        description: 'استخدم اللون للتمييز بين أنواع الرموز داخل المجموعة الواحدة (مثلًا الأشخاص والفرق والتسميات في حقل مستلمين واحد) كي يتمكن المستخدمون من مسحها بنظرة سريعة.',
       },
       {
         guidance: true,
@@ -254,6 +256,10 @@ export const docsAr = {
       {
         guidance: false,
         description: 'لا تستخدم الرموز للإجراءات الرئيسية أو التنقّل؛ استخدم Button أو Link بدلًا من ذلك. الرموز مخصصة لعرض البيانات الوصفية، لا لتشغيل مسارات العمل.',
+      },
+      {
+        guidance: false,
+        description: 'لا تستخدم رمزًا (Token) كتسمية حالة أو فئة للقراءة فقط على عنصر ("Beta" أو "Active" أو "Failed")؛ استخدم Badge. تمثّل الرموز بيانات يضيفها المستخدم أو يختارها أو يزيلها: عوامل التصفية والمستلمين والوسوم المختارة.',
       },
       {
         guidance: false,
@@ -296,11 +302,12 @@ export const docsDense = {
     description:
       'Token is a small, inline element for representing discrete pieces of associated data, like tags, categories, or selections. Use for labeling content, showing active filters, or representing removable items.',
     bestPractices: [
-      {guidance: true, description: 'Color-code categories (green for active, red for blocked, blue for review) for fast scanning.'},
+      {guidance: true, description: 'Color-code kinds of token within a group (people, teams, labels) for fast scanning.'},
       {guidance: true, description: 'Provide onRemove when tokens represent dismissible user selections like filters or multi-select values.'},
       {guidance: true, description: 'Add a leading icon when it helps identify the token type: person icon for users, tag icon for labels.'},
       {guidance: true, description: 'Keep labels to one to three words. Tokens truncate with ellipsis on overflow.'},
       {guidance: false, description: 'Don\'t use tokens for actions or navigation; use Button or Link. Tokens display metadata, not trigger workflows.'},
+      {guidance: false, description: 'Don\'t use a token for a read-only status/category label (Beta, Active); use Badge.'},
       {guidance: false, description: 'Don\'t hide the label unless the icon alone is universally clear.'},
       {guidance: false, description: 'Don\'t mix too many colors in one group. Two or three meaningful colors keeps it scannable.'},
     ],

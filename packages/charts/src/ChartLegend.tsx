@@ -35,6 +35,20 @@ export interface ChartLegendProps {
   alignment?: LegendAlignment;
 }
 
+/**
+ * @agentGuidance
+ * ChartLegend pairs series labels with decorative mark-shaped color swatches.
+ * Use Chart legend options for the generated legend, or render ChartLegend
+ * directly when the caller already owns the legend items.
+ *
+ * Don't:
+ * - Use the legend as the chart’s only text alternative. Give the parent Chart
+ *   an accessible name and preserve an equivalent data view or summary when the
+ *   data requires one.
+ * - Assume arbitrary series colors will remain distinguishable in every theme.
+ *   Verify the complete chart and legend together against the surfaces where
+ *   they render.
+ */
 export function ChartLegend({
   items = [],
   position = 'bottom',

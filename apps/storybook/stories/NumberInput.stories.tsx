@@ -658,7 +658,7 @@ export const WithEventHandlers: Story = {
             color: 'var(--color-text-secondary)',
           }}>
           <strong>Events:</strong>
-          <ul style={{margin: '4px 0', paddingLeft: '20px'}}>
+          <ul style={{margin: '4px 0', paddingInlineStart: '20px'}}>
             {events.map((event, i) => (
               <li key={i}>{event}</li>
             ))}

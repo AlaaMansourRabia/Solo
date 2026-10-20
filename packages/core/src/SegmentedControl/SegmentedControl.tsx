@@ -117,6 +117,23 @@ const sizeStyles = {
  * Segmented button group for single selection (radio group semantics).
  * Visually resembles a tab bar but controls a value, not a view.
  *
+ * @agentGuidance
+ * A segmented button group that allows users to make a single selection from a
+ * small set of mutually exclusive options. Use SegmentedControl when all
+ * options should be visible at once and the selection controls a value or mode,
+ * not page navigation.
+ *
+ * Don't:
+ * - Use for page-level navigation; use TabList instead. TabList is a navigation
+ *   component, while SegmentedControl is an input that always has exactly one
+ *   selected option.
+ * - Use for simple on/off states; use ToggleButton instead. ToggleButton can be
+ *   toggled on or off independently, while SegmentedControl enforces a single
+ *   selection from a group.
+ * - Wrap a disabled SegmentedControl in Tooltip to explain why it is disabled;
+ *   disabled controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <SegmentedControl value={view} onChange={setView} label="View mode">

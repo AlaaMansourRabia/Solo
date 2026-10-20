@@ -125,9 +125,9 @@ export const docs = {
     },
     {
       name: 'placement',
-      type: "'auto' | 'right' | 'left' | 'top'",
+      type: "'auto' | 'start' | 'end' | 'top' | 'right' | 'left'",
       description:
-        'Selects one of the shipped placement algorithms. The current implementation positions from the hovered x coordinate and the plot top; whether placement should instead be point-relative on both axes remains unresolved. Custom renderers own their content sizing.',
+        "Where the card sits relative to the hovered point. 'auto' uses the end side (right in left-to-right layouts, left in right-to-left) and flips when it would overflow; 'start' and 'end' pin it and follow the reading direction; 'left' and 'right' are deprecated physical pins. The current implementation positions from the hovered x coordinate and the plot top; whether placement should instead be point-relative on both axes remains unresolved. Custom renderers own their content sizing.",
       default: "'auto'",
     },
   ],
@@ -172,7 +172,7 @@ export const docsAr = {
     render: 'يستبدل جسم البطاقة الافتراضي. يتلقى قيمة x التي يمر فوقها المؤشر وصف TooltipSeriesValue واحدًا لكل سلسلة ({key, label, color, type, value}). أعِد null لإخفاء البطاقة مع الإبقاء على مؤشرات التمرير والنقاط المفعّلة.',
     hoverIndicator: 'يعرض تمييزًا للنطاق لسلاسل الأعمدة على مقياس نطاقي، أو خطًا عموديًا متقاطعًا للسلاسل الأخرى.',
     showHoverDots: 'يعرض علامة نقطية لكل سلسلة مؤهلة غير عمودية عند الفهرس الذي يمر فوقه المؤشر.',
-    placement: 'يختار إحدى خوارزميات التموضع المضمَّنة. يحدّد التنفيذ الحالي الموضع انطلاقًا من إحداثي x الذي يمر فوقه المؤشر وأعلى منطقة الرسم؛ ولم يُحسم بعد ما إذا كان ينبغي أن يكون التموضع نسبيًا إلى النقطة على المحورين. تتولى دوال العرض المخصصة تحديد حجم محتواها.',
+    placement: "موضع البطاقة بالنسبة إلى النقطة التي يمر فوقها المؤشر. تستخدم 'auto' جهة النهاية (اليمين في التخطيطات من اليسار إلى اليمين، واليسار في التخطيطات من اليمين إلى اليسار) وتنقلب عند تجاوز الحافة؛ وتثبّت 'start' و'end' البطاقة وتتبعان اتجاه القراءة؛ أما 'left' و'right' فتثبيتان فعليان متقادمان. يحدّد التنفيذ الحالي الموضع انطلاقًا من إحداثي x الذي يمر فوقه المؤشر وأعلى منطقة الرسم؛ ولم يُحسم بعد ما إذا كان ينبغي أن يكون التموضع نسبيًا إلى النقطة على المحورين. تتولى دوال العرض المخصصة تحديد حجم محتواها.",
   },
   usage: {
     description: 'يعرض ChartTooltip القيم المجمّعة لموضع المخطط الأقرب إلى المؤشر. استخدم الخاصية tooltip في Chart أو كائن إعداداتها للتكامل القياسي؛ ويظل التركيب المباشر متاحًا عندما تحتاج إلى تركيب صريح للعناصر الفرعية.',

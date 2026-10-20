@@ -44,6 +44,15 @@ export interface NavIconProps extends BaseProps<HTMLSpanElement> {
  * Wraps an icon with a circular accent-colored background, suitable for
  * use as a logo in top navigation or side navigation title areas.
  *
+ * @agentGuidance
+ * NavIcon is a circular icon container with an accent-colored background. Use
+ * it in navigation headers such as TopNavHeading and PageNavHeader to visually
+ * identify a section or application.
+ *
+ * Don't:
+ * - Use NavIcon for interactive purposes; it is a display-only container, not a
+ *   button.
+ *
  * @example
  * ```
  * import {HomeIcon} from '@heroicons/react/24/solid';

@@ -181,6 +181,18 @@ const styles = {
  * accessible `label`. This follows the WAI-ARIA pattern for steppers /
  * progress sequences and avoids polluting the page's landmark map.
  *
+ * @agentGuidance
+ * Steppers display progress through a sequence of logical and numbered steps.
+ * Use them for multi-step workflows like forms, onboarding flows, or checkout
+ * processes where users need to see their position and the steps ahead.
+ * Rendered as an ordered list (not a navigation landmark).
+ *
+ * Don't:
+ * - Use a stepper for fewer than 3 steps; a simple heading or progress bar
+ *   works better.
+ * - Use more than 7 steps; consider grouping related steps or using a different
+ *   pattern.
+ *
  * @example
  * ```
  * <Stepper activeStep={1}>

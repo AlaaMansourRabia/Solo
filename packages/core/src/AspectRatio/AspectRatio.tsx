@@ -165,6 +165,23 @@ const styles = {
  * `width: fit-content`, a floated box) it contributes no intrinsic width and
  * collapses to zero.
  *
+ * @agentGuidance
+ * Maintains a fixed width-to-height ratio for its children as its container
+ * resizes. Use it for media containers like videos, images, thumbnails, or any
+ * content that needs consistent proportions. It takes its width from the
+ * container and derives its height from the ratio, so it needs an ancestor with
+ * a definite width.
+ *
+ * Don't:
+ * - Use for general layout containers; use standard layout components instead.
+ * - Nest AspectRatio containers; one level is sufficient.
+ * - Constrain the height on its own. The width comes from the container, so a
+ *   `height` or `maxHeight` by itself clamps the box off ratio; pair it with
+ *   `width: "auto"` to size from the height instead.
+ * - Place it in a shrink-to-fit parent such as `inline-flex`, `width:
+ *   fit-content` or a floated box. It contributes no intrinsic width there and
+ *   collapses to zero.
+ *
  * @example
  * ```
  * <AspectRatio ratio={16 / 9} fit="cover">

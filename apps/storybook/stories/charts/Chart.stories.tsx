@@ -96,7 +96,7 @@ export const Playground: Story = {
         axes={
           <>
             <ChartAxis position="bottom" />
-            <ChartAxis position="left" />
+            <ChartAxis position="start" />
           </>
         }
         height={height}

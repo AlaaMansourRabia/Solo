@@ -187,6 +187,13 @@ function preventDisabledLinkClick(event: MouseEvent<HTMLAnchorElement>): void {
  * accessible role and label. The card surface is a plain <div> —
  * no role or tabIndex on the container.
  *
+ * @agentGuidance
+ * An interactive card for navigation or action targets. Nested interactive
+ * elements work independently.
+ *
+ * Don't:
+ * - Use for toggling selection; use SelectableCard for that.
+ *
  * @compositionHint Use for cards that navigate to a detail page or trigger an action.
  * For toggle selection cards, use SelectableCard instead.
  * Nest Button or other interactive elements freely inside — they won't conflict.

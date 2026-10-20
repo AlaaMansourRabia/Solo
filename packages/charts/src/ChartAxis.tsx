@@ -22,9 +22,24 @@ import {useChart} from './ChartContext';
 import {isBandScale} from './utils';
 import type {ScaleLinear, ScaleTime} from 'd3-scale';
 
+/**
+ * Which edge the axis sits on. `start` and `end` are logical: in a
+ * left-to-right layout `start` is the left edge, in a right-to-left layout it
+ * is the right edge — so the value axis follows the reading direction.
+ */
+export type ChartAxisPosition =
+  | 'top'
+  | 'bottom'
+  | 'start'
+  | 'end'
+  /** @deprecated Use `'start'`. Kept as an alias: it also follows the reading direction. */
+  | 'left'
+  /** @deprecated Use `'end'`. Kept as an alias: it also follows the reading direction. */
+  | 'right';
+
 export interface ChartAxisProps {
   /** Which edge to render the axis on */
-  position: 'top' | 'right' | 'bottom' | 'left';
+  position: ChartAxisPosition;
   /** Number of ticks (approximate — d3 decides final count) */
   tickCount?: number;
   /** Maximum number of tick labels to show. Labels are evenly skipped when exceeded. */
@@ -57,11 +72,24 @@ const TICK_SIZE = 6;
  * Chart axis. Always draws tick labels; the axis edge line and tick marks
  * are independently toggleable. Pair with `<ChartGrid>` for grid lines.
  *
+ * @agentGuidance
+ * ChartAxis renders tick labels and optional edge and tick lines from the
+ * scales owned by a parent Chart. Use it in the Chart axes slot for the top or
+ * bottom plot edge, or the start or end edge (which mirror in right-to-left
+ * layouts).
+ *
+ * Don't:
+ * - Use axis labels or a pointer tooltip as the only way to obtain important
+ *   values. Give Chart an accessible name and preserve an equivalent data view
+ *   or summary.
+ * - Hide the edge line while showing tick marks. showTicks intentionally keeps
+ *   the line visible so each mark has a grounded edge.
+ *
  * @example
  * ```
  * <ChartAxis position="bottom" />               // edge line + labels
- * <ChartAxis position="left" />                 // labels only (no edge line)
- * <ChartAxis position="left" showAxisLine showTicks />
+ * <ChartAxis position="start" />                // labels only (no edge line)
+ * <ChartAxis position="start" showAxisLine showTicks />
  * ```
  */
 export function ChartAxis({
@@ -78,14 +106,21 @@ export function ChartAxis({
   // are enabled so the two visuals stay coherent.
   const renderAxisLine = showAxisLine || showTicks;
   const {width, height, xScale, yScale, yBandScale, isRTL} = useChart();
-  // `left`/`right` are logical (start/end): in RTL a `left` y-axis renders on
-  // the right edge, beside the mirrored plot's first value.
-  const side: ChartAxisProps['position'] =
-    isRTL && position === 'left'
-      ? 'right'
-      : isRTL && position === 'right'
-        ? 'left'
-        : position;
+  // `start`/`end` are logical; `left`/`right` are deprecated aliases for
+  // them. Resolve the physical edge from the reading direction: in RTL the
+  // `start` (value) axis sits on the right, beside the mirrored first value.
+  const logical =
+    position === 'left' ? 'start' : position === 'right' ? 'end' : position;
+  const side: 'top' | 'bottom' | 'left' | 'right' =
+    logical === 'start'
+      ? isRTL
+        ? 'right'
+        : 'left'
+      : logical === 'end'
+        ? isRTL
+          ? 'left'
+          : 'right'
+        : logical;
 
   const isHorizontal = position === 'top' || position === 'bottom';
   // A categorical y-axis (e.g. heatmap rows) is exposed as `yBandScale`; prefer
@@ -206,7 +241,11 @@ export function ChartAxis({
     : undefined;
 
   return (
-    <g transform={transform} role="group" aria-label={`${position} axis`}>
+    <g
+      transform={transform}
+      role="group"
+      aria-label={`${side} axis`}
+      data-position={logical}>
       {renderAxisLine && (
         <line
           x1={0}

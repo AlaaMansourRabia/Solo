@@ -185,6 +185,19 @@ function ImagePlaceholder() {
  * `--color-on-dark` icon so it stays legible on any image without sampling
  * the image's luminance.
  *
+ * @agentGuidance
+ * Thumbnail displays a compact, square preview of an image attachment. It shows
+ * a shimmer effect while uploading, the image on success, and a placeholder
+ * icon when no source is set. Use it in chat composers, file upload lists, or
+ * anywhere you need a small image preview with optional remove and click
+ * actions.
+ *
+ * Don't:
+ * - Don't use Thumbnail for non-image file types like PDFs or spreadsheets; use
+ *   a file attachment component with an appropriate icon instead.
+ * - Don't omit alt text when a src is provided; screen readers need a
+ *   description of the image content, not just the file name from label.
+ *
  * @example
  * ```
  * <Thumbnail src="/photo.jpg" alt="Vacation photo" onRemove={() => {}} />

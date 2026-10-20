@@ -34,7 +34,7 @@ export const ConfidenceBands: StoryObj = {
       axes={
         <>
           <ChartAxis position="bottom" />
-          <ChartAxis position="left" />
+          <ChartAxis position="start" />
         </>
       }
       height={320}

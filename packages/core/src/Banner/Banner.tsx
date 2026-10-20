@@ -340,6 +340,19 @@ const elevationStyles = {
  *
  * Uses `role="alert"` for error/warning and `role="status"` for info/success.
  *
+ * @agentGuidance
+ * Banner shows a persistent message at the top of a page or section. Use it for
+ * form errors, system updates, maintenance notices, or success confirmations
+ * that the user needs to see until they act on it.
+ *
+ * Don't:
+ * - Use Banner for short-lived messages that disappear on their own; use Toast
+ *   instead.
+ * - Stack multiple banners with the same status; combine related messages into
+ *   one banner.
+ * - Rely on the status color or icon alone to carry meaning; say which status
+ *   it is in the title text, because the icon is decorative to a screen reader.
+ *
  * @example
  * ```
  * <Banner status="info" title="New update available" />

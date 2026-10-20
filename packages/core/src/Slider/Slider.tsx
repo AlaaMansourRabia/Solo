@@ -343,6 +343,21 @@ function cssLength(percent: number, px: number): string {
 /**
  * A slider component for selecting numeric values or ranges.
  *
+ * @agentGuidance
+ * A draggable control for selecting a numeric value or range within defined
+ * bounds. Supports single value and range selection, tick marks, custom value
+ * formatting, and vertical orientation. Use it when users need to explore a
+ * continuous range, such as volume, price, or percentage.
+ *
+ * Don't:
+ * - Use for precise numeric entry; pair with a text input or use NumberInput
+ *   instead.
+ * - Set a step size so large that only a few positions are possible; use
+ *   SegmentedControl or radio buttons instead.
+ * - Wrap a disabled slider in Tooltip to explain why it is disabled; disabled
+ *   controls swallow the hover events the wrapper needs. Use the
+ *   disabledMessage prop instead.
+ *
  * @example
  * ```
  * <Slider label="Volume" value={50} onChange={setValue} />

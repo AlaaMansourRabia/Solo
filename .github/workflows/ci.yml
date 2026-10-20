@@ -29,9 +29,12 @@ jobs:
           node scripts/generate-template-stories.mjs --check
           node scripts/generate-arabic-font.mjs --check
           node scripts/generate-template-mock-text.mjs --check
+          node scripts/generate-agent-docs.mjs --check
       - name: Docs check
         run: pnpm docs:check
       - name: Tests
         run: pnpm test
       - name: Storybook build
         run: pnpm storybook:build
+      - name: RTL mirror check (asymmetric components, real browser)
+        run: node scripts/rtl-mirror-check.mjs

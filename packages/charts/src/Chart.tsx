@@ -27,7 +27,12 @@ import {
   useLayoutEffect,
 } from 'react';
 import type {SeriesDef, YBaseline} from './types';
-import type {ChartContext, ChartMargin, ChartPointerEvent} from './types';
+import type {
+  ChartContext,
+  ChartMargin,
+  ChartMarginInput,
+  ChartPointerEvent,
+} from './types';
 import {computeLayout} from './layout';
 import {ChartProvider} from './ChartContext';
 import {
@@ -60,8 +65,12 @@ export interface ChartProps extends BaseProps<HTMLDivElement> {
   series: SeriesDef[];
   /** Chart height in CSS pixels. Non-finite and negative values resolve to 0. @default 300 */
   height?: number;
-  /** Partial plot inset override in CSS pixels. */
-  margin?: Partial<ChartMargin>;
+  /**
+   * Partial plot inset override in CSS pixels. `start`/`end` are logical (the
+   * start inset holds the value axis and moves to the right in RTL);
+   * `left`/`right` are deprecated aliases for them.
+   */
+  margin?: ChartMarginInput;
   /** How the y-domain is derived when `yDomain` is not set. @default 'auto' */
   yBaseline?: YBaseline;
   /** Explicit y-domain [min, max]. Authoritative — disables baseline/headroom. */
@@ -112,6 +121,17 @@ const styles = {
 /**
  * Renders several series against one responsive x/y coordinate system.
  *
+ * @agentGuidance
+ * Chart lays out one or more mark definitions against shared responsive x and y
+ * scales. Use it for data visualizations that combine Solo chart marks, axes,
+ * grids, legends, tooltips, and custom interaction layers.
+ *
+ * Don't:
+ * - Use color as the only way to distinguish series or communicate status. Pair
+ *   color with labels, mark shapes, direct annotations, or another visible cue.
+ * - Reuse one mark definition object across multiple Chart instances. Mark
+ *   definitions currently carry per-chart layout metadata and are single-use.
+ *
  * @example
  * ```
  * <Chart
@@ -120,7 +140,7 @@ const styles = {
  *   series={[bar('revenue'), line('trend')]}
  *   title="Monthly revenue"
  *   grid={<ChartGrid horizontal />}
- *   axes={<><ChartAxis position="bottom" /><ChartAxis position="left" /></>}
+ *   axes={<><ChartAxis position="bottom" /><ChartAxis position="start" /></>}
  *   legend
  *   tooltip
  * />
@@ -177,11 +197,19 @@ export function Chart({
     return () => observer.disconnect();
   }, []);
 
-  // `left`/`right` margins are logical (start/end): in RTL the y-axis gutter
-  // moves to the right edge, so swap them to keep the axis room on that side.
-  const margin = useMemo(() => {
-    const m = {...DEFAULT_MARGIN, ...marginOverride};
-    return isRTL ? {...m, left: m.right, right: m.left} : m;
+  // Insets are logical: `start` holds the value axis, so in RTL it becomes the
+  // right inset. `left`/`right` are deprecated aliases for `start`/`end`.
+  const margin = useMemo((): ChartMargin => {
+    const start =
+      marginOverride?.start ?? marginOverride?.left ?? DEFAULT_MARGIN.left;
+    const end =
+      marginOverride?.end ?? marginOverride?.right ?? DEFAULT_MARGIN.right;
+    return {
+      top: marginOverride?.top ?? DEFAULT_MARGIN.top,
+      bottom: marginOverride?.bottom ?? DEFAULT_MARGIN.bottom,
+      left: isRTL ? end : start,
+      right: isRTL ? start : end,
+    };
   }, [marginOverride, isRTL]);
   // Clamp plot dimensions to finite, non-negative values. layout.ts hardens
   // against NaN in the *data*, but a non-finite `height` prop or margin override

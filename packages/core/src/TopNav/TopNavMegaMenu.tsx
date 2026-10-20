@@ -168,7 +168,7 @@ export interface TopNavMegaMenuProps extends BaseProps<HTMLButtonElement> {
    */
   items?: ReactNode;
   /**
-   * Featured content slot — rendered in the right panel on desktop,
+   * Featured content slot — rendered in the end-side panel on desktop,
    * and below the items in the mobile drawer.
    */
   featured?: ReactNode;
@@ -192,7 +192,7 @@ export interface TopNavMegaMenuProps extends BaseProps<HTMLButtonElement> {
  *
  * Uses a composed children API with sub-components:
  * - `items` — ReactNode slot, typically TopNavMegaMenuItem components
- * - `featured` — ReactNode slot for the right-panel / drawer featured card
+ * - `featured` — ReactNode slot for the end-side panel / drawer featured card
  *
  * Supports three render modes via TopNavRenderContext:
  * - `'default'`: desktop popover with hover/click trigger

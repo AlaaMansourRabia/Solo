@@ -315,6 +315,15 @@ export interface MobileNavProps extends Omit<BaseProps, 'title'> {
  * When used inside AppShell, `isOpen` and `onOpenChange` are managed
  * automatically via context. When used standalone, provide them as props.
  *
+ * @agentGuidance
+ * A slide-out drawer for mobile navigation. MobileNav is the mobile counterpart
+ * to SideNav and accepts the same children. Use it on narrow viewports where a
+ * persistent sidebar is not practical. Inside AppShell, use MobileNavToggle as
+ * the trigger; it reads state from context automatically.
+ *
+ * Don't:
+ * - Use MobileNav on desktop: use a persistent SideNav instead.
+ *
  * @example
  * ```
  * <AppShell mobileNav={

@@ -57,6 +57,14 @@ export interface OverlayProps extends Pick<
  *
  * `children` = base content, `content` = what appears on top.
  *
+ * @agentGuidance
+ * Overlay layers action or supporting content over media, cards, video, or
+ * other bounded surfaces with an optional scrim and reveal behavior.
+ *
+ * Don't:
+ * - Do not use Overlay for floating content anchored outside the surface. Use
+ *   Popover, Tooltip, or Dialog for those patterns.
+ *
  * @compositionHint Wrap images, video, or media content.
  *
  * @example

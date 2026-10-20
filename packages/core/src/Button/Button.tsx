@@ -332,6 +332,20 @@ const groupStyles = {
  * element (or custom link component) with full button styling, enabling native
  * browser behaviors like right-click → open in new tab and Cmd+Click.
  *
+ * @agentGuidance
+ * Button triggers an action when clicked. Use it for form submissions,
+ * confirmations, navigation, or any interaction that needs a clear call to
+ * action.
+ *
+ * Don't:
+ * - Place more than one primary button in the same view; this dilutes the
+ *   visual hierarchy.
+ * - Use the destructive variant without a confirmation step for irreversible
+ *   actions like deleting data.
+ * - Use a button for navigation. If it only takes the user to another page, use
+ *   a link instead. Buttons are for actions like saving, deleting, or
+ *   submitting.
+ *
  * @example
  * ```
  * <Button label="Click me" />

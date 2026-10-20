@@ -38,6 +38,17 @@ export interface IconButtonProps extends Omit<
  * Use this instead of `<Button isIconOnly>` for explicit, greppable,
  * and codemod-safe icon-only button usage.
  *
+ * @agentGuidance
+ * A button that shows only an icon with no visible text. Use IconButton in
+ * toolbars, table rows, and compact UI where space is tight and the icon is
+ * universally understood.
+ *
+ * Don't:
+ * - Use IconButton if the action isn't obvious from the icon alone; use Button
+ *   with text.
+ * - Skip the tooltip; label only reaches screen readers, sighted users need the
+ *   hover hint.
+ *
  * @example
  * ```
  * <IconButton label="Settings" icon={<GearIcon />} variant="ghost" />

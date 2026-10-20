@@ -34,7 +34,7 @@ export const docs = {
     {
       name: 'featured',
       type: 'ReactNode',
-      description: 'Featured content slot: rendered in the right panel on desktop, below items in the mobile drawer.',
+      description: 'Featured content slot: rendered in the end-side panel on desktop, below items in the mobile drawer.',
       slotElements: [
         {
           __element: 'Card',
@@ -112,7 +112,7 @@ export const docsAr = {
   propDescriptions: {
     label: 'التسمية المرئية لزر المشغِّل.',
     items: 'خانة عناصر القائمة: عادةً مكوّنات TopNavMegaMenuItem، لكنها تقبل أي ReactNode.',
-    featured: 'خانة المحتوى المميز: تُعرض في اللوحة اليمنى على سطح المكتب، وأسفل العناصر في درج الأجهزة المحمولة.',
+    featured: 'خانة المحتوى المميز: تُعرض في لوحة جهة النهاية على سطح المكتب، وأسفل العناصر في درج الأجهزة المحمولة.',
     delay: 'التأخير بالملّي ثانية قبل إظهار القائمة عند التمرير.',
     hideDelay: 'التأخير بالملّي ثانية قبل إخفاء القائمة بعد مغادرة الفأرة.',
     onOpenChange: 'دالة استدعاء تُنفَّذ عند فتح القائمة الضخمة أو إغلاقها. مفيدة لتنسيق أنماط الغلاف.',
@@ -126,7 +126,7 @@ export const docsDense = {
   propDescriptions: {
     label: 'Trigger button visible label.',
     items: 'Menu items slot: typically TopNavMegaMenuItem, accepts any ReactNode.',
-    featured: 'Featured content slot: right panel desktop, below items in drawer.',
+    featured: 'Featured content slot: end-side panel desktop, below items in drawer.',
     delay: 'Show delay ms on hover.',
     hideDelay: 'Hide delay ms after mouse leaves.',
     onOpenChange: 'Fired on open/close. For coordinating wrapper styles.',
