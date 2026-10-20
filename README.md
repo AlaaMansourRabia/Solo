@@ -1,5 +1,7 @@
 # Solo
 
+[![Latest release](https://img.shields.io/github/v/release/AlaaMansourRabia/Solo?label=release)](https://github.com/AlaaMansourRabia/Solo/releases)
+
 Solo is a React design system — **core components, design tokens and charts** — styled with [Tailwind CSS v4](https://tailwindcss.com). Components are accessible, themeable and right-to-left ready.
 
 | Package | Description |
@@ -261,6 +263,21 @@ properties, and keyframes in colocated `.css` files. Helper scripts:
 - `scripts/generate-tokens-css.mjs` — writes `theme/tokens.css` from `theme/tokenVars.ts`
 - `scripts/sync-css-imports.mjs` — keeps component `.css` imports in `styles.css` in sync
 - `scripts/tw-explain.mjs "classes…"` — prints the CSS a class list compiles to
+
+## Releases
+
+What changed in each version is in [CHANGELOG.md](./CHANGELOG.md) and on
+[GitHub Releases](https://github.com/AlaaMansourRabia/Solo/releases). To be
+notified of new versions, use **Watch → Custom → Releases** on the repository
+(or subscribe to the [releases feed](https://github.com/AlaaMansourRabia/Solo/releases.atom)).
+
+Cutting a release (maintainers):
+
+1. Add entries under **Unreleased** in `CHANGELOG.md` as you work.
+2. `pnpm release 0.2.0` — sets every package to that version, turns
+   Unreleased into the dated release section, commits and tags `v0.2.0`.
+3. `git push && git push origin v0.2.0` — the Release workflow publishes the
+   GitHub Release with that section as its notes, which notifies watchers.
 
 ## License
 

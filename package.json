@@ -1,12 +1,13 @@
 {
   "name": "solo",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "type": "module",
   "scripts": {
     "generate:agent-docs": "node scripts/generate-agent-docs.mjs",
     "rtl:mirror": "node scripts/rtl-mirror-check.mjs",
+    "release": "node scripts/release.mjs",
     "generate:i18n-runtime": "node scripts/generate-i18n-runtime.mjs && node packages/core/scripts/build-pseudo-locale.mjs",
     "postinstall": "node scripts/generate-i18n-runtime.mjs --best-effort",
     "storybook": "pnpm -F @solo/storybook dev",
