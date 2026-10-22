@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ContactFormTemplate from '@solo/templates/contact-form/ContactFormTemplate';
 
 const meta: Meta<typeof ContactFormTemplate> = {
-  title: 'Templates/14 Contact Form',
+  title: 'Templates/15 Contact Form',
   component: ContactFormTemplate,
   parameters: {
     layout: 'fullscreen',

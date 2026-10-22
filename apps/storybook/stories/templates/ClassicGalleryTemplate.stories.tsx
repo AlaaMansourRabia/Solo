@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ClassicGalleryTemplate from '@solo/templates/classic-gallery/ClassicGalleryTemplate';
 
 const meta: Meta<typeof ClassicGalleryTemplate> = {
-  title: 'Templates/41 Classic Gallery',
+  title: 'Templates/44 Classic Gallery',
   component: ClassicGalleryTemplate,
   parameters: {
     layout: 'fullscreen',

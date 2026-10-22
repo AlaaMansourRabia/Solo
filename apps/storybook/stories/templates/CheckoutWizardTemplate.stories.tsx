@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import CheckoutWizardTemplate from '@solo/templates/checkout-wizard/CheckoutWizardTemplate';
 
 const meta: Meta<typeof CheckoutWizardTemplate> = {
-  title: 'Templates/13 Checkout Wizard',
+  title: 'Templates/14 Checkout Wizard',
   component: CheckoutWizardTemplate,
   parameters: {
     layout: 'fullscreen',

@@ -23,7 +23,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Form - Wizard',
-  order: 16,
+  order: 17,
   filter: 'Form',
   previewAspectRatio: 16 / 10,
   slug: 'form-wizard',

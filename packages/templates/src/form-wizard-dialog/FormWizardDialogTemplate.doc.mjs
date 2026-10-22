@@ -11,7 +11,7 @@ export const doc = {
   keywords: ['setup', 'invite', 'schedule', 'onboarding'],
   isReady: true,
   category: 'Form - Wizard Dialog',
-  order: 15,
+  order: 16,
   filter: 'Form',
   previewAspectRatio: 16 / 10,
   slug: 'form-wizard-dialog',

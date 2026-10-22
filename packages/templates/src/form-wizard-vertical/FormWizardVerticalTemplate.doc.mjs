@@ -12,7 +12,7 @@ export const doc = {
   keywords: ['wizard', 'multi-step form', 'vertical stepper', 'left rail', 'guided setup', 'uploads', 'review step', 'onboarding'],
   isReady: true,
   category: 'Form - Wizard Vertical',
-  order: 19,
+  order: 20,
   filter: 'Form',
   previewAspectRatio: 16 / 10,
   slug: 'form-wizard-vertical',

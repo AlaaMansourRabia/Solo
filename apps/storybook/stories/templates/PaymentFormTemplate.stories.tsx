@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import PaymentFormTemplate from '@solo/templates/payment-form/PaymentFormTemplate';
 
 const meta: Meta<typeof PaymentFormTemplate> = {
-  title: 'Templates/12 Checkout Form',
+  title: 'Templates/13 Checkout Form',
   component: PaymentFormTemplate,
   parameters: {
     layout: 'fullscreen',

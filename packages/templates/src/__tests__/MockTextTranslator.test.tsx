@@ -88,8 +88,27 @@ describe('MockTextTranslator', () => {
     expect(screen.getByText('زر أساسي')).toBeInTheDocument();
   });
 
+  it('with scope="document", also translates content portalled to the body', async () => {
+    const view = (isEnabled: boolean) => (
+      <MockTextTranslator dictionary={dict} isEnabled={isEnabled} scope="document">
+        <p>Inbox</p>
+      </MockTextTranslator>
+    );
+    const {rerender} = render(view(true));
+    const toast = document.createElement('div');
+    toast.textContent = 'Primary Button';
+    await act(async () => {
+      document.body.appendChild(toast);
+    });
+    expect(toast.textContent).toBe('زر أساسي');
+    expect(screen.getByText('البريد الوارد')).toBeInTheDocument();
+    rerender(view(false));
+    expect(toast.textContent).toBe('Primary Button');
+    toast.remove();
+  });
+
   it('ships an Arabic dictionary for every template', () => {
-    expect(Object.keys(templateMockTextAr).length).toBe(55);
+    expect(Object.keys(templateMockTextAr).length).toBe(58);
   });
 
   it('translates date-like labels word by word from the shared vocabulary', () => {

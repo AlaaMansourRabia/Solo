@@ -10,7 +10,7 @@ Solo is a React design system — **core components, design tokens and charts** 
 | `@solo/charts` | Chart, axes, grid, legend, tooltip and marks (d3-based) |
 | `@solo/theme-neutral` | The Solo Neutral theme (default in Storybook), plus a pre-built variant (`/built` + `theme.css`) |
 | `@solo/examples` | Example blocks for the docs (one standalone component per example card) |
-| `@solo/templates` | 55 page templates for the Templates gallery |
+| `@solo/templates` | 58 page templates for the Templates gallery |
 | `@solo/docs-types` | Authoring types for `.doc.mjs` files (`ComponentDoc`, `TemplateDoc`, …) |
 | `@solo/docs-registry` | `families.json` (which components share a page) and `sidebar.json` |
 | `@solo/eslint-plugin` | `logical-direction` lint rule for apps built with Solo: flags left/right styling that breaks RTL |
@@ -133,7 +133,7 @@ into `solo-theme`, and your app's Tailwind utilities win over both.
 
 ## Templates
 
-`@solo/templates` holds 55 page templates, one folder per template:
+`@solo/templates` holds 58 page templates, one folder per template:
 `src/<slug>/<Name>Template.tsx` (default export, renders standalone inside a
 `<Theme>`) and `<Name>Template.doc.mjs` (`doc`: `type: 'page'`, `name`,
 `displayName`, `description`, `keywords`, `isReady`, `category`, plus Solo's
@@ -142,7 +142,7 @@ into `solo-theme`, and your app's Tailwind utilities win over both.
 - **Gallery.** `order` and `filter` reproduce the Solo Templates gallery:
   filter chips Dashboard, Table, Form, Settings, Login, Tools, Content, AI Chat,
   Gallery, Shell (the category group); sorted by group, then name. The gallery
-  shows templates with `isReady && !isHiddenFromOverview` (50 of 55); previews
+  shows templates with `isReady && !isHiddenFromOverview` (53 of 58); previews
   are 16/10 (1440×900).
 - **Assets.** Images/video ship in `@solo/templates/public/template-assets/`
   (only the 62 files the templates reference). Serve that folder at

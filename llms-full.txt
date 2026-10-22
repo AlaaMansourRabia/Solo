@@ -2623,7 +2623,7 @@ Props:
   - `onChangeQuery?: (query: string) => void` — Callback fired when the search query text changes.
   - `startIcon?: ReactNode | IconType` — Icon to display at the start of the input, before any tokens.
   - `endContent?: ReactNode` — Content to display at the end of the input row.
-  - `handleRef?: React.Ref<TokenizerHandle>` — Imperative handle exposing focusInput(), focusFirstToken(), focusLastToken(), clearInput(), and selectAll().
+  - `handleRef?: React.Ref<TokenizerHandle>` — Imperative handle exposing focus() and blur() for the typeahead input.
   - `width?: SizeValue` — Width of the field (number = pixels, string used as-is, e.g.
   - `tokenOverflowBehavior?: 'none' | 'unfocusedInline' | 'unfocusedLayer'`, default 'none' — Controls how tokens overflow when the container is too narrow.
   - `onFocus?: (e: FocusEvent<HTMLInputElement>) => void` — Fires when focus enters the tokenizer input.

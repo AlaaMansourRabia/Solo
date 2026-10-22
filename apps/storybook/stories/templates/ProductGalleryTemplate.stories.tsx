@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ProductGalleryTemplate from '@solo/templates/product-gallery/ProductGalleryTemplate';
 
 const meta: Meta<typeof ProductGalleryTemplate> = {
-  title: 'Templates/44 Product Gallery',
+  title: 'Templates/47 Product Gallery',
   component: ProductGalleryTemplate,
   parameters: {
     layout: 'fullscreen',

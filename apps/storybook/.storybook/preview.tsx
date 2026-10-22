@@ -83,7 +83,7 @@ const withTheme: Decorator = (Story, context) => {
             colorScheme: mode,
             padding: 16,
           }}>
-          <MockTextTranslator dictionary={MOCK_TEXT_AR} isEnabled={locale === 'ar-SA'}>
+          <MockTextTranslator dictionary={MOCK_TEXT_AR} isEnabled={locale === 'ar-SA'} scope="document">
             <Story />
           </MockTextTranslator>
         </div>
@@ -117,7 +117,7 @@ const withTheme: Decorator = (Story, context) => {
                     padding: 16,
                   }
             }>
-            <MockTextTranslator dictionary={MOCK_TEXT_AR} isEnabled={locale === 'ar-SA'}>
+            <MockTextTranslator dictionary={MOCK_TEXT_AR} isEnabled={locale === 'ar-SA'} scope="document">
             <Story />
           </MockTextTranslator>
           </div>

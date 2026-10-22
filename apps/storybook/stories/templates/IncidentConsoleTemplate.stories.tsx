@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import IncidentConsoleTemplate from '@solo/templates/incident-console/IncidentConsoleTemplate';
 
 const meta: Meta<typeof IncidentConsoleTemplate> = {
-  title: 'Templates/52 Incident Console',
+  title: 'Templates/55 Incident Console',
   component: IncidentConsoleTemplate,
   parameters: {
     layout: 'fullscreen',

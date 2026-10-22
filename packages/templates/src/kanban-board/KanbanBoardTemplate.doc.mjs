@@ -19,7 +19,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Tools - Kanban Board',
-  order: 29,
+  order: 32,
   filter: 'Tools',
   previewAspectRatio: 16 / 10,
   slug: 'kanban-board',

@@ -12,7 +12,7 @@ export const doc = {
   isReady: true,
   scaffold: true,
   category: 'Shell - Blank',
-  order: 46,
+  order: 49,
   filter: 'Shell',
   previewAspectRatio: 16 / 10,
   slug: 'blank',

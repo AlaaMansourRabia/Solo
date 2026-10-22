@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import CanvasEditorTemplate from '@solo/templates/canvas-editor/CanvasEditorTemplate';
 
 const meta: Meta<typeof CanvasEditorTemplate> = {
-  title: 'Templates/26 Canvas Editor',
+  title: 'Templates/29 Canvas Editor',
   component: CanvasEditorTemplate,
   parameters: {
     layout: 'fullscreen',

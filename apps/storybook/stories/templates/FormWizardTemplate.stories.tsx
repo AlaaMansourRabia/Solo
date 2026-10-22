@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import FormWizardTemplate from '@solo/templates/form-wizard/FormWizardTemplate';
 
 const meta: Meta<typeof FormWizardTemplate> = {
-  title: 'Templates/16 Form Wizard',
+  title: 'Templates/17 Form Wizard',
   component: FormWizardTemplate,
   parameters: {
     layout: 'fullscreen',

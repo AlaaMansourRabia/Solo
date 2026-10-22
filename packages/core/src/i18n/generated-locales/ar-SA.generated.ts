@@ -379,6 +379,7 @@ const runtimeCatalog: Readonly<Record<string, string>> = {
     "{count, number} {count, plural, zero {نتائج} one {نتيجة} two {نتيجتان} few {نتائج} many {نتيجةً} other {نتيجة}}",
   "@solo.tokenizer.tokenAdded": "تمت إضافة {label}",
   "@solo.tokenizer.tokenRemoved": "تمت إزالة {label}",
+  "@solo.tokenizer.createOption": "إنشاء \"{label}\"",
   "@solo.lightbox.imagePosition": "الصورة {index, number} من {total, number}",
   "@solo.lightbox.mediaPosition": "{alt}، {index, number} من {total, number}",
   "@solo.transferList.selectedLabel": "الخيارات المحدَّدة",

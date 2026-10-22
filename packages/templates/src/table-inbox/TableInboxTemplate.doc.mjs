@@ -27,7 +27,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Table - Split Pane',
-  order: 9,
+  order: 10,
   filter: 'Table',
   previewAspectRatio: 16 / 10,
   slug: 'table-inbox',

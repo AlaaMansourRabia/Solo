@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import DocumentationTechnicalTemplate from '@solo/templates/documentation-technical/DocumentationTechnicalTemplate';
 
 const meta: Meta<typeof DocumentationTechnicalTemplate> = {
-  title: 'Templates/34 Documentation Technical',
+  title: 'Templates/37 Documentation Technical',
   component: DocumentationTechnicalTemplate,
   parameters: {
     layout: 'fullscreen',

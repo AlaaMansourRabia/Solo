@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LibraryTemplate from '@solo/templates/library/LibraryTemplate';
 
 const meta: Meta<typeof LibraryTemplate> = {
-  title: 'Templates/31 Card Grid',
+  title: 'Templates/34 Card Grid',
   component: LibraryTemplate,
   parameters: {
     layout: 'fullscreen',

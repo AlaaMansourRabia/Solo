@@ -23,7 +23,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Table - Grouped',
-  order: 8,
+  order: 9,
   filter: 'Table',
   previewAspectRatio: 16 / 10,
   slug: 'table-grouped',

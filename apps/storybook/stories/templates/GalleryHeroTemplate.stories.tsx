@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import GalleryHeroTemplate from '@solo/templates/gallery-hero/GalleryHeroTemplate';
 
 const meta: Meta<typeof GalleryHeroTemplate> = {
-  title: 'Templates/42 Gallery Hero',
+  title: 'Templates/45 Gallery Hero',
   component: GalleryHeroTemplate,
   parameters: {
     layout: 'fullscreen',

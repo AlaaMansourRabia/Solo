@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import TableFilterTemplate from '@solo/templates/table-filter/TableFilterTemplate';
 
 const meta: Meta<typeof TableFilterTemplate> = {
-  title: 'Templates/07 Filterable Table',
+  title: 'Templates/08 Filterable Table',
   component: TableFilterTemplate,
   parameters: {
     layout: 'fullscreen',

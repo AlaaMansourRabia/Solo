@@ -29,7 +29,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Table - Basic',
-  order: 10,
+  order: 11,
   filter: 'Table',
   previewAspectRatio: 16 / 10,
   slug: 'table-page',

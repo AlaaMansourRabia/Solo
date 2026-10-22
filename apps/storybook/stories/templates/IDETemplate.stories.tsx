@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import IDETemplate from '@solo/templates/ide/IDETemplate';
 
 const meta: Meta<typeof IDETemplate> = {
-  title: 'Templates/28 IDE',
+  title: 'Templates/31 IDE',
   component: IDETemplate,
   parameters: {
     layout: 'fullscreen',

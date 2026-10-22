@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginSplitTemplate from '@solo/templates/login-split/LoginSplitTemplate';
 
 const meta: Meta<typeof LoginSplitTemplate> = {
-  title: 'Templates/24 Login Split',
+  title: 'Templates/27 Login Split',
   component: LoginSplitTemplate,
   parameters: {
     layout: 'fullscreen',

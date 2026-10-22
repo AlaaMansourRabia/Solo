@@ -18,7 +18,7 @@ export const doc = {
   type: 'page',
   isReady: true,
   category: 'Gallery - Mixed',
-  order: 43,
+  order: 46,
   filter: 'Gallery',
   previewAspectRatio: 16 / 10,
   slug: 'mixed-gallery',

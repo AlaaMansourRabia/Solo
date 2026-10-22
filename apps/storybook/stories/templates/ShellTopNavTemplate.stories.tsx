@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ShellTopNavTemplate from '@solo/templates/shell-top-nav/ShellTopNavTemplate';
 
 const meta: Meta<typeof ShellTopNavTemplate> = {
-  title: 'Templates/49 Top Nav',
+  title: 'Templates/52 Top Nav',
   component: ShellTopNavTemplate,
   parameters: {
     layout: 'fullscreen',

@@ -11,7 +11,7 @@ export const doc = {
   keywords: ['checkout', 'payment', 'billing', 'cart', 'buyer', 'purchase'],
   isReady: true,
   category: 'Form - Checkout',
-  order: 12,
+  order: 13,
   filter: 'Form',
   previewAspectRatio: 16 / 10,
   slug: 'payment-form',

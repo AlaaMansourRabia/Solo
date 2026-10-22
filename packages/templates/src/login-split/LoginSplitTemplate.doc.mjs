@@ -18,7 +18,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Login - Split',
-  order: 24,
+  order: 27,
   filter: 'Login',
   previewAspectRatio: 16 / 10,
   slug: 'login-split',

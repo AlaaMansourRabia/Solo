@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import CenteredHeroTemplate from '@solo/templates/centered-hero/CenteredHeroTemplate';
 
 const meta: Meta<typeof CenteredHeroTemplate> = {
-  title: 'Templates/40 Centered Hero',
+  title: 'Templates/43 Centered Hero',
   component: CenteredHeroTemplate,
   parameters: {
     layout: 'fullscreen',

@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import FormTwoColumnTemplate from '@solo/templates/form-two-column/FormTwoColumnTemplate';
 
 const meta: Meta<typeof FormTwoColumnTemplate> = {
-  title: 'Templates/18 Two-column Form',
+  title: 'Templates/19 Two-column Form',
   component: FormTwoColumnTemplate,
   parameters: {
     layout: 'fullscreen',

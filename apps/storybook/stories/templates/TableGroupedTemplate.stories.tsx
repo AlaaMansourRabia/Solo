@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import TableGroupedTemplate from '@solo/templates/table-grouped/TableGroupedTemplate';
 
 const meta: Meta<typeof TableGroupedTemplate> = {
-  title: 'Templates/08 Grouped Table',
+  title: 'Templates/09 Grouped Table',
   component: TableGroupedTemplate,
   parameters: {
     layout: 'fullscreen',

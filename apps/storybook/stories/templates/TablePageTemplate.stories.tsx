@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import TablePageTemplate from '@solo/templates/table-page/TablePageTemplate';
 
 const meta: Meta<typeof TablePageTemplate> = {
-  title: 'Templates/10 Searchable Table',
+  title: 'Templates/11 Searchable Table',
   component: TablePageTemplate,
   parameters: {
     layout: 'fullscreen',

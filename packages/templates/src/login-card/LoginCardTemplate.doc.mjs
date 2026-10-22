@@ -19,7 +19,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Login - Card',
-  order: 23,
+  order: 26,
   filter: 'Login',
   previewAspectRatio: 16 / 10,
   slug: 'login-card',

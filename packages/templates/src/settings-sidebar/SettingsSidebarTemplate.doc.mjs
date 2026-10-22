@@ -17,7 +17,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Settings - Panels',
-  order: 22,
+  order: 24,
   filter: 'Settings',
   previewAspectRatio: 16 / 10,
   slug: 'settings-sidebar',

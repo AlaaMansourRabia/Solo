@@ -18,7 +18,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Shell - Top Nav + Left Sidebar',
-  order: 47,
+  order: 50,
   filter: 'Shell',
   previewAspectRatio: 16 / 10,
   slug: 'shell-nav',

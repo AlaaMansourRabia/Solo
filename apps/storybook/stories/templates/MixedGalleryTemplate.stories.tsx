@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import MixedGalleryTemplate from '@solo/templates/mixed-gallery/MixedGalleryTemplate';
 
 const meta: Meta<typeof MixedGalleryTemplate> = {
-  title: 'Templates/43 Mixed Gallery',
+  title: 'Templates/46 Mixed Gallery',
   component: MixedGalleryTemplate,
   parameters: {
     layout: 'fullscreen',

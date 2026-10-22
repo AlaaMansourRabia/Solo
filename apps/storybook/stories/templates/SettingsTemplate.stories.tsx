@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SettingsTemplate from '@solo/templates/settings/SettingsTemplate';
 
 const meta: Meta<typeof SettingsTemplate> = {
-  title: 'Templates/21 Settings Form',
+  title: 'Templates/23 Settings Form',
   component: SettingsTemplate,
   parameters: {
     layout: 'fullscreen',

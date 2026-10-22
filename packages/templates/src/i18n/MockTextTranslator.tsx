@@ -194,6 +194,13 @@ export interface MockTextTranslatorProps {
   dictionary: MockTextDictionary;
   /** Turn translation off (e.g. when the locale is English). @default true */
   isEnabled?: boolean;
+  /**
+   * What to translate. `children` (default) covers this component's subtree.
+   * `document` covers the whole page — use it where content renders outside
+   * the subtree too: toasts, dialogs and popovers that portal to the body.
+   * @default 'children'
+   */
+  scope?: 'children' | 'document';
   children: ReactNode;
 }
 
@@ -204,12 +211,13 @@ export interface MockTextTranslatorProps {
 export function MockTextTranslator({
   dictionary,
   isEnabled = true,
+  scope = 'children',
   children,
 }: MockTextTranslatorProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const root = ref.current;
+    const root = scope === 'document' ? ref.current?.ownerDocument.body : ref.current;
     if (!root || !isEnabled) return;
     const journal: Journal = {texts: new Map(), attributes: new Map()};
     translateTree(root, dictionary, journal);
@@ -236,7 +244,7 @@ export function MockTextTranslator({
       // Turning translation off (or unmounting) puts the English back.
       restore(journal);
     };
-  }, [dictionary, isEnabled]);
+  }, [dictionary, isEnabled, scope]);
 
   return (
     <div ref={ref} style={{display: 'contents'}}>

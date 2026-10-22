@@ -22,7 +22,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Shell - Left Sidebar',
-  order: 48,
+  order: 51,
   filter: 'Shell',
   previewAspectRatio: 16 / 10,
   slug: 'shell-side-nav',

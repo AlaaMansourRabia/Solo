@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import MessagingShellTemplate from '@solo/templates/messaging-shell/MessagingShellTemplate';
 
 const meta: Meta<typeof MessagingShellTemplate> = {
-  title: 'Templates/53 Messaging Shell',
+  title: 'Templates/56 Messaging Shell',
   component: MessagingShellTemplate,
   parameters: {
     layout: 'fullscreen',

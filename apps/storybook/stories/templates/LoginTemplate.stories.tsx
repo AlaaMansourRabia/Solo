@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginTemplate from '@solo/templates/login/LoginTemplate';
 
 const meta: Meta<typeof LoginTemplate> = {
-  title: 'Templates/51 Basic Login',
+  title: 'Templates/54 Basic Login',
   component: LoginTemplate,
   parameters: {
     layout: 'fullscreen',

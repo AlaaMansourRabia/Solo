@@ -25,7 +25,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Form - Two-column',
-  order: 18,
+  order: 19,
   filter: 'Form',
   previewAspectRatio: 16 / 10,
   slug: 'form-two-column',

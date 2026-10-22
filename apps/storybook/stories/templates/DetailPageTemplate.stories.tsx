@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import DetailPageTemplate from '@solo/templates/detail-page/DetailPageTemplate';
 
 const meta: Meta<typeof DetailPageTemplate> = {
-  title: 'Templates/35 Order Detail',
+  title: 'Templates/38 Order Detail',
   component: DetailPageTemplate,
   parameters: {
     layout: 'fullscreen',

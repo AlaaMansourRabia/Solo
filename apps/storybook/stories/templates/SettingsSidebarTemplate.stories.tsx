@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SettingsSidebarTemplate from '@solo/templates/settings-sidebar/SettingsSidebarTemplate';
 
 const meta: Meta<typeof SettingsSidebarTemplate> = {
-  title: 'Templates/22 Settings Panels',
+  title: 'Templates/24 Settings Panels',
   component: SettingsSidebarTemplate,
   parameters: {
     layout: 'fullscreen',

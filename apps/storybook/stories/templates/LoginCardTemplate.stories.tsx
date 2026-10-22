@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginCardTemplate from '@solo/templates/login-card/LoginCardTemplate';
 
 const meta: Meta<typeof LoginCardTemplate> = {
-  title: 'Templates/23 Login Card',
+  title: 'Templates/26 Login Card',
   component: LoginCardTemplate,
   parameters: {
     layout: 'fullscreen',

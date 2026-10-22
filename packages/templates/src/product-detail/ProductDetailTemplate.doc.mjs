@@ -17,7 +17,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Content - Product Detail',
-  order: 36,
+  order: 39,
   filter: 'Content',
   previewAspectRatio: 16 / 10,
   slug: 'product-detail',

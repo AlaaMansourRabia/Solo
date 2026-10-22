@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ThemeShowcaseTemplate from '@solo/templates/theme-showcase/ThemeShowcaseTemplate';
 
 const meta: Meta<typeof ThemeShowcaseTemplate> = {
-  title: 'Templates/54 Theme Showcase',
+  title: 'Templates/57 Theme Showcase',
   component: ThemeShowcaseTemplate,
   parameters: {
     layout: 'fullscreen',

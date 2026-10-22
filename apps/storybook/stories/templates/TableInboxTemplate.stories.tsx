@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import TableInboxTemplate from '@solo/templates/table-inbox/TableInboxTemplate';
 
 const meta: Meta<typeof TableInboxTemplate> = {
-  title: 'Templates/09 Inbox Table',
+  title: 'Templates/10 Inbox Table',
   component: TableInboxTemplate,
   parameters: {
     layout: 'fullscreen',

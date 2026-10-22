@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import EditorTemplate from '@solo/templates/editor/EditorTemplate';
 
 const meta: Meta<typeof EditorTemplate> = {
-  title: 'Templates/30 Page Editor',
+  title: 'Templates/33 Page Editor',
   component: EditorTemplate,
   parameters: {
     layout: 'fullscreen',

@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import TableTemplate from '@solo/templates/table/TableTemplate';
 
 const meta: Meta<typeof TableTemplate> = {
-  title: 'Templates/50 Simple Table',
+  title: 'Templates/53 Simple Table',
   component: TableTemplate,
   parameters: {
     layout: 'fullscreen',

@@ -237,7 +237,7 @@ export const docs = {
       name: 'handleRef',
       type: 'React.Ref<TokenizerHandle>',
       description:
-        'Imperative handle exposing focusInput(), focusFirstToken(), focusLastToken(), clearInput(), and selectAll().',
+        'Imperative handle exposing focus() and blur() for the typeahead input.',
     },
     {
       name: 'width',
@@ -773,7 +773,7 @@ export const docsAr = {
     endContent:
       'محتوى يُعرض في نهاية صف الإدخال. مفيد للأزرار أو أعداد النتائج أو عناصر تحكم أخرى.',
     handleRef:
-      'مقبض أمري (imperative handle) يتيح focusInput() وfocusFirstToken() وfocusLastToken() وclearInput() وselectAll().',
+      'مقبض أمري (imperative handle) يتيح focus() وblur() لحقل البحث المسبق.',
     width:
       'عرض الحقل (number = بكسل، وstring يُستخدم كما هو، مثل "100%"). يحدد حجم الحقل بأكمله (التسمية وعنصر التحكم والحالة) لتبقى متحاذية.',
     tokenOverflowBehavior:

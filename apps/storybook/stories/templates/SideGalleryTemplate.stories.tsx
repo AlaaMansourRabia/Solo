@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SideGalleryTemplate from '@solo/templates/side-gallery/SideGalleryTemplate';
 
 const meta: Meta<typeof SideGalleryTemplate> = {
-  title: 'Templates/45 Side Gallery',
+  title: 'Templates/48 Side Gallery',
   component: SideGalleryTemplate,
   parameters: {
     layout: 'fullscreen',

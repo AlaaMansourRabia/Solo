@@ -1383,6 +1383,10 @@
     "defaultMessage": "Removed {label}",
     "description": "Polite screen-reader announcement after a token is removed from a Tokenizer, by its × button or by Backspace. Live-region text, never shown on screen; `{label}` is the token's visible text."
   },
+  "@solo.tokenizer.createOption": {
+    "defaultMessage": "Create \"{label}\"",
+    "description": "Suggestion row in a Tokenizer that turns the typed text into a new token when no existing suggestion matches. `{label}` is the typed text."
+  },
   "@solo.lightbox.imagePosition": {
     "defaultMessage": "Image {index, number} of {total, number}",
     "description": "Polite screen-reader announcement when a Lightbox moves to a media item that has no alt text. Live-region text, never shown on screen; `{index}` is 1-based, example: `Image 3 of 12`."

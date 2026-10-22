@@ -11,7 +11,7 @@ export const doc = {
   type: 'page',
   isReady: true,
   category: 'Gallery - Side',
-  order: 45,
+  order: 48,
   filter: 'Gallery',
   previewAspectRatio: 16 / 10,
   slug: 'side-gallery',

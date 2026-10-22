@@ -19,7 +19,7 @@ export const doc = {
   ],
   isReady: false,
   category: 'Shell - Messaging',
-  order: 53,
+  order: 56,
   filter: 'Shell',
   previewAspectRatio: 16 / 10,
   slug: 'messaging-shell',

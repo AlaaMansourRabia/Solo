@@ -17,7 +17,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'AI Chat - Landing',
-  order: 39,
+  order: 42,
   filter: 'AI Chat',
   previewAspectRatio: 16 / 10,
   slug: 'ai-chat-landing',

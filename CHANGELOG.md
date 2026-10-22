@@ -9,6 +9,21 @@ that section into the release notes.
 
 ## Unreleased
 
+- **Three new page templates** (58 in total):
+  - **Site Operations Dashboard** — a construction site's live view (headcount
+    by hour, hours by trade, safety events, zone occupancy, live alerts), built
+    only with `@solo/charts`, so every chart mirrors in right-to-left.
+  - **Booking Flow** — reserve a room: availability calendar or date range,
+    time slots, room cards that explain why they're unavailable, and a live
+    countdown (Timer `endTime`) while the room is held.
+  - **Team Members** — members table with inline roles, right-click and "…"
+    actions, invites entered as tokens, seat usage, and confirmations.
+- **Tokenizer:** the "Create …" suggestion is translated (new message key
+  `@solo.tokenizer.createOption`; Arabic included).
+- **Docs:** the Tokenizer handle is documented correctly (`focus()`,
+  `blur()`).
+- **MockTextTranslator:** `scope="document"` also translates content that
+  renders outside the wrapped subtree (toasts, portals); Storybook uses it.
 - CI runs the timing tests (`*.perf.test.*`) separately, one file at a time, so a
   busy test run can no longer make them fail (`pnpm test:perf`).
 

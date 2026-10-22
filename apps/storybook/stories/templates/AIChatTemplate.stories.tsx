@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import AIChatTemplate from '@solo/templates/ai-chat/AIChatTemplate';
 
 const meta: Meta<typeof AIChatTemplate> = {
-  title: 'Templates/38 AI Chat Conversation',
+  title: 'Templates/41 AI Chat Conversation',
   component: AIChatTemplate,
   parameters: {
     layout: 'fullscreen',

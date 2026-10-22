@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import FileExplorerTemplate from '@solo/templates/file-explorer/FileExplorerTemplate';
 
 const meta: Meta<typeof FileExplorerTemplate> = {
-  title: 'Templates/27 File Explorer',
+  title: 'Templates/30 File Explorer',
   component: FileExplorerTemplate,
   parameters: {
     layout: 'fullscreen',

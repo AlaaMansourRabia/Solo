@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginSSOTemplate from '@solo/templates/login-sso/LoginSSOTemplate';
 
 const meta: Meta<typeof LoginSSOTemplate> = {
-  title: 'Templates/25 Login SSO',
+  title: 'Templates/28 Login SSO',
   component: LoginSSOTemplate,
   parameters: {
     layout: 'fullscreen',

@@ -12,7 +12,7 @@ export const doc = {
   keywords: ['wizard', 'accordion', 'multi-step form', 'inline steps', 'stepper', 'onboarding', 'setup flow', 'collapsible steps'],
   isReady: true,
   category: 'Form - Wizard Inline',
-  order: 17,
+  order: 18,
   filter: 'Form',
   previewAspectRatio: 16 / 10,
   slug: 'form-wizard-inline',

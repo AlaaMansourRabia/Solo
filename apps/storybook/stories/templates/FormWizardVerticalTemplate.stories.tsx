@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import FormWizardVerticalTemplate from '@solo/templates/form-wizard-vertical/FormWizardVerticalTemplate';
 
 const meta: Meta<typeof FormWizardVerticalTemplate> = {
-  title: 'Templates/19 Vertical Wizard',
+  title: 'Templates/20 Vertical Wizard',
   component: FormWizardVerticalTemplate,
   parameters: {
     layout: 'fullscreen',

@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import AIChatLandingTemplate from '@solo/templates/ai-chat-landing/AIChatLandingTemplate';
 
 const meta: Meta<typeof AIChatLandingTemplate> = {
-  title: 'Templates/39 AI Chat Landing',
+  title: 'Templates/42 AI Chat Landing',
   component: AIChatLandingTemplate,
   parameters: {
     layout: 'fullscreen',

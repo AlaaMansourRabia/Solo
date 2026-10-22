@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import KanbanBoardTemplate from '@solo/templates/kanban-board/KanbanBoardTemplate';
 
 const meta: Meta<typeof KanbanBoardTemplate> = {
-  title: 'Templates/29 Kanban Board',
+  title: 'Templates/32 Kanban Board',
   component: KanbanBoardTemplate,
   parameters: {
     layout: 'fullscreen',

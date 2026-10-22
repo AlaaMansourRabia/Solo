@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SettingsDialogTemplate from '@solo/templates/settings-dialog/SettingsDialogTemplate';
 
 const meta: Meta<typeof SettingsDialogTemplate> = {
-  title: 'Templates/20 Settings Dialog',
+  title: 'Templates/22 Settings Dialog',
   component: SettingsDialogTemplate,
   parameters: {
     layout: 'fullscreen',

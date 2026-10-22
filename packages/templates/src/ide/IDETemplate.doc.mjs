@@ -17,7 +17,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Tools - IDE',
-  order: 28,
+  order: 31,
   filter: 'Tools',
   previewAspectRatio: 16 / 10,
   slug: 'ide',

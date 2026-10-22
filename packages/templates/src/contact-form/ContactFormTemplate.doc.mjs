@@ -24,7 +24,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Form - Basic',
-  order: 14,
+  order: 15,
   filter: 'Form',
   previewAspectRatio: 16 / 10,
   slug: 'contact-form',

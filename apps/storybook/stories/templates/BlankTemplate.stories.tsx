@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import BlankTemplate from '@solo/templates/blank/BlankTemplate';
 
 const meta: Meta<typeof BlankTemplate> = {
-  title: 'Templates/46 Blank',
+  title: 'Templates/49 Blank',
   component: BlankTemplate,
   parameters: {
     layout: 'fullscreen',

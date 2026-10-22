@@ -380,6 +380,7 @@ const runtimeCatalog: Readonly<Record<string, string>> = {
     "{count, number} {count, plural, one {result} other {results}}",
   "@solo.tokenizer.tokenAdded": "Added {label}",
   "@solo.tokenizer.tokenRemoved": "Removed {label}",
+  "@solo.tokenizer.createOption": "Create \"{label}\"",
   "@solo.lightbox.imagePosition": "Image {index, number} of {total, number}",
   "@solo.lightbox.mediaPosition": "{alt}, {index, number} of {total, number}",
   "@solo.transferList.selectedLabel": "Selected",

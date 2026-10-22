@@ -23,7 +23,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Table - Tree/Hierarchical List',
-  order: 11,
+  order: 12,
   filter: 'Table',
   previewAspectRatio: 16 / 10,
   slug: 'table-tree',

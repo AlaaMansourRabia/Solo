@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import WorkItemDetailTemplate from '@solo/templates/work-item-detail/WorkItemDetailTemplate';
 
 const meta: Meta<typeof WorkItemDetailTemplate> = {
-  title: 'Templates/37 Work Item Detail',
+  title: 'Templates/40 Work Item Detail',
   component: WorkItemDetailTemplate,
   parameters: {
     layout: 'fullscreen',

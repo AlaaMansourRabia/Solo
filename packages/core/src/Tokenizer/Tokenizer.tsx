@@ -689,12 +689,12 @@ export function Tokenizer<T extends SearchableItem>({
       return [
         {
           id: `${CREATABLE_ID_PREFIX}${trimmed}`,
-          label: `Create "${trimmed}"`,
+          label: t('@solo.tokenizer.createOption', {label: trimmed}),
           auxiliaryData: {__createdValue: trimmed},
         } as unknown as T,
       ];
     },
-    [hasCreate, selectedIds],
+    [hasCreate, selectedIds, t],
   );
 
   const emptySource: SearchSource<T> = useMemo(
