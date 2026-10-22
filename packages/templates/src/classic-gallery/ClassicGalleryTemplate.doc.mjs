@@ -11,7 +11,7 @@ export const doc = {
   type: 'page',
   isReady: true,
   category: 'Gallery - Basic',
-  order: 44,
+  order: 51,
   filter: 'Gallery',
   previewAspectRatio: 16 / 10,
   slug: 'classic-gallery',

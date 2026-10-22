@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ThemeShowcaseTemplate from '@solo/templates/theme-showcase/ThemeShowcaseTemplate';
 
 const meta: Meta<typeof ThemeShowcaseTemplate> = {
-  title: 'Templates/57 Theme Showcase',
+  title: 'Templates/65 Theme Showcase',
   component: ThemeShowcaseTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'theme-showcase'},
     docs: {description: {component: "Several unrelated product surfaces rendered together on one canvas so a token change can be judged across contexts at once. A comparison harness rather than a layout to ship."}},
   },
 };

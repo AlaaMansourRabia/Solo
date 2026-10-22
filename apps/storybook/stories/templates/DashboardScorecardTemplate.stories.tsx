@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardScorecardTemplate> = {
   component: DashboardScorecardTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard-scorecard'},
     docs: {description: {component: "Report-shaped analytics with a prose rail beside the charts: a scorecard of headline numbers with period deltas and status coloring, goal-attainment bars, a trend grid, and a written commentary column that folds beneath the content when narrow."}},
   },
 };

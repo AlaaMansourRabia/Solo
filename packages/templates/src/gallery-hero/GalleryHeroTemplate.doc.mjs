@@ -18,7 +18,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Gallery - Hero',
-  order: 45,
+  order: 52,
   filter: 'Gallery',
   previewAspectRatio: 16 / 10,
   slug: 'gallery-hero',

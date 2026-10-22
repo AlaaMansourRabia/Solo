@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ClassicGalleryTemplate from '@solo/templates/classic-gallery/ClassicGalleryTemplate';
 
 const meta: Meta<typeof ClassicGalleryTemplate> = {
-  title: 'Templates/44 Classic Gallery',
+  title: 'Templates/51 Classic Gallery',
   component: ClassicGalleryTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'classic-gallery'},
     docs: {description: {component: "Uniform grid of equal-ratio media tiles under a centered intro, with filter tabs that narrow the set in place. Regular rhythm, unlike the variable-height masonry variant."}},
   },
 };

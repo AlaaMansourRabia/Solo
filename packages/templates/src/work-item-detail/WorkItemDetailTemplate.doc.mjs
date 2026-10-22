@@ -20,7 +20,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Content - Work Item Detail',
-  order: 40,
+  order: 42,
   filter: 'Content',
   previewAspectRatio: 16 / 10,
   slug: 'work-item-detail',

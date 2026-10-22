@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import TableTemplate from '@solo/templates/table/TableTemplate';
 
 const meta: Meta<typeof TableTemplate> = {
-  title: 'Templates/53 Simple Table',
+  title: 'Templates/61 Simple Table',
   component: TableTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'table'},
     docs: {description: {component: "Flat row collection where columns sort, rows select into a bulk-action toolbar, and each row carries an overflow menu. Sortable but ungrouped, with no detail pane, the baseline shape."}},
   },
 };

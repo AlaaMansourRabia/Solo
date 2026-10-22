@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import {useState} from 'react';
 import {act, render, screen} from '@testing-library/react';
 import {describe, expect, it} from 'vitest';
@@ -108,7 +110,14 @@ describe('MockTextTranslator', () => {
   });
 
   it('ships an Arabic dictionary for every template', () => {
-    expect(Object.keys(templateMockTextAr).length).toBe(58);
+    // One per template folder (a folder with a <Name>Template.doc.mjs).
+    const src = path.resolve(__dirname, '..');
+    const templates = fs
+      .readdirSync(src, {withFileTypes: true})
+      .filter(d => d.isDirectory())
+      .filter(d => fs.readdirSync(path.join(src, d.name)).some(f => f.endsWith('Template.doc.mjs')));
+    expect(templates.length).toBeGreaterThan(0);
+    expect(Object.keys(templateMockTextAr).length).toBe(templates.length);
   });
 
   it('translates date-like labels word by word from the shared vocabulary', () => {

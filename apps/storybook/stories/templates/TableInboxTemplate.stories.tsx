@@ -8,7 +8,7 @@ const meta: Meta<typeof TableInboxTemplate> = {
   component: TableInboxTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'table-inbox'},
     docs: {description: {component: "Two-pane message queue: the table indexes a reading pane rather than being the destination, with a divider you drag to resize. Rows stack when the table narrows, not the window; threads read as collapsible messages; replying opens a composer that leaves the list live."}},
   },
 };

@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import CenteredHeroTemplate from '@solo/templates/centered-hero/CenteredHeroTemplate';
 
 const meta: Meta<typeof CenteredHeroTemplate> = {
-  title: 'Templates/43 Centered Hero',
+  title: 'Templates/50 Centered Hero',
   component: CenteredHeroTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'centered-hero'},
     docs: {description: {component: "Symmetrical centered stack (headline, short blurb, paired call-to-action buttons) resting on one wide full-bleed picture, with nothing on either flank competing."}},
   },
 };

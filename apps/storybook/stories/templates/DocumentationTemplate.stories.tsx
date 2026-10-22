@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import DocumentationTemplate from '@solo/templates/documentation/DocumentationTemplate';
 
 const meta: Meta<typeof DocumentationTemplate> = {
-  title: 'Templates/35 Documentation Catalog',
+  title: 'Templates/37 Documentation Catalog',
   component: DocumentationTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'documentation'},
     docs: {description: {component: "Reference landing that is pure wayfinding: a banner above a grid of category cards linking into sections, with no article content on the surface itself."}},
   },
 };

@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardProgressTemplate> = {
   component: DashboardProgressTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard-progress'},
     docs: {description: {component: "Status analytics mixing progress and time-axis shapes: a completion donut, a horizontal timeline of dated bars against a today marker, a per-owner table with progress and status, an at-risk list, and a burndown."}},
   },
 };

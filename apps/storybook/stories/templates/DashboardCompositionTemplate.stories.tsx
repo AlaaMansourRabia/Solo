@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardCompositionTemplate> = {
   component: DashboardCompositionTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard-composition'},
     docs: {description: {component: "Analytics for a value-over-time question: balance and change tiles above a stacked area chart of composition through time, closing on a ranked table of the largest contributors."}},
   },
 };

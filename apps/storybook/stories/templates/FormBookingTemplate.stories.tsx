@@ -8,7 +8,7 @@ const meta: Meta<typeof FormBookingTemplate> = {
   component: FormBookingTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'form-booking'},
     docs: {description: {component: "Stepped reservation flow for a shared resource: pick a day on an availability calendar (or a multi-day range) and a time window, choose from rooms that are disabled with a reason when they are too small or already booked, add details, then reserve. The room is held on a live ten-minute countdown until it is confirmed or released, with a sticky summary beside every step."}},
   },
 };

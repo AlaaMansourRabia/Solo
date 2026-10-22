@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LibraryTemplate from '@solo/templates/library/LibraryTemplate';
 
 const meta: Meta<typeof LibraryTemplate> = {
-  title: 'Templates/34 Card Grid',
+  title: 'Templates/36 Card Grid',
   component: LibraryTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'library'},
     docs: {description: {component: "Searchable, browsable card grid with filter tabs and a real empty state: uniform tiles organized by topic, narrowing in place, with no detail surface behind them."}},
   },
 };

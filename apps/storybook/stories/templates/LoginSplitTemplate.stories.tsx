@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginSplitTemplate from '@solo/templates/login-split/LoginSplitTemplate';
 
 const meta: Meta<typeof LoginSplitTemplate> = {
-  title: 'Templates/27 Login Split',
+  title: 'Templates/29 Login Split',
   component: LoginSplitTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'login-split'},
     docs: {description: {component: "Credential form filling one half of a two-pane split, full-bleed media holding the other. Same fields as the card variant, but the layout carries brand imagery."}},
   },
 };

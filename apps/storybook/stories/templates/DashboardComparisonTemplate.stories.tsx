@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardComparisonTemplate> = {
   component: DashboardComparisonTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard-comparison'},
     docs: {description: {component: "Comparison-heavy analytics behind a persistent filter bar: tiles that each carry an inline sparkline and several period-over-period deltas, then segmented breakdowns underneath. Every number is shown against another number."}},
   },
 };

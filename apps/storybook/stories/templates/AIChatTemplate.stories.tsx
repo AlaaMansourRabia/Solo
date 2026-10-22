@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import AIChatTemplate from '@solo/templates/ai-chat/AIChatTemplate';
 
 const meta: Meta<typeof AIChatTemplate> = {
-  title: 'Templates/41 AI Chat Conversation',
+  title: 'Templates/48 AI Chat Conversation',
   component: AIChatTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'ai-chat'},
     docs: {description: {component: "Transcript of alternating turns carrying mixed rich content inline (markdown, code blocks, collapsible tool-call output) beside a resizable artifact panel that holds generated output while the stream keeps scrolling."}},
   },
 };

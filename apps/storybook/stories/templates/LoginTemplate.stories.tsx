@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginTemplate from '@solo/templates/login/LoginTemplate';
 
 const meta: Meta<typeof LoginTemplate> = {
-  title: 'Templates/54 Basic Login',
+  title: 'Templates/62 Basic Login',
   component: LoginTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'login'},
     docs: {description: {component: "Minimal centered credential form on a plain ground: two fields and a submit, nothing competing for attention. The least-chrome entry surface."}},
   },
 };

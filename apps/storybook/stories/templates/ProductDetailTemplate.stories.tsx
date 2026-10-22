@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ProductDetailTemplate from '@solo/templates/product-detail/ProductDetailTemplate';
 
 const meta: Meta<typeof ProductDetailTemplate> = {
-  title: 'Templates/39 Product Detail',
+  title: 'Templates/41 Product Detail',
   component: ProductDetailTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'product-detail'},
     docs: {description: {component: "Single-item detail pairing a media gallery with a selection column: variant swatches, a quantity stepper, primary and secondary commit actions, and collapsible specification sections below."}},
   },
 };

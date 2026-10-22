@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardAlertRailTemplate> = {
   component: DashboardAlertRailTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard-alert-rail'},
     docs: {description: {component: "Always-on analytics with a triage rail: status-colored tiles with sparklines, multi-series time charts over a switchable window, and an independently scrolling alert column that folds into the content when narrow."}},
   },
 };

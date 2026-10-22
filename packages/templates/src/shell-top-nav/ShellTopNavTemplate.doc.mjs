@@ -19,7 +19,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Shell - Top Nav',
-  order: 52,
+  order: 59,
   filter: 'Shell',
   previewAspectRatio: 16 / 10,
   slug: 'shell-top-nav',

@@ -11,7 +11,7 @@ export const doc = {
   keywords: ['files', 'folders', 'directory', 'tree', 'finder-style navigator'],
   isReady: true,
   category: 'Tools - File Explorer',
-  order: 30,
+  order: 32,
   filter: 'Tools',
   previewAspectRatio: 16 / 10,
   slug: 'file-explorer',

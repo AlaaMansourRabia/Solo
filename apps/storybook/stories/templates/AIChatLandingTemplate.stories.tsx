@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import AIChatLandingTemplate from '@solo/templates/ai-chat-landing/AIChatLandingTemplate';
 
 const meta: Meta<typeof AIChatLandingTemplate> = {
-  title: 'Templates/42 AI Chat Landing',
+  title: 'Templates/49 AI Chat Landing',
   component: AIChatLandingTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'ai-chat-landing'},
     docs: {description: {component: "Zero-state entry surface centered on a single composer with suggestion chips instead of history, sized for the moment before any content exists. The empty counterpart to a transcript."}},
   },
 };

@@ -95,6 +95,9 @@ export function Code({
   return (
     <code
       ref={ref}
+      // Code reads left-to-right in every language; `dir` also isolates it
+      // from surrounding right-to-left text. Callers can still override it.
+      dir="ltr"
       {...props}
       {...mergeProps(
         themeProps('code', {color}),

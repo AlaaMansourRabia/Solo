@@ -17,7 +17,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Tools - Page Editor',
-  order: 33,
+  order: 35,
   filter: 'Tools',
   previewAspectRatio: 16 / 10,
   slug: 'editor',

@@ -1,0 +1,35 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'page',
+  name: 'Billing & Invoices',
+  displayName: 'Billing & Invoices',
+  description:
+    'The account owner\'s billing page: the current plan with its per-seat price, renewal date and seats in use, plan actions grouped together, usage meters against the plan\'s limits with a warning near the limit, the payment method with a validated update dialog, a paginated invoice table with per-row downloads, and cancellation behind a confirmation. Amounts, units and dates follow the active locale; only failed and overdue invoices get badges. The shape for money and a plan, not for preferences or people.',
+  displayNameAr: 'الفوترة والفواتير',
+  descriptionAr:
+    'صفحة الفوترة لمالك الحساب: الخطة الحالية بسعر المقعد وتاريخ التجديد والمقاعد المستخدمة، وإجراءات الخطة مجمّعة معًا، ومؤشرات استخدام مقابل حدود الخطة مع تنبيه عند الاقتراب من الحد، وطريقة الدفع مع نافذة تحديث تتحقق من الحقول، وجدول فواتير مقسّم إلى صفحات مع تنزيل لكل فاتورة، وإلغاء الاشتراك بعد تأكيد. تتبع المبالغ والوحدات والتواريخ اللغة النشطة، ولا تظهر الشارات إلا للفواتير المتعثرة أو المتأخرة. هذا هو الشكل المناسب للمال والخطط، لا للتفضيلات أو الأشخاص.',
+  keywords: [
+    'billing',
+    'invoices',
+    'subscription',
+    'plan',
+    'pricing',
+    'payment method',
+    'credit card',
+    'usage',
+    'quota',
+    'limits',
+    'seats',
+    'upgrade',
+    'cancel subscription',
+    'receipts',
+    'saas',
+    'account',
+  ],
+  isReady: true,
+  category: 'Settings - Billing',
+  order: 27,
+  filter: 'Settings',
+  previewAspectRatio: 16 / 10,
+  slug: 'settings-billing',
+};

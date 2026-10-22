@@ -1,6 +1,6 @@
 {
   "Best practices": "أفضل الممارسات",
-  "Button": "Button",
+  "Button": "زر",
   "Buttons can include a badge to highlight new or updated actions.": "يمكن أن تتضمن الأزرار شارة لإبراز الإجراءات الجديدة أو المحدَّثة.",
   "Buttons provide visual cues for actions and events. These fundamental components allow users to commit actions and navigate a page flow. Use a Button when a user needs to submit a form, start a new task or action, or trigger a new UI element to appear on the page.": "توفّر الأزرار إشارات مرئية للإجراءات والأحداث. تتيح هذه المكوّنات الأساسية للمستخدمين تنفيذ الإجراءات والتنقّل عبر تسلسل الصفحة. استخدم Button عندما يحتاج المستخدم إلى إرسال نموذج، أو بدء مهمة أو إجراء جديد، أو إظهار عنصر واجهة جديد على الصفحة.",
   "Code": "الشيفرة",

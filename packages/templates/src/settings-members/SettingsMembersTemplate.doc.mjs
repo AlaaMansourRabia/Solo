@@ -26,7 +26,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Settings - Members',
-  order: 25,
+  order: 26,
   filter: 'Settings',
   previewAspectRatio: 16 / 10,
   slug: 'settings-members',

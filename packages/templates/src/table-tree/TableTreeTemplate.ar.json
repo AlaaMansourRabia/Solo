@@ -114,7 +114,7 @@
   "chore: ignore local coverage output (#380)": "chore: تجاهل مخرجات التغطية المحلية (#380)",
   "chore: move bootstrap behind a feature flag (#415)": "chore: نقل التمهيد خلف علم ميزة (#415)",
   "ci: cache the pnpm store between runs (#412)": "ci: تخزين مستودع pnpm مؤقتًا بين مرات التشغيل (#412)",
-  "components": "components",
+  "components": "المكوّنات",
   "docs": "docs",
   "docs: add an index for the docs folder (#411)": "docs: إضافة فهرس لمجلد docs (#411)",
   "docs: rewrite the install section (#418)": "docs: إعادة كتابة قسم التثبيت (#418)",

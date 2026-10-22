@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SettingsTemplate from '@solo/templates/settings/SettingsTemplate';
 
 const meta: Meta<typeof SettingsTemplate> = {
-  title: 'Templates/23 Settings Form',
+  title: 'Templates/24 Settings Form',
   component: SettingsTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'settings'},
     docs: {description: {component: "Preferences as one continuously scrolling form, sections stacked in order with no navigation between them. The simplest settings shape: everything reachable by scrolling."}},
   },
 };

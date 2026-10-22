@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import MessagingShellTemplate from '@solo/templates/messaging-shell/MessagingShellTemplate';
 
 const meta: Meta<typeof MessagingShellTemplate> = {
-  title: 'Templates/56 Messaging Shell',
+  title: 'Templates/64 Messaging Shell',
   component: MessagingShellTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'messaging-shell'},
     docs: {description: {component: "Four-column nested navigation narrowing left to right (team workspace, channel list, message stream, thread panel) where each column scopes the next. Dense rows, zero cards."}},
   },
 };

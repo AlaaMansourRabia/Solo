@@ -49,6 +49,12 @@ in the English screenshot and is broken in Arabic.
   `--spacing-4`) through Tailwind: `text-(--color-text-secondary)`. No raw
   colors, no literal font families — Arabic text switches to IBM Plex Sans
   Arabic through tokens.
+- In inline styles and arbitrary values (`style={{color: 'var(--…)'}}`,
+  `bg-[var(--…)]`) use only the runtime tokens defined in
+  `@solo/core/tokens.css` (e.g. `--color-background-orange`,
+  `--color-text-secondary`, `--spacing-4`). Names that exist only in the
+  Tailwind theme (`tailwind-theme.css`, e.g. `--color-orange-vivid`) work
+  in utility classes but resolve to nothing in a hand-written `var()`.
 - Style variants with the `data-*` attributes components emit
   (`[data-variant="primary"]`), not with internal class names.
 

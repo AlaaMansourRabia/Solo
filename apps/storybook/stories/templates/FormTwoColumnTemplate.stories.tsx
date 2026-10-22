@@ -8,7 +8,7 @@ const meta: Meta<typeof FormTwoColumnTemplate> = {
   component: FormTwoColumnTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'form-two-column'},
     docs: {description: {component: "Form split into two columns beneath a hero header: inputs on one flank, a persistent context panel opposite that stays put while the fields scroll. Flat, single submit, no steps."}},
   },
 };

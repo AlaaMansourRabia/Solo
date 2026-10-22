@@ -19,7 +19,7 @@ export const doc = {
   isReady: true,
   isHiddenFromOverview: true,
   category: 'Login - Basic',
-  order: 54,
+  order: 62,
   filter: 'Login',
   previewAspectRatio: 16 / 10,
   slug: 'login',

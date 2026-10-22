@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginSSOTemplate from '@solo/templates/login-sso/LoginSSOTemplate';
 
 const meta: Meta<typeof LoginSSOTemplate> = {
-  title: 'Templates/28 Login SSO',
+  title: 'Templates/30 Login SSO',
   component: LoginSSOTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'login-sso'},
     docs: {description: {component: "Progressive credential flow that branches on input: the email domain resolves an identity provider and redirects, with a password path as fallback. Two-stage rather than one form."}},
   },
 };

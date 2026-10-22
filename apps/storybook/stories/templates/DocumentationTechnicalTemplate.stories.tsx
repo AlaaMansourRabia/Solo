@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import DocumentationTechnicalTemplate from '@solo/templates/documentation-technical/DocumentationTechnicalTemplate';
 
 const meta: Meta<typeof DocumentationTechnicalTemplate> = {
-  title: 'Templates/37 Documentation Technical',
+  title: 'Templates/39 Documentation Technical',
   component: DocumentationTechnicalTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'documentation-technical'},
     docs: {description: {component: "Reference article ordered as sequential numbered steps with code at each stage, plus callout cards for prerequisites and onward links. A linear walkthrough rather than a browsable reference."}},
   },
 };

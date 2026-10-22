@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SettingsDialogTemplate from '@solo/templates/settings-dialog/SettingsDialogTemplate';
 
 const meta: Meta<typeof SettingsDialogTemplate> = {
-  title: 'Templates/22 Settings Dialog',
+  title: 'Templates/23 Settings Dialog',
   component: SettingsDialogTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'settings-dialog'},
     docs: {description: {component: "Preferences inside a modal container with searchable section navigation, so configuration happens without leaving whatever is underneath. Grouped toggles, live preview of appearance choices, rebindable shortcuts."}},
   },
 };

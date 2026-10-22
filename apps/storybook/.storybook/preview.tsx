@@ -15,6 +15,8 @@ import {
   commonMockTextAr,
   mergeMockText,
   templateMockTextAr,
+  templateMockTextArBySlug,
+  type MockTextDictionary,
 } from '@solo/templates';
 import storiesMockTextAr from '../i18n/stories.ar.json';
 import './storybook.css';
@@ -25,6 +27,24 @@ const MOCK_TEXT_AR = mergeMockText(
   storiesMockTextAr,
   ...Object.values(templateMockTextAr),
 );
+
+/**
+ * A template story is translated with its own dictionary only (plus the
+ * shared date vocabulary): two templates can translate the same English word
+ * differently ("completed" as a status vs. a verb), and the merged map above
+ * would let one template's choice leak into another.
+ */
+const templateDictionaries = new Map<string, MockTextDictionary>();
+function mockTextFor(templateSlug: string | undefined): MockTextDictionary {
+  const own = templateSlug ? templateMockTextArBySlug[templateSlug] : undefined;
+  if (!templateSlug || !own) return MOCK_TEXT_AR;
+  let dictionary = templateDictionaries.get(templateSlug);
+  if (!dictionary) {
+    dictionary = mergeMockText(commonMockTextAr, own);
+    templateDictionaries.set(templateSlug, dictionary);
+  }
+  return dictionary;
+}
 
 /**
  * Direction drives the whole language: LTR is English content in Figtree,
@@ -61,10 +81,19 @@ const withTheme: Decorator = (Story, context) => {
   const direction: 'ltr' | 'rtl' =
     context.globals?.direction === 'rtl' ? 'rtl' : 'ltr';
   const {locale, messages} = LOCALES[direction];
+  const mockText = mockTextFor(context.parameters?.solo?.templateSlug);
 
   // Sync color-scheme to the document root so light-dark() works
   // everywhere, including on <html>/<body> backgrounds and any
   // elements rendered outside the Theme wrapper.
+  // Mirror the direction and language onto <html>, as a real app does, so
+  // content rendered outside the story wrapper (toast viewport, portals)
+  // follows them too.
+  React.useEffect(() => {
+    document.documentElement.dir = direction;
+    document.documentElement.lang = locale;
+  }, [direction, locale]);
+
   React.useEffect(() => {
     document.documentElement.style.setProperty('color-scheme', mode);
   }, [mode]);
@@ -83,7 +112,7 @@ const withTheme: Decorator = (Story, context) => {
             colorScheme: mode,
             padding: 16,
           }}>
-          <MockTextTranslator dictionary={MOCK_TEXT_AR} isEnabled={locale === 'ar-SA'} scope="document">
+          <MockTextTranslator dictionary={mockText} isEnabled={locale === 'ar-SA'} scope="document">
             <Story />
           </MockTextTranslator>
         </div>
@@ -117,7 +146,7 @@ const withTheme: Decorator = (Story, context) => {
                     padding: 16,
                   }
             }>
-            <MockTextTranslator dictionary={MOCK_TEXT_AR} isEnabled={locale === 'ar-SA'} scope="document">
+            <MockTextTranslator dictionary={mockText} isEnabled={locale === 'ar-SA'} scope="document">
             <Story />
           </MockTextTranslator>
           </div>

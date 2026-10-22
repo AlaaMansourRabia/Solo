@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoginCardTemplate from '@solo/templates/login-card/LoginCardTemplate';
 
 const meta: Meta<typeof LoginCardTemplate> = {
-  title: 'Templates/26 Login Card',
+  title: 'Templates/28 Login Card',
   component: LoginCardTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'login-card'},
     docs: {description: {component: "Credential form inside an elevated centered card, third-party provider buttons separated from the fields by a divider, secondary sign-up and legal links beneath."}},
   },
 };

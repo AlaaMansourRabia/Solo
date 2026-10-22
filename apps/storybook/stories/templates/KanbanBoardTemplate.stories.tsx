@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import KanbanBoardTemplate from '@solo/templates/kanban-board/KanbanBoardTemplate';
 
 const meta: Meta<typeof KanbanBoardTemplate> = {
-  title: 'Templates/32 Kanban Board',
+  title: 'Templates/34 Kanban Board',
   component: KanbanBoardTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'kanban-board'},
     docs: {description: {component: "Horizontal lanes of draggable cards where the column itself is the status, so drag and drop between lanes is the state change. Fixed columns, variable-height cards."}},
   },
 };

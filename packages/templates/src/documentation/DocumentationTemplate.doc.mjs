@@ -18,7 +18,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Content - Documentation Catalog',
-  order: 35,
+  order: 37,
   filter: 'Content',
   previewAspectRatio: 16 / 10,
   slug: 'documentation',

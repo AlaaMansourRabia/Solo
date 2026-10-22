@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardCohortFunnelTemplate> = {
   component: DashboardCohortFunnelTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard-cohort-funnel'},
     docs: {description: {component: "Analytics for sequence and retention questions, pairing two shapes a plain dashboard cannot hold: a staged funnel where each step reads as drop-off against the one before, and a two-axis cohort matrix rendered as a heatmap."}},
   },
 };

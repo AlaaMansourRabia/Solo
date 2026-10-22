@@ -8,7 +8,7 @@ const meta: Meta<typeof TableGroupedTemplate> = {
   component: TableGroupedTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'table-grouped'},
     docs: {description: {component: "Row collection bundled into collapsible sections with per-group counts, so a long list reads as a handful of blocks that expand and collapse. Query filtering and a resizable inspector for the selected row."}},
   },
 };

@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SettingsMembersTemplate from '@solo/templates/settings-members/SettingsMembersTemplate';
 
 const meta: Meta<typeof SettingsMembersTemplate> = {
-  title: 'Templates/25 Team Members',
+  title: 'Templates/26 Team Members',
   component: SettingsMembersTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'settings-members'},
     docs: {description: {component: "Workspace access as a list of people: a seat meter beside the invite button, Active / Pending invites with search and a role filter, a paginated table with roles edited inline, attention-only status badges, and the same row actions in an overflow menu and on right-click. Inviting turns typed emails into tokens; removing confirms first and reports with an undoable toast. The shape for records with roles, not a page of preferences."}},
   },
 };

@@ -18,6 +18,18 @@ that section into the release notes.
     countdown (Timer `endTime`) while the room is held.
   - **Team Members** — members table with inline roles, right-click and "…"
     actions, invites entered as tokens, seat usage, and confirmations.
+- **Eight more page templates** (66 in total): **Billing & Invoices**,
+  **Onboarding** (first-run setup with a live preview), **Listing Detail**
+  (photo carousel + lightbox, date-range booking panel), **Notifications &
+  Activity**, **Help Article** (table of contents, code, citations), **Search
+  Results** (facets, relevance, "did you mean"), **Error Page** (404 / 500 /
+  403 / maintenance from one constant) and **Mobile App Shell** (bottom tabs,
+  sheets, side menu; portrait preview).
+- **Code and CodeBlock** always render left-to-right, so code stays readable on
+  right-to-left pages.
+- **Storybook:** `dir` and `lang` are set on `<html>` like a real app, so toasts
+  and other portalled content follow the direction; each template story is
+  translated with its own Arabic dictionary only.
 - **Tokenizer:** the "Create …" suggestion is translated (new message key
   `@solo.tokenizer.createOption`; Arabic included).
 - **Docs:** the Tokenizer handle is documented correctly (`focus()`,

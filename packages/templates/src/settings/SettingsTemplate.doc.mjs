@@ -11,7 +11,7 @@ export const doc = {
   keywords: ['settings', 'preferences', 'configuration', 'options', 'account'],
   isReady: true,
   category: 'Settings - Form',
-  order: 23,
+  order: 24,
   filter: 'Settings',
   previewAspectRatio: 16 / 10,
   slug: 'settings',

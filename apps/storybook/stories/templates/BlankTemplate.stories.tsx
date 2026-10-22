@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import BlankTemplate from '@solo/templates/blank/BlankTemplate';
 
 const meta: Meta<typeof BlankTemplate> = {
-  title: 'Templates/49 Blank',
+  title: 'Templates/56 Blank',
   component: BlankTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'blank'},
     docs: {description: {component: "Bare scaffold: one heading slot, one empty content region, no navigation and no chrome. The starting point when every other layout imposes more structure than wanted."}},
   },
 };

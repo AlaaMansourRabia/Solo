@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ShellNavTemplate from '@solo/templates/shell-nav/ShellNavTemplate';
 
 const meta: Meta<typeof ShellNavTemplate> = {
-  title: 'Templates/50 Shell Nav',
+  title: 'Templates/57 Shell Nav',
   component: ShellNavTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'shell-nav'},
     docs: {description: {component: "Application frame combining both navigation axes: a top menu bar with command-palette search over a resizable hierarchy rail, wrapping placeholder content. For when one axis is not enough."}},
   },
 };

@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SettingsSidebarTemplate from '@solo/templates/settings-sidebar/SettingsSidebarTemplate';
 
 const meta: Meta<typeof SettingsSidebarTemplate> = {
-  title: 'Templates/24 Settings Panels',
+  title: 'Templates/25 Settings Panels',
   component: SettingsSidebarTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'settings-sidebar'},
     docs: {description: {component: "Preferences split into nav-switched panels: a persistent section list swaps the pane beside it, and rows edit in place rather than opening a separate form."}},
   },
 };

@@ -18,7 +18,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Tools - Canvas Editor',
-  order: 29,
+  order: 31,
   filter: 'Tools',
   previewAspectRatio: 16 / 10,
   slug: 'canvas-editor',

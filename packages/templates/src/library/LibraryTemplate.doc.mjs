@@ -23,7 +23,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Content - Card Grid',
-  order: 34,
+  order: 36,
   filter: 'Content',
   previewAspectRatio: 16 / 10,
   slug: 'library',

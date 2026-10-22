@@ -8,7 +8,7 @@ const meta: Meta<typeof TableTreeTemplate> = {
   component: TableTreeTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'table-tree'},
     docs: {description: {component: "Hierarchical table where every parent row rolls up from its children — a code repository whose folders show the newest commit beneath them, beside a detail sidebar and a rendered README. Columns resize, siblings sort within their own level, arrow keys walk the rows, and search prunes the tree to matching branches."}},
   },
 };

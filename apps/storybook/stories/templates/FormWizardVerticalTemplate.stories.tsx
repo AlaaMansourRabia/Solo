@@ -8,7 +8,7 @@ const meta: Meta<typeof FormWizardVerticalTemplate> = {
   component: FormWizardVerticalTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'form-wizard-vertical'},
     docs: {description: {component: "Multi-step wizard with the steps in a fixed left rail that stays visible while the form scrolls, plus a side panel whose guidance follows the focused field. Suits long or unequal steps carrying uploads, previews, and dense review metadata. As width tightens the guidance drops first, then the rail rotates into a horizontal stepper above the form."}},
   },
 };

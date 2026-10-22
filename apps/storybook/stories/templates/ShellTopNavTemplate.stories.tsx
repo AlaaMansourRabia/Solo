@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ShellTopNavTemplate from '@solo/templates/shell-top-nav/ShellTopNavTemplate';
 
 const meta: Meta<typeof ShellTopNavTemplate> = {
-  title: 'Templates/52 Top Nav',
+  title: 'Templates/59 Top Nav',
   component: ShellTopNavTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'shell-top-nav'},
     docs: {description: {component: "Application frame with horizontal navigation only: a centered bar whose items open full-width mega-menu panels, over placeholder content that keeps the entire width."}},
   },
 };

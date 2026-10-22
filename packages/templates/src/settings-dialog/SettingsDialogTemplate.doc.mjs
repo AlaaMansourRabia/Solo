@@ -17,7 +17,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Settings - Dialog',
-  order: 22,
+  order: 23,
   filter: 'Settings',
   previewAspectRatio: 16 / 10,
   slug: 'settings-dialog',

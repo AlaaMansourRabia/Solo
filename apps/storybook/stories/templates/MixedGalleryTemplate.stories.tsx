@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import MixedGalleryTemplate from '@solo/templates/mixed-gallery/MixedGalleryTemplate';
 
 const meta: Meta<typeof MixedGalleryTemplate> = {
-  title: 'Templates/46 Mixed Gallery',
+  title: 'Templates/53 Mixed Gallery',
   component: MixedGalleryTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'mixed-gallery'},
     docs: {description: {component: "Masonry grid of variable-height tiles that pack against each other instead of cropping to a shared ratio, captioned per tile. Irregular rhythm, unlike the uniform gallery."}},
   },
 };

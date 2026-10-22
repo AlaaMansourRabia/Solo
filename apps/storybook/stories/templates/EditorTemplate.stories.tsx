@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import EditorTemplate from '@solo/templates/editor/EditorTemplate';
 
 const meta: Meta<typeof EditorTemplate> = {
-  title: 'Templates/33 Page Editor',
+  title: 'Templates/35 Page Editor',
   component: EditorTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'editor'},
     docs: {description: {component: "Three-pane authoring workspace: a source palette on one flank, a live canvas in the middle, and an inspector that retargets to whatever is selected. Drag and drop to reorder, edit to see it render immediately."}},
   },
 };

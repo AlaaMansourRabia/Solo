@@ -11,7 +11,7 @@ export const doc = {
   keywords: ['hero', 'banner', 'splash', 'landing image', 'marketing masthead'],
   isReady: true,
   category: 'Gallery - Hero',
-  order: 43,
+  order: 50,
   filter: 'Gallery',
   previewAspectRatio: 16 / 10,
   slug: 'centered-hero',

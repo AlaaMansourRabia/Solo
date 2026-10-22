@@ -24,7 +24,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'AI Chat - Conversation',
-  order: 41,
+  order: 48,
   filter: 'AI Chat',
   previewAspectRatio: 16 / 10,
   slug: 'ai-chat',

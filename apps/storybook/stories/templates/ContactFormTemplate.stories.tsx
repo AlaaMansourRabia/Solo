@@ -8,7 +8,7 @@ const meta: Meta<typeof ContactFormTemplate> = {
   component: ContactFormTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'contact-form'},
     docs: {description: {component: "Flat single-column form mixing control types (text, pill toggles, dropdowns, long free-text) landing on one full-width submit. No steps, no branching, no summary rail."}},
   },
 };

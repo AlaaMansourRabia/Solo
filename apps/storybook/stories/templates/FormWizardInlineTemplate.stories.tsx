@@ -8,7 +8,7 @@ const meta: Meta<typeof FormWizardInlineTemplate> = {
   component: FormWizardInlineTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'form-wizard-inline'},
     docs: {description: {component: "Accordion wizard stacking every step in one column: the active step expands in place while finished ones collapse to a single line carrying their result and a way back in. Steps that run themselves expand into a nested stepper that ticks check by check and halts the column where one fails. Best when later steps depend on what earlier ones decided."}},
   },
 };

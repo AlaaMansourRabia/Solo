@@ -18,7 +18,7 @@ export const doc = {
   type: 'page',
   isReady: true,
   category: 'Gallery - Product',
-  order: 47,
+  order: 54,
   filter: 'Gallery',
   previewAspectRatio: 16 / 10,
   slug: 'product-gallery',

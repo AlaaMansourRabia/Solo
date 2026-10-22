@@ -18,7 +18,7 @@ export const doc = {
   ],
   isReady: false,
   category: 'Tools - Incident Console',
-  order: 55,
+  order: 63,
   filter: 'Tools',
   previewAspectRatio: 16 / 10,
   slug: 'incident-console',

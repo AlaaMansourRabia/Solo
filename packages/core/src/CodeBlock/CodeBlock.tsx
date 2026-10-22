@@ -821,6 +821,9 @@ export function CodeBlock({
   const block = (
     <pre
       ref={ref}
+      // Code is left-to-right even on a right-to-left page; the header
+      // (title, copy button) around it still mirrors.
+      dir="ltr"
       {...mergeProps(
         themeProps(
           'code-block',

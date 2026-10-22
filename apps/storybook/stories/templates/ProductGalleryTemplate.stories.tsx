@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ProductGalleryTemplate from '@solo/templates/product-gallery/ProductGalleryTemplate';
 
 const meta: Meta<typeof ProductGalleryTemplate> = {
-  title: 'Templates/47 Product Gallery',
+  title: 'Templates/54 Product Gallery',
   component: ProductGalleryTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'product-gallery'},
     docs: {description: {component: "Uniform card grid where every tile carries media, title, supporting line, and a price. Browse-to-select only, with no filtering and no detail surface."}},
   },
 };

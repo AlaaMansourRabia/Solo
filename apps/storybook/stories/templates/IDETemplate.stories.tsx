@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import IDETemplate from '@solo/templates/ide/IDETemplate';
 
 const meta: Meta<typeof IDETemplate> = {
-  title: 'Templates/31 IDE',
+  title: 'Templates/33 IDE',
   component: IDETemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'ide'},
     docs: {description: {component: "Dense multi-pane workspace of resizable, collapsible regions: a hierarchy tree on one flank, tabbed documents in the middle, a docked drawer along the bottom, an inspector opposite. Drag a divider to resize or collapse any of them."}},
   },
 };

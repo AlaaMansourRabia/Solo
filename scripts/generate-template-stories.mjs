@@ -34,7 +34,7 @@ const meta: Meta<typeof ${name}> = {
   component: ${name},
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: '${slug}'},
     docs: {description: {component: ${JSON.stringify(doc.description)}}},
   },
 };

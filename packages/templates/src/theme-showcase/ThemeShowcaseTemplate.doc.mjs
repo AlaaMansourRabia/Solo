@@ -22,7 +22,7 @@ export const doc = {
   // No `category` — it's hidden from the overview gallery (the only consumer
   // of `category`), and 'Showcase' isn't part of the TemplateCategory taxonomy.
   isHiddenFromOverview: true,
-  order: 57,
+  order: 65,
   filter: null,
   previewAspectRatio: 16 / 10,
   slug: 'theme-showcase',

@@ -17,7 +17,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Content - Order Detail',
-  order: 38,
+  order: 40,
   filter: 'Content',
   previewAspectRatio: 16 / 10,
   slug: 'detail-page',

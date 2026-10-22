@@ -20,7 +20,7 @@ export const doc = {
   isReady: false,
   category: 'Table - Basic',
   isHiddenFromOverview: true,
-  order: 53,
+  order: 61,
   filter: 'Table',
   previewAspectRatio: 16 / 10,
   slug: 'table',

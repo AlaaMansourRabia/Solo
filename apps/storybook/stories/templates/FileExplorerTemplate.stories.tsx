@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import FileExplorerTemplate from '@solo/templates/file-explorer/FileExplorerTemplate';
 
 const meta: Meta<typeof FileExplorerTemplate> = {
-  title: 'Templates/30 File Explorer',
+  title: 'Templates/32 File Explorer',
   component: FileExplorerTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'file-explorer'},
     docs: {description: {component: "Hierarchical browser that drills through nested levels as adjacent columns rather than replacing the list each time, with breadcrumb history, switchable list and grid density, and a metadata pane for the selected node."}},
   },
 };

@@ -10,56 +10,64 @@ import t4 from '../centered-hero/CenteredHeroTemplate.ar.json';
 import t5 from '../checkout-wizard/CheckoutWizardTemplate.ar.json';
 import t6 from '../classic-gallery/ClassicGalleryTemplate.ar.json';
 import t7 from '../contact-form/ContactFormTemplate.ar.json';
-import t8 from '../dashboard/DashboardTemplate.ar.json';
-import t9 from '../dashboard-alert-rail/DashboardAlertRailTemplate.ar.json';
-import t10 from '../dashboard-cohort-funnel/DashboardCohortFunnelTemplate.ar.json';
-import t11 from '../dashboard-comparison/DashboardComparisonTemplate.ar.json';
-import t12 from '../dashboard-composition/DashboardCompositionTemplate.ar.json';
-import t13 from '../dashboard-operations/DashboardOperationsTemplate.ar.json';
-import t14 from '../dashboard-progress/DashboardProgressTemplate.ar.json';
-import t15 from '../dashboard-scorecard/DashboardScorecardTemplate.ar.json';
-import t16 from '../detail-page/DetailPageTemplate.ar.json';
-import t17 from '../documentation/DocumentationTemplate.ar.json';
-import t18 from '../documentation-design/DocumentationDesignTemplate.ar.json';
-import t19 from '../documentation-technical/DocumentationTechnicalTemplate.ar.json';
-import t20 from '../editor/EditorTemplate.ar.json';
-import t21 from '../file-explorer/FileExplorerTemplate.ar.json';
-import t22 from '../form-booking/FormBookingTemplate.ar.json';
-import t23 from '../form-two-column/FormTwoColumnTemplate.ar.json';
-import t24 from '../form-wizard/FormWizardTemplate.ar.json';
-import t25 from '../form-wizard-dialog/FormWizardDialogTemplate.ar.json';
-import t26 from '../form-wizard-inline/FormWizardInlineTemplate.ar.json';
-import t27 from '../form-wizard-vertical/FormWizardVerticalTemplate.ar.json';
-import t28 from '../gallery-hero/GalleryHeroTemplate.ar.json';
-import t29 from '../ide/IDETemplate.ar.json';
-import t30 from '../incident-console/IncidentConsoleTemplate.ar.json';
-import t31 from '../kanban-board/KanbanBoardTemplate.ar.json';
-import t32 from '../library/LibraryTemplate.ar.json';
-import t33 from '../login/LoginTemplate.ar.json';
-import t34 from '../login-card/LoginCardTemplate.ar.json';
-import t35 from '../login-split/LoginSplitTemplate.ar.json';
-import t36 from '../login-sso/LoginSSOTemplate.ar.json';
-import t37 from '../messaging-shell/MessagingShellTemplate.ar.json';
-import t38 from '../mixed-gallery/MixedGalleryTemplate.ar.json';
-import t39 from '../payment-form/PaymentFormTemplate.ar.json';
-import t40 from '../product-detail/ProductDetailTemplate.ar.json';
-import t41 from '../product-gallery/ProductGalleryTemplate.ar.json';
-import t42 from '../settings/SettingsTemplate.ar.json';
-import t43 from '../settings-dialog/SettingsDialogTemplate.ar.json';
-import t44 from '../settings-members/SettingsMembersTemplate.ar.json';
-import t45 from '../settings-sidebar/SettingsSidebarTemplate.ar.json';
-import t46 from '../shell-nav/ShellNavTemplate.ar.json';
-import t47 from '../shell-side-nav/ShellSideNavTemplate.ar.json';
-import t48 from '../shell-top-nav/ShellTopNavTemplate.ar.json';
-import t49 from '../side-gallery/SideGalleryTemplate.ar.json';
-import t50 from '../table/TableTemplate.ar.json';
-import t51 from '../table-filter/TableFilterTemplate.ar.json';
-import t52 from '../table-grouped/TableGroupedTemplate.ar.json';
-import t53 from '../table-inbox/TableInboxTemplate.ar.json';
-import t54 from '../table-page/TablePageTemplate.ar.json';
-import t55 from '../table-tree/TableTreeTemplate.ar.json';
-import t56 from '../theme-showcase/ThemeShowcaseTemplate.ar.json';
-import t57 from '../work-item-detail/WorkItemDetailTemplate.ar.json';
+import t8 from '../content-article/ContentArticleTemplate.ar.json';
+import t9 from '../content-error/ContentErrorTemplate.ar.json';
+import t10 from '../content-listing/ContentListingTemplate.ar.json';
+import t11 from '../content-notifications/ContentNotificationsTemplate.ar.json';
+import t12 from '../content-search/ContentSearchTemplate.ar.json';
+import t13 from '../dashboard/DashboardTemplate.ar.json';
+import t14 from '../dashboard-alert-rail/DashboardAlertRailTemplate.ar.json';
+import t15 from '../dashboard-cohort-funnel/DashboardCohortFunnelTemplate.ar.json';
+import t16 from '../dashboard-comparison/DashboardComparisonTemplate.ar.json';
+import t17 from '../dashboard-composition/DashboardCompositionTemplate.ar.json';
+import t18 from '../dashboard-operations/DashboardOperationsTemplate.ar.json';
+import t19 from '../dashboard-progress/DashboardProgressTemplate.ar.json';
+import t20 from '../dashboard-scorecard/DashboardScorecardTemplate.ar.json';
+import t21 from '../detail-page/DetailPageTemplate.ar.json';
+import t22 from '../documentation/DocumentationTemplate.ar.json';
+import t23 from '../documentation-design/DocumentationDesignTemplate.ar.json';
+import t24 from '../documentation-technical/DocumentationTechnicalTemplate.ar.json';
+import t25 from '../editor/EditorTemplate.ar.json';
+import t26 from '../file-explorer/FileExplorerTemplate.ar.json';
+import t27 from '../form-booking/FormBookingTemplate.ar.json';
+import t28 from '../form-onboarding/FormOnboardingTemplate.ar.json';
+import t29 from '../form-two-column/FormTwoColumnTemplate.ar.json';
+import t30 from '../form-wizard/FormWizardTemplate.ar.json';
+import t31 from '../form-wizard-dialog/FormWizardDialogTemplate.ar.json';
+import t32 from '../form-wizard-inline/FormWizardInlineTemplate.ar.json';
+import t33 from '../form-wizard-vertical/FormWizardVerticalTemplate.ar.json';
+import t34 from '../gallery-hero/GalleryHeroTemplate.ar.json';
+import t35 from '../ide/IDETemplate.ar.json';
+import t36 from '../incident-console/IncidentConsoleTemplate.ar.json';
+import t37 from '../kanban-board/KanbanBoardTemplate.ar.json';
+import t38 from '../library/LibraryTemplate.ar.json';
+import t39 from '../login/LoginTemplate.ar.json';
+import t40 from '../login-card/LoginCardTemplate.ar.json';
+import t41 from '../login-split/LoginSplitTemplate.ar.json';
+import t42 from '../login-sso/LoginSSOTemplate.ar.json';
+import t43 from '../messaging-shell/MessagingShellTemplate.ar.json';
+import t44 from '../mixed-gallery/MixedGalleryTemplate.ar.json';
+import t45 from '../payment-form/PaymentFormTemplate.ar.json';
+import t46 from '../product-detail/ProductDetailTemplate.ar.json';
+import t47 from '../product-gallery/ProductGalleryTemplate.ar.json';
+import t48 from '../settings/SettingsTemplate.ar.json';
+import t49 from '../settings-billing/SettingsBillingTemplate.ar.json';
+import t50 from '../settings-dialog/SettingsDialogTemplate.ar.json';
+import t51 from '../settings-members/SettingsMembersTemplate.ar.json';
+import t52 from '../settings-sidebar/SettingsSidebarTemplate.ar.json';
+import t53 from '../shell-mobile/ShellMobileTemplate.ar.json';
+import t54 from '../shell-nav/ShellNavTemplate.ar.json';
+import t55 from '../shell-side-nav/ShellSideNavTemplate.ar.json';
+import t56 from '../shell-top-nav/ShellTopNavTemplate.ar.json';
+import t57 from '../side-gallery/SideGalleryTemplate.ar.json';
+import t58 from '../table/TableTemplate.ar.json';
+import t59 from '../table-filter/TableFilterTemplate.ar.json';
+import t60 from '../table-grouped/TableGroupedTemplate.ar.json';
+import t61 from '../table-inbox/TableInboxTemplate.ar.json';
+import t62 from '../table-page/TablePageTemplate.ar.json';
+import t63 from '../table-tree/TableTreeTemplate.ar.json';
+import t64 from '../theme-showcase/ThemeShowcaseTemplate.ar.json';
+import t65 from '../work-item-detail/WorkItemDetailTemplate.ar.json';
 
 /** Arabic vocabulary shared by every template: months, weekdays, quarters, AM/PM. */
 export const commonMockTextAr: MockTextDictionary = common;
@@ -74,56 +82,64 @@ export const templateMockTextAr: Readonly<Record<string, MockTextDictionary>> = 
   "CheckoutWizard": mergeMockText(common, t5),
   "ClassicGallery": mergeMockText(common, t6),
   "ContactForm": mergeMockText(common, t7),
-  "Dashboard": mergeMockText(common, t8),
-  "DashboardAlertRail": mergeMockText(common, t9),
-  "DashboardCohortFunnel": mergeMockText(common, t10),
-  "DashboardComparison": mergeMockText(common, t11),
-  "DashboardComposition": mergeMockText(common, t12),
-  "DashboardOperations": mergeMockText(common, t13),
-  "DashboardProgress": mergeMockText(common, t14),
-  "DashboardScorecard": mergeMockText(common, t15),
-  "DetailPage": mergeMockText(common, t16),
-  "Documentation": mergeMockText(common, t17),
-  "DocumentationDesign": mergeMockText(common, t18),
-  "DocumentationTechnical": mergeMockText(common, t19),
-  "Editor": mergeMockText(common, t20),
-  "FileExplorer": mergeMockText(common, t21),
-  "FormBooking": mergeMockText(common, t22),
-  "FormTwoColumn": mergeMockText(common, t23),
-  "FormWizard": mergeMockText(common, t24),
-  "FormWizardDialog": mergeMockText(common, t25),
-  "FormWizardInline": mergeMockText(common, t26),
-  "FormWizardVertical": mergeMockText(common, t27),
-  "GalleryHero": mergeMockText(common, t28),
-  "IDE": mergeMockText(common, t29),
-  "IncidentConsole": mergeMockText(common, t30),
-  "KanbanBoard": mergeMockText(common, t31),
-  "Library": mergeMockText(common, t32),
-  "Login": mergeMockText(common, t33),
-  "LoginCard": mergeMockText(common, t34),
-  "LoginSplit": mergeMockText(common, t35),
-  "LoginSSO": mergeMockText(common, t36),
-  "MessagingShell": mergeMockText(common, t37),
-  "MixedGallery": mergeMockText(common, t38),
-  "PaymentForm": mergeMockText(common, t39),
-  "ProductDetail": mergeMockText(common, t40),
-  "ProductGallery": mergeMockText(common, t41),
-  "Settings": mergeMockText(common, t42),
-  "SettingsDialog": mergeMockText(common, t43),
-  "SettingsMembers": mergeMockText(common, t44),
-  "SettingsSidebar": mergeMockText(common, t45),
-  "ShellNav": mergeMockText(common, t46),
-  "ShellSideNav": mergeMockText(common, t47),
-  "ShellTopNav": mergeMockText(common, t48),
-  "SideGallery": mergeMockText(common, t49),
-  "Table": mergeMockText(common, t50),
-  "TableFilter": mergeMockText(common, t51),
-  "TableGrouped": mergeMockText(common, t52),
-  "TableInbox": mergeMockText(common, t53),
-  "TablePage": mergeMockText(common, t54),
-  "TableTree": mergeMockText(common, t55),
-  "ThemeShowcase": mergeMockText(common, t56),
-  "WorkItemDetail": mergeMockText(common, t57),
+  "ContentArticle": mergeMockText(common, t8),
+  "ContentError": mergeMockText(common, t9),
+  "ContentListing": mergeMockText(common, t10),
+  "ContentNotifications": mergeMockText(common, t11),
+  "ContentSearch": mergeMockText(common, t12),
+  "Dashboard": mergeMockText(common, t13),
+  "DashboardAlertRail": mergeMockText(common, t14),
+  "DashboardCohortFunnel": mergeMockText(common, t15),
+  "DashboardComparison": mergeMockText(common, t16),
+  "DashboardComposition": mergeMockText(common, t17),
+  "DashboardOperations": mergeMockText(common, t18),
+  "DashboardProgress": mergeMockText(common, t19),
+  "DashboardScorecard": mergeMockText(common, t20),
+  "DetailPage": mergeMockText(common, t21),
+  "Documentation": mergeMockText(common, t22),
+  "DocumentationDesign": mergeMockText(common, t23),
+  "DocumentationTechnical": mergeMockText(common, t24),
+  "Editor": mergeMockText(common, t25),
+  "FileExplorer": mergeMockText(common, t26),
+  "FormBooking": mergeMockText(common, t27),
+  "FormOnboarding": mergeMockText(common, t28),
+  "FormTwoColumn": mergeMockText(common, t29),
+  "FormWizard": mergeMockText(common, t30),
+  "FormWizardDialog": mergeMockText(common, t31),
+  "FormWizardInline": mergeMockText(common, t32),
+  "FormWizardVertical": mergeMockText(common, t33),
+  "GalleryHero": mergeMockText(common, t34),
+  "IDE": mergeMockText(common, t35),
+  "IncidentConsole": mergeMockText(common, t36),
+  "KanbanBoard": mergeMockText(common, t37),
+  "Library": mergeMockText(common, t38),
+  "Login": mergeMockText(common, t39),
+  "LoginCard": mergeMockText(common, t40),
+  "LoginSplit": mergeMockText(common, t41),
+  "LoginSSO": mergeMockText(common, t42),
+  "MessagingShell": mergeMockText(common, t43),
+  "MixedGallery": mergeMockText(common, t44),
+  "PaymentForm": mergeMockText(common, t45),
+  "ProductDetail": mergeMockText(common, t46),
+  "ProductGallery": mergeMockText(common, t47),
+  "Settings": mergeMockText(common, t48),
+  "SettingsBilling": mergeMockText(common, t49),
+  "SettingsDialog": mergeMockText(common, t50),
+  "SettingsMembers": mergeMockText(common, t51),
+  "SettingsSidebar": mergeMockText(common, t52),
+  "ShellMobile": mergeMockText(common, t53),
+  "ShellNav": mergeMockText(common, t54),
+  "ShellSideNav": mergeMockText(common, t55),
+  "ShellTopNav": mergeMockText(common, t56),
+  "SideGallery": mergeMockText(common, t57),
+  "Table": mergeMockText(common, t58),
+  "TableFilter": mergeMockText(common, t59),
+  "TableGrouped": mergeMockText(common, t60),
+  "TableInbox": mergeMockText(common, t61),
+  "TablePage": mergeMockText(common, t62),
+  "TableTree": mergeMockText(common, t63),
+  "ThemeShowcase": mergeMockText(common, t64),
+  "WorkItemDetail": mergeMockText(common, t65),
 };
 
 /** Arabic mock text per template folder slug (e.g. "dashboard"). */
@@ -136,6 +152,11 @@ export const templateMockTextArBySlug: Readonly<Record<string, MockTextDictionar
   "checkout-wizard": templateMockTextAr["CheckoutWizard"],
   "classic-gallery": templateMockTextAr["ClassicGallery"],
   "contact-form": templateMockTextAr["ContactForm"],
+  "content-article": templateMockTextAr["ContentArticle"],
+  "content-error": templateMockTextAr["ContentError"],
+  "content-listing": templateMockTextAr["ContentListing"],
+  "content-notifications": templateMockTextAr["ContentNotifications"],
+  "content-search": templateMockTextAr["ContentSearch"],
   "dashboard": templateMockTextAr["Dashboard"],
   "dashboard-alert-rail": templateMockTextAr["DashboardAlertRail"],
   "dashboard-cohort-funnel": templateMockTextAr["DashboardCohortFunnel"],
@@ -151,6 +172,7 @@ export const templateMockTextArBySlug: Readonly<Record<string, MockTextDictionar
   "editor": templateMockTextAr["Editor"],
   "file-explorer": templateMockTextAr["FileExplorer"],
   "form-booking": templateMockTextAr["FormBooking"],
+  "form-onboarding": templateMockTextAr["FormOnboarding"],
   "form-two-column": templateMockTextAr["FormTwoColumn"],
   "form-wizard": templateMockTextAr["FormWizard"],
   "form-wizard-dialog": templateMockTextAr["FormWizardDialog"],
@@ -171,9 +193,11 @@ export const templateMockTextArBySlug: Readonly<Record<string, MockTextDictionar
   "product-detail": templateMockTextAr["ProductDetail"],
   "product-gallery": templateMockTextAr["ProductGallery"],
   "settings": templateMockTextAr["Settings"],
+  "settings-billing": templateMockTextAr["SettingsBilling"],
   "settings-dialog": templateMockTextAr["SettingsDialog"],
   "settings-members": templateMockTextAr["SettingsMembers"],
   "settings-sidebar": templateMockTextAr["SettingsSidebar"],
+  "shell-mobile": templateMockTextAr["ShellMobile"],
   "shell-nav": templateMockTextAr["ShellNav"],
   "shell-side-nav": templateMockTextAr["ShellSideNav"],
   "shell-top-nav": templateMockTextAr["ShellTopNav"],

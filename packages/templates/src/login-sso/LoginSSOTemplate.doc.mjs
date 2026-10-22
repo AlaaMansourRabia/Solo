@@ -18,7 +18,7 @@ export const doc = {
   ],
   isReady: true,
   category: 'Login - SSO',
-  order: 28,
+  order: 30,
   filter: 'Login',
   previewAspectRatio: 16 / 10,
   slug: 'login-sso',

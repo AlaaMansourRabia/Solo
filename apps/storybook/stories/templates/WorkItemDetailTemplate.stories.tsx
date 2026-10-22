@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import WorkItemDetailTemplate from '@solo/templates/work-item-detail/WorkItemDetailTemplate';
 
 const meta: Meta<typeof WorkItemDetailTemplate> = {
-  title: 'Templates/40 Work Item Detail',
+  title: 'Templates/42 Work Item Detail',
   component: WorkItemDetailTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'work-item-detail'},
     docs: {description: {component: "Single work-item detail in two columns: a title with a status selector, a description, a subtask checklist with progress, an attachments block, and a comment and activity feed in the main column, plus a property rail with assignee, dates, labels, and linked items. The shape for any tracked item with children, properties, and a comment history — a task, ticket, issue, story, bug, card, request, or work item."}},
   },
 };

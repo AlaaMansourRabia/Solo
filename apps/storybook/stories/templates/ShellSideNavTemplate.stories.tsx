@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ShellSideNavTemplate from '@solo/templates/shell-side-nav/ShellSideNavTemplate';
 
 const meta: Meta<typeof ShellSideNavTemplate> = {
-  title: 'Templates/51 Side Nav',
+  title: 'Templates/58 Side Nav',
   component: ShellSideNavTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'shell-side-nav'},
     docs: {description: {component: "Application frame with a single collapsible, resizable left rail carrying grouped history and search, wrapping the main content. Vertical navigation only, no top bar."}},
   },
 };

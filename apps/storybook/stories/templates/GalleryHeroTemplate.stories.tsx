@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import GalleryHeroTemplate from '@solo/templates/gallery-hero/GalleryHeroTemplate';
 
 const meta: Meta<typeof GalleryHeroTemplate> = {
-  title: 'Templates/45 Gallery Hero',
+  title: 'Templates/52 Gallery Hero',
   component: GalleryHeroTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'gallery-hero'},
     docs: {description: {component: "Centered stack (headline, short blurb, call-to-action buttons) resolving into a multi-image photo grid rather than one wide full-bleed picture, so the imagery reads as a set."}},
   },
 };

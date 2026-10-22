@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import IncidentConsoleTemplate from '@solo/templates/incident-console/IncidentConsoleTemplate';
 
 const meta: Meta<typeof IncidentConsoleTemplate> = {
-  title: 'Templates/55 Incident Console',
+  title: 'Templates/63 Incident Console',
   component: IncidentConsoleTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'incident-console'},
     docs: {description: {component: "Dense row queue with an inspector: severity-coded rows grouped by status, a saved-search filter bar, a segmented status control, and a resizable detail pane for the selected row. Rows, not cards, sized for scanning volume."}},
   },
 };

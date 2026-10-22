@@ -1,0 +1,35 @@
+/** @type {import('@solo/docs-types').TemplateDoc} */
+export const doc = {
+  type: 'page',
+  name: 'Search Results',
+  displayName: 'Search Results',
+  description:
+    'A full-page search across a company’s documents, people, projects and tickets. The query box suggests recent and related searches as you type; results of every kind are ranked by relevance in one list, each with a type icon, its path, the title as a link, a snippet with the matching phrases highlighted, the owner, the updated date and category badges. Facets on the start side — Type with live counts, Updated, Owner — narrow the list and repeat above it as removable tokens; on narrow screens they move into a bottom sheet. Sort by relevance or date, paginate, get a “Did you mean” for misspelled words, and distinct empty states for no query, no matches and everything filtered out.',
+  displayNameAr: 'نتائج البحث',
+  descriptionAr:
+    'بحث بملء الصفحة في مستندات الشركة وموظفيها ومشاريعها وتذاكرها. يقترح مربع البحث عمليات البحث الأخيرة والمرتبطة أثناء الكتابة، وتُرتَّب النتائج من كل الأنواع حسب الصلة في قائمة واحدة، لكلٍّ منها أيقونة نوعها ومسارها وعنوانها رابطًا ومقتطف تُبرَز فيه العبارات المطابقة والمالك وتاريخ التحديث وشارات التصنيف. تضيّق المرشّحات في الجانب — النوع مع أعداد حيّة، وتاريخ التحديث، والمالك — القائمة وتتكرّر فوقها رموزًا قابلة للإزالة، وتنتقل إلى لوحة سفلية على الشاشات الضيقة. رتّب حسب الصلة أو التاريخ، وتنقّل بين الصفحات، واحصل على «هل تقصد» للكلمات المكتوبة خطأً، وحالات فارغة مختلفة لغياب الاستعلام وانعدام التطابق وحجب المرشّحات لكل النتائج.',
+  keywords: [
+    'search',
+    'search results',
+    'site search',
+    'enterprise search',
+    'knowledge base',
+    'intranet',
+    'facets',
+    'faceted search',
+    'filters',
+    'relevance',
+    'highlight',
+    'did you mean',
+    'typeahead',
+    'suggestions',
+    'pagination',
+    'empty state',
+  ],
+  isReady: true,
+  category: 'Content - Search Results',
+  order: 46,
+  filter: 'Content',
+  previewAspectRatio: 16 / 10,
+  slug: 'content-search',
+};

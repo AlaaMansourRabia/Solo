@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import DocumentationDesignTemplate from '@solo/templates/documentation-design/DocumentationDesignTemplate';
 
 const meta: Meta<typeof DocumentationDesignTemplate> = {
-  title: 'Templates/36 Documentation Design',
+  title: 'Templates/38 Documentation Design',
   component: DocumentationDesignTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'documentation-design'},
     docs: {description: {component: "Reference article alternating prose with live rendered examples: an interactive preview, a property table, paired do and don't comparisons, and copyable code blocks."}},
   },
 };

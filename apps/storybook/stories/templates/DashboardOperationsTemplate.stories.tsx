@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardOperationsTemplate> = {
   component: DashboardOperationsTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard-operations'},
     docs: {description: {component: "A live view of one job site for the current shift: headcount and hours against plan, zones at capacity, and safety alerts to acknowledge, with short-horizon charts (today by hour, this week by trade, two weeks of safety events) built on Solo charts that mirror in right-to-left."}},
   },
 };

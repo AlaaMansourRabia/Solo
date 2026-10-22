@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import CanvasEditorTemplate from '@solo/templates/canvas-editor/CanvasEditorTemplate';
 
 const meta: Meta<typeof CanvasEditorTemplate> = {
-  title: 'Templates/29 Canvas Editor',
+  title: 'Templates/31 Canvas Editor',
   component: CanvasEditorTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'canvas-editor'},
     docs: {description: {component: "Layered artboard workspace: document tabs over a layer rail, a fixed-size frame you zoom on a muted backdrop, and an inspector of position, type, and filter fields that retargets to the selected layer. Objects hold a coordinate rather than reflowing, so moving one never moves another."}},
   },
 };

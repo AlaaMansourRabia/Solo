@@ -8,7 +8,7 @@ const meta: Meta<typeof DashboardTemplate> = {
   component: DashboardTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'dashboard'},
     docs: {description: {component: "Three-band analytics: a row of headline tiles, then charts, then supporting tables, all re-reading from one global filter bar. Breadth over depth, a summary surface rather than a drill-down."}},
   },
 };

@@ -4,11 +4,11 @@ import type {Meta, StoryObj} from '@storybook/react';
 import SideGalleryTemplate from '@solo/templates/side-gallery/SideGalleryTemplate';
 
 const meta: Meta<typeof SideGalleryTemplate> = {
-  title: 'Templates/48 Side Gallery',
+  title: 'Templates/55 Side Gallery',
   component: SideGalleryTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'side-gallery'},
     docs: {description: {component: "Asymmetric split section: a copy column of headline, supporting text, and links held against a clustered image collage opposite. Deliberately off-balance, unlike the centered hero."}},
   },
 };

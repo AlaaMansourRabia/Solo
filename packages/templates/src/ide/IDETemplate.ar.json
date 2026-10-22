@@ -36,7 +36,7 @@
   "Type": "النوع",
   "TypeScript": "TypeScript",
   "about.tsx": "about.tsx",
-  "components": "components",
+  "components": "المكوّنات",
   "index.tsx": "index.tsx",
   "next.config.mjs": "next.config.mjs",
   "package.json": "package.json",

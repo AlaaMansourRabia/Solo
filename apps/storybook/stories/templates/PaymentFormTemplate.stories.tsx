@@ -8,7 +8,7 @@ const meta: Meta<typeof PaymentFormTemplate> = {
   component: PaymentFormTemplate,
   parameters: {
     layout: 'fullscreen',
-    solo: {bare: true},
+    solo: {bare: true, templateSlug: 'payment-form'},
     docs: {description: {component: "Long sectioned form running beside a summary that stays visible while the fields scroll and recalculates as they change, ending on a terminal confirm of the total. Sections run contact, address, delivery choice, then card details."}},
   },
 };
