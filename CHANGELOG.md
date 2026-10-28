@@ -9,40 +9,57 @@ that section into the release notes.
 
 ## Unreleased
 
-- **Three new page templates** (58 in total):
-  - **Site Operations Dashboard** — a construction site's live view (headcount
-    by hour, hours by trade, safety events, zone occupancy, live alerts), built
-    only with `@solo/charts`, so every chart mirrors in right-to-left.
-  - **Booking Flow** — reserve a room: availability calendar or date range,
-    time slots, room cards that explain why they're unavailable, and a live
-    countdown (Timer `endTime`) while the room is held.
-  - **Team Members** — members table with inline roles, right-click and "…"
-    actions, invites entered as tokens, seat usage, and confirmations.
-- **Eight more page templates** (66 in total): **Billing & Invoices**,
-  **Onboarding** (first-run setup with a live preview), **Listing Detail**
-  (photo carousel + lightbox, date-range booking panel), **Notifications &
-  Activity**, **Help Article** (table of contents, code, citations), **Search
-  Results** (facets, relevance, "did you mean"), **Error Page** (404 / 500 /
-  403 / maintenance from one constant) and **Mobile App Shell** (bottom tabs,
-  sheets, side menu; portrait preview).
-- **`OverlayBoundary`** (new, `@solo/core`): full-screen overlays opened
-  inside it — MobileNav, BottomSheet, BottomSheetSwitcher (and Selector's touch
-  sheet) — size themselves and their scrim to its rectangle instead of the
-  window. The Mobile App Shell uses it, so on a desktop preview the side menu
-  and sheets open inside the phone frame.
+Eleven new page templates, a way to keep full-screen overlays inside a frame,
+and right-to-left fixes found while building them.
+
+### New templates (66 in total)
+
+- **Site Operations Dashboard** — a construction site's live view (headcount
+  by hour, hours by trade, safety events, zone occupancy, live alerts), built
+  only with `@solo/charts`, so every chart mirrors in right-to-left.
+- **Booking Flow** — reserve a room: availability calendar or date range, time
+  slots, room cards that explain why they're unavailable, and a live countdown
+  (Timer `endTime`) while the room is held.
+- **Onboarding** — first-run setup in four skippable steps with a live preview.
+- **Team Members** — inline roles, right-click and "…" actions, invites as
+  tokens, seat usage and confirmations.
+- **Billing & Invoices** — plan, usage meters, payment method, invoices, change
+  plan, add seats, cancel.
+- **Listing Detail** — photo carousel with a full-screen viewer, amenities,
+  reviews and a date-range booking panel.
+- **Notifications & Activity** — a day-grouped feed with filters, inline
+  approve / reply / mute, and "mark all as read" with Undo.
+- **Help Article** — long-form reading with a table of contents, code,
+  quotes and citations.
+- **Search Results** — facets with counts, relevance sorting, highlighted
+  matches and "did you mean".
+- **Error Page** — 404, 500, 403 and maintenance (with a countdown) from one
+  constant.
+- **Mobile App Shell** — a phone-first app with bottom tabs, sheets and a side
+  menu (portrait preview).
+
+### Components
+
+- **`OverlayBoundary`** (new, `@solo/core`): full-screen overlays opened inside
+  it — MobileNav, BottomSheet, BottomSheetSwitcher and Selector's touch sheet —
+  size themselves and their scrim to its rectangle instead of the whole window.
+  Use it for device frames, embedded previews and design canvases.
 - **Code and CodeBlock** always render left-to-right, so code stays readable on
   right-to-left pages.
-- **Storybook:** `dir` and `lang` are set on `<html>` like a real app, so toasts
-  and other portalled content follow the direction; each template story is
-  translated with its own Arabic dictionary only.
-- **Tokenizer:** the "Create …" suggestion is translated (new message key
-  `@solo.tokenizer.createOption`; Arabic included).
-- **Docs:** the Tokenizer handle is documented correctly (`focus()`,
-  `blur()`).
-- **MockTextTranslator:** `scope="document"` also translates content that
-  renders outside the wrapped subtree (toasts, portals); Storybook uses it.
-- CI runs the timing tests (`*.perf.test.*`) separately, one file at a time, so a
-  busy test run can no longer make them fail (`pnpm test:perf`).
+- **Tokenizer:** the "Create …" suggestion is translatable (new message key
+  `@solo.tokenizer.createOption`, Arabic included); its handle is documented
+  correctly (`focus()`, `blur()`).
+- **MockTextTranslator:** `scope="document"` also translates content rendered
+  outside the wrapped subtree (toasts, portals).
+
+### Storybook and tooling
+
+- Templates are listed in gallery order (00–65).
+- `dir` and `lang` are set on `<html>` like a real app, so toasts and portals
+  follow the direction; each template is translated with its own Arabic
+  dictionary.
+- The timing tests (`*.perf.test.*`) run on their own in CI
+  (`pnpm test:perf`), so a busy test run can no longer fail them.
 
 ## 0.1.0 — 2026-10-20
 
