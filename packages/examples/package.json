@@ -1,6 +1,6 @@
 {
   "name": "@solo/examples",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Example blocks for the Solo docs. Each src/<Component>/<Block>.tsx renders standalone; <Block>.doc.mjs describes it.",
   "license": "MIT",

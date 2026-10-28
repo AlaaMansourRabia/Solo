@@ -1,6 +1,6 @@
 {
   "name": "@solo/templates",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Page templates for the Solo docs Templates gallery. Each src/<slug>/<Name>Template.tsx renders standalone inside a Solo <Theme>; <Name>Template.doc.mjs describes it.",
   "license": "MIT",

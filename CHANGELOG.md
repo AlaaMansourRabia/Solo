@@ -9,6 +9,8 @@ that section into the release notes.
 
 ## Unreleased
 
+## 0.2.0 — 2026-10-28
+
 Eleven new page templates, a way to keep full-screen overlays inside a frame,
 and right-to-left fixes found while building them.
 

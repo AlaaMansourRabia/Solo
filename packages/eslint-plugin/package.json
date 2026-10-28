@@ -1,6 +1,6 @@
 {
   "name": "@solo/eslint-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "ESLint rules for apps built with Solo. logical-direction flags left/right styling (ml-4, text-left, style={{marginLeft}}) that breaks right-to-left layouts, and suggests the logical replacement.",
   "license": "MIT",

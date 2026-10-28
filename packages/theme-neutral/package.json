@@ -1,6 +1,6 @@
 {
   "name": "@solo/theme-neutral",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Solo Neutral theme for @solo/core. Restrained warm grays. Minimal and quiet, so the content stays the focus.",
   "license": "MIT",
   "type": "module",
