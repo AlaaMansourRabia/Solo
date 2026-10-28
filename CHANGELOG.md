@@ -25,6 +25,11 @@ that section into the release notes.
   Results** (facets, relevance, "did you mean"), **Error Page** (404 / 500 /
   403 / maintenance from one constant) and **Mobile App Shell** (bottom tabs,
   sheets, side menu; portrait preview).
+- **`OverlayBoundary`** (new, `@solo/core`): full-screen overlays opened
+  inside it — MobileNav, BottomSheet, BottomSheetSwitcher (and Selector's touch
+  sheet) — size themselves and their scrim to its rectangle instead of the
+  window. The Mobile App Shell uses it, so on a desktop preview the side menu
+  and sheets open inside the phone frame.
 - **Code and CodeBlock** always render left-to-right, so code stays readable on
   right-to-left pages.
 - **Storybook:** `dir` and `lang` are set on `<html>` like a real app, so toasts

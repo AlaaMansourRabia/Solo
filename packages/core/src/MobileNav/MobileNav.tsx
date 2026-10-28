@@ -52,6 +52,7 @@ import {LayerContentBoundary} from '../Layer/layerScopedContext';
 import {overlayPaddingReset} from '../Layout/padding.styles';
 import {LayerDepthProvider} from '../Layer/LayerDepthContext';
 import {useLayerDismissal} from '../Layer/useLayerDismissal';
+import {useOverlayBoundary} from '../Layer/OverlayBoundary';
 import type {BaseProps} from '../BaseProps';
 import {themeProps} from '../utils/themeProps';
 import {cn} from '../utils/cn';
@@ -108,6 +109,10 @@ const styles = {
   // Without a starting style there is no earlier value to transition from
   // and the scrim snaps in — @starting-style supplies that value.
   backdropOpen: 'backdrop:opacity-100 starting:backdrop:opacity-0',
+  // Inside an OverlayBoundary the window-wide ::backdrop stays clear and the
+  // dialog — now sized to the boundary — paints the scrim itself.
+  bounded: 'backdrop:bg-transparent backdrop:[backdrop-filter:none] [transition-property:display,background-color]',
+  boundedOpen: 'bg-(--color-overlay) starting:bg-transparent',
   drawer: cn(
     'absolute top-0 bottom-0 flex flex-col bg-(--color-background-surface)',
     'box-border overflow-hidden [transition-property:transform]',
@@ -359,6 +364,7 @@ export function MobileNav({
   // this drawer; fall back to a locally generated id when used standalone.
   const fallbackId = useId();
   const dialogId = appShellMobile.mobileNavId || fallbackId;
+  const boundary = useOverlayBoundary(Boolean(isOpen));
   const onOpenChange = useMemo(
     () =>
       onOpenChangeProp ??
@@ -528,7 +534,10 @@ export function MobileNav({
             isOpen && styles.open,
             styles.backdrop,
             isOpen && styles.backdropOpen,
+            boundary.isBounded && styles.bounded,
+            boundary.isBounded && isOpen && styles.boundedOpen,
           ),
+          style: boundary.style,
         },
         className,
         style,

@@ -58,6 +58,20 @@ export const docs = {
         },
       ],
     },
+    {
+      name: 'OverlayBoundary',
+      displayName: 'Overlay Boundary',
+      description:
+        'Confines full-screen overlays opened inside it (MobileNav, BottomSheet, BottomSheetSwitcher) to its own on-screen rectangle instead of the whole window, scrim included. Use it when an app is shown inside something: a phone frame on a desktop preview, an embedded demo, a design canvas. Anchored layers (Popover, Tooltip, menus) are unaffected.',
+      props: [
+        {
+          name: 'children',
+          type: 'ReactNode',
+          description: 'The region full-screen overlays are confined to.',
+          required: true,
+        },
+      ],
+    },
   ],
 };
 
@@ -91,6 +105,14 @@ export const docsAr = {
         toast: 'إعداد منفذ عرض الإشعارات المنبثقة. يتحكم في position وmaxVisible وinset للإشعارات المنبثقة المعروضة عبر useToast.',
       },
     },
+    {
+      name: 'OverlayBoundary',
+      displayName: 'حدود الطبقات',
+      description: 'يحصر الطبقات المتراكبة التي تملأ الشاشة والمفتوحة داخله (MobileNav وBottomSheet وBottomSheetSwitcher) ضمن مستطيله الظاهر على الشاشة بدل النافذة كلها، بما في ذلك الخلفية المعتمة. استخدمه عندما يُعرض التطبيق داخل شيء آخر: إطار هاتف في معاينة على سطح المكتب، أو عرض توضيحي مضمَّن، أو لوحة تصميم. لا يتأثر بها ما يرتبط بعنصر مُشغِّل (Popover وTooltip والقوائم).',
+      propDescriptions: {
+        children: 'المنطقة التي تُحصر فيها الطبقات المتراكبة التي تملأ الشاشة.',
+      },
+    },
   ],
 };
 
@@ -122,6 +144,13 @@ export const docsDense = {
       propDescriptions: {
         children: 'application subtree using shared layer context',
         toast: 'toast viewport config: position, maxVisible, inset',
+      },
+    },
+    {
+      name: 'OverlayBoundary',
+      description: 'Confines full-screen overlays (MobileNav, BottomSheet) to its rectangle — device frames, embedded previews.',
+      propDescriptions: {
+        children: 'region overlays are confined to',
       },
     },
   ],

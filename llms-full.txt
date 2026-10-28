@@ -4127,6 +4127,12 @@ App-level provider for layer systems such as toast viewports and imperative moda
 Props:
   - `toast?: LayerToastConfig` — Toast viewport configuration.
 
+#### OverlayBoundary
+
+Import: `import {OverlayBoundary} from '@solo/core';` · Part of Layer
+
+Confines full-screen overlays opened inside it (MobileNav, BottomSheet, BottomSheetSwitcher) to its own on-screen rectangle instead of the whole window, scrim included. Use it when an app is shown inside something: a phone frame on a desktop preview, an embedded demo, a design canvas. Anchored layers (Popover, Tooltip, menus) are unaffected.
+
 ### MediaTheme
 
 Import: `import {MediaTheme} from '@solo/core';`

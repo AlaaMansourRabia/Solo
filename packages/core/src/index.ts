@@ -121,6 +121,8 @@ export type {
 
 // Layer provider
 export {LayerProvider} from './Layer';
+export {OverlayBoundary, useOverlayBoundary} from './Layer';
+export type {OverlayBoundaryProps, OverlayBoundaryState} from './Layer';
 export type {LayerProviderProps, LayerToastConfig} from './Layer';
 
 // Toast

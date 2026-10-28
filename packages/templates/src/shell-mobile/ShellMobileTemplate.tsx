@@ -83,9 +83,10 @@
  * opens several times a shift belongs in the bottom bar, and the bar should
  * stay at three to five items. `MobileNav` is used standalone here (controlled
  * `isOpen`) because there is no `AppShell`; inside an `AppShell`, use
- * `MobileNavToggle` instead of the `IconButton`. On a wide screen the drawer
- * and sheets still anchor to the browser window rather than the centred phone
- * column — a real phone build never shows that difference.
+ * `MobileNavToggle` instead of the `IconButton`. On a wide screen the phone
+ * column is an `OverlayBoundary`, so the drawer and sheets open inside the
+ * frame (scrim included) rather than across the browser window; on a phone
+ * there is no frame and they fill the screen.
  *
  * ### Safe areas and the floating action
  *
@@ -140,6 +141,7 @@ import {Switch} from '@solo/core/Switch';
 import {Timestamp} from '@solo/core/Timestamp';
 import {BottomSheet, BottomSheetSwitcher} from '@solo/core/BottomSheet';
 import {MobileNav} from '@solo/core/MobileNav';
+import {OverlayBoundary} from '@solo/core/Layer';
 import {SideNavItem, SideNavSection} from '@solo/core/SideNav';
 import {useToast} from '@solo/core/Toast';
 import {useMediaQuery} from '@solo/core/hooks';
@@ -205,9 +207,7 @@ interface Inspection {
 }
 
 type SubScreen =
-  | {kind: 'notifications'}
-  | {kind: 'help'}
-  | {kind: 'inspection'; id: string};
+  {kind: 'notifications'} | {kind: 'help'} | {kind: 'inspection'; id: string};
 
 // ============= DATA =============
 
@@ -234,7 +234,8 @@ const INITIAL_TASKS: Task[] = [
     assignedBy: 'Daily routine',
     checksDone: 4,
     checksTotal: 4,
-    notes: 'Check gates lock, hoarding panels are secure and signage is visible from the road.',
+    notes:
+      'Check gates lock, hoarding panels are secure and signage is visible from the road.',
   },
   {
     id: 't2',
@@ -260,7 +261,8 @@ const INITIAL_TASKS: Task[] = [
     assignedBy: 'Omar Nasser',
     checksDone: 3,
     checksTotal: 5,
-    notes: 'Rebar cover and cast-in sleeves still to verify before the pump arrives.',
+    notes:
+      'Rebar cover and cast-in sleeves still to verify before the pump arrives.',
   },
   {
     id: 't4',
@@ -273,7 +275,8 @@ const INITIAL_TASKS: Task[] = [
     assignedBy: 'Ahmed Saleh',
     checksDone: 0,
     checksTotal: 8,
-    notes: 'Photograph every penetration before the drywall crew closes the shaft.',
+    notes:
+      'Photograph every penetration before the drywall crew closes the shaft.',
   },
   {
     id: 't5',
@@ -286,7 +289,8 @@ const INITIAL_TASKS: Task[] = [
     assignedBy: 'Daily routine',
     checksDone: 0,
     checksTotal: 1,
-    notes: 'Fifteen minutes with the façade and roofing crews. Record attendance.',
+    notes:
+      'Fifteen minutes with the façade and roofing crews. Record attendance.',
   },
   {
     id: 't6',
@@ -299,7 +303,8 @@ const INITIAL_TASKS: Task[] = [
     assignedBy: 'Ahmed Saleh',
     checksDone: 0,
     checksTotal: 6,
-    notes: 'Waiting on the electrical contractor to finish the kitchen circuits.',
+    notes:
+      'Waiting on the electrical contractor to finish the kitchen circuits.',
   },
   {
     id: 't7',
@@ -325,7 +330,8 @@ const INITIAL_TASKS: Task[] = [
     assignedBy: 'Omar Nasser',
     checksDone: 0,
     checksTotal: 5,
-    notes: 'Check sealant, drainage holes and the protective film on every frame.',
+    notes:
+      'Check sealant, drainage holes and the protective film on every frame.',
   },
   {
     id: 't9',
@@ -338,7 +344,8 @@ const INITIAL_TASKS: Task[] = [
     assignedBy: 'Ahmed Saleh',
     checksDone: 0,
     checksTotal: 3,
-    notes: 'Review the lift plan for the rooftop plant with the crane supervisor.',
+    notes:
+      'Review the lift plan for the rooftop plant with the crane supervisor.',
   },
 ];
 
@@ -563,8 +570,10 @@ const tabBarStyles = {
     '[transition-property:background-color] [transition-duration:var(--duration-medium)]',
     'can-hover:hover:bg-(--color-overlay-hover)',
   ),
-  pillSelected: 'bg-(--color-accent-muted) can-hover:hover:bg-(--color-accent-muted)',
-  label: 'text-(length:--text-supporting-size) leading-(--text-supporting-leading) max-w-full truncate',
+  pillSelected:
+    'bg-(--color-accent-muted) can-hover:hover:bg-(--color-accent-muted)',
+  label:
+    'text-(length:--text-supporting-size) leading-(--text-supporting-leading) max-w-full truncate',
   labelSelected: 'font-(number:--font-weight-semibold)',
 } as const;
 
@@ -604,10 +613,7 @@ function BottomTabBar({
                 tabBarStyles.pill,
                 isSelected && tabBarStyles.pillSelected,
               )}>
-              <Icon
-                icon={isSelected ? tab.selectedIcon : tab.icon}
-                size="md"
-              />
+              <Icon icon={isSelected ? tab.selectedIcon : tab.icon} size="md" />
             </span>
             <span
               className={cn(
@@ -662,13 +668,7 @@ function TaskStatusEnd({status}: {status: TaskStatus}) {
   }
 }
 
-function TaskRow({
-  task,
-  onOpen,
-}: {
-  task: Task;
-  onOpen: (id: string) => void;
-}) {
+function TaskRow({task, onOpen}: {task: Task; onOpen: (id: string) => void}) {
   const fmt = useFormatters();
   const isDone = task.status === 'done';
   return (
@@ -841,9 +841,7 @@ function SummaryStat({
       <VStack gap={0.5}>
         <Text type="large" weight="semibold" hasTabularNumbers>
           <span
-            className={
-              isWarning ? 'text-(--color-text-orange)' : undefined
-            }>
+            className={isWarning ? 'text-(--color-text-orange)' : undefined}>
             {value}
           </span>
         </Text>
@@ -960,13 +958,20 @@ function ProfileScreen() {
         </VStack>
       </HStack>
       <Card padding={4}>
-        <MetadataList title={<Heading level={4} accessibilityLevel={2}>Details</Heading>}>
+        <MetadataList
+          title={
+            <Heading level={4} accessibilityLevel={2}>
+              Details
+            </Heading>
+          }>
           <MetadataListItem label="Employee ID">SV-3318</MetadataListItem>
           <MetadataListItem label="Phone">
             {/* A phone number reads left to right in every locale. */}
             <span dir="ltr">+971 50 214 7781</span>
           </MetadataListItem>
-          <MetadataListItem label="Shift">{fmt.timeRange(6, 16)}</MetadataListItem>
+          <MetadataListItem label="Shift">
+            {fmt.timeRange(6, 16)}
+          </MetadataListItem>
           <MetadataListItem label="Certifications">
             First aid, working at height
           </MetadataListItem>
@@ -1028,7 +1033,11 @@ function HelpScreen({onCall}: {onCall: () => void}) {
       <Card padding={0}>
         <List hasDividers density="spacious">
           {HELP_TOPICS.map(t => (
-            <ListItem key={t.title} label={t.title} description={t.description} />
+            <ListItem
+              key={t.title}
+              label={t.title}
+              description={t.description}
+            />
           ))}
         </List>
       </Card>
@@ -1292,10 +1301,7 @@ function NewInspectionFlow({
               closeLabel="Cancel new inspection"
               onClose={close}
             />
-            <RadioList
-              label="Inspection type"
-              value={type}
-              onChange={setType}>
+            <RadioList label="Inspection type" value={type} onChange={setType}>
               {INSPECTION_TYPES.map(option => (
                 <RadioListItem
                   key={option.value}
@@ -1348,7 +1354,10 @@ function NewInspectionFlow({
                 onChange={setLocation}
                 status={
                   hasTriedSubmit && !location
-                    ? {type: 'error', message: 'Choose where the inspection is.'}
+                    ? {
+                        type: 'error',
+                        message: 'Choose where the inspection is.',
+                      }
                     : undefined
                 }
               />
@@ -1448,8 +1457,7 @@ export default function ShellMobileTemplate() {
     showToast({body: 'Inspection started'});
   };
 
-  const openInspection = (id: string) =>
-    setSubScreen({kind: 'inspection', id});
+  const openInspection = (id: string) => setSubScreen({kind: 'inspection', id});
 
   const detailInspection =
     subScreen?.kind === 'inspection'
@@ -1479,9 +1487,7 @@ export default function ShellMobileTemplate() {
     screen = (
       <InspectionDetailScreen
         inspection={detailInspection}
-        onContinue={() =>
-          showToast({body: 'Inspection checklist opened'})
-        }
+        onContinue={() => showToast({body: 'Inspection checklist opened'})}
       />
     );
   } else if (tab === 'today') {
@@ -1504,9 +1510,7 @@ export default function ShellMobileTemplate() {
             label="Back"
             variant="ghost"
             size="lg"
-            icon={
-              <Icon icon={ArrowLeftIcon} className={rtlStyles.mirror} />
-            }
+            icon={<Icon icon={ArrowLeftIcon} className={rtlStyles.mirror} />}
             onClick={() => setSubScreen(null)}
           />
         ) : (
@@ -1594,33 +1598,22 @@ export default function ShellMobileTemplate() {
     />
   );
 
-  return (
+  // On a wide screen the phone column is a frame on a neutral canvas. The
+  // drawer and sheets open in the browser's top layer, so the frame is an
+  // OverlayBoundary: they size themselves (and their scrim) to it instead of
+  // the window. On a phone there is no frame and they fill the screen.
+  const frameClassName = cn(
+    'flex flex-col overflow-clip bg-(--color-background-body)',
+    isWide
+      ? 'rounded-(--radius-xl) [box-shadow:var(--shadow-high)] border border-(--color-border)'
+      : 'h-full w-full',
+  );
+  const frameStyle = isWide
+    ? {inlineSize: PHONE_WIDTH, blockSize: `min(${PHONE_HEIGHT}px, 100%)`}
+    : undefined;
+  const frameContent = (
     <>
-      <div
-        className={cn(
-          'h-full w-full flex justify-center',
-          isWide
-            ? 'items-center bg-(--color-background-body) p-(--spacing-6)'
-            : 'bg-(--color-background-surface)',
-        )}>
-        <div
-          className={cn(
-            'flex flex-col overflow-clip bg-(--color-background-body)',
-            isWide
-              ? 'rounded-(--radius-xl) [box-shadow:var(--shadow-high)] border border-(--color-border)'
-              : 'h-full w-full',
-          )}
-          style={
-            isWide
-              ? {
-                  inlineSize: PHONE_WIDTH,
-                  blockSize: `min(${PHONE_HEIGHT}px, 100%)`,
-                }
-              : undefined
-          }>
-          {phone}
-        </div>
-      </div>
+      {phone}
 
       <MobileNav
         isOpen={isMenuOpen}
@@ -1694,5 +1687,23 @@ export default function ShellMobileTemplate() {
         onSubmit={startInspection}
       />
     </>
+  );
+
+  return (
+    <div
+      className={cn(
+        'h-full w-full flex justify-center',
+        isWide
+          ? 'items-center bg-(--color-background-body) p-(--spacing-6)'
+          : 'bg-(--color-background-surface)',
+      )}>
+      {isWide ? (
+        <OverlayBoundary className={frameClassName} style={frameStyle}>
+          {frameContent}
+        </OverlayBoundary>
+      ) : (
+        <div className={frameClassName}>{frameContent}</div>
+      )}
+    </div>
   );
 }

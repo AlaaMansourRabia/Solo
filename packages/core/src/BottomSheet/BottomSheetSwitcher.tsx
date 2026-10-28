@@ -41,6 +41,7 @@ import {
 import type {BaseProps} from '../BaseProps';
 import type {DialogPurpose} from '../Dialog';
 import {cn} from '../utils/cn';
+import {useOverlayBoundary} from '../Layer/OverlayBoundary';
 import {useScrollLock} from '../hooks';
 import {
   useFocusTrap,
@@ -71,6 +72,11 @@ const styles = {
   // width/height 100% avoids overflowing a transformed containing block, but
   // consumers of this non-modal mode must still avoid clipping ancestors.
   dialogNonModal: 'pointer-events-none z-1000 w-full h-full',
+  // Inside an OverlayBoundary the window-wide ::backdrop stays clear and the
+  // dialog — sized to the boundary — paints the scrim (see BottomSheet).
+  bounded: 'backdrop:bg-transparent [transition-property:background-color] [transition-duration:var(--duration-medium)]',
+  boundedScrim:
+    'bg-[color-mix(in_srgb,var(--color-overlay)_calc(var(--_sheet-scrim-opacity,1)*100%),transparent)] starting:bg-transparent',
   scrim: cn(
     'backdrop:bg-(--color-overlay)',
     'backdrop:[opacity:var(--_sheet-scrim-opacity,1)] starting:backdrop:opacity-0',
@@ -242,6 +248,7 @@ export function BottomSheetSwitcher({
     (visibleTransition.retainedSheet != null &&
       !unmountedSheetIds.has(visibleTransition.retainedSheet));
   const isModal = hasScrim && isFlowVisible;
+  const boundary = useOverlayBoundary(isFlowVisible);
   const activeSheetPurpose =
     (activeSheet == null ? null : sheetPurposes.get(activeSheet)) ?? 'info';
   const allowsEscapeDismiss = activeSheetPurpose !== 'required';
@@ -602,7 +609,10 @@ export function BottomSheetSwitcher({
       hasScrim && styles.scrim,
       hasScrim && isFlowVisible && activeSheet == null && styles.scrimClosing,
       !hasScrim && styles.dialogNonModal,
+      boundary.isBounded && styles.bounded,
+      boundary.isBounded && hasScrim && activeSheet != null && styles.boundedScrim,
     ),
+    style: boundary.style,
   };
   const dialogPresentationProps = mergeProps(
     dialogStyleProps,

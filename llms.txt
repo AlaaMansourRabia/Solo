@@ -225,6 +225,7 @@ Pick components by role, not by look: each entry says what the component is for 
 - InternationalizationProvider: Wraps your app to set the active locale and (optionally) merge additional translation catalogs + per-locale overrides.
 - Layer: Layer utilities provide the app-level provider used by overlay systems.
   - LayerProvider: App-level provider for layer systems such as toast viewports and imperative modals.
+  - OverlayBoundary: Confines full-screen overlays opened inside it (MobileNav, BottomSheet, BottomSheetSwitcher) to its own on-screen rectangle instead of the whole window, scrim included.
 - MediaTheme: Provides token overrides for content rendered on inverted surfaces: media overlays, scrims, toasts, and tooltips.
 - SyntaxTheme: Applies syntax highlighting colors to CodeBlock and any code component in the subtree.
 - Theme: Wraps a subtree with a specific Solo theme.

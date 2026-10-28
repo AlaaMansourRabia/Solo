@@ -35,6 +35,7 @@ import {
 import type {BaseProps} from '../BaseProps';
 import type {DialogPurpose} from '../Dialog';
 import {cn} from '../utils/cn';
+import {useOverlayBoundary} from '../Layer/OverlayBoundary';
 import {useDevWarning, useScrollLock} from '../hooks';
 import {isImeKeyEvent} from '../utils';
 import {
@@ -79,6 +80,12 @@ const styles = {
    * Same reasoning the touch date picker's surface swap already carries.
    */
   scrimClosing: 'backdrop:[transition-timing-function:linear]',
+  // Inside an OverlayBoundary the window-wide ::backdrop stays clear and the
+  // dialog — sized to the boundary — paints the scrim, following the same
+  // opacity variable (drag, peek) the backdrop would have.
+  bounded: 'backdrop:bg-transparent [transition-property:background-color] [transition-duration:var(--duration-medium)]',
+  boundedScrim:
+    'bg-[color-mix(in_srgb,var(--color-overlay)_calc(var(--_sheet-scrim-opacity,1)*100%),transparent)] starting:bg-transparent',
   positioner: cn(
     'absolute inset-x-0 [inset-block-end:0] flex justify-center',
     'pointer-events-none',
@@ -194,6 +201,7 @@ function StandaloneBottomSheet({
   const triggerRef = useRef<HTMLElement | null>(null);
   const [isPresented, setIsPresented] = useState(isOpen);
   const shouldPresent = isOpen || isPresented;
+  const boundary = useOverlayBoundary(shouldPresent);
   const panelState: BottomSheetPanelState = isOpen
     ? {kind: 'open', entering: false}
     : isPresented
@@ -322,7 +330,10 @@ function StandaloneBottomSheet({
         hasScrim && styles.scrim,
         hasScrim && !isOpen && isPresented && styles.scrimClosing,
         !hasScrim && styles.dialogNonModal,
+        boundary.isBounded && styles.bounded,
+        boundary.isBounded && hasScrim && isOpen && styles.boundedScrim,
       )}
+      style={boundary.style}
       ref={dialogRef}
       aria-label={label}
       aria-hidden={!isOpen && isPresented ? 'true' : undefined}

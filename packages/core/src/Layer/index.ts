@@ -14,6 +14,10 @@
  * or @solo/core/Tooltip directly.
  */
 
+// Confine full-screen overlays to a region (device frames, embedded previews)
+export {OverlayBoundary, useOverlayBoundary} from './OverlayBoundary';
+export type {OverlayBoundaryProps, OverlayBoundaryState} from './OverlayBoundary';
+
 // Core layer hook (remains in Layer)
 export {useLayer} from './useLayer';
 export type {
